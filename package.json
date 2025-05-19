@@ -12,6 +12,7 @@
     "@astrojs/partytown": "^2.1.4",
     "@astrojs/react": "^4.2.7",
     "@astrojs/sitemap": "^3.4.0",
+    "@astrojs/ts-plugin": "^1.10.4",
     "@astrojs/vercel": "^8.1.4",
     "@types/react": "^19.1.4",
     "@types/react-dom": "^19.1.5",
