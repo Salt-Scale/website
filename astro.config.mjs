@@ -9,8 +9,14 @@ import vercel from '@astrojs/vercel';
 
 import sitemap from '@astrojs/sitemap';
 
+import tailwindcss from '@tailwindcss/vite';
+
 // https://astro.build/config
 export default defineConfig({
   integrations: [react(), partytown(), sitemap()],
-  adapter: vercel()
+  adapter: vercel(),
+
+  vite: {
+    plugins: [tailwindcss()]
+  }
 });
