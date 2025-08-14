@@ -1,11 +1,207 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-	<Welcome />
+  <section class="mx-auto grid max-w-[1120px] gap-5 px-4 pt-24 pb-12">
+    <p
+      class="font-semibold tracking-wide text-[--color-supporting-green] uppercase"
+    >
+      Shopify & Adobe Commerce Development
+    </p>
+    <h1 class="m-0 text-[clamp(2rem,6vw,3.5rem)] leading-tight">
+      Salt & Scale — <em>Growth, grounded in truth.</em>
+    </h1>
+    <p class="max-w-[62ch] text-[1.125rem]">
+      We specialize in solving complex e‑commerce challenges using Shopify and
+      Adobe Commerce. Whether you're scaling or enterprise, we architect, build,
+      and optimize with integrity and measurable outcomes.
+    </p>
+    <div class="flex gap-3">
+      <a
+        href="#contact"
+        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white transition hover:opacity-90 active:translate-y-px"
+        >Start a project</a
+      >
+      <a
+        href="#services"
+        class="inline-flex items-center justify-center rounded-lg border border-[rgba(55,62,69,0.2)] px-4 py-2 text-[--color-primary-navy]"
+        >See services</a
+      >
+    </div>
+  </section>
+
+  <section id="services" class="mx-auto grid max-w-[1120px] gap-6 px-4 py-12">
+    <h2 class="m-0">Services</h2>
+    <p class="max-w-[70ch]">
+      We bring tailored technical solutions that drive performance and
+      efficiency.
+    </p>
+    <div
+      class="grid [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))] gap-4"
+    >
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">1. E‑Commerce Solution Architecture</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>Technical leadership on new or migrating builds</li>
+          <li>Scalable architecture for Shopify or Adobe Commerce</li>
+          <li>Headless strategy and architecture planning</li>
+          <li>Tech stack evaluation and recommendations</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">2. Custom App Development</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>Private and public Shopify apps</li>
+          <li>Admin tools for operational automation</li>
+          <li>Integration‑focused apps (CRM, ERP, WMS)</li>
+          <li>Custom APIs and secure backend services</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">3. Headless Commerce Builds</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>Headless Shopify with Next.js, Remix, Hydrogen</li>
+          <li>CMS integrations (Sanity, Contentful, and more)</li>
+          <li>Performance for Lighthouse & Core Web Vitals</li>
+          <li>Full deployment and CI/CD strategy</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">4. Custom Feature Development</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>Checkout customization and upsell features</li>
+          <li>Bundling, subscriptions, loyalty integrations</li>
+          <li>UI/UX enhancements across desktop and mobile</li>
+          <li>Theme development or headless frontend work</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">5. Systems Integration & Automation</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>ERP, CRM, and 3PL integrations (real‑time & batch)</li>
+          <li>Sync inventory, orders, and customer data</li>
+          <li>Workflow automation for marketing/fulfillment</li>
+          <li>Webhooks, middleware, and third‑party connectors</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">6. Technical Audits & Strategy Consulting</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>Code reviews and performance audits</li>
+          <li>Security and scalability assessments</li>
+          <li>Platform migration planning</li>
+          <li>Executive reporting and documentation</li>
+        </ul>
+      </article>
+      <article
+        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+      >
+        <h3 class="mt-0">7. Fractional CTO Services</h3>
+        <ul class="m-0 list-disc pl-5">
+          <li>On‑demand technical leadership</li>
+          <li>Strategic roadmap development</li>
+          <li>Vendor management and hiring support</li>
+          <li>Internal team mentorship and structure</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="mx-auto grid max-w-[1120px] gap-4 px-4 pb-12">
+    <h3 class="m-0">Add‑On Services</h3>
+    <ul class="m-0 max-w-[960px] list-disc [columns:2] gap-8 pl-5">
+      <li>API documentation and handoff packages</li>
+      <li>DevOps and CI/CD setup for in‑house teams</li>
+      <li>Shopify Plus and Adobe Commerce onboarding</li>
+      <li>Technical SEO reviews and schema integration</li>
+    </ul>
+  </section>
+
+  <section id="approach" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
+    <h2 class="m-0">Approach</h2>
+    <p class="max-w-[70ch]">
+      Integrity first. We start with discovery and honest diagnostics,
+      prioritize high-leverage improvements, and build in short, measurable
+      cycles. Transparent comms, clear tradeoffs, and code built to last.
+    </p>
+    <ul
+      class="grid list-none [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-3 p-0"
+    >
+      <li
+        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
+      >
+        Discovery & technical audit
+      </li>
+      <li
+        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
+      >
+        Roadmap with ROI focus
+      </li>
+      <li
+        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
+      >
+        Build, measure, iterate
+      </li>
+    </ul>
+  </section>
+
+  <section id="work" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
+    <h2 class="m-0">Selected Work</h2>
+    <p>Case studies coming soon. Ask for relevant examples in your industry.</p>
+  </section>
+
+  <section
+    id="contact"
+    class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-12 pb-20"
+  >
+    <h2 class="m-0">Start a project</h2>
+    <p class="max-w-[70ch]">
+      Tell us where you are, what you’re building, and where you want to grow.
+    </p>
+    <form
+      name="contact"
+      method="POST"
+      data-netlify="true"
+      class="grid max-w-[640px] gap-3"
+    >
+      <input type="hidden" name="form-name" value="contact" />
+      <input
+        required
+        name="name"
+        placeholder="Your name"
+        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
+      />
+      <input
+        required
+        type="email"
+        name="email"
+        placeholder="Email"
+        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
+      />
+      <textarea
+        required
+        name="message"
+        placeholder="What can we help with?"
+        rows="6"
+        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
+      ></textarea>
+      <button
+        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white transition hover:opacity-90 active:translate-y-px"
+        type="submit">Send</button
+      >
+    </form>
+  </section>
 </Layout>

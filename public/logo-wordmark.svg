@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 240" fill="none" role="img" aria-labelledby="title">
+  <title>Salt & Scale Wordmark</title>
+  <style>
+    .text { font: 700 120px 'Playfair Display', serif; letter-spacing: 8px; }
+  </style>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#F4E3C3" />
+      <stop offset="1" stop-color="#F4E3C3" />
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="240" fill="url(#bg)"/>
+  <g fill="#373E45">
+    <text x="600" y="140" text-anchor="middle" class="text">SALT & SCALE</text>
+  </g>
+  <g stroke="#373E45" stroke-width="10" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M600 160 640 200 600 240 560 200Z" />
+    <path d="M584 206 600 196 616 206" />
+  </g>
+</svg>
+
+

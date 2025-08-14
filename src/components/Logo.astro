@@ -1,0 +1,39 @@
+---
+export interface Props {
+  height?: number;
+}
+
+const { height = 28 } = Astro.props as Props;
+---
+
+<svg
+  viewBox="0 0 600 180"
+  height={height}
+  fill="none"
+  xmlns="http://www.w3.org/2000/svg"
+  aria-labelledby="logoTitle"
+  role="img"
+>
+  <title id="logoTitle">Salt & Scale</title>
+  <g fill="#373E45">
+    <text
+      x="300"
+      y="90"
+      text-anchor="middle"
+      font-family="'Playfair Display', serif"
+      font-size="52"
+      letter-spacing="2"
+    >
+      SALT & SCALE
+    </text>
+  </g>
+  <g
+    stroke="#373E45"
+    stroke-width="6"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+  >
+    <path d="M300 120 L330 150 L300 180 L270 150 Z"></path>
+    <path d="M285 157 L300 148 L315 157"></path>
+  </g>
+</svg>
