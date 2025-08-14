@@ -1,7 +1,6 @@
 ---
 import "../styles/global.css";
 ---
----
 
 <!doctype html>
 <html lang="en">
@@ -21,33 +20,32 @@ import "../styles/global.css";
   <body
     class="bg-[--color-bg] font-sans text-[--color-primary-navy] antialiased"
   >
-    <header
-      class="mx-auto flex max-w-[1120px] items-center justify-between px-4 py-4"
-    >
-			<a href="/" class="inline-flex items-center gap-2 leading-none">
-				<img src="/icons/icon-d-integrated.svg" alt="Salt &amp; Scale" height="28" class="h-[28px] w-auto align-middle" />
-			</a>
-      <nav aria-label="Primary" class="flex gap-4">
-        <a href="#services" class="hover:underline">Services</a>
-        <a href="#approach" class="hover:underline">Approach</a>
-        <a href="#work" class="hover:underline">Work</a>
-        <a
-          href="#contact"
-          class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white transition hover:opacity-90 active:translate-y-px"
-          >Start a project</a
-        >
-      </nav>
+    <header class="sticky top-0 z-50 border-b border-[rgba(55,62,69,0.08)] bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70">
+      <div class="mx-auto flex max-w-[1120px] items-center justify-between px-4 py-3">
+        <a href="/" class="inline-flex items-center gap-2 leading-none">
+          <img src="/icons/icon-d-integrated.svg" alt="Salt &amp; Scale" height="28" class="h-[28px] w-auto align-middle" />
+        </a>
+        <nav aria-label="Primary" class="flex gap-5">
+          <a href="#services" class="font-medium text-[--color-primary-navy] hover:underline">Services</a>
+          <a href="#approach" class="font-medium text-[--color-primary-navy] hover:underline">Approach</a>
+          <a href="#work" class="font-medium text-[--color-primary-navy] hover:underline">Work</a>
+          <a
+            href="#contact"
+            class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
+            >Start a project</a
+          >
+        </nav>
+      </div>
     </header>
     <main>
       <slot />
     </main>
-    <footer
-      class="mx-auto mt-8 flex max-w-[1120px] items-center justify-between border-t border-[rgba(55,62,69,0.15)] px-4 py-8"
-    >
-      <p class="m-0">© {new Date().getFullYear()} Salt & Scale</p>
-      <p class="m-0 text-[--color-supporting-green]">
-        Growth, grounded in truth.
-      </p>
+    <footer class="mx-auto mt-8 max-w-[1120px] px-4 py-8">
+      <div class="h-px w-full bg-[--color-supporting-green]/30"></div>
+      <div class="mt-4 flex items-center justify-between">
+        <p class="m-0">© {new Date().getFullYear()} Salt & Scale</p>
+        <p class="m-0 text-[--color-supporting-green]">Growth, grounded in truth.</p>
+      </div>
     </footer>
   </body>
 </html>

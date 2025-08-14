@@ -3,16 +3,15 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <div class="relative">
-    <img src="/hero-texture.svg" alt="" class="pointer-events-none absolute inset-0 h-[420px] w-full select-none object-cover" />
-  </div>
-  <section class="mx-auto grid max-w-[1120px] gap-5 px-4 pt-24 pb-12">
+  <section class="relative isolate w-full bg-[--color-paper]">
+    <img src="/hero-texture.svg" alt="" class="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-90" />
+    <div class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-16 pb-12">
     <p
       class="font-semibold tracking-wide text-[--color-supporting-green] uppercase"
     >
       Shopify & Adobe Commerce Development
     </p>
-    <h1 class="m-0 text-[clamp(2rem,6vw,3.5rem)] leading-tight">
+    <h1 class="m-0 max-w-[22ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05]">
       Salt &amp; Scale — <em>Growth, grounded in truth.</em>
     </h1>
     <p class="max-w-[62ch] text-[1.125rem]">
@@ -23,18 +22,23 @@ import Layout from "../layouts/Layout.astro";
     <div class="flex gap-3">
       <a
         href="#contact"
-        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white transition hover:opacity-90 active:translate-y-px"
+        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
         >Start a project</a
       >
       <a
         href="#services"
-        class="inline-flex items-center justify-center rounded-lg border border-[rgba(55,62,69,0.2)] px-4 py-2 text-[--color-primary-navy]"
+        class="inline-flex items-center justify-center rounded-lg border border-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-[--color-accent-brown] transition hover:bg-[--color-accent-brown]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
         >See services</a
       >
     </div>
+    </div>
   </section>
 
-  <section id="services" class="mx-auto grid max-w-[1120px] gap-6 px-4 py-12">
+  <section id="services" class="relative mx-auto grid max-w-[1120px] gap-6 px-4 py-16 bg-white border-t border-[rgba(55,62,69,0.08)]">
+    <span class="pointer-events-none absolute -z-10 -top-10 left-1/4 h-56 w-3/5 rounded-full bg-[radial-gradient(circle,rgba(138,92,55,0.18)_0%,transparent_60%)]"></span>
+    <p class="m-0">
+      <span class="inline-block rounded-full bg-[--color-supporting-green]/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-[--color-supporting-green]">Core offerings</span>
+    </p>
     <h2 class="m-0">Services</h2>
     <p class="max-w-[70ch]">
       We bring tailored technical solutions that drive performance and
@@ -44,86 +48,86 @@ import Layout from "../layouts/Layout.astro";
       class="grid [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))] gap-4"
     >
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">1. E‑Commerce Solution Architecture</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>Technical leadership on new or migrating builds</li>
-          <li>Scalable architecture for Shopify or Adobe Commerce</li>
-          <li>Headless strategy and architecture planning</li>
-          <li>Tech stack evaluation and recommendations</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Technical leadership on new or migrating builds</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Scalable architecture for Shopify or Adobe Commerce</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Headless strategy and architecture planning</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Tech stack evaluation and recommendations</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">2. Custom App Development</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>Private and public Shopify apps</li>
-          <li>Admin tools for operational automation</li>
-          <li>Integration‑focused apps (CRM, ERP, WMS)</li>
-          <li>Custom APIs and secure backend services</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Private and public Shopify apps</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Admin tools for operational automation</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Integration‑focused apps (CRM, ERP, WMS)</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Custom APIs and secure backend services</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">3. Headless Commerce Builds</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>Headless Shopify with Next.js, Remix, Hydrogen</li>
-          <li>CMS integrations (Sanity, Contentful, and more)</li>
-          <li>Performance for Lighthouse & Core Web Vitals</li>
-          <li>Full deployment and CI/CD strategy</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Headless Shopify with Next.js, Remix, Hydrogen</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>CMS integrations (Sanity, Contentful, and more)</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Performance for Lighthouse & Core Web Vitals</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Full deployment and CI/CD strategy</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">4. Custom Feature Development</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>Checkout customization and upsell features</li>
-          <li>Bundling, subscriptions, loyalty integrations</li>
-          <li>UI/UX enhancements across desktop and mobile</li>
-          <li>Theme development or headless frontend work</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Checkout customization and upsell features</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Bundling, subscriptions, loyalty integrations</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>UI/UX enhancements across desktop and mobile</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Theme development or headless frontend work</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">5. Systems Integration & Automation</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>ERP, CRM, and 3PL integrations (real‑time & batch)</li>
-          <li>Sync inventory, orders, and customer data</li>
-          <li>Workflow automation for marketing/fulfillment</li>
-          <li>Webhooks, middleware, and third‑party connectors</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>ERP, CRM, and 3PL integrations (real‑time & batch)</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Sync inventory, orders, and customer data</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Workflow automation for marketing/fulfillment</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Webhooks, middleware, and third‑party connectors</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">6. Technical Audits & Strategy Consulting</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>Code reviews and performance audits</li>
-          <li>Security and scalability assessments</li>
-          <li>Platform migration planning</li>
-          <li>Executive reporting and documentation</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Code reviews and performance audits</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Security and scalability assessments</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Platform migration planning</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Executive reporting and documentation</li>
         </ul>
       </article>
       <article
-        class="rounded-xl border border-[rgba(55,62,69,0.15)]/100 bg-white/75 p-4"
+        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
       >
         <h3 class="mt-0">7. Fractional CTO Services</h3>
-        <ul class="m-0 list-disc pl-5">
-          <li>On‑demand technical leadership</li>
-          <li>Strategic roadmap development</li>
-          <li>Vendor management and hiring support</li>
-          <li>Internal team mentorship and structure</li>
+        <ul class="m-0 pl-0 space-y-1">
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>On‑demand technical leadership</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Strategic roadmap development</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Vendor management and hiring support</li>
+          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Internal team mentorship and structure</li>
         </ul>
       </article>
     </div>
   </section>
 
-  <section class="mx-auto grid max-w-[1120px] gap-4 px-4 pb-12">
+  <section class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
     <h3 class="m-0">Add‑On Services</h3>
     <ul class="m-0 max-w-[960px] list-disc [columns:2] gap-8 pl-5">
       <li>API documentation and handoff packages</li>
@@ -133,48 +137,40 @@ import Layout from "../layouts/Layout.astro";
     </ul>
   </section>
 
-  <section id="approach" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
+  <section id="approach" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-16 bg-[--color-bg]">
     <h2 class="m-0">Approach</h2>
     <p class="max-w-[70ch]">
       Integrity first. We start with discovery and honest diagnostics,
       prioritize high-leverage improvements, and build in short, measurable
       cycles. Transparent comms, clear tradeoffs, and code built to last.
     </p>
-    <ul
-      class="grid list-none [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-3 p-0"
-    >
-      <li
-        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
-      >
+    <ul class="grid list-none [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-3 p-0">
+      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
         Discovery & technical audit
       </li>
-      <li
-        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
-      >
+      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
         Roadmap with ROI focus
       </li>
-      <li
-        class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white/65 px-3 py-2"
-      >
+      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
         Build, measure, iterate
       </li>
     </ul>
   </section>
 
-  <section id="work" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
+  <section id="work" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-16">
     <h2 class="m-0">Selected Work</h2>
     <p>Case studies coming soon. Ask for relevant examples in your industry.</p>
     <div class="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4">
-      <a href="/icons/icon-a-filled.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon A — Filled Diamond</a>
-      <a href="/icons/icon-b-outline.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon B — Outline Diamond</a>
-      <a href="/icons/icon-c-monogram.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon C — Monogram</a>
-      <a href="/icons/icon-d-integrated.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon D — Integrated Lockup</a>
+      <a href="/icons/icon-a-filled.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon A — Filled Diamond</a>
+      <a href="/icons/icon-b-outline.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon B — Outline Diamond</a>
+      <a href="/icons/icon-c-monogram.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon C — Monogram</a>
+      <a href="/icons/icon-d-integrated.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon D — Integrated Lockup</a>
     </div>
   </section>
 
   <section
     id="contact"
-    class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-12 pb-20"
+    class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-12 pb-24"
   >
     <h2 class="m-0">Start a project</h2>
     <p class="max-w-[70ch]">
@@ -208,7 +204,7 @@ import Layout from "../layouts/Layout.astro";
         class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
       ></textarea>
       <button
-        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white transition hover:opacity-90 active:translate-y-px"
+        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
         type="submit">Send</button
       >
     </form>
