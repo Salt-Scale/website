@@ -3,6 +3,9 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
+  <div class="relative">
+    <img src="/hero-texture.svg" alt="" class="pointer-events-none absolute inset-0 h-[420px] w-full select-none object-cover" />
+  </div>
   <section class="mx-auto grid max-w-[1120px] gap-5 px-4 pt-24 pb-12">
     <p
       class="font-semibold tracking-wide text-[--color-supporting-green] uppercase"
@@ -10,7 +13,7 @@ import Layout from "../layouts/Layout.astro";
       Shopify & Adobe Commerce Development
     </p>
     <h1 class="m-0 text-[clamp(2rem,6vw,3.5rem)] leading-tight">
-      Salt & Scale — <em>Growth, grounded in truth.</em>
+      Salt &amp; Scale — <em>Growth, grounded in truth.</em>
     </h1>
     <p class="max-w-[62ch] text-[1.125rem]">
       We specialize in solving complex e‑commerce challenges using Shopify and
@@ -161,6 +164,12 @@ import Layout from "../layouts/Layout.astro";
   <section id="work" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
     <h2 class="m-0">Selected Work</h2>
     <p>Case studies coming soon. Ask for relevant examples in your industry.</p>
+    <div class="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4">
+      <a href="/icons/icon-a-filled.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon A — Filled Diamond</a>
+      <a href="/icons/icon-b-outline.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon B — Outline Diamond</a>
+      <a href="/icons/icon-c-monogram.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon C — Monogram</a>
+      <a href="/icons/icon-d-integrated.svg" class="rounded-lg border border-[rgba(55,62,69,0.15)] bg-white/70 p-3 hover:opacity-95" target="_blank" rel="noreferrer">Icon D — Integrated Lockup</a>
+    </div>
   </section>
 
   <section

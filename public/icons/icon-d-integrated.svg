@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 90" fill="none" role="img" aria-labelledby="title">
+  <title>Salt &amp; Scale Icon D — Integrated Lockup</title>
+  <!-- Diamond mark -->
+  <path d="M150 18 170 38 150 58 130 38Z" fill="#373E45"/>
+  <path d="M142 42 150 38 158 42" stroke="#F4E3C3" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+  <!-- Wordmark -->
+  <g fill="#373E45">
+    <text x="110" y="52" text-anchor="end" font-family="'Playfair Display', serif" font-size="36" letter-spacing="2">SALT</text>
+    <text x="190" y="52" text-anchor="start" font-family="'Playfair Display', serif" font-size="36" letter-spacing="2">SCALE</text>
+  </g>
+</svg>
+
+
