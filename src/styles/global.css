@@ -26,4 +26,48 @@
   h6 {
     font-family: var(--font-serif);
   }
+  
+  /* Custom select styling for better dropdown arrow positioning */
+  select {
+    appearance: none;
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23373e45' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 16px;
+    padding-right: 40px;
+  }
+  
+  select:focus {
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234b6241' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+  }
+
+  /* Custom animations for floating geometric shapes */
+  @keyframes float-bounce {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+  }
+
+  @keyframes float-ping {
+    0% { transform: scale(1); opacity: 1; }
+    50% { transform: scale(1.2); opacity: 0.5; }
+    100% { transform: scale(1); opacity: 1; }
+  }
+
+  .animate-float-bounce {
+    animation: float-bounce 2s ease-in-out infinite;
+  }
+
+  .animate-float-ping {
+    animation: float-ping 2s ease-in-out infinite;
+  }
+
+  .animate-float-bounce-delayed {
+    animation: float-bounce 2s ease-in-out infinite;
+    animation-delay: 0.5s;
+  }
+
+  @keyframes shine {
+    0% { transform: translateX(-100%) skewX(-12deg); }
+    100% { transform: translateX(200%) skewX(-12deg); }
+  }
 }

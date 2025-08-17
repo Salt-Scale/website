@@ -3,210 +3,720 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <section class="relative isolate w-full bg-[--color-paper]">
+  <!-- Hero Section -->
+  <section class="relative isolate w-full bg-[--color-paper] overflow-hidden">
     <img src="/hero-texture.svg" alt="" class="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-90" />
-    <div class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-16 pb-12">
-    <p
-      class="font-semibold tracking-wide text-[--color-supporting-green] uppercase"
-    >
-      Shopify & Adobe Commerce Development
-    </p>
-    <h1 class="m-0 max-w-[22ch] text-[clamp(2rem,6vw,3.5rem)] leading-[1.05]">
-      Salt &amp; Scale — <em>Growth, grounded in truth.</em>
-    </h1>
-    <p class="max-w-[62ch] text-[1.125rem]">
-      We specialize in solving complex e‑commerce challenges using Shopify and
-      Adobe Commerce. Whether you're scaling or enterprise, we architect, build,
-      and optimize with integrity and measurable outcomes.
-    </p>
-    <div class="flex gap-3">
-      <a
-        href="#contact"
-        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
-        >Start a project</a
-      >
-      <a
-        href="#services"
-        class="inline-flex items-center justify-center rounded-lg border border-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-[--color-accent-brown] transition hover:bg-[--color-accent-brown]/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
-        >See services</a
-      >
-    </div>
-    </div>
-  </section>
+    
+    <!-- Decorative elements -->
+    <div class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[--color-supporting-green]/10 blur-3xl"></div>
+    <div class="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[--color-accent-brown]/10 blur-3xl"></div>
+    
+    <div class="mx-auto max-w-[1120px] px-4 pt-24 pb-20">
+      <div class="grid lg:grid-cols-2 gap-12 items-center">
+        <div class="space-y-8">
+          <div class="inline-flex items-center justify-center px-4 py-2 bg-[--color-supporting-green]/10 border border-[--color-supporting-green]/20 rounded-full">
+            <span class="w-2 h-2 bg-[--color-supporting-green] rounded-full flex-shrink-0"></span>
+            <span class="font-semibold tracking-wide text-[--color-supporting-green] uppercase text-sm text-center">Shopify & Adobe Commerce Development</span>
+          </div>
+          
+          <h1 class="m-0 text-[clamp(2.5rem,7vw,4rem)] leading-[1.05] font-bold">
+            Salt &amp; Scale — <em class="text-[--color-accent-brown]">Growth, grounded in Truth.</em>
+          </h1>
+          
+          <p class="text-xl leading-relaxed text-[--color-primary-navy]/80 max-w-[56ch]">
+            We specialize in solving complex e-commerce challenges using Shopify and
+            Adobe Commerce. Whether you're scaling or enterprise, we architect, build,
+            and optimize with integrity and measurable outcomes.
+          </p>
+          
+          <div class="flex flex-col sm:flex-row gap-4">
+            <a
+              href="#contact"
+              class="inline-flex items-center justify-center rounded-xl bg-[#5a7c65] px-8 py-4 text-lg font-semibold text-white border border-[#4a6b5a] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 active:translate-y-px"
+            >
+              Start a project
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+              </svg>
+            </a>
+            <a
+              href="#services"
+              class="inline-flex items-center justify-center rounded-xl bg-white/80 backdrop-blur-sm px-8 py-4 text-lg font-semibold text-[#8b7d6b] border-2 border-[#8b7d6b]/30 shadow-lg transition-all duration-300 hover:bg-white hover:border-[#8b7d6b] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7d6b] focus-visible:ring-offset-2"
+            >
+              See services
+            </a>
+          </div>
+        </div>
+        
+        <div class="relative">
+          <!-- Interactive 3D-style card stack -->
+          <div class="relative group">
+            <!-- Background card -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#5a7c65]/20 to-[#8b7d6b]/20 rounded-3xl blur-xl transform rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
+            
+            <!-- Middle card -->
+            <div class="absolute inset-0 bg-gradient-to-br from-[#5a7c65]/10 to-[#8b7d6b]/10 rounded-3xl blur-lg transform -rotate-2 group-hover:-rotate-4 transition-transform duration-700"></div>
+            
+            <!-- Main interactive card -->
+            <div class="relative z-10 bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/40 transform transition-all duration-700 hover:scale-105 hover:shadow-3xl hover:-translate-y-2">
+              
+              <!-- Dynamic service showcase header -->
+              <div class="text-center mb-6">
+                <div class="relative inline-block group/icon">
+                  <div class="w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-2xl flex items-center justify-center mx-auto mb-4 transform group-hover/icon:rotate-12 group-hover/icon:scale-110 transition-all duration-500 shadow-lg">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+                    </svg>
+                  </div>
+                  <div class="absolute -inset-2 bg-gradient-to-br from-[#5a7c65]/20 to-[#8b7d6b]/20 rounded-2xl blur-lg -z-10 group-hover/icon:blur-xl transition-all duration-500"></div>
+                </div>
+                <h3 class="text-xl font-bold text-[#373e45] mb-2">What We Build</h3>
+                <p class="text-sm text-[#373e45]/70">Explore our core capabilities</p>
+              </div>
+              
+              <!-- Interactive service showcase -->
+              <div class="space-y-3 mb-6">
+                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
+                  <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#5a7c65]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">E-commerce Architecture</h4>
+                    <p class="text-xs text-[#373e45]/60">Scalable solutions that grow with you</p>
+                  </div>
+                </div>
+                
+                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#8b7d6b]/8 hover:to-[#5a7c65]/8 transition-all duration-300 border border-transparent hover:border-[#8b7d6b]/10 hover:shadow-lg">
+                  <div class="w-10 h-10 bg-gradient-to-br from-[#8b7d6b] to-[#8b7d6b]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:-rotate-3 transition-all duration-300 shadow-md">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">Custom Development</h4>
+                    <p class="text-xs text-[#373e45]/60">Tailored solutions for unique needs</p>
+                  </div>
+                </div>
+                
+                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
+                  <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                    </svg>
+                  </div>
+                  <div class="flex-1 min-w-0">
+                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">Performance Optimization</h4>
+                    <p class="text-xs text-[#373e45]/60">Lightning fast user experiences</p>
+                  </div>
+                </div>
+              </div>
+              
 
-  <section id="services" class="relative mx-auto grid max-w-[1120px] gap-6 px-4 py-16 bg-white border-t border-[rgba(55,62,69,0.08)]">
-    <span class="pointer-events-none absolute -z-10 -top-10 left-1/4 h-56 w-3/5 rounded-full bg-[radial-gradient(circle,rgba(138,92,55,0.18)_0%,transparent_60%)]"></span>
-    <p class="m-0">
-      <span class="inline-block rounded-full bg-[--color-supporting-green]/10 px-2 py-1 text-xs font-semibold uppercase tracking-wide text-[--color-supporting-green]">Core offerings</span>
-    </p>
-    <h2 class="m-0">Services</h2>
-    <p class="max-w-[70ch]">
-      We bring tailored technical solutions that drive performance and
-      efficiency.
-    </p>
-    <div
-      class="grid [grid-template-columns:repeat(auto-fit,minmax(280px,1fr))] gap-4"
-    >
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">1. E‑Commerce Solution Architecture</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Technical leadership on new or migrating builds</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Scalable architecture for Shopify or Adobe Commerce</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Headless strategy and architecture planning</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Tech stack evaluation and recommendations</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">2. Custom App Development</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Private and public Shopify apps</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Admin tools for operational automation</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Integration‑focused apps (CRM, ERP, WMS)</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Custom APIs and secure backend services</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">3. Headless Commerce Builds</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Headless Shopify with Next.js, Remix, Hydrogen</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>CMS integrations (Sanity, Contentful, and more)</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Performance for Lighthouse & Core Web Vitals</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Full deployment and CI/CD strategy</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">4. Custom Feature Development</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Checkout customization and upsell features</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Bundling, subscriptions, loyalty integrations</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>UI/UX enhancements across desktop and mobile</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Theme development or headless frontend work</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">5. Systems Integration & Automation</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>ERP, CRM, and 3PL integrations (real‑time & batch)</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Sync inventory, orders, and customer data</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Workflow automation for marketing/fulfillment</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Webhooks, middleware, and third‑party connectors</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">6. Technical Audits & Strategy Consulting</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Code reviews and performance audits</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Security and scalability assessments</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Platform migration planning</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Executive reporting and documentation</li>
-        </ul>
-      </article>
-      <article
-        class="rounded-xl border border-[rgba(55,62,69,0.14)] border-t-[3px] border-t-[--color-accent-brown] bg-white p-5 shadow-sm"
-      >
-        <h3 class="mt-0">7. Fractional CTO Services</h3>
-        <ul class="m-0 pl-0 space-y-1">
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>On‑demand technical leadership</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Strategic roadmap development</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Vendor management and hiring support</li>
-          <li class="flex"><span aria-hidden="true" class="mr-2 text-[--color-supporting-green]">◆</span>Internal team mentorship and structure</li>
-        </ul>
-      </article>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <section class="mx-auto grid max-w-[1120px] gap-4 px-4 py-12">
-    <h3 class="m-0">Add‑On Services</h3>
-    <ul class="m-0 max-w-[960px] list-disc [columns:2] gap-8 pl-5">
-      <li>API documentation and handoff packages</li>
-      <li>DevOps and CI/CD setup for in‑house teams</li>
-      <li>Shopify Plus and Adobe Commerce onboarding</li>
-      <li>Technical SEO reviews and schema integration</li>
-    </ul>
-  </section>
+  <!-- Services Section -->
+  <section id="services" class="relative mx-auto max-w-[1120px] px-4 py-24">
+    <div class="text-center mb-16">
+      <div class="inline-flex items-center justify-center px-4 py-2 bg-[--color-supporting-green]/10 border border-[--color-supporting-green]/20 rounded-full mb-6">
+        <span class="w-2 h-2 bg-[--color-supporting-green] rounded-full flex-shrink-0"></span>
+        <span class="font-semibold tracking-wide text-[--color-supporting-green] uppercase text-sm text-center">Core offerings</span>
+      </div>
+      <h2 class="text-4xl font-bold mb-6">Services</h2>
+      <p class="text-xl text-[--color-primary-navy]/70 max-w-[70ch] mx-auto">
+        We bring tailored technical solutions that drive performance and
+        efficiency.
+      </p>
+    </div>
+    
+    <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-supporting-green]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-supporting-green]">1</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">E‑Commerce Solution Architecture</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Technical leadership on new or migrating builds</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Scalable architecture for Shopify or Adobe Commerce</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Headless strategy and architecture planning</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Tech stack evaluation and recommendations</span>
+          </li>
+        </ul>
+      </article>
 
-  <section id="approach" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-16 bg-[--color-bg]">
-    <h2 class="m-0">Approach</h2>
-    <p class="max-w-[70ch]">
-      Integrity first. We start with discovery and honest diagnostics,
-      prioritize high-leverage improvements, and build in short, measurable
-      cycles. Transparent comms, clear tradeoffs, and code built to last.
-    </p>
-    <ul class="grid list-none [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-3 p-0">
-      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
-        Discovery & technical audit
-      </li>
-      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
-        Roadmap with ROI focus
-      </li>
-      <li class="rounded-lg border-l-4 border-[--color-supporting-green] bg-white px-3 py-2 shadow-sm">
-        Build, measure, iterate
-      </li>
-    </ul>
-  </section>
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-accent-brown]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-accent-brown]">2</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Custom App Development</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Private and public Shopify apps</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Admin tools for operational automation</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Integration‑focused apps (CRM, ERP, WMS)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Custom APIs and secure backend services</span>
+          </li>
+        </ul>
+      </article>
 
-  <section id="work" class="mx-auto grid max-w-[1120px] gap-4 px-4 py-16">
-    <h2 class="m-0">Selected Work</h2>
-    <p>Case studies coming soon. Ask for relevant examples in your industry.</p>
-    <div class="grid [grid-template-columns:repeat(auto-fit,minmax(240px,1fr))] gap-4">
-      <a href="/icons/icon-a-filled.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon A — Filled Diamond</a>
-      <a href="/icons/icon-b-outline.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon B — Outline Diamond</a>
-      <a href="/icons/icon-c-monogram.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon C — Monogram</a>
-      <a href="/icons/icon-d-integrated.svg" class="inline-flex items-center rounded-lg border border-[--color-accent-brown] bg-[--color-accent-brown]/10 px-3 py-2 font-medium text-[--color-accent-brown] hover:bg-[--color-accent-brown]/15" target="_blank" rel="noreferrer">Icon D — Integrated Lockup</a>
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-supporting-green]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-supporting-green]">3</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Headless Commerce Builds</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Headless Shopify with Next.js, Remix, Hydrogen</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">CMS integrations (Sanity, Contentful, and more)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Performance for Lighthouse & Core Web Vitals</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Full deployment and CI/CD strategy</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-accent-brown]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-accent-brown]">4</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Custom Feature Development</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Checkout customization and upsell features</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Bundling, subscriptions, loyalty integrations</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">UI/UX enhancements across desktop and mobile</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Theme development or headless frontend work</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-supporting-green]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-supporting-green]">5</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Systems Integration & Automation</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">ERP, CRM, and 3PL integrations (real-time & batch)</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Sync inventory, orders, and customer data</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Workflow automation for marketing/fulfillment</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Webhooks, middleware, and third-party connectors</span>
+          </li>
+        </ul>
+      </article>
+
+      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[--color-accent-brown] to-[--color-supporting-green] rounded-t-2xl"></div>
+        <div class="mb-6">
+          <div class="w-12 h-12 bg-[--color-accent-brown]/10 rounded-xl flex items-center justify-center mb-4">
+            <span class="text-2xl text-[--color-accent-brown]">6</span>
+          </div>
+          <h3 class="text-xl font-bold mb-4">Technical Audits & Strategy Consulting</h3>
+        </div>
+        <ul class="space-y-3">
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Code reviews and performance audits</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Security and scalability assessments</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Platform migration planning</span>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-[--color-supporting-green] mt-1">✓</span>
+            <span class="text-[--color-primary-navy]/80">Executive reporting and documentation</span>
+          </li>
+        </ul>
+      </article>
+
+
     </div>
   </section>
 
-  <section
-    id="contact"
-    class="mx-auto grid max-w-[1120px] gap-4 px-4 pt-12 pb-24"
-  >
-    <h2 class="m-0">Start a project</h2>
-    <p class="max-w-[70ch]">
-      Tell us where you are, what you’re building, and where you want to grow.
-    </p>
-    <form
-      name="contact"
-      method="POST"
-      data-netlify="true"
-      class="grid max-w-[640px] gap-3"
-    >
-      <input type="hidden" name="form-name" value="contact" />
-      <input
-        required
-        name="name"
-        placeholder="Your name"
-        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
-      />
-      <input
-        required
-        type="email"
-        name="email"
-        placeholder="Email"
-        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
-      />
-      <textarea
-        required
-        name="message"
-        placeholder="What can we help with?"
-        rows="6"
-        class="rounded-lg border border-[rgba(55,62,69,0.2)] bg-white px-3 py-3"
-      ></textarea>
-      <button
-        class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-5 py-2.5 text-[15px] font-semibold text-white shadow-sm transition hover:opacity-95 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
-        type="submit">Send</button
+  <!-- Add-On Services Section -->
+  <section class="mx-auto max-w-[1120px] px-4 py-16">
+    <div class="bg-gradient-to-br from-[--color-supporting-green]/5 to-[--color-accent-brown]/5 rounded-3xl p-12 border border-[--color-supporting-green]/10">
+      <div class="text-center mb-12">
+        <h3 class="text-3xl font-bold mb-4">Add‑On Services</h3>
+        <p class="text-lg text-[--color-primary-navy]/70 max-w-[70ch] mx-auto">
+          Additional expertise to complement your core project needs
+        </p>
+      </div>
+      <div class="grid md:grid-cols-2 gap-8">
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[--color-supporting-green] rounded-full"></div>
+            <span class="text-[--color-primary-navy]/80">API documentation and handoff packages</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[--color-supporting-green] rounded-full"></div>
+            <span class="text-[--color-primary-navy]/80">DevOps and CI/CD setup for in‑house teams</span>
+          </div>
+        </div>
+        <div class="space-y-4">
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[--color-accent-brown] rounded-full"></div>
+            <span class="text-[--color-primary-navy]/80">Shopify Plus and Adobe Commerce onboarding</span>
+          </div>
+          <div class="flex items-center gap-3">
+            <div class="w-2 h-2 bg-[--color-accent-brown] rounded-full"></div>
+            <span class="text-[--color-primary-navy]/80">Technical SEO reviews and schema integration</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Approach Section -->
+  <section id="approach" class="mx-auto max-w-[1120px] px-4 py-24 bg-[--color-bg] rounded-3xl mx-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-6">Approach</h2>
+      <p class="text-xl text-[--color-primary-navy]/80 max-w-[70ch] mx-auto">
+        Integrity first. We start with discovery and honest diagnostics,
+        prioritize high-leverage improvements, and build in short, measurable
+        cycles. Transparent comms, clear tradeoffs, and code built to last.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="text-center group">
+        <div class="w-16 h-16 bg-[--color-supporting-green]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg class="w-8 h-8 text-[--color-supporting-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
+          </svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Discovery & Technical Audit</h4>
+        <p class="text-[--color-primary-navy]/70">Comprehensive analysis of your current systems and opportunities</p>
+      </div>
+      
+      <div class="text-center group">
+        <div class="w-16 h-16 bg-[--color-accent-brown]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg class="w-8 h-8 text-[--color-accent-brown]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
+          </svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Roadmap with ROI Focus</h4>
+        <p class="text-[--color-primary-navy]/70">Strategic planning that prioritizes high-impact, measurable outcomes</p>
+      </div>
+      
+      <div class="text-center group">
+        <div class="w-16 h-16 bg-[--color-supporting-green]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
+          <svg class="w-8 h-8 text-[--color-supporting-green]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+          </svg>
+        </div>
+        <h4 class="text-xl font-bold mb-3">Build, Measure, Iterate</h4>
+        <p class="text-[--color-primary-navy]/70">Continuous improvement through rapid development cycles and feedback</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Work Section -->
+  <section id="work" class="mx-auto max-w-[1120px] px-4 py-24">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-6">Selected Work</h2>
+      <p class="text-xl text-[--color-primary-navy]/70 max-w-[70ch] mx-auto mb-8">
+        Case studies coming soon. Ask for relevant examples in your industry.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+      <a href="/icons/icon-a-filled.svg" class="group block p-6 bg-white rounded-2xl border border-[--color-accent-brown]/20 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-[--color-accent-brown]/40" target="_blank" rel="noreferrer">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[--color-accent-brown]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <img src="/icons/icon-a-filled.svg" alt="Icon A" class="w-8 h-8" />
+          </div>
+          <h4 class="font-semibold text-[--color-accent-brown] mb-2">Icon A</h4>
+          <p class="text-sm text-[--color-primary-navy]/60">Filled Diamond</p>
+        </div>
+      </a>
+      
+      <a href="/icons/icon-b-outline.svg" class="group block p-6 bg-white rounded-2xl border border-[--color-accent-brown]/20 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-[--color-accent-brown]/40" target="_blank" rel="noreferrer">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[--color-accent-brown]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <img src="/icons/icon-b-outline.svg" alt="Icon B" class="w-8 h-8" />
+          </div>
+          <h4 class="font-semibold text-[--color-accent-brown] mb-2">Icon B</h4>
+          <p class="text-sm text-[--color-primary-navy]/60">Outline Diamond</p>
+        </div>
+      </a>
+      
+      <a href="/icons/icon-c-monogram.svg" class="group block p-6 bg-white rounded-2xl border border-[--color-accent-brown]/20 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-[--color-accent-brown]/40" target="_blank" rel="noreferrer">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[--color-accent-brown]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <img src="/icons/icon-c-monogram.svg" alt="Icon C" class="w-8 h-8" />
+          </div>
+          <h4 class="font-semibold text-[--color-accent-brown] mb-2">Icon C</h4>
+          <p class="text-sm text-[--color-primary-navy]/60">Monogram</p>
+        </div>
+      </a>
+      
+      <a href="/icons/icon-d-integrated.svg" class="group block p-6 bg-white rounded-2xl border border-[--color-accent-brown]/20 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1 hover:border-[--color-accent-brown]/40" target="_blank" rel="noreferrer">
+        <div class="text-center">
+          <div class="w-16 h-16 bg-[--color-accent-brown]/10 rounded-2xl flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform duration-300">
+            <img src="/icons/icon-d-integrated.svg" alt="Icon D" class="w-8 h-8" />
+          </div>
+          <h4 class="font-semibold text-[--color-accent-brown] mb-2">Icon D</h4>
+          <p class="text-sm text-[--color-primary-navy]/60">Integrated Lockup</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- Testimonials Section -->
+  <section class="mx-auto max-w-[1120px] px-4 py-24 bg-[--color-bg] rounded-3xl mx-4">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-6">What Our Clients Say</h2>
+      <p class="text-xl text-[--color-primary-navy]/70 max-w-[70ch] mx-auto">
+        Trusted by e-commerce leaders who value quality, integrity, and measurable results.
+      </p>
+    </div>
+    
+    <div class="grid md:grid-cols-3 gap-8">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-[--color-supporting-green]/20 rounded-full flex items-center justify-center mr-4">
+            <span class="text-2xl text-[--color-supporting-green]">"</span>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[--color-primary-navy]">Sarah Chen</h4>
+            <p class="text-sm text-[--color-primary-navy]/60">CTO, Fashion Forward</p>
+          </div>
+        </div>
+        <p class="text-[--color-primary-navy]/80 italic">
+          "Salt & Scale transformed our Shopify Plus implementation. Their technical expertise and attention to detail exceeded our expectations."
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-[--color-accent-brown]/20 rounded-full flex items-center justify-center mr-4">
+            <span class="text-2xl text-[--color-accent-brown]">"</span>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[--color-primary-navy]">Marcus Rodriguez</h4>
+            <p class="text-sm text-[--color-primary-navy]/60">VP Engineering, TechGear</p>
+          </div>
+        </div>
+        <p class="text-[--color-primary-navy]/80 italic">
+          "The custom app they built streamlined our operations and improved customer experience significantly."
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <div class="flex items-center mb-4">
+          <div class="w-12 h-12 bg-[--color-supporting-green]/20 rounded-full flex items-center justify-center mr-4">
+            <span class="text-2xl text-[--color-supporting-green]">"</span>
+          </div>
+          <div>
+            <h4 class="font-semibold text-[--color-primary-navy]">Jennifer Park</h4>
+            <p class="text-sm text-[--color-primary-navy]/60">Founder, EcoHome</p>
+          </div>
+        </div>
+        <p class="text-[--color-primary-navy]/80 italic">
+          "Their headless commerce solution gave us the flexibility we needed while maintaining performance."
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section class="mx-auto max-w-[1120px] px-4 py-24">
+    <div class="text-center mb-16">
+      <h2 class="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
+      <p class="text-xl text-[--color-primary-navy]/70 max-w-[70ch] mx-auto">
+        Common questions about our e-commerce development services.
+      </p>
+    </div>
+    
+    <div class="max-w-4xl mx-auto space-y-6">
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <h3 class="text-xl font-bold mb-4 text-[--color-primary-navy]">How long does a typical project take?</h3>
+        <p class="text-[--color-primary-navy]/80">
+          Project timelines vary based on complexity. A custom app might take 4-8 weeks, while a full e-commerce build typically takes 3-6 months. We'll provide a detailed timeline during discovery.
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <h3 class="text-xl font-bold mb-4 text-[--color-primary-navy]">Do you provide ongoing support after launch?</h3>
+        <p class="text-[--color-primary-navy]/80">
+          Yes, we offer various support packages including maintenance, updates, and ongoing development. We can also train your team or provide fractional CTO services for ongoing technical leadership.
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <h3 class="text-xl font-bold mb-4 text-[--color-primary-navy]">What platforms do you specialize in?</h3>
+        <p class="text-[--color-primary-navy]/80">
+          We specialize in Shopify and Adobe Commerce (Magento), including headless implementations. We also work with custom solutions and can help you choose the right platform for your needs.
+        </p>
+      </div>
+      
+      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
+        <h3 class="text-xl font-bold mb-4 text-[--color-primary-navy]">How do you handle project communication?</h3>
+        <p class="text-[--color-primary-navy]/80">
+          We believe in transparent communication with regular updates, clear milestones, and accessible project management tools. You'll always know the status and can reach us when needed.
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="mx-auto max-w-[1120px] px-4 pt-12 pb-24">
+    <div class="bg-gradient-to-br from-[--color-supporting-green]/5 to-[--color-accent-brown]/5 rounded-3xl p-12 border border-[--color-supporting-green]/10">
+      <div class="text-center mb-12">
+        <h2 class="text-4xl font-bold mb-6">Start a project</h2>
+        <p class="text-xl text-[--color-primary-navy]/70 max-w-[70ch] mx-auto">
+          Tell us where you are, what you're building, and where you want to grow.
+        </p>
+      </div>
+      
+      <form
+        name="contact"
+        method="POST"
+        data-netlify="true"
+        class="max-w-[800px] mx-auto space-y-6"
       >
-    </form>
+        <input type="hidden" name="form-name" value="contact" />
+        
+        <!-- Personal Information -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Your name *</label>
+            <input
+              required
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            />
+          </div>
+          
+          <div>
+            <label for="email" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Email *</label>
+            <input
+              required
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        <!-- Company Information -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="company" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Company name</label>
+            <input
+              id="company"
+              name="company"
+              placeholder="Your company or organization"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            />
+          </div>
+          
+          <div>
+            <label for="phone" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Phone number</label>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              placeholder="Your phone number"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            />
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="platform" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Current platform</label>
+            <select
+              id="platform"
+              name="platform"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            >
+              <option value="">Select platform</option>
+              <option value="shopify">Shopify</option>
+              <option value="adobe-commerce">Adobe Commerce (Magento)</option>
+              <option value="woocommerce">WooCommerce</option>
+              <option value="custom">Custom solution</option>
+              <option value="none">No platform yet</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="project-type" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Project type</label>
+            <select
+              id="project-type"
+              name="project-type"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            >
+              <option value="">Select project type</option>
+              <option value="new-build">New e-commerce build</option>
+              <option value="migration">Platform migration</option>
+              <option value="custom-app">Custom app development</option>
+              <option value="headless">Headless commerce</option>
+              <option value="integration">Systems integration</option>
+              <option value="audit">Technical audit</option>
+              <option value="consulting">Strategy consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Timeline & Budget -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="timeline" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Timeline</label>
+            <select
+              id="timeline"
+              name="timeline"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            >
+              <option value="">Select timeline</option>
+              <option value="asap">ASAP</option>
+              <option value="1-3-months">1-3 months</option>
+              <option value="3-6-months">3-6 months</option>
+              <option value="6-12-months">6-12 months</option>
+              <option value="12-plus-months">12+ months</option>
+              <option value="flexible">Flexible</option>
+            </select>
+          </div>
+          
+          <div>
+            <label for="budget" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Budget range</label>
+            <select
+              id="budget"
+              name="budget"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200"
+            >
+              <option value="">Select budget range</option>
+              <option value="under-25k">Under $25K</option>
+              <option value="25k-50k">$25K - $50K</option>
+              <option value="50k-100k">$50K - $100K</option>
+              <option value="100k-250k">$100K - $250K</option>
+              <option value="250k-500k">$250K - $500K</option>
+              <option value="500k-plus">$500K+</option>
+              <option value="discuss">Let's discuss</option>
+            </select>
+          </div>
+        </div>
+        
+        <!-- Project Description -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Project details *</label>
+          <textarea
+            required
+            id="message"
+            name="message"
+            placeholder="Tell us about your project goals, challenges, and what you're looking to achieve..."
+            rows="6"
+            class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200 resize-none"
+          ></textarea>
+        </div>
+
+        <!-- Additional Information -->
+        <div>
+          <label for="additional" class="block text-sm font-medium text-[--color-primary-navy] mb-2">Additional information</label>
+          <textarea
+            id="additional"
+            name="additional"
+            placeholder="Any other details, questions, or specific requirements..."
+            rows="3"
+            class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[--color-primary-navy] placeholder-[--color-primary-navy]/50 focus:outline-none focus:ring-2 focus:ring-[--color-supporting-green] focus:border-transparent transition-all duration-200 resize-none"
+          ></textarea>
+        </div>
+        
+        <div class="text-center">
+          <button
+            class="inline-flex items-center justify-center rounded-xl bg-[#5a7c65] px-8 py-4 text-lg font-semibold text-white border border-[#4a6b5a] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 active:translate-y-px"
+            type="submit"
+          >
+            Send message
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+            </svg>
+          </button>
+        </div>
+      </form>
+    </div>
   </section>
 </Layout>

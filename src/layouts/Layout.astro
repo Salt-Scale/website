@@ -9,7 +9,7 @@ import "../styles/global.css";
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-		<title>Salt &amp; Scale – Growth, grounded in truth.</title>
+    <title>Salt &amp; Scale – Growth, grounded in Truth.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -17,23 +17,47 @@ import "../styles/global.css";
       rel="stylesheet"
     />
   </head>
-  <body
-    class="bg-[--color-bg] font-sans text-[--color-primary-navy] antialiased"
-  >
-    <header class="sticky top-0 z-50 border-b border-[rgba(55,62,69,0.08)] bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70">
-      <div class="mx-auto flex max-w-[1120px] items-center justify-between px-4 py-3">
+  <body class="bg-white font-sans text-[#373e45] antialiased">
+    <header
+      class="sticky top-0 z-50 border-b border-[rgba(55,62,69,0.08)] bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70"
+    >
+      <div
+        class="mx-auto flex max-w-[1120px] items-center justify-between px-4 py-3"
+      >
         <a href="/" class="inline-flex items-center gap-2 leading-none">
-          <img src="/icons/icon-d-integrated.svg" alt="Salt &amp; Scale" height="28" class="h-[28px] w-auto align-middle" />
+          <img
+            src="/icons/icon-d-integrated.svg"
+            alt="Salt & Scale"
+            height="28"
+            class="h-[28px] w-auto align-middle"
+          />
         </a>
-        <nav aria-label="Primary" class="flex gap-5">
-          <a href="#services" class="font-medium text-[--color-primary-navy] hover:underline">Services</a>
-          <a href="#approach" class="font-medium text-[--color-primary-navy] hover:underline">Approach</a>
-          <a href="#work" class="font-medium text-[--color-primary-navy] hover:underline">Work</a>
+        <nav aria-label="Primary" class="flex items-center gap-5">
           <a
-            href="#contact"
-            class="inline-flex items-center justify-center rounded-lg bg-[--color-accent-brown] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[--color-supporting-green] focus-visible:ring-offset-2 active:translate-y-px"
-            >Start a project</a
+            href="#services"
+            class="flex items-center font-medium text-[#373e45] hover:underline"
+            >Services</a
           >
+          <a
+            href="#approach"
+            class="flex items-center font-medium text-[#373e45] hover:underline"
+            >Approach</a
+          >
+          <a
+            href="#work"
+            class="flex items-center font-medium text-[#373e45] hover:underline"
+            >Work</a
+          >
+          <a
+            href="#faq"
+            class="flex items-center font-medium text-[#373e45] hover:underline"
+            >FAQ</a
+          >
+                  <a
+          href="#contact"
+          class="inline-flex items-center justify-center rounded-lg bg-[#8b7d6b] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-px"
+          >Start a project</a
+        >
         </nav>
       </div>
     </header>
@@ -44,7 +68,9 @@ import "../styles/global.css";
       <div class="h-px w-full bg-[--color-supporting-green]/30"></div>
       <div class="mt-4 flex items-center justify-between">
         <p class="m-0">© {new Date().getFullYear()} Salt & Scale</p>
-        <p class="m-0 text-[--color-supporting-green]">Growth, grounded in truth.</p>
+        <p class="m-0 text-[--color-supporting-green]">
+          Growth, grounded in Truth.
+        </p>
       </div>
     </footer>
   </body>
