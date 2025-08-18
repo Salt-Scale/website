@@ -96,3 +96,15 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
 	}
 };
+
+// Allow CORS preflight / health checks
+export const OPTIONS: APIRoute = async () => {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'POST, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
+};
