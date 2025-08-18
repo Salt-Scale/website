@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Analytics from '@vercel/analytics/astro';
 ---
 
 <!doctype html>
@@ -25,6 +26,7 @@ import "../styles/global.css";
     <meta name="twitter:title" content="Salt & Scale — Growth, grounded in Truth." />
     <meta name="twitter:description" content="E-commerce development specializing in Shopify & Adobe Commerce. Headless builds, custom apps, integrations, and performance." />
     <meta name="twitter:image" content="/logo-wordmark.svg" />
+    <Analytics />
     <script type="application/ld+json">
       {JSON.stringify({
         '@context': 'https://schema.org',
