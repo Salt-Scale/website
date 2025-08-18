@@ -1214,8 +1214,7 @@ import Layout from "../layouts/Layout.astro";
             return;
           }
 
-          const recipient = email || emailInput?.value || 'your email';
-          showToast(`Thanks! We received your message and will reply to ${recipient} soon.`, 'success');
+          showToast(`Thanks! We received your message and will get back to you soon.`, 'success');
           contactForm.reset();
         } catch (err) {
           showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
