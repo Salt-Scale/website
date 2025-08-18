@@ -3,13 +3,51 @@ import "../styles/global.css";
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Salt &amp; Scale – Growth, grounded in Truth.</title>
+    {Astro.site && (
+      <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
+    )}
+    <meta name="description" content="E-commerce development specializing in Shopify & Adobe Commerce. Headless builds, custom apps, integrations, and performance." />
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Salt & Scale — Growth, grounded in Truth." />
+    <meta property="og:description" content="E-commerce development specializing in Shopify & Adobe Commerce. Headless builds, custom apps, integrations, and performance." />
+    {Astro.site && (
+      <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).toString()} />
+    )}
+    <meta property="og:image" content="/logo-wordmark.svg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Salt & Scale — Growth, grounded in Truth." />
+    <meta name="twitter:description" content="E-commerce development specializing in Shopify & Adobe Commerce. Headless builds, custom apps, integrations, and performance." />
+    <meta name="twitter:image" content="/logo-wordmark.svg" />
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'Organization',
+        name: 'Salt & Scale',
+        url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
+        logo: '/logo-mark.svg',
+        sameAs: []
+      })}
+    </script>
+    <script type="application/ld+json">
+      {JSON.stringify({
+        '@context': 'https://schema.org',
+        '@type': 'WebSite',
+        name: 'Salt & Scale',
+        url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
+        potentialAction: {
+          '@type': 'SearchAction',
+          target: Astro.site ? new URL('/?q={search_term_string}', Astro.site).toString() : undefined,
+          'query-input': 'required name=search_term_string'
+        }
+      })}
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -18,6 +56,7 @@ import "../styles/global.css";
     />
   </head>
   <body class="bg-white font-sans text-[#373e45] antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] inline-flex items-center rounded-md bg-[#5a7c65] px-3 py-2 text-white">Skip to content</a>
     <header
       class="sticky top-0 z-50 border-b border-[rgba(55,62,69,0.08)] bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70"
     >
@@ -29,44 +68,50 @@ import "../styles/global.css";
             src="/icons/icon-d-integrated.svg"
             alt="Salt & Scale"
             height="28"
-            class="h-[28px] w-auto align-middle"
+            width="100"
+            class="h-[28px] md:h-[32px] w-auto align-middle"
           />
         </a>
         <nav aria-label="Primary" class="flex items-center gap-5">
           <a
             href="#services"
             class="flex items-center font-medium text-[#373e45] hover:underline"
+            data-nav="services"
             >Services</a
           >
           <a
             href="#approach"
             class="flex items-center font-medium text-[#373e45] hover:underline"
+            data-nav="approach"
             >Approach</a
           >
           <a
             href="#experience"
             class="flex items-center font-medium text-[#373e45] hover:underline"
+            data-nav="experience"
             >Experience</a
           >
           <a
             href="#work"
             class="flex items-center font-medium text-[#373e45] hover:underline"
+            data-nav="work"
             >Work</a
           >
           <a
             href="#faq"
             class="flex items-center font-medium text-[#373e45] hover:underline"
+            data-nav="faq"
             >FAQ</a
           >
           <a
             href="#contact"
-            class="inline-flex items-center justify-center rounded-lg bg-[#8b7d6b] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-px"
+            class="inline-flex items-center justify-center rounded-lg bg-[#373e45] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-px"
             >Start a project</a
           >
         </nav>
       </div>
     </header>
-    <main>
+    <main id="main">
       <slot />
     </main>
     <footer class="mx-auto mt-8 max-w-[1120px] px-4 py-8">
@@ -78,5 +123,47 @@ import "../styles/global.css";
         </p>
       </div>
     </footer>
+    <script>
+      // @ts-nocheck
+      const sectionIds = ["services","approach","experience","work","faq","contact"];
+      const links = new Map(sectionIds.map(id => [id, document.querySelector(`a[data-nav="${id}"]`)]));
+      /**
+       * @param {string} activeId
+       */
+      function setActive(activeId) {
+        links.forEach((el, id) => {
+          if (!el) return;
+          if (id === activeId) {
+            el.classList.add("text-[#5a7c65]","underline");
+          } else {
+            el.classList.remove("text-[#5a7c65]","underline");
+          }
+        });
+      }
+      const observer = new IntersectionObserver((entries) => {
+        const visible = entries
+          .filter(e => e.isIntersecting)
+          .sort((a,b) => b.intersectionRatio - a.intersectionRatio);
+        if (visible[0]) setActive(visible[0].target.id);
+      }, { rootMargin: "-20% 0px -60% 0px", threshold: [0.1, 0.25, 0.5, 0.75, 1] });
+      sectionIds.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) observer.observe(el);
+      });
+
+      // simple in-view animation
+      const animateObserver = new IntersectionObserver((entries) => {
+        entries.forEach(e => {
+          if (e.isIntersecting) {
+            e.target.classList.add('opacity-100','translate-y-0');
+            animateObserver.unobserve(e.target);
+          }
+        })
+      }, { threshold: 0.15 });
+      document.querySelectorAll('[data-animate]').forEach(el => {
+        el.classList.add('opacity-0','translate-y-4','transition','duration-700');
+        animateObserver.observe(el);
+      });
+    </script>
   </body>
 </html>

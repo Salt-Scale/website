@@ -12,7 +12,10 @@ import sitemap from "@astrojs/sitemap";
 import tailwindcss from "@tailwindcss/vite";
 
 // https://astro.build/config
+const site = process.env.SITE_URL || "https://example.com";
+
 export default defineConfig({
+  site,
   integrations: [react(), partytown(), sitemap()],
   adapter: vercel(),
 
