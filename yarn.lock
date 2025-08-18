@@ -76,7 +76,7 @@
     ultrahtml "^1.6.0"
     vite "^6.3.5"
 
-"@astrojs/sitemap@3.5.0":
+"@astrojs/sitemap@^3.5.0":
   version "3.5.0"
   resolved "https://registry.yarnpkg.com/@astrojs/sitemap/-/sitemap-3.5.0.tgz#b43c88d3046f7d335882b47242ca3c0b0a5ede28"
   integrity sha512-ldOvoBxuRgpcdndzksskOTzU55g76tkHC/POpejUbPGz6zR4rJKiXh8thX4WEPWDhCTZUafhJ1qf7k1muStHfg==
@@ -3111,7 +3111,7 @@ semver@^7.3.8, semver@^7.5.3, semver@^7.6.3, semver@^7.7.1:
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.7.2.tgz#67d99fdcd35cec21e6f8b87a7fd515a33f982b58"
   integrity sha512-RF0Fw+rO5AMf9MAyaRXI4AV0Ulj5lMHqVxxdSgiVbixSCXoEmmX/jk0CuJw4+3SqroYO9VoUh+HcuJivvtJemA==
 
-sharp@^0.33.3:
+sharp@^0.33.3, sharp@^0.33.4:
   version "0.33.5"
   resolved "https://registry.yarnpkg.com/sharp/-/sharp-0.33.5.tgz#13e0e4130cc309d6a9497596715240b2ec0c594e"
   integrity sha512-haPVm1EkS9pgvHrQ/F3Xy+hgcuMV0Wm9vfIBSiwZ05k+xgb0PkBQpGsAA/oWdDobNaZTH5ppvHtzCFbnSEwHVw==
