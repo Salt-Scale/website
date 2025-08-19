@@ -960,25 +960,25 @@ const pageDescription = 'We architect, build, and optimize e‑commerce with int
         <!-- Company Information -->
         <div class="grid md:grid-cols-2 gap-6">
           <div>
-            <label for="company" class="block text-sm font-medium text-[#373e45] mb-2">Company name *</label>
+            <label for="company" class="block text-sm font-medium text-[#373e45] mb-2">Company name</label>
             <p id="error-company" class="mt-1 text-sm text-red-700 hidden">Please enter your company name.</p>
             <input
               id="company"
               name="company"
-              required
+              
               placeholder="Your company or organization"
               class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
             />
           </div>
           
           <div>
-            <label for="phone" class="block text-sm font-medium text-[#373e45] mb-2">Phone number *</label>
+            <label for="phone" class="block text-sm font-medium text-[#373e45] mb-2">Phone number</label>
             <p id="error-phone" class="mt-1 text-sm text-red-700 hidden">Please enter a valid phone number (e.g., 555-123-4567).</p>
             <input
               id="phone"
               name="phone"
               type="tel"
-              required
+              
               inputmode="numeric"
               autocomplete="tel"
               pattern="\\d{3}-\\d{3}-\\d{4}"
@@ -1044,17 +1044,7 @@ const pageDescription = 'We architect, build, and optimize e‑commerce with int
           ></textarea>
         </div>
 
-        <!-- Additional Information -->
-        <div>
-          <label for="additional" class="block text-sm font-medium text-[#373e45] mb-2">Additional information</label>
-          <textarea
-            id="additional"
-            name="additional"
-            placeholder="Any other details, questions, or specific requirements..."
-            rows="3"
-            class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200 resize-none"
-      ></textarea>
-        </div>
+        <!-- Removed 'Additional information' to reduce friction -->
         
         <div class="text-center">
           <button
@@ -1161,8 +1151,8 @@ const pageDescription = 'We architect, build, and optimize e‑commerce with int
           const errors = {
             name: !name,
             email: !email || !isValidEmail(email),
-            company: !company,
-            phone: !phone || !isValidPhone(phone),
+            company: false,
+            phone: Boolean(phone) && !isValidPhone(phone),
             message: !message,
           };
           setFieldError(nameInput, document.getElementById('error-name'), errors.name);

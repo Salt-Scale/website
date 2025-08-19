@@ -63,8 +63,6 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		const missing: string[] = [];
 		if (!name) missing.push('name');
 		if (!email) missing.push('email');
-		if (!company) missing.push('company');
-		if (!phone) missing.push('phone');
 		if (!message) missing.push('message');
 		if (missing.length > 0) {
 			return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400);
@@ -73,7 +71,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		// Format validation
 		const invalid: string[] = [];
 		if (!isValidEmail(email)) invalid.push('email');
-		if (!isValidPhone(phone)) invalid.push('phone');
+		if (phone && !isValidPhone(phone)) invalid.push('phone');
 		if (invalid.length > 0) {
 			return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
 		}
