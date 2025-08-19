@@ -3,7 +3,6 @@
   "short_name": "Salt&Scale",
   "icons": [
     { "src": "/icons/icon-a-filled.svg", "sizes": "64x64", "type": "image/svg+xml", "purpose": "any" },
-    { "src": "/icons/icon-a-filled-dark.svg", "sizes": "64x64", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/icons/icon-c-monogram.svg", "sizes": "64x64", "type": "image/svg+xml", "purpose": "any" },
     { "src": "/icons/icon-c-monogram-dark.svg", "sizes": "64x64", "type": "image/svg+xml", "purpose": "any" }
   ],

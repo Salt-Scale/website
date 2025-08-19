@@ -31,18 +31,26 @@ function sanitize(input: string | undefined): string {
 	return String(input).slice(0, 5000);
 }
 
+function json(body: unknown, status = 200): Response {
+	const headers: Record<string, string> = {
+		'Content-Type': 'application/json',
+		'Access-Control-Allow-Origin': '*',
+	};
+	return new Response(JSON.stringify(body), { status, headers });
+}
+
 export const POST: APIRoute = async ({ request, cookies }) => {
 	try {
 		const contentType = request.headers.get('content-type') || '';
 		if (!contentType.includes('application/json')) {
-			return new Response(JSON.stringify({ error: 'Unsupported content type' }), { status: 415 });
+			return json({ error: 'Unsupported content type' }, 415);
 		}
 
 		const body = (await request.json()) as ContactPayload;
 
 		// Honeypot
 		if (body['bot-field']) {
-			return new Response(JSON.stringify({ ok: true }), { status: 200 });
+			return json({ ok: true }, 200);
 		}
 
 		const name = sanitize(body.name);
@@ -59,10 +67,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		if (!phone) missing.push('phone');
 		if (!message) missing.push('message');
 		if (missing.length > 0) {
-			return new Response(
-				JSON.stringify({ error: `Missing required fields: ${missing.join(', ')}` }),
-				{ status: 400 }
-			);
+			return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400);
 		}
 
 		// Format validation
@@ -70,16 +75,13 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		if (!isValidEmail(email)) invalid.push('email');
 		if (!isValidPhone(phone)) invalid.push('phone');
 		if (invalid.length > 0) {
-			return new Response(
-				JSON.stringify({ error: `Invalid fields: ${invalid.join(', ')}` }),
-				{ status: 422 }
-			);
+			return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
 		}
 
 		// Basic rate limit: 1 per 30s per client
 		const clientKey = cookies.get('cfrm')?.value;
 		if (clientKey) {
-			return new Response(JSON.stringify({ error: 'Too many requests' }), { status: 429 });
+			return json({ error: 'Too many requests' }, 429);
 		}
 		cookies.set('cfrm', '1', { httpOnly: true, path: '/', maxAge: 30 });
 
@@ -104,7 +106,7 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 
 		// If email service is not configured, fail explicitly so client shows an error
 		if (!RESEND_API_KEY || !CONTACT_TO) {
-			return new Response(JSON.stringify({ error: 'Email service not configured' }), { status: 503 });
+			return json({ error: 'Email service not configured' }, 503);
 		}
 
 		const subject = `New Contact: ${payload.name}`;
@@ -139,12 +141,12 @@ export const POST: APIRoute = async ({ request, cookies }) => {
 		if (!resp.ok) {
 			const errText = await resp.text().catch(() => '');
 			console.error('Resend error', resp.status, errText);
-			return new Response(JSON.stringify({ error: 'Failed to send email' }), { status: 502 });
+			return json({ error: 'Failed to send email' }, 502);
 		}
 
-		return new Response(JSON.stringify({ ok: true }), { status: 200 });
+		return json({ ok: true }, 200);
 	} catch (err) {
-		return new Response(JSON.stringify({ error: 'Server error' }), { status: 500 });
+		return json({ error: 'Server error' }, 500);
 	}
 };
 

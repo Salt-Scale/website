@@ -37,6 +37,10 @@ On Vercel → Project Settings → Environment Variables:
 - CONTACT_TO – optional (destination email)
 - CONTACT_FROM – optional (defaults to no-reply@your-domain)
 
+### Open Graph image
+
+Add a 1200×630 JPG at `public/og-image.jpg` for social previews. The layout references `/og-image.jpg` via `og:image` and Twitter card meta.
+
 ## Contact form
 - Frontend: form in `src/pages/index.astro` posts JSON to `/api/contact`.
 - Backend: `src/pages/api/contact.ts` validates, applies a light cookie rate-limit, and (optionally) sends email via Resend.

@@ -1,11 +1,13 @@
 ---
 import Layout from "../layouts/Layout.astro";
+const pageTitle = 'Salt & Scale — Shopify & Adobe Commerce Development';
+const pageDescription = 'We architect, build, and optimize e‑commerce with integrity — custom apps, integrations, and performance.';
 ---
 
-<Layout>
+<Layout title={pageTitle} description={pageDescription}>
   <!-- Hero Section -->
   <section class="relative isolate w-full bg-white overflow-hidden">
-    <img src="/hero-texture.svg" alt="" class="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-90" />
+    <img src="/hero-texture.svg" alt="" fetchpriority="high" class="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-90" />
     
     <!-- Decorative elements -->
     <div class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#5a7c65]/10 blur-3xl"></div>
@@ -35,7 +37,7 @@ import Layout from "../layouts/Layout.astro";
               class="inline-flex items-center justify-center rounded-xl bg-[#5a7c65] px-8 py-4 text-lg font-semibold text-white border border-[#4a6b5a] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 active:translate-y-px"
       >
               Start a project
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
               </svg>
             </a>
@@ -64,7 +66,7 @@ import Layout from "../layouts/Layout.astro";
               <div class="text-center mb-6">
                 <div class="relative inline-block group/icon">
                   <div class="w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-2xl flex items-center justify-center mx-auto mb-4 transform group-hover/icon:rotate-12 group-hover/icon:scale-110 transition-all duration-500 shadow-lg">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
                     </svg>
                   </div>
@@ -78,7 +80,7 @@ import Layout from "../layouts/Layout.astro";
               <div class="space-y-3 mb-6">
                 <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
                   <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#5a7c65]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
                     </svg>
                   </div>
@@ -90,7 +92,7 @@ import Layout from "../layouts/Layout.astro";
                 
                 <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#8b7d6b]/8 hover:to-[#5a7c65]/8 transition-all duration-300 border border-transparent hover:border-[#8b7d6b]/10 hover:shadow-lg">
                   <div class="w-10 h-10 bg-gradient-to-br from-[#8b7d6b] to-[#8b7d6b]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:-rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
                     </svg>
                   </div>
@@ -102,7 +104,7 @@ import Layout from "../layouts/Layout.astro";
                 
                 <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
                   <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
                       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
                     </svg>
                   </div>
@@ -360,7 +362,7 @@ import Layout from "../layouts/Layout.astro";
     <div class="grid md:grid-cols-3 gap-8">
       <div class="text-center group">
         <div class="w-16 h-16 bg-[#5a7c65]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
           </svg>
         </div>
@@ -370,7 +372,7 @@ import Layout from "../layouts/Layout.astro";
       
       <div class="text-center group">
         <div class="w-16 h-16 bg-[#8b7d6b]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#8b7d6b]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8 text-[#8b7d6b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
           </svg>
         </div>
@@ -380,7 +382,7 @@ import Layout from "../layouts/Layout.astro";
       
       <div class="text-center group">
         <div class="w-16 h-16 bg-[#5a7c65]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
           </svg>
         </div>
@@ -411,7 +413,7 @@ import Layout from "../layouts/Layout.astro";
         <!-- Enterprise Solutions Era -->
         <div class="relative flex items-start gap-8 group">
           <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
             </svg>
           </div>
@@ -450,7 +452,7 @@ import Layout from "../layouts/Layout.astro";
         <!-- Custom Development Era -->
         <div class="relative flex items-start gap-8 group">
           <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#8b7d6b] to-[#5a7c65] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
             </svg>
           </div>
@@ -489,7 +491,7 @@ import Layout from "../layouts/Layout.astro";
         <!-- Foundation Era -->
         <div class="relative flex items-start gap-8 group">
           <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
             </svg>
           </div>
@@ -535,7 +537,7 @@ import Layout from "../layouts/Layout.astro";
       </div>
       <a href="#work" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#5a7c65] to-[#8b7d6b] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group border border-[#5a7c65]/20">
         View Our Work
-        <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
         </svg>
       </a>
@@ -574,7 +576,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <a data-case-open="headless" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline">
           View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </article>
       <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
@@ -594,7 +596,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <a data-case-open="sanrio" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline">
           View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </article>
       <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
@@ -614,7 +616,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <a data-case-open="custom" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline">
           View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </article>
       <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
@@ -638,7 +640,7 @@ import Layout from "../layouts/Layout.astro";
         </div>
         <a data-case-open="performance" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline">
           View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
         </a>
       </article>
     </div>
@@ -695,7 +697,7 @@ import Layout from "../layouts/Layout.astro";
       <div id="case-overlay" class="absolute inset-0 bg-black/40 cursor-pointer" aria-hidden="true"></div>
       <div class="relative mx-4 w-full max-w-2xl bg-white rounded-2xl p-6 shadow-2xl border border-[rgba(55,62,69,0.08)]">
         <button id="case-close" class="absolute top-3 right-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[rgba(55,62,69,0.12)] hover:bg-[#f7f8f9] cursor-pointer" aria-label="Close">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
+          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
         </button>
         <div id="case-content" class="mt-2"></div>
       </div>
@@ -931,6 +933,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label for="name" class="block text-sm font-medium text-[#373e45] mb-2">Your name *</label>
+            <p id="error-name" class="mt-1 text-sm text-red-700 hidden">Please enter your name.</p>
       <input
         required
               id="name"
@@ -942,6 +945,7 @@ import Layout from "../layouts/Layout.astro";
           
           <div>
             <label for="email" class="block text-sm font-medium text-[#373e45] mb-2">Email *</label>
+            <p id="error-email" class="mt-1 text-sm text-red-700 hidden">Please enter a valid email.</p>
       <input
         required
               id="email"
@@ -957,6 +961,7 @@ import Layout from "../layouts/Layout.astro";
         <div class="grid md:grid-cols-2 gap-6">
           <div>
             <label for="company" class="block text-sm font-medium text-[#373e45] mb-2">Company name *</label>
+            <p id="error-company" class="mt-1 text-sm text-red-700 hidden">Please enter your company name.</p>
             <input
               id="company"
               name="company"
@@ -968,6 +973,7 @@ import Layout from "../layouts/Layout.astro";
           
           <div>
             <label for="phone" class="block text-sm font-medium text-[#373e45] mb-2">Phone number *</label>
+            <p id="error-phone" class="mt-1 text-sm text-red-700 hidden">Please enter a valid phone number (e.g., 555-123-4567).</p>
             <input
               id="phone"
               name="phone"
@@ -1063,6 +1069,7 @@ import Layout from "../layouts/Layout.astro";
         <!-- Project Description -->
         <div>
           <label for="message" class="block text-sm font-medium text-[#373e45] mb-2">Project details *</label>
+          <p id="error-message" class="mt-1 text-sm text-red-700 hidden">Please share a few details about your project.</p>
       <textarea
         required
             id="message"
@@ -1092,7 +1099,7 @@ import Layout from "../layouts/Layout.astro";
             type="submit"
           >
             Send message
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
             </svg>
           </button>
@@ -1124,6 +1131,21 @@ import Layout from "../layouts/Layout.astro";
       const phoneInput = document.getElementById('phone');
       const emailInput = document.getElementById('email');
       const nameInput = document.getElementById('name');
+      const companyInput = document.getElementById('company');
+      const messageInput = document.getElementById('message');
+
+      const setFieldError = (input, errorEl, hasError) => {
+        if (!input || !errorEl) return;
+        if (hasError) {
+          input.setAttribute('aria-invalid', 'true');
+          input.setAttribute('aria-describedby', errorEl.id);
+          errorEl.classList.remove('hidden');
+        } else {
+          input.removeAttribute('aria-invalid');
+          input.removeAttribute('aria-describedby');
+          errorEl.classList.add('hidden');
+        }
+      };
 
       // Phone input formatting
       phoneInput?.addEventListener('input', (e) => {
@@ -1172,25 +1194,32 @@ import Layout from "../layouts/Layout.astro";
           const message = String(formData.get('message') || '').trim();
           const phone = formatPhone(phoneRaw);
 
-          if (!name || !email || !company || !phone || !message) {
-            showToast('Please complete all required fields.', 'error');
-            submitBtn.disabled = false;
-            return;
-          }
-          if (!isValidEmail(email)) {
-            emailInput?.focus();
-            showToast('Please enter a valid email address.', 'error');
-            submitBtn.disabled = false;
-            return;
-          }
-          if (!isValidPhone(phone)) {
-            phoneInput?.focus();
-            showToast('Please enter a valid phone number (e.g., 555-123-4567).', 'error');
+          const errors = {
+            name: !name,
+            email: !email || !isValidEmail(email),
+            company: !company,
+            phone: !phone || !isValidPhone(phone),
+            message: !message,
+          };
+          setFieldError(nameInput, document.getElementById('error-name'), errors.name);
+          setFieldError(emailInput, document.getElementById('error-email'), errors.email);
+          setFieldError(companyInput, document.getElementById('error-company'), errors.company);
+          setFieldError(phoneInput, document.getElementById('error-phone'), errors.phone);
+          setFieldError(messageInput, document.getElementById('error-message'), errors.message);
+
+          if (Object.values(errors).some(Boolean)) {
+            showToast('Please correct the highlighted fields.', 'error');
+            (errors.name && nameInput?.focus()) ||
+            (errors.email && emailInput?.focus()) ||
+            (errors.company && companyInput?.focus()) ||
+            (errors.phone && phoneInput?.focus()) ||
+            (errors.message && messageInput?.focus());
             submitBtn.disabled = false;
             return;
           }
 
           const payload = { ...Object.fromEntries(formData.entries()), phone };
+          window.va?.('event', { name: 'contact_submit_start' });
           const res = await fetch(contactForm.action, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -1198,6 +1227,7 @@ import Layout from "../layouts/Layout.astro";
           });
           const data = await res.json().catch(() => ({}));
           if (!res.ok) {
+            window.va?.('event', { name: 'contact_submit_error', status: res.status });
             if (res.status === 400) {
               showToast(data?.error || 'Please complete the required fields.', 'error');
             } else if (res.status === 422) {
@@ -1215,6 +1245,7 @@ import Layout from "../layouts/Layout.astro";
           }
 
           showToast(`Thanks! We received your message and will get back to you soon.`, 'success');
+          window.va?.('event', { name: 'contact_submit_success' });
           contactForm.reset();
         } catch (err) {
           showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
