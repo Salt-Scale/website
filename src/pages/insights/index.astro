@@ -12,13 +12,38 @@ const posts = allPosts.sort(
   (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf()
 );
 
-const upcomingTopics = [
-  'Service Businesses',
-  'Local SEO',
-  'Performance',
-  'WCAG 2.2',
-  'AI in Engineering',
-  'Commerce',
+// Upcoming editorial calendar — first wave pillars + opening clusters
+const upcoming = [
+  {
+    pillar: "Pillar 1 · Service Businesses",
+    title: "How to choose a website builder for a service business in 2026",
+    type: "Pillar · ~2,000 words",
+  },
+  {
+    pillar: "Cluster 1.1 · Service Businesses",
+    title: "Why most plumbers and contractors get a worse site than a $200/mo template",
+    type: "Cluster",
+  },
+  {
+    pillar: "Pillar 2 · Fundamentals",
+    title: "The service-business website checklist: every page, every form, every signal",
+    type: "Pillar · ~2,000 words",
+  },
+  {
+    pillar: "Cluster 2.1 · Local SEO",
+    title: "Local SEO: what actually matters for a Houston plumber (vs. SEO theater)",
+    type: "Cluster",
+  },
+  {
+    pillar: "Pillar 3 · Engineering",
+    title: "The technical fundamentals every operator should ask their developer about",
+    type: "Pillar · ~2,000 words",
+  },
+  {
+    pillar: "Cluster 3.1 · Performance",
+    title: "Why your site's INP score is a leading indicator of conversion",
+    type: "Cluster",
+  },
 ];
 
 const dateFormatter = new Intl.DateTimeFormat('en-US', {
@@ -34,76 +59,161 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   canonicalPath="/insights/"
   breadcrumbs={breadcrumbs}
 >
-  <div class="mx-auto max-w-[1120px] px-4 py-12">
 
-    <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="mb-8">
-      <ol class="flex items-center gap-2 text-caption text-stone">
-        <li><a href="/" class="hover:underline text-stone">Home</a></li>
-        <li aria-hidden="true" class="text-stone/60">/</li>
-        <li aria-current="page" class="text-charcoal font-medium">Insights</li>
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Insights</li>
       </ol>
-    </nav>
+    </div>
+  </nav>
 
-    <!-- Header -->
-    <div class="mb-12">
-      <p class="text-eyebrow text-sage mb-3">Engineering depth, service-business focus.</p>
-      <h1 class="text-display-1 text-ink mb-5">Insights.</h1>
-      <p class="text-body-lg text-charcoal/70 max-w-[60ch]">
-        1–2 posts per month. Written by Gabriel Rosales — not AI-generated content, but AI-informed
-        engineering and business strategy.
+  {/* ============================================================
+       HERO — charcoal, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+
+      <div class="flex items-center gap-4 mb-10 md:mb-14">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">From the field</p>
+      </div>
+
+      <h1 class="text-display-xl max-w-[12ch] mb-10 md:mb-12">
+        Insights, <span class="italic font-normal text-saffron">not opinions.</span>
+      </h1>
+
+      <p class="text-[clamp(1.125rem,1.5vw,1.4rem)] leading-[1.55] text-paper/75 max-w-[58ch] font-light">
+        One to two essays a month on service-business websites, local SEO, WCAG 2.2, Core Web Vitals, and AI in engineering. Written by Gabriel Rosales — not AI-generated content, but field notes from ten years of production work.
       </p>
     </div>
+  </section>
 
-    {posts.length === 0 ? (
-      <!-- Empty state -->
-      <div class="rounded-2xl bg-cream border border-copper/20 p-10 max-w-[640px]">
-        <h2 class="text-h4 text-ink mb-3">First articles coming soon.</h2>
-        <p class="text-body text-charcoal/70 mb-6">
-          Topics: service-business websites, local SEO, WCAG 2.2, Core Web Vitals.
-        </p>
-        <div class="flex flex-wrap gap-2" aria-label="Upcoming topics">
-          {upcomingTopics.map((topic) => (
-            <span class="inline-flex items-center px-3 py-1 rounded-full bg-paper border border-stone/20 text-caption text-stone font-medium">
-              {topic}
-            </span>
-          ))}
-        </div>
-      </div>
-    ) : (
-      <!-- Posts grid -->
-      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none pl-0" role="list">
-        {posts.map((post) => (
-          <li>
-            <article class="h-full flex flex-col bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-sm hover:shadow-md transition-shadow duration-150 p-6">
-              {post.data.tags.length > 0 && (
-                <div class="flex flex-wrap gap-2 mb-4">
-                  {post.data.tags.slice(0, 2).map((tag) => (
-                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sage/10 text-eyebrow text-sage">
-                      {tag}
-                    </span>
-                  ))}
-                </div>
-              )}
-              <h2 class="text-h4 text-ink mb-3 flex-grow-0">
-                <a href={`/insights/${post.slug}/`} class="hover:underline decoration-saffron/60 underline-offset-2">
-                  {post.data.title}
-                </a>
+  {posts.length === 0 ? (
+    <>
+      {/* ============================================================
+           EMPTY STATE — editorial, listing upcoming topics
+           ============================================================ */}
+      <section class="bg-paper">
+        <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+          <div class="grid md:grid-cols-[1fr_1.6fr] gap-12 md:gap-20 items-start">
+            <div>
+              <div class="flex items-center gap-4 mb-6">
+                <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+                <p class="text-eyebrow text-saffron-deep">In production</p>
+              </div>
+              <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3.25rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch]">
+                First articles <span class="italic font-normal text-saffron-deep">coming soon</span>.
               </h2>
-              <p class="text-body text-charcoal/70 mb-4 flex-grow line-clamp-3">{post.data.description}</p>
-              <footer class="mt-auto">
-                <time
-                  datetime={post.data.datePublished.toISOString()}
-                  class="text-caption text-stone"
-                >
-                  {dateFormatter.format(post.data.datePublished)}
-                </time>
-              </footer>
-            </article>
-          </li>
-        ))}
-      </ul>
-    )}
+              <p class="text-body text-charcoal/70 mt-8 max-w-[40ch]">
+                Three pillars planned, six opening posts in the editorial pipeline. Topics span service-business strategy, local SEO, and the engineering fundamentals operators should ask about.
+              </p>
+            </div>
 
-  </div>
+            <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15" aria-label="Upcoming articles">
+              {upcoming.map((item) => (
+                <li>
+                  <div class="grid md:grid-cols-[220px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-2 items-baseline py-7 md:py-8">
+                    <span class="text-eyebrow text-charcoal/45">{item.pillar}</span>
+                    <h3 class="font-serif font-medium text-[clamp(1.25rem,2vw,1.625rem)] leading-[1.2] tracking-[-0.01em] text-charcoal max-w-[52ch]">
+                      {item.title}
+                    </h3>
+                    <span class="text-[0.6875rem] uppercase tracking-widest text-charcoal/40 italic whitespace-nowrap">{item.type}</span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+      </section>
+    </>
+  ) : (
+    <>
+      {/* ============================================================
+           POSTS — editorial list, not cards
+           ============================================================ */}
+      <section class="bg-paper">
+        <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+          <div class="flex items-center gap-4 mb-14 md:mb-20">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Recent writing</p>
+          </div>
+
+          <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+            {posts.map((post, i) => (
+              <li>
+                <a
+                  href={`/insights/${post.slug}/`}
+                  class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 md:py-10 group hover:text-saffron-deep transition-colors duration-150"
+                >
+                  <span class="numeral text-saffron-deep text-[1.875rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
+                  <div class="flex flex-col gap-1">
+                    {post.data.tags[0] && (
+                      <span class="text-eyebrow text-charcoal/45 group-hover:text-saffron-deep/80 transition-colors">{post.data.tags[0]}</span>
+                    )}
+                    <time
+                      datetime={post.data.datePublished.toISOString()}
+                      class="text-[0.8125rem] text-charcoal/50 italic font-serif"
+                    >
+                      {dateFormatter.format(post.data.datePublished)}
+                    </time>
+                  </div>
+                  <div>
+                    <h2 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal group-hover:text-saffron-deep transition-colors mb-2">
+                      {post.data.title}
+                    </h2>
+                    <p class="text-[0.9375rem] leading-[1.6] text-charcoal/65 max-w-[60ch]">{post.data.description}</p>
+                  </div>
+                  <span class="hidden md:inline-block text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">Read essay →</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </section>
+    </>
+  )}
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Want this kind of <span class="italic font-normal text-saffron">thinking on your site?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        Salt &amp; Scale builds the websites these essays are about. One engineer, end to end.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See selected work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </Layout>

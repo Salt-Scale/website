@@ -52,6 +52,9 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'long',
   day: 'numeric',
 });
+
+// Pull optional key takeaways from frontmatter if available (graceful if missing)
+const takeaways = (entry.data as any).takeaways as string[] | undefined;
 ---
 
 <Layout
@@ -62,132 +65,180 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   breadcrumbs={breadcrumbs}
   schema={articleSchema}
 >
-  <div class="mx-auto max-w-[1120px] px-4 py-12">
 
-    <!-- Breadcrumb -->
-    <nav aria-label="Breadcrumb" class="mb-8">
-      <ol class="flex items-center gap-2 text-caption text-stone flex-wrap">
-        <li><a href="/" class="hover:underline text-stone">Home</a></li>
-        <li aria-hidden="true" class="text-stone/60">/</li>
-        <li><a href="/insights/" class="hover:underline text-stone">Insights</a></li>
-        <li aria-hidden="true" class="text-stone/60">/</li>
-        <li aria-current="page" class="text-charcoal font-medium truncate max-w-[30ch]">{title}</li>
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/insights/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Insights</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80 truncate max-w-[40ch]">{title}</li>
       </ol>
-    </nav>
+    </div>
+  </nav>
 
-    <div class="max-w-[720px]">
+  {/* ============================================================
+       ARTICLE HERO — paper, centered, editorial
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[820px] px-6 md:px-10 pt-20 pb-12 md:pt-28 md:pb-16">
 
-      <!-- Eyebrow: first tag -->
       {tags.length > 0 && (
-        <p class="text-eyebrow text-sage mb-4">{tags[0]}</p>
+        <div class="flex items-center gap-4 mb-8 justify-center">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">{tags[0]}</p>
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        </div>
       )}
 
-      <!-- H1 -->
-      <h1 class="text-display-2 text-ink mb-6">{title}</h1>
+      <h1 class="text-display-1 text-charcoal text-center mb-10 md:mb-12">
+        {title}
+      </h1>
 
-      <!-- Byline + meta -->
-      <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 pb-8 border-b border-[rgba(55,62,69,0.1)]">
-        <div class="flex items-center gap-3">
-          <div class="w-9 h-9 rounded-full bg-sage/20 flex items-center justify-center flex-shrink-0" aria-hidden="true">
-            <span class="text-sage font-semibold text-sm">GR</span>
-          </div>
-          <div>
-            <p class="text-sm font-semibold text-charcoal leading-tight">{author}</p>
-            <a
-              href="https://www.linkedin.com/in/gabriel-rosales/"
-              rel="noopener noreferrer"
-              class="text-caption text-saffron-deep hover:underline"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-        <div class="flex items-center gap-4 sm:ml-auto text-caption text-stone flex-wrap">
-          <time datetime={datePublished.toISOString()}>
-            {dateFormatter.format(datePublished)}
-          </time>
-          {dateModified && dateModified.valueOf() !== datePublished.valueOf() && (
-            <span>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-8 border-t border-charcoal/15 text-[0.875rem] text-charcoal/60">
+        <span class="text-eyebrow text-charcoal/55">By {author}</span>
+        <span aria-hidden="true" class="text-saffron">·</span>
+        <time datetime={datePublished.toISOString()}>{dateFormatter.format(datePublished)}</time>
+        <span aria-hidden="true" class="text-saffron">·</span>
+        <span>{readingMinutes} min read</span>
+        {dateModified && dateModified.valueOf() !== datePublished.valueOf() && (
+          <>
+            <span aria-hidden="true" class="text-saffron">·</span>
+            <span class="italic font-serif">
               Updated <time datetime={dateModified.toISOString()}>{dateFormatter.format(dateModified)}</time>
             </span>
-          )}
-          <span>{readingMinutes} min read</span>
-        </div>
+          </>
+        )}
       </div>
+    </div>
+  </section>
 
-      <!-- Article body -->
-      <div class="prose prose-stone max-w-none text-body text-charcoal/80 leading-relaxed
-        prose-headings:font-serif prose-headings:text-ink
-        prose-h2:text-display-3 prose-h2:mt-10 prose-h2:mb-4
-        prose-h3:text-h4 prose-h3:mt-8 prose-h3:mb-3
-        prose-p:mb-5
-        prose-a:text-saffron-deep prose-a:no-underline hover:prose-a:underline
-        prose-code:font-mono prose-code:text-sm prose-code:bg-cream prose-code:px-1 prose-code:py-0.5 prose-code:rounded
-        prose-pre:bg-charcoal prose-pre:text-paper prose-pre:rounded-xl prose-pre:p-5 prose-pre:overflow-x-auto
-        prose-ul:space-y-1 prose-ol:space-y-1
-        prose-li:text-charcoal/80
-        prose-strong:text-charcoal prose-strong:font-semibold
-      ">
+  {/* ============================================================
+       ARTICLE BODY — paper, narrow column, editorial prose
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[680px] px-6 md:px-10 py-12 md:py-16">
+      <article class="prose-editorial">
         <Content />
-      </div>
+      </article>
+    </div>
+  </section>
 
-      <!-- CTA band -->
-      <div class="mt-14 rounded-2xl bg-cream border border-copper/20 p-8 text-center">
-        <p class="text-eyebrow text-sage mb-3">Ready to apply this to your site?</p>
-        <h2 class="text-display-3 text-ink mb-4">Start a project with Salt & Scale.</h2>
-        <p class="text-body text-charcoal/70 mb-6 max-w-[50ch] mx-auto">
-          AI-accelerated website design and development for service businesses, built by a senior engineer.
-        </p>
-        <a
-          href="/contact/?service=business-websites"
-          class="inline-flex items-center justify-center rounded-xl bg-saffron px-7 py-3.5 font-semibold text-ink shadow-sm hover:bg-saffron/90 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
-        >
-          Start a project
-          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-          </svg>
-        </a>
+  {/* ============================================================
+       KEY TAKEAWAYS — cream, optional
+       ============================================================ */}
+  {takeaways && takeaways.length > 0 && (
+    <section class="bg-cream border-t border-charcoal/10">
+      <div class="mx-auto max-w-[820px] px-6 md:px-10 py-16 md:py-20">
+        <div class="flex items-center gap-4 mb-8">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Key takeaways</p>
+        </div>
+        <ul class="space-y-5">
+          {takeaways.map((t, i) => (
+            <li class="grid grid-cols-[44px_1fr] gap-4 items-baseline">
+              <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
+              <p class="text-body-lg text-charcoal/80 max-w-[55ch]">{t}</p>
+            </li>
+          ))}
+        </ul>
       </div>
+    </section>
+  )}
 
-      <!-- Related articles -->
-      {relatedPosts.length > 0 && (
-        <aside class="mt-14" aria-labelledby="related-heading">
-          <h2 id="related-heading" class="text-h4 text-ink mb-6">Related articles</h2>
-          <ul class="grid sm:grid-cols-3 gap-6 list-none pl-0" role="list">
-            {relatedPosts.map((related) => (
-              <li>
-                <article class="h-full flex flex-col bg-white rounded-xl border border-[rgba(55,62,69,0.08)] shadow-sm p-5">
-                  {related.data.tags.length > 0 && (
-                    <p class="text-eyebrow text-sage mb-2">{related.data.tags[0]}</p>
+  {/* ============================================================
+       RELATED — paper, editorial list
+       ============================================================ */}
+  {relatedPosts.length > 0 && (
+    <section class="bg-paper border-t border-charcoal/10">
+      <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-24" aria-labelledby="related-heading">
+        <div class="flex items-end justify-between mb-12 flex-wrap gap-6">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+              <p class="text-eyebrow text-saffron-deep">Keep reading</p>
+            </div>
+            <h2 id="related-heading" class="text-display-2 text-charcoal max-w-[14ch]">
+              Related <span class="italic font-normal text-saffron-deep">essays</span>.
+            </h2>
+          </div>
+          <a
+            href="/insights/"
+            class="group inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] tracking-wide"
+          >
+            All insights
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+
+        <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+          {relatedPosts.map((related, i) => (
+            <li>
+              <a
+                href={`/insights/${related.slug}/`}
+                class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 group hover:text-saffron-deep transition-colors duration-150"
+              >
+                <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex flex-col gap-1">
+                  {related.data.tags[0] && (
+                    <span class="text-eyebrow text-charcoal/45 group-hover:text-saffron-deep/80 transition-colors">{related.data.tags[0]}</span>
                   )}
-                  <h3 class="text-sm font-semibold text-ink mb-2 flex-grow">
-                    <a href={`/insights/${related.slug}/`} class="hover:underline decoration-saffron/60 underline-offset-2">
-                      {related.data.title}
-                    </a>
-                  </h3>
                   <time
                     datetime={related.data.datePublished.toISOString()}
-                    class="text-caption text-stone mt-auto"
+                    class="text-[0.8125rem] text-charcoal/50 italic font-serif"
                   >
                     {dateFormatter.format(related.data.datePublished)}
                   </time>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </aside>
-      )}
+                </div>
+                <h3 class="font-serif font-medium text-[clamp(1.25rem,2vw,1.625rem)] leading-[1.2] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors max-w-[50ch]">
+                  {related.data.title}
+                </h3>
+                <span class="hidden md:inline-block text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
 
-      <!-- Back to insights -->
-      <div class="mt-10">
-        <a href="/insights/" class="inline-flex items-center gap-2 text-caption text-stone hover:text-charcoal hover:underline transition-colors duration-150">
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
-          </svg>
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Ready to apply this <span class="italic font-normal text-saffron">to your site?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        Salt &amp; Scale builds production-grade websites for service businesses. One engineer, end to end.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=business-websites"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/insights/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
           Back to Insights
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
         </a>
       </div>
-
     </div>
-  </div>
+  </section>
+
 </Layout>

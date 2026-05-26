@@ -18,6 +18,39 @@ const schema = [
     ],
   },
 ];
+
+const ecommerceLinks = [
+  {
+    href: "/services/shopify-development/",
+    title: "Shopify development",
+    desc: "Liquid themes, Hydrogen headless, checkout extensibility, and app development by a Shopify Partner.",
+  },
+  {
+    href: "/services/adobe-commerce/",
+    title: "Adobe Commerce",
+    desc: "Module work, PWA Studio, performance engineering, and B2B configuration on Commerce and Magento Open Source.",
+  },
+  {
+    href: "/services/headless-commerce/",
+    title: "Headless commerce",
+    desc: "Hydrogen, Remix, and Next.js storefronts where Core Web Vitals are a hard requirement, not a goal.",
+  },
+  {
+    href: "/services/custom-app-development/",
+    title: "Custom app development",
+    desc: "Private apps, public apps, internal tooling, and the backend services that connect them.",
+  },
+  {
+    href: "/services/integrations-automation/",
+    title: "Integrations & automation",
+    desc: "ERP, CRM, and 3PL pipelines with retry logic, dead-letter queues, and observable failure states.",
+  },
+  {
+    href: "/services/audits-strategy/",
+    title: "Audits & strategy",
+    desc: "Fixed-scope code, performance, security, and accessibility audits with written deliverables — no slide decks.",
+  },
+];
 ---
 
 <Layout
@@ -27,121 +60,198 @@ const schema = [
   breadcrumbs={breadcrumbs}
   schema={schema}
 >
-  <!-- Breadcrumb -->
-  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
-    <ol class="flex items-center gap-2 text-caption text-stone">
-      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
-      <li aria-hidden="true" class="text-stone/50">›</li>
-      <li class="text-ink" aria-current="page">Services</li>
-    </ol>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Services</li>
+      </ol>
+    </div>
   </nav>
 
-  <!-- Hero -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-saffron-deep mb-4">How we work</p>
-      <h1 class="text-display-1 text-ink mb-6 max-w-[18ch]">Two ways we work.</h1>
-      <p class="text-body-lg text-charcoal/70 max-w-[60ch]">
+  {/* ============================================================
+       HERO — charcoal, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Services</p>
+      </div>
+
+      <h1 class="text-display-1 max-w-[14ch] mb-10">
+        Two ways <span class="italic font-normal text-saffron">we work.</span>
+      </h1>
+
+      <p class="text-body-lg text-paper/75 max-w-[58ch]">
         Service-business websites built fast, engineered to last. Or deep ecommerce engineering for Shopify, Adobe Commerce, and headless builds. Both delivered by one senior engineer, end to end.
       </p>
     </div>
   </section>
 
-  <!-- Two tracks -->
-  <section class="py-20 md:py-28 px-4">
-    <div class="max-w-[1120px] mx-auto grid md:grid-cols-2 gap-8">
+  {/* ============================================================
+       PRIMARY TRACK — paper, asymmetric, big numeral
+       ============================================================ */}
+  <section class="bg-paper relative">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
 
-      <!-- Track 1: Business websites (primary) -->
-      <article class="relative bg-paper rounded-2xl border border-sage/20 p-10 flex flex-col gap-6">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-saffron rounded-t-2xl"></div>
-        <div>
-          <p class="text-eyebrow text-saffron-deep mb-3">Primary track</p>
-          <h2 class="text-display-3 text-ink mb-4">Websites for service businesses.</h2>
-          <p class="text-body text-charcoal/80">
-            Production-grade sites built fast with AI — designed to get the phone ringing and the form filling. Brand integration, mobile-first, local SEO foundation, and full deployment included. Built on Astro, Tailwind, and Vercel.
+      <div class="grid md:grid-cols-[1.6fr_1fr] gap-12 md:gap-20 items-start">
+
+        <div class="border-t-2 border-saffron pt-10">
+          <div class="flex items-baseline gap-6 mb-8">
+            <span class="numeral text-saffron-deep text-[clamp(4rem,8vw,6.5rem)] leading-none">01</span>
+            <div class="flex items-center gap-3">
+              <span class="block h-px w-8 bg-saffron-deep/60" aria-hidden="true"></span>
+              <p class="text-eyebrow text-saffron-deep/80">Primary practice</p>
+            </div>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.04] tracking-[-0.022em] text-charcoal mb-8 max-w-[16ch]">
+            Websites for <span class="italic font-normal text-saffron-deep">service businesses.</span>
+          </h2>
+
+          <p class="text-body-lg text-charcoal/75 max-w-[54ch] mb-8">
+            Brand sites, lead-capture forms, local SEO foundation, and mobile-first builds for plumbers, contractors, freight companies, and every service business in between. Production-grade sites built fast with AI — designed to get the phone ringing and the form filling.
           </p>
-        </div>
-        <ul class="space-y-2 text-body text-charcoal/80">
-          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Brand integration and custom design</li>
-          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Mobile-first, fast-loading builds</li>
-          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Contact forms and lead routing</li>
-          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Local SEO foundation baked in</li>
-          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> WCAG 2.2 AA accessibility</li>
-        </ul>
-        <div class="mt-auto pt-2">
+
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/65 max-w-[54ch] mb-10">
+            Brand integration, accessibility-conformant builds, and full deployment included. Shipped on Astro, Tailwind, and Vercel — a stack chosen for speed and near-zero maintenance cost.
+          </p>
+
           <a
             href="/services/business-websites/"
-            class="inline-flex items-center gap-2 rounded-xl bg-saffron px-6 py-3 font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+            class="group inline-flex items-center gap-3 bg-charcoal text-paper px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-saffron hover:text-ink transition-colors duration-150"
           >
-            See what's included
-            <span aria-hidden="true">→</span>
+            Explore the practice
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
           </a>
         </div>
-      </article>
 
-      <!-- Track 2: Ecommerce -->
-      <article class="relative bg-white rounded-2xl border border-[rgba(55,62,69,0.10)] p-10 flex flex-col gap-6">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-sage rounded-t-2xl"></div>
-        <div>
-          <p class="text-eyebrow text-sage mb-3">Ecommerce engineering</p>
-          <h2 class="text-display-3 text-ink mb-4">Ecommerce engineering for Shopify, Adobe Commerce, and headless.</h2>
-          <p class="text-body text-charcoal/80">
-            Deep platform engineering backed by 10+ years of production commerce experience. Headless builds, custom apps, systems integrations, audits, and strategy — all delivered by one senior engineer who owns every line.
-          </p>
-        </div>
-        <nav aria-label="Ecommerce services">
-          <ul class="space-y-2 text-body text-charcoal/80">
-            <li>
-              <a href="/services/shopify-development/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Shopify development
-              </a>
+        {/* Right column — supporting detail */}
+        <aside class="md:pt-10 md:border-l md:border-charcoal/10 md:pl-12">
+          <p class="text-eyebrow text-charcoal/45 mb-6">Who it's for</p>
+          <ul class="space-y-4 text-[1.0625rem] leading-[1.55] text-charcoal/75">
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Plumbers, electricians, and home-service contractors
             </li>
-            <li>
-              <a href="/services/adobe-commerce/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Adobe Commerce
-              </a>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Freight, logistics, and B2B operators
             </li>
-            <li>
-              <a href="/services/headless-commerce/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Headless commerce builds
-              </a>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Manufacturers and trade-network distributors
             </li>
-            <li>
-              <a href="/services/custom-app-development/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Custom app development
-              </a>
-            </li>
-            <li>
-              <a href="/services/integrations-automation/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Integrations and automation
-              </a>
-            </li>
-            <li>
-              <a href="/services/audits-strategy/" class="flex items-center gap-2 hover:text-sage transition-colors">
-                <span class="text-sage" aria-hidden="true">→</span> Technical audits and strategy
-              </a>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Any service business whose phone needs to ring
             </li>
           </ul>
-        </nav>
-      </article>
 
+          <p class="text-eyebrow text-charcoal/45 mt-10 mb-4">Typical timeline</p>
+          <p class="font-serif text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal">
+            4 – 6 weeks
+          </p>
+          <p class="text-[0.9375rem] text-charcoal/55 mt-1">kickoff to live, indexed site</p>
+        </aside>
+      </div>
     </div>
   </section>
 
-  <!-- Not sure CTA -->
-  <section class="py-20 md:py-28 px-4 bg-cream">
-    <div class="max-w-[1120px] mx-auto text-center">
-      <h2 class="text-display-2 text-ink mb-6">Not sure which fits?</h2>
-      <p class="text-body-lg text-charcoal/70 max-w-[58ch] mx-auto mb-10">
+  {/* ============================================================
+       SECONDARY TRACK — cream, editorial link list
+       ============================================================ */}
+  <section class="bg-cream relative">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+
+        <header>
+          <div class="flex items-baseline gap-6 mb-8">
+            <span class="numeral text-charcoal/35 text-[clamp(3rem,6vw,5rem)] leading-none">02</span>
+            <div class="flex items-center gap-3">
+              <span class="block h-px w-8 bg-charcoal/30" aria-hidden="true"></span>
+              <p class="text-eyebrow text-charcoal/55">Ecommerce engineering</p>
+            </div>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.018em] text-charcoal mb-6 max-w-[18ch]">
+            Deep platform <span class="italic font-normal text-saffron-deep">engineering.</span>
+          </h2>
+
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch]">
+            Backed by ten years of production commerce experience. Shopify, Adobe Commerce, headless storefronts, custom apps, integrations, and audits — all delivered by one senior engineer who owns every line.
+          </p>
+        </header>
+
+        {/* Editorial link list */}
+        <nav aria-label="Ecommerce services" class="md:pt-2">
+          <ul class="border-t border-charcoal/15">
+            {ecommerceLinks.map((link) => (
+              <li class="border-b border-charcoal/15">
+                <a
+                  href={link.href}
+                  class="group grid md:grid-cols-[1fr_auto] gap-x-8 items-baseline py-5 md:py-6 hover:text-saffron-deep transition-colors duration-150"
+                >
+                  <div>
+                    <h3 class="font-serif font-medium text-[1.375rem] md:text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal group-hover:text-saffron-deep transition-colors mb-1">
+                      {link.title}
+                    </h3>
+                    <p class="text-[0.9375rem] leading-[1.55] text-charcoal/65 max-w-[58ch]">
+                      {link.desc}
+                    </p>
+                  </div>
+                  <span
+                    aria-hidden="true"
+                    class="hidden md:inline-block text-charcoal/45 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 mt-1"
+                  >→</span>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </nav>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PRE-FOOTER CTA — charcoal, asterisk ornament finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.25rem,5vw,4rem)] leading-[1.04] tracking-[-0.022em] mb-10 max-w-[22ch] mx-auto">
+        Not sure which <span class="italic font-normal text-saffron">fits?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
         If you're a service business that needs a professional site, start there. If you're running a Shopify or Adobe Commerce store and need engineering depth, we can help with that too. When in doubt — just tell us what you're trying to solve.
       </p>
-      <a
-        href="/contact?service=general"
-        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
-      >
-        Start a conversation
-        <span aria-hidden="true">→</span>
-      </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=general"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a conversation
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See selected work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
     </div>
   </section>
+
 </Layout>

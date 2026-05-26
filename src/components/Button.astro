@@ -1,7 +1,7 @@
 ---
 interface Props {
   href?: string;
-  variant?: 'primary' | 'secondary' | 'ghost';
+  variant?: 'primary' | 'secondary' | 'ghost' | 'primary-dark' | 'secondary-dark';
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit';
   class?: string;
@@ -9,18 +9,25 @@ interface Props {
 
 const { href, variant = 'primary', size = 'md', type = 'button', class: extraClass = '' } = Astro.props;
 
-const base = 'inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2';
+const base = 'inline-flex items-center gap-2 font-medium transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 group';
 
 const variantClasses: Record<string, string> = {
-  primary: 'bg-charcoal text-white hover:opacity-90',
-  secondary: 'border border-charcoal/20 text-charcoal hover:border-sage hover:text-sage',
-  ghost: 'text-sage hover:underline',
+  // Primary on light surface — saffron CTA
+  primary: 'bg-saffron text-ink hover:bg-saffron-deep hover:text-white focus-visible:ring-saffron rounded-sm',
+  // Primary on dark surface — saffron CTA with ink text
+  'primary-dark': 'bg-saffron text-ink hover:bg-cream focus-visible:ring-saffron focus-visible:ring-offset-charcoal rounded-sm',
+  // Secondary on light — charcoal outline
+  secondary: 'border border-charcoal/25 text-charcoal hover:border-charcoal hover:bg-charcoal hover:text-paper focus-visible:ring-charcoal rounded-sm',
+  // Secondary on dark — white outline
+  'secondary-dark': 'border border-white/25 text-white hover:border-white hover:bg-white hover:text-charcoal focus-visible:ring-white focus-visible:ring-offset-charcoal rounded-sm',
+  // Ghost link — text-only with saffron underline
+  ghost: 'text-charcoal hover:text-saffron-deep underline decoration-saffron decoration-1 underline-offset-[0.3em] decoration-from-font',
 };
 
 const sizeClasses: Record<string, string> = {
-  sm: 'px-3 py-1.5 text-sm',
-  md: 'px-5 py-2.5',
-  lg: 'px-7 py-3.5 text-lg',
+  sm: 'px-4 py-2 text-sm tracking-wide',
+  md: 'px-6 py-3 text-[0.95rem] tracking-wide',
+  lg: 'px-8 py-4 text-base tracking-wide',
 };
 
 const classes = [base, variantClasses[variant], sizeClasses[size], extraClass].filter(Boolean).join(' ');
@@ -29,9 +36,11 @@ const classes = [base, variantClasses[variant], sizeClasses[size], extraClass].f
 {href ? (
   <a href={href} class={classes}>
     <slot />
+    <span class="inline-block transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
   </a>
 ) : (
   <button type={type} class={classes}>
     <slot />
+    <span class="inline-block transition-transform duration-150 group-hover:translate-x-0.5" aria-hidden="true">→</span>
   </button>
 )}

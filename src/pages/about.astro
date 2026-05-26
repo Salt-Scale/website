@@ -1,302 +1,379 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import Layout from "../layouts/Layout.astro";
+import headshot from "../assets/headshot-source.jpeg";
 
 const personSchema = {
-  '@type': 'Person',
-  '@id': 'https://saltandscale.consulting/#founder',
-  'name': 'Gabriel Rosales',
-  'jobTitle': 'Founder & Principal Engineer',
-  'worksFor': {
-    '@type': 'Organization',
-    '@id': 'https://saltandscale.consulting/#org',
-    'name': 'Salt & Scale',
-    'url': 'https://saltandscale.consulting/',
-    'logo': {
-      '@type': 'ImageObject',
-      'url': 'https://saltandscale.consulting/icons/icon-c-monogram.svg',
-    },
-    'founder': { '@id': 'https://saltandscale.consulting/#founder' },
-    'areaServed': 'United States',
-    'knowsAbout': [
-      'Website design',
-      'Web development',
-      'Shopify development',
-      'Adobe Commerce',
-      'Headless commerce',
-      'AI-accelerated development',
-      'Web accessibility',
-      'Core Web Vitals',
-    ],
-    'sameAs': ['https://github.com/Salt-Scale'],
-  },
-  'image': 'https://saltandscale.consulting/headshot-square.jpg',
-  'sameAs': [
-    'https://www.linkedin.com/in/gabriel-rosales/',
-    'https://github.com/notoriousgor',
-    'https://github.com/Salt-Scale',
-    'https://gabriel-rosales.com',
+  "@type": "Person",
+  "@id": "https://saltandscale.consulting/#founder",
+  name: "Gabriel Rosales",
+  jobTitle: "Founder & Principal Engineer",
+  worksFor: { "@id": "https://saltandscale.consulting/#org" },
+  image: "https://saltandscale.consulting/headshot-square.jpg",
+  sameAs: [
+    "https://www.linkedin.com/in/gabriel-rosales/",
+    "https://github.com/notoriousgor",
+    "https://github.com/Salt-Scale",
+    "https://gabriel-rosales.com",
   ],
 };
 
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "About", url: "/about/" },
+];
+
 const tenets = [
   {
-    heading: 'One senior engineer, end-to-end.',
-    body: 'No handoffs, no junior work shipped, no agency overhead. Every line under the Salt & Scale name is written and reviewed by Gabriel personally.',
+    n: "01",
+    title: "One senior engineer, end-to-end.",
+    body: "No handoffs, no junior work shipped, no agency overhead. Every line under the Salt & Scale name is written and reviewed by Gabriel personally — the same engineer who scoped the work and who will be there a year after launch.",
   },
   {
-    heading: 'AI as a force multiplier, never a deliverable.',
-    body: 'Anthropic Claude Partner. Every line is reviewed and owned by a human with 10+ years of production experience. AI accelerates; it does not replace engineering judgment.',
+    n: "02",
+    title: "AI as a force multiplier, never a deliverable.",
+    body: "Anthropic Claude Partner. Every line is reviewed and owned by a human with ten years of production experience. AI accelerates the build; engineering judgment owns the quality.",
   },
   {
-    heading: 'Production-grade fundamentals.',
-    body: 'Hydrogen contributor, Shopify + Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores.',
+    n: "03",
+    title: "Production-grade fundamentals.",
+    body: "Hydrogen contributor. Shopify and Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
   },
 ];
 
-const priorWork = [
+const priorRoles = [
   {
-    role: 'Senior Engineer',
-    company: 'Corra',
-    projects: [
-      { name: 'Sanrio', note: 'Shopify Plus + Magento PWA, Laravel APIs, infra leadership' },
-      { name: 'PAX Labs', note: 'Shopify Plus headless program with Remix, Hydrogen, Oxygen; custom OMS in PHP/MySQL' },
-      { name: 'Hive Brands', note: 'Custom apps, microservices for promos/ops, Coupon Card app' },
-      { name: 'Thursday Boots Co.', note: 'Shopify Liquid/JS audits and front-end features' },
-    ],
+    n: "01",
+    years: "2019 — 2023",
+    role: "Senior Engineer",
+    company: "Corra (for Sanrio)",
+    note: "Shopify Plus + Magento PWA storefront work, Laravel APIs, infra leadership across a high-traffic global brand.",
+  },
+  {
+    n: "02",
+    years: "2021 — 2023",
+    role: "Headless Engineer",
+    company: "PAX Labs",
+    note: "Shopify Plus headless program built on Remix, Hydrogen, and Oxygen. Custom OMS in PHP and MySQL for a regulated commerce vertical.",
+  },
+  {
+    n: "03",
+    years: "2020 — 2022",
+    role: "Apps & Microservices",
+    company: "Hive Brands",
+    note: "Custom Shopify apps and microservices for promos and ops, including a bespoke Coupon Card application.",
+  },
+  {
+    n: "04",
+    years: "2018 — 2020",
+    role: "Front-end Engineer",
+    company: "Thursday Boots Co.",
+    note: "Shopify Liquid/JS performance audits and front-end feature work for a direct-to-consumer leather goods brand.",
   },
 ];
 
-const credentials = [
-  '10+ years in production web engineering',
-  'Open-source contributor to Shopify/hydrogen',
-  'Shopify Partner',
-  'Anthropic Claude Partner',
-  'Vercel Partner',
-];
-
-const partners = [
-  { label: 'Shopify Partner' },
-  { label: 'Anthropic Claude Partner' },
-  { label: 'Vercel Partner' },
+const partnerBadges = [
+  "Shopify Partner",
+  "Anthropic Claude Partner",
+  "Vercel Partner",
+  "Hydrogen contributor",
 ];
 ---
 
 <Layout
   title="About — Salt & Scale"
-  description="Gabriel Rosales is the founder of Salt & Scale, a solo consultancy building production-grade websites for service businesses."
+  description="Gabriel Rosales is the founder of Salt & Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years in commerce engineering. Hydrogen contributor."
   canonicalPath="/about/"
-  breadcrumbs={[
-    { name: 'Home', url: '/' },
-    { name: 'About', url: '/about/' },
-  ]}
+  breadcrumbs={breadcrumbs}
   schema={personSchema}
 >
-  <div class="bg-paper">
 
-    <!-- Breadcrumb -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pt-8">
-      <nav aria-label="Breadcrumb">
-        <ol class="flex flex-wrap items-center gap-1 text-caption text-stone">
-          <li class="flex items-center gap-1">
-            <a href="/" class="hover:text-sage hover:underline transition-colors duration-150">Home</a>
-          </li>
-          <li class="flex items-center gap-1">
-            <span aria-hidden="true" class="text-stone/40">/</span>
-            <span aria-current="page" class="text-charcoal font-medium">About</span>
-          </li>
-        </ol>
-      </nav>
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">About</li>
+      </ol>
     </div>
+  </nav>
 
-    <!-- Hero section -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 py-20 md:py-28">
-      <p class="text-eyebrow text-saffron mb-4">About</p>
-      <h1 class="text-display-1 text-ink mb-12 max-w-[20ch]">One engineer, ten years, every line.</h1>
+  {/* ============================================================
+       HERO — charcoal, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
 
-      <!-- Founder block -->
-      <div class="flex flex-col md:flex-row gap-12 md:gap-16 items-start">
+      <div class="flex items-center gap-4 mb-10 md:mb-14">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">About · Houston</p>
+      </div>
 
-        <!-- Portrait -->
-        <div class="shrink-0">
-          <div class="w-48 h-60 md:w-56 md:h-72 rounded-xl bg-cream border border-charcoal/10 overflow-hidden flex items-center justify-center">
-            <!-- Headshot placeholder until Phase 2 image processing -->
-            <span class="text-caption text-stone text-center px-4">Portrait — Phase 2</span>
+      <h1 class="text-display-xl max-w-[16ch] mb-10 md:mb-12">
+        One engineer, ten years, <span class="italic font-normal text-saffron">every line.</span>
+      </h1>
+
+      <p class="text-[clamp(1.125rem,1.5vw,1.375rem)] leading-[1.55] text-paper/75 max-w-[58ch] font-light">
+        Salt &amp; Scale is a solo consultancy in Houston, run by one senior engineer with a decade of production commerce work behind every project. No handoffs, no juniors, no agency overhead — just the engineer who scoped the work writing the code that ships.
+      </p>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FOUNDER — paper, asymmetric portrait + bio
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
+
+        {/* Portrait */}
+        <div class="relative">
+          <div class="aspect-[4/5] bg-cream overflow-hidden">
+            <img
+              src={headshot.src}
+              width={headshot.width}
+              height={headshot.height}
+              alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
+              loading="eager"
+              decoding="async"
+              class="w-full h-full object-cover"
+            />
           </div>
+          <p class="text-eyebrow text-charcoal/45 mt-4">Gabriel Rosales · Houston, TX</p>
         </div>
 
-        <!-- Bio + badges -->
-        <div class="flex-1">
-          <div class="mb-2">
-            <p class="text-h4 text-ink">Gabriel Rosales</p>
-            <p class="text-caption text-stone mt-1">Founder &amp; Principal Engineer &mdash; Houston, TX</p>
+        {/* Bio */}
+        <div>
+          <div class="flex items-center gap-4 mb-8">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Founder &amp; Principal Engineer</p>
           </div>
 
-          <p class="text-body text-charcoal max-w-[72ch] mt-6 leading-relaxed">
-            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Over the past ten years he has shipped commerce engineering work for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots Co., and contributed open-source code to Shopify&rsquo;s Hydrogen storefront framework. Salt &amp; Scale is a Shopify Partner, an Anthropic Claude Partner, and a Vercel Partner &mdash; three credentials that map directly to how the work gets done: ecommerce platform fluency, AI used as a force multiplier (never a deliverable), and modern deployment infrastructure. Every line shipped under the Salt &amp; Scale name is written and reviewed by Gabriel personally.
+          <h2 class="text-display-3 text-charcoal mb-8 md:mb-10 font-semibold">
+            Gabriel Rosales.
+          </h2>
+
+          <p class="text-body-lg text-charcoal/75 mb-8 max-w-[58ch]">
+            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Over the past ten years he has shipped commerce engineering work for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots Co., and contributed open-source code to Shopify&rsquo;s Hydrogen storefront framework. Salt &amp; Scale is a Shopify Partner, an Anthropic Claude Partner, and a Vercel Partner — three credentials that map directly to how the work gets done: ecommerce platform fluency, AI used as a force multiplier (never a deliverable), and modern deployment infrastructure. Every line shipped under the Salt &amp; Scale name is written and reviewed by Gabriel personally.
           </p>
 
-          <!-- Partner badges -->
-          <div class="flex flex-wrap gap-3 mt-8">
-            {partners.map((p) => (
-              <span class="text-eyebrow text-saffron-deep border border-saffron/40 rounded-full px-4 py-1.5 bg-cream/60">
-                {p.label}
-              </span>
+          {/* Partner badges as typographic list with + numerals */}
+          <ul class="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+            {partnerBadges.map((label) => (
+              <li class="flex items-baseline gap-2 text-[0.875rem] text-charcoal/70">
+                <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+                {label}
+              </li>
             ))}
-          </div>
+          </ul>
 
-          <!-- Social links -->
-          <div class="flex flex-wrap gap-4 mt-6">
+          {/* Social links */}
+          <div class="flex flex-wrap items-center gap-x-8 gap-y-4">
             <a
               href="https://www.linkedin.com/in/gabriel-rosales/"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
-              class="text-body text-sage hover:underline font-medium transition-colors duration-150"
-            >LinkedIn &rarr;</a>
+              class="group inline-flex items-center gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] font-medium tracking-wide"
+            >
+              LinkedIn
+              <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+            </a>
             <a
               href="https://github.com/notoriousgor"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
-              class="text-body text-sage hover:underline font-medium transition-colors duration-150"
-            >GitHub &rarr;</a>
+              class="group inline-flex items-center gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] font-medium tracking-wide"
+            >
+              GitHub
+              <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+            </a>
             <a
               href="https://gabriel-rosales.com"
-              rel="noopener"
+              rel="noopener noreferrer"
               target="_blank"
-              class="text-body text-sage hover:underline font-medium transition-colors duration-150"
-            >gabriel-rosales.com &rarr;</a>
+              class="group inline-flex items-center gap-2 text-charcoal/70 hover:text-saffron-deep transition-colors duration-150 text-[0.95rem] tracking-wide"
+            >
+              gabriel-rosales.com
+              <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+            </a>
           </div>
         </div>
-
       </div>
     </div>
+  </section>
 
-    <!-- What I believe -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-20 md:pb-28">
-      <p class="text-eyebrow text-saffron mb-4">What I believe</p>
-      <h2 class="text-display-2 text-ink mb-10">Three tenets.</h2>
+  {/* ============================================================
+       WHAT I BELIEVE — cream, three pillars editorial
+       ============================================================ */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What I believe</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[18ch] mb-16 md:mb-24">
+        Three tenets, <span class="italic font-normal text-saffron-deep">no shortcuts</span>.
+      </h2>
+
+      <div class="space-y-16 md:space-y-24">
         {tenets.map((t) => (
-          <div class="bg-white rounded-xl border border-charcoal/10 p-8">
-            <h3 class="text-h4 text-ink mb-4">{t.heading}</h3>
-            <p class="text-body text-charcoal">{t.body}</p>
-          </div>
+          <article class="grid md:grid-cols-[180px_1fr] gap-6 md:gap-16">
+            <div>
+              <span class="numeral text-saffron-deep text-[3.5rem] leading-none">{t.n}</span>
+              <p class="text-eyebrow text-charcoal/40 mt-4">Principle</p>
+            </div>
+            <div>
+              <h3 class="font-serif font-semibold text-[clamp(1.625rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-5 max-w-[22ch]">
+                {t.title}
+              </h3>
+              <p class="text-body-lg text-charcoal/70 max-w-[58ch]">
+                {t.body}
+              </p>
+            </div>
+          </article>
         ))}
       </div>
     </div>
+  </section>
 
-    <!-- Prior work -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-20 md:pb-28">
-      <p class="text-eyebrow text-saffron mb-4">Prior work</p>
-      <h2 class="text-display-2 text-ink mb-4">Before Salt &amp; Scale.</h2>
-      <p class="text-body text-stone mb-10 max-w-[65ch]">
-        The following projects were delivered at Corra as a senior engineer &mdash; prior employment, not Salt &amp; Scale case studies.
-      </p>
+  {/* ============================================================
+       PRIOR WORK — paper, editorial résumé timeline
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
 
-      {priorWork.map((role) => (
-        <div class="mb-10">
-          <div class="flex items-baseline gap-3 mb-6 pb-4 border-b border-charcoal/10">
-            <span class="text-h4 text-ink">{role.role}</span>
-            <span class="text-caption text-stone">&mdash; {role.company}</span>
+      <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Prior work</p>
           </div>
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {role.projects.map((proj) => (
-              <div class="bg-white rounded-xl border border-charcoal/10 p-6">
-                <p class="text-h4 text-ink mb-2">{proj.name}</p>
-                <p class="text-body text-stone">{proj.note}</p>
-              </div>
-            ))}
-          </div>
+          <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+            Before <span class="italic font-normal text-saffron-deep">Salt &amp; Scale</span>.
+          </h2>
         </div>
-      ))}
-    </div>
-
-    <!-- Open source -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-20 md:pb-28">
-      <p class="text-eyebrow text-saffron mb-4">Open source</p>
-      <h2 class="text-display-2 text-ink mb-6">Giving back to the stack.</h2>
-      <p class="text-body text-charcoal max-w-[65ch] mb-6">
-        Gabriel has contributed code to Shopify&rsquo;s open-source Hydrogen storefront framework and maintains public repositories under both personal and Salt &amp; Scale GitHub organizations.
-      </p>
-      <div class="flex flex-wrap gap-4">
-        <a
-          href="https://github.com/Shopify/hydrogen"
-          rel="noopener"
-          target="_blank"
-          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 border border-charcoal/20 text-charcoal hover:border-sage/60 hover:text-sage px-5 py-2.5 text-body"
-        >
-          Shopify/hydrogen contributions &rarr;
-        </a>
-        <a
-          href="https://github.com/notoriousgor"
-          rel="noopener"
-          target="_blank"
-          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 border border-charcoal/20 text-charcoal hover:border-sage/60 hover:text-sage px-5 py-2.5 text-body"
-        >
-          GitHub: @notoriousgor &rarr;
-        </a>
-        <a
-          href="https://github.com/Salt-Scale"
-          rel="noopener"
-          target="_blank"
-          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 border border-charcoal/20 text-charcoal hover:border-sage/60 hover:text-sage px-5 py-2.5 text-body"
-        >
-          GitHub: Salt-Scale org &rarr;
-        </a>
+        <p class="text-[0.9375rem] text-charcoal/55 max-w-[36ch] italic font-serif">
+          Prior employment and contracting — not Salt &amp; Scale case studies.
+        </p>
       </div>
-    </div>
 
-    <!-- Credentials -->
-    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-20 md:pb-28">
-      <p class="text-eyebrow text-saffron mb-4">Credentials</p>
-      <h2 class="text-display-2 text-ink mb-8">By the numbers.</h2>
-      <ul class="space-y-4">
-        {credentials.map((c) => (
-          <li class="flex gap-3 text-body text-charcoal">
-            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
-            {c === 'Open-source contributor to Shopify/hydrogen' ? (
-              <>
-                Open-source contributor to{' '}
-                <a
-                  href="https://github.com/Shopify/hydrogen"
-                  rel="noopener"
-                  target="_blank"
-                  class="text-sage hover:underline transition-colors duration-150"
-                >Shopify/hydrogen</a>
-              </>
-            ) : (
-              c
-            )}
+      <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+        {priorRoles.map((r) => (
+          <li>
+            <div class="grid md:grid-cols-[64px_180px_1fr] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[1.875rem] leading-none">{r.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{r.years}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-2">
+                  {r.role}
+                  <span class="text-charcoal/55 italic font-normal"> — {r.company}</span>
+                </h3>
+                <p class="text-[0.9375rem] leading-[1.6] text-charcoal/65 max-w-[60ch]">
+                  {r.note}
+                </p>
+              </div>
+            </div>
           </li>
         ))}
       </ul>
     </div>
+  </section>
 
-  </div>
+  {/* ============================================================
+       OPEN SOURCE — paper with border-top
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/10">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-28">
 
-  <!-- CTA Band -->
-  <section class="bg-charcoal text-white py-20 px-4">
-    <div class="mx-auto max-w-[1120px] text-center">
-      <h2 class="text-display-2 text-white mb-4">Ready to build something?</h2>
-      <p class="text-body-lg text-white/70 max-w-xl mx-auto mb-10">
-        Let&rsquo;s talk about what you&rsquo;re building. One call, no sales deck, just a straight conversation about your project.
+      <div class="grid md:grid-cols-[1fr_1.4fr] gap-12 md:gap-20 items-start">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Open source</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.018em] text-charcoal max-w-[14ch]">
+            Open source <span class="italic font-normal text-saffron-deep">contributor</span>.
+          </h2>
+        </div>
+
+        <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+          <li>
+            <a
+              href="https://github.com/Shopify/hydrogen"
+              rel="noopener noreferrer"
+              target="_blank"
+              class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-baseline py-6 group"
+            >
+              <div>
+                <p class="text-eyebrow text-charcoal/45 mb-2">Shopify · Storefront framework</p>
+                <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] text-charcoal group-hover:text-saffron-deep transition-colors">
+                  Shopify / Hydrogen
+                </h3>
+                <p class="text-[0.9375rem] text-charcoal/60 mt-1">Contributor to the open-source React storefront framework.</p>
+              </div>
+              <span class="text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://github.com/notoriousgor"
+              rel="noopener noreferrer"
+              target="_blank"
+              class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-baseline py-6 group"
+            >
+              <div>
+                <p class="text-eyebrow text-charcoal/45 mb-2">GitHub · 45 public repositories</p>
+                <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] text-charcoal group-hover:text-saffron-deep transition-colors">
+                  @notoriousgor
+                </h3>
+                <p class="text-[0.9375rem] text-charcoal/60 mt-1">Personal repositories: commerce experiments, Hydrogen forks, Astro starters.</p>
+              </div>
+              <span class="text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Ready to build something <span class="italic font-normal text-saffron">that books work?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        One discovery call. A clear scope. A written proposal within three business days.
       </p>
-      <div class="flex flex-wrap items-center justify-center gap-4">
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
         <a
           href="/contact/"
-          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal bg-saffron text-ink hover:opacity-90 px-7 py-3.5 text-lg"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
         >
           Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
         </a>
         <a
-          href="https://www.linkedin.com/in/gabriel-rosales/"
-          rel="noopener"
-          target="_blank"
-          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal border border-white/20 text-white hover:border-white/50 px-7 py-3.5 text-lg"
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
         >
-          Connect on LinkedIn
+          See selected work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
         </a>
       </div>
     </div>
   </section>
+
 </Layout>

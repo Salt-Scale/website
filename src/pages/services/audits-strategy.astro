@@ -12,22 +12,94 @@ const breadcrumbs = [
 
 const serviceDescription = "Before investing in a build or migration, it helps to know exactly what you're working with. Salt & Scale offers structured technical audits of Shopify and Adobe Commerce stores — code quality, performance against Core Web Vitals, security posture, accessibility conformance, and integration reliability. Audit deliverables are written reports with prioritized findings and clear recommendations, not slide decks full of theory. Strategy consulting covers platform migration planning, stack evaluation, and technical roadmap development for brands making significant platform decisions. Every audit and strategy engagement is a fixed-scope, fixed-price engagement with a clear written deliverable — so you know what you're getting before you sign.";
 
+const includedItems = [
+  {
+    n: "01",
+    title: "Code reviews and architecture audits",
+    body: "Structured review of Shopify theme, Adobe Commerce modules, or custom application code — quality, maintainability, security, and performance findings with severity ratings.",
+  },
+  {
+    n: "02",
+    title: "Performance audits",
+    body: "Core Web Vitals analysis (LCP, INP, CLS) in both lab and field data, root-cause identification, and a prioritized remediation plan ordered by impact-to-effort ratio.",
+  },
+  {
+    n: "03",
+    title: "Security reviews",
+    body: "Surface review of exposed credentials, CSP headers, third-party script risks, API key handling, and known vulnerability patterns in Shopify and Adobe Commerce codebases.",
+  },
+  {
+    n: "04",
+    title: "Accessibility conformance review",
+    body: "WCAG 2.2 AA automated and manual review — keyboard navigation, screen-reader semantics, color contrast, form accessibility, and focus management — with a findings log and fix guide.",
+  },
+  {
+    n: "05",
+    title: "Platform migration planning",
+    body: "Data mapping for catalog, customers, and orders; SEO redirect strategy; risk register; timeline estimate; and vendor evaluation framework for the build phase.",
+  },
+  {
+    n: "06",
+    title: "Executive-ready reporting",
+    body: "Written reports designed to be shared with non-technical stakeholders — findings translated to business risk, recommendations tied to ROI, and a clear ask for what needs to happen next.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Scope",
+    title: "Define and grant access.",
+    body: "We define the audit scope and you grant read-only access to the codebase, staging environment, and any relevant analytics or monitoring data. No write access needed.",
+  },
+  {
+    n: "02",
+    label: "Review",
+    title: "Tools paired with judgment.",
+    body: "We work through the defined scope systematically — automated tooling (axe-core, Lighthouse, OWASP ZAP scans) paired with manual review. No findings sourced from guesswork.",
+  },
+  {
+    n: "03",
+    label: "Deliver",
+    title: "Written report, debrief call.",
+    body: "Findings delivered as a written report with severity ratings, prioritized recommendations, and a 30-minute debrief call to walk through the findings and answer questions.",
+  },
+];
+
+const outcomes = [
+  {
+    n: "01",
+    title: "Clear prioritization",
+    body: "Every finding is rated by severity and ordered by impact-to-effort ratio. You walk away knowing what to fix first and why — not with a flat list of 47 items with no guidance.",
+  },
+  {
+    n: "02",
+    title: "Actionable recommendations",
+    body: "Recommendations written for engineers who need to implement them — not for consultants who need to invoice another engagement. Where possible, we include code examples.",
+  },
+  {
+    n: "03",
+    title: "Decisions made with confidence",
+    body: "Whether you're deciding to rebuild, migrate, or stay — the goal of the strategy work is to give you the information to make that decision without wondering what you're missing.",
+  },
+];
+
 const faqItems = [
   {
     question: "What does a technical audit cover?",
-    answer: "A full technical audit covers: code quality and architecture review, Core Web Vitals performance analysis (LCP, INP, CLS), accessibility conformance against WCAG 2.2 AA, security surface review (exposed API keys, CSP headers, third-party scripts), integration reliability review, and SEO technical foundation check. You receive a written report with findings categorized by severity and prioritized recommendations. Scope can be narrowed to a single area (performance-only, accessibility-only, etc.) for a faster turnaround."
+    answer: "A full technical audit covers: code quality and architecture review, Core Web Vitals performance analysis (LCP, INP, CLS), accessibility conformance against WCAG 2.2 AA, security surface review (exposed API keys, CSP headers, third-party scripts), integration reliability review, and SEO technical foundation check. You receive a written report with findings categorized by severity and prioritized recommendations. Scope can be narrowed to a single area (performance-only, accessibility-only, etc.) for a faster turnaround.",
   },
   {
     question: "How long does an audit take?",
-    answer: "A focused single-area audit (performance-only, for example) typically takes three to five business days. A full technical audit covering code, performance, accessibility, and security takes seven to ten business days. Timeline starts from when we have access to the codebase and any relevant staging environment."
+    answer: "A focused single-area audit (performance-only, for example) typically takes three to five business days. A full technical audit covering code, performance, accessibility, and security takes seven to ten business days. Timeline starts from when we have access to the codebase and any relevant staging environment.",
   },
   {
     question: "What do I get at the end of a strategy engagement?",
-    answer: "A written document — not slides, not a Notion board. Depending on the scope: a platform migration blueprint with data mapping, risk register, and timeline estimate; a stack evaluation comparing two to three options with tradeoffs stated explicitly; or a technical roadmap with prioritized initiatives tied to business goals. The deliverable is designed to be handed to a technical team or a board, depending on what you need."
+    answer: "A written document — not slides, not a Notion board. Depending on the scope: a platform migration blueprint with data mapping, risk register, and timeline estimate; a stack evaluation comparing two to three options with tradeoffs stated explicitly; or a technical roadmap with prioritized initiatives tied to business goals. The deliverable is designed to be handed to a technical team or a board, depending on what you need.",
   },
   {
     question: "Do you implement the recommendations after the audit?",
-    answer: "That's up to you. We offer both audit-only engagements and audit-plus-implementation. An audit-only engagement gives you the findings and you implement them yourself or with another vendor. An audit-plus-implementation adds a scoped build engagement where we fix the prioritized issues. The audit scope doesn't change either way — the recommendations are honest regardless of whether we do the follow-on work."
+    answer: "That's up to you. We offer both audit-only engagements and audit-plus-implementation. An audit-only engagement gives you the findings and you implement them yourself or with another vendor. An audit-plus-implementation adds a scoped build engagement where we fix the prioritized issues. The audit scope doesn't change either way — the recommendations are honest regardless of whether we do the follow-on work.",
   },
 ];
 
@@ -35,24 +107,24 @@ const schema = [
   {
     "@type": "Service",
     "@id": "https://saltandscale.consulting/services/audits-strategy/#service",
-    "name": "Technical audits and strategy consulting",
-    "serviceType": "Technical audit and ecommerce strategy",
-    "provider": { "@id": "https://saltandscale.consulting/#org" },
-    "areaServed": "United States",
-    "description": serviceDescription,
-    "offers": {
+    name: "Technical audits and strategy consulting",
+    serviceType: "Technical audit and ecommerce strategy",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
       "@type": "Offer",
-      "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD" }
-    }
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+    },
   },
   {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    mainEntity: faqItems.map((item) => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": { "@type": "Answer", "text": item.answer }
-    }))
-  }
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
 ];
 ---
 
@@ -63,154 +135,207 @@ const schema = [
   breadcrumbs={breadcrumbs}
   schema={schema}
 >
-  <!-- Breadcrumb -->
-  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
-    <ol class="flex flex-wrap items-center gap-2 text-caption text-stone">
-      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
-      <li aria-hidden="true" class="text-stone/50">›</li>
-      <li><a href="/services/" class="hover:text-ink transition-colors">Services</a></li>
-      <li aria-hidden="true" class="text-stone/50">›</li>
-      <li class="text-ink" aria-current="page">Audits and strategy</li>
-    </ol>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Audits &amp; strategy</li>
+      </ol>
+    </div>
   </nav>
 
-  <!-- Hero / Answer block -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-saffron-deep mb-4">Ecommerce engineering</p>
-      <h1 class="text-display-1 text-ink mb-8 max-w-[22ch]">Technical audits and strategy consulting.</h1>
-      <div class="max-w-[72ch] bg-cream rounded-2xl border border-sage/20 px-8 py-7">
-        <p class="text-body text-charcoal/90 m-0">{serviceDescription}</p>
+  {/* HERO */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Ecommerce engineering · Audits &amp; strategy</p>
+      </div>
+      <h1 class="text-display-xl max-w-[18ch] mb-10">
+        Audits &amp; <span class="italic font-normal text-saffron">strategy</span> consulting.
+      </h1>
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Fixed-scope, fixed-price reviews of Shopify and Adobe Commerce stores. Code, performance, security, accessibility — delivered as a written report with prioritized findings, not a slide deck.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=audits-strategy" class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Request an audit
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/about/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron">
+          See the engineer behind it
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- What's included -->
-  <section class="py-20 md:py-28 px-4">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">Scope of work</p>
-      <h2 class="text-display-2 text-ink mb-10">What's included.</h2>
-      <ul class="grid md:grid-cols-2 gap-6">
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Code reviews and architecture audits</h3>
-          <p class="text-body text-charcoal/70">Structured review of Shopify theme, Adobe Commerce modules, or custom application code — quality, maintainability, security, and performance findings with severity ratings.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Performance audits</h3>
-          <p class="text-body text-charcoal/70">Core Web Vitals analysis (LCP, INP, CLS) in both lab and field data, root-cause identification, and a prioritized remediation plan ordered by impact-to-effort ratio.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Security reviews</h3>
-          <p class="text-body text-charcoal/70">Surface review of exposed credentials, CSP headers, third-party script risks, API key handling, and known vulnerability patterns in Shopify and Adobe Commerce codebases.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Accessibility conformance review</h3>
-          <p class="text-body text-charcoal/70">WCAG 2.2 AA automated and manual review — keyboard navigation, screen-reader semantics, color contrast, form accessibility, and focus management — with a findings log and fix guide.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Platform migration planning</h3>
-          <p class="text-body text-charcoal/70">Data mapping for catalog, customers, and orders; SEO redirect strategy; risk register; timeline estimate; and vendor evaluation framework for the build phase.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Executive-ready reporting</h3>
-          <p class="text-body text-charcoal/70">Written reports designed to be shared with non-technical stakeholders — findings translated to business risk, recommendations tied to ROI, and a clear ask for what needs to happen next.</p>
-        </li>
+  {/* ANSWER */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* WHAT'S INCLUDED */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="mb-14 md:mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Scope of work</p>
+        </div>
+        <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+          What's <span class="italic font-normal text-saffron-deep">included.</span>
+        </h2>
+      </div>
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[26ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <!-- How we work -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">The process</p>
-      <h2 class="text-display-2 text-ink mb-12">How we work.</h2>
-      <ol class="grid md:grid-cols-3 gap-8">
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">1</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Scope and access</h3>
-            <p class="text-body text-charcoal/70">We define the audit scope and you grant read-only access to the codebase, staging environment, and any relevant analytics or monitoring data. No write access needed.</p>
-          </div>
-        </li>
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">2</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Structured review</h3>
-            <p class="text-body text-charcoal/70">We work through the defined scope systematically — automated tooling (axe-core, Lighthouse, OWASP ZAP scans) paired with manual review. No findings sourced from guesswork.</p>
-          </div>
-        </li>
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">3</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Written report and debrief</h3>
-            <p class="text-body text-charcoal/70">Findings delivered as a written report with severity ratings, prioritized recommendations, and a 30-minute debrief call to walk through the findings and answer questions.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Outcomes -->
-  <section class="py-20 md:py-28 px-4">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">What we aim for</p>
-      <h2 class="text-display-2 text-ink mb-8">Outcomes we target.</h2>
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Clear prioritization</h3>
-          <p class="text-body text-charcoal/70">Every finding is rated by severity and ordered by impact-to-effort ratio. You walk away knowing what to fix first and why — not with a flat list of 47 items with no guidance.</p>
-        </div>
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Actionable recommendations</h3>
-          <p class="text-body text-charcoal/70">Recommendations written for engineers who need to implement them — not for consultants who need to invoice another engagement. Where possible, we include code examples.</p>
-        </div>
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Decisions made with confidence</h3>
-          <p class="text-body text-charcoal/70">Whether you're deciding to rebuild, migrate, or stay — the goal of the strategy work is to give you the information to make that decision without wondering what you're missing.</p>
-        </div>
+  {/* HOW WE WORK */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
       </div>
-      <p class="text-caption text-stone max-w-[72ch]">
-        Audit scope and depth vary by engagement. The report is a point-in-time assessment — findings may change as the codebase evolves after delivery.
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">Common questions</p>
-      <h2 class="text-display-2 text-ink mb-10">Frequently asked questions.</h2>
-      <div class="max-w-[800px] space-y-3">
-        {faqItems.map(item => (
-          <details class="group bg-white rounded-xl border border-[rgba(55,62,69,0.10)] overflow-hidden">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-h4 text-ink hover:bg-sage/5 transition-colors">
-              {item.question}
-              <span class="flex-shrink-0 text-stone group-open:rotate-45 transition-transform duration-200" aria-hidden="true">+</span>
-            </summary>
-            <div class="px-6 pb-6 pt-1">
-              <p class="text-body text-charcoal/80">{item.answer}</p>
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Scope. Review. <span class="italic font-normal text-saffron-deep">Deliver.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
             </div>
-          </details>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 md:py-28 px-4 bg-charcoal">
-    <div class="max-w-[1120px] mx-auto text-center">
-      <p class="text-eyebrow text-saffron mb-4">Start with an audit</p>
-      <h2 class="text-display-2 text-paper mb-6">Know what you're working with before you build.</h2>
-      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-10">
-        Tell us what platform you're on, what you're trying to decide, and what access you can provide. We'll scope the engagement and respond within one business day.
+  {/* OUTCOMES */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we aim for</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Outcomes we <span class="italic font-normal text-saffron-deep">target.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-12 border-t border-charcoal/15 mb-12">
+        {outcomes.map((o) => (
+          <article class="pt-8">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">{o.n}</span>
+            <h3 class="font-serif font-medium text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mt-5 mb-4 max-w-[20ch]">
+              {o.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {o.body}
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+        Audit scope and depth vary by engagement. The report is a point-in-time assessment — findings may change as the codebase evolves after delivery.
       </p>
-      <a
-        href="/contact?service=audits-strategy"
-        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
-      >
-        Request an audit
-        <span aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
+
+  {/* FAQ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA BAND */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[22ch] mx-auto">
+        Know what you're <span class="italic font-normal text-saffron">working with.</span>
+      </h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Tell us what platform you're on, what you're trying to decide, and what access you can provide. We'll scope the engagement and respond within one business day.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=audits-strategy" class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Request an audit
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/services/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide">
+          See all services
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </Layout>

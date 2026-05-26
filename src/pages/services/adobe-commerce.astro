@@ -12,22 +12,113 @@ const breadcrumbs = [
 
 const serviceDescription = "Salt & Scale provides Adobe Commerce (formerly Magento) engineering for brands that require the platform's depth — complex catalog structures, B2B buyer flows, multi-site and multi-currency deployments, and custom module development. Work spans Adobe Commerce Cloud and self-hosted setups, PWA Studio builds using React and GraphQL, Laravel and PHP API development, and performance engineering against Core Web Vitals targets. Prior production work at this tier includes the Sanrio brand commerce platform built at Corra — a Shopify Plus and Magento hybrid with Laravel APIs, React/GraphQL PWA features, and infrastructure planning. Every engagement is handled directly by one senior engineer with no agency overhead between you and the person writing the code.";
 
+const includedItems = [
+  {
+    n: "01",
+    title: "Module and extension development",
+    body: "Custom PHP modules for catalog, checkout, payment, shipping, and admin functionality. Built to Adobe Commerce coding standards with test coverage.",
+  },
+  {
+    n: "02",
+    title: "PWA and headless storefronts",
+    body: "React/GraphQL PWA Studio implementations and custom headless front-ends against Adobe Commerce's GraphQL API. Performance-first architecture.",
+  },
+  {
+    n: "03",
+    title: "API development and integrations",
+    body: "Laravel and PHP REST/GraphQL API layers, ERP and CRM integration, and custom middleware connecting Adobe Commerce to external systems.",
+  },
+  {
+    n: "04",
+    title: "Performance engineering",
+    body: "Full-page cache optimization, database query analysis, CDN and image pipeline configuration, and Core Web Vitals remediation on default and headless storefronts.",
+  },
+  {
+    n: "05",
+    title: "Platform migrations",
+    body: "Inbound and outbound migrations with data integrity verification for catalog, customers, orders, and CMS content. SEO redirect maps included.",
+  },
+  {
+    n: "06",
+    title: "B2B and multi-site configuration",
+    body: "Adobe Commerce B2B module configuration, company accounts, negotiated catalogs, and multi-website/multi-store setups with shared or isolated catalogs.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Discovery",
+    title: "Audit before code.",
+    body: "We review your current Adobe Commerce version, customizations, integrations, and performance baseline. Deliverable: written scope and technical risk register.",
+  },
+  {
+    n: "02",
+    label: "Build",
+    title: "Staged deployment.",
+    body: "All work staged against a mirror of production. Code reviews, automated tests, and manual QA before any merge to production. No surprise releases.",
+  },
+  {
+    n: "03",
+    label: "Launch",
+    title: "Cutover and monitoring.",
+    body: "Coordinated cutover, 48-hour post-launch monitoring window, and documentation of all customizations for your internal team or future vendors.",
+  },
+];
+
+const outcomes = [
+  {
+    n: "01",
+    title: "Core Web Vitals passing",
+    body: "Adobe Commerce is notoriously heavy. We target LCP under 2.5s, INP under 200ms, CLS under 0.1 — measured in field data, not just Lighthouse lab runs.",
+  },
+  {
+    n: "02",
+    title: "Checkout and catalog conversion",
+    body: "Checkout friction, faceted search usability, and page speed all have measurable conversion relationships. We design for the conversion path, not the feature list.",
+  },
+  {
+    n: "03",
+    title: "Integration reliability",
+    body: "ERP syncs, inventory feeds, and order pipelines with retry logic, alerting, and idempotent operations — systems that fail loudly rather than silently.",
+  },
+];
+
+const priorWork = [
+  {
+    company: "Sanrio (via Corra)",
+    detail: "Adobe Commerce / Shopify Plus hybrid with Laravel API layer, React/GraphQL PWA features, and infrastructure planning across multiple regional brands.",
+  },
+  {
+    company: "PAX Labs",
+    detail: "Magento PWA experimentation alongside the Shopify Plus headless program — evaluating where Adobe Commerce fits in a multi-brand commerce stack.",
+  },
+  {
+    company: "Hive Brands",
+    detail: "Custom Laravel and PHP microservices supporting promotions, operations, and integration tooling — the kind of work Adobe Commerce demands at scale.",
+  },
+  {
+    company: "Thursday Boots Co.",
+    detail: "Front-end engineering and feature audits with crossover into headless storefront patterns.",
+  },
+];
+
 const faqItems = [
   {
     question: "What's the difference between Adobe Commerce and Magento Open Source?",
-    answer: "Adobe Commerce (formerly Magento 2 Commerce) is the paid, cloud-hosted or self-hosted enterprise edition. It adds B2B features, page builder, customer segmentation, staging and preview, and Adobe-managed cloud infrastructure. Magento Open Source is the free community edition — powerful, but without those enterprise modules. We work on both, and can advise on whether the Commerce license cost is justified for your catalog and team size."
+    answer: "Adobe Commerce (formerly Magento 2 Commerce) is the paid, cloud-hosted or self-hosted enterprise edition. It adds B2B features, page builder, customer segmentation, staging and preview, and Adobe-managed cloud infrastructure. Magento Open Source is the free community edition — powerful, but without those enterprise modules. We work on both, and can advise on whether the Commerce license cost is justified for your catalog and team size.",
   },
   {
     question: "Do you build PWA storefronts for Adobe Commerce?",
-    answer: "Yes. Adobe Commerce supports headless via its GraphQL API. We've built PWA Studio (React/GraphQL) storefronts and can also build decoupled front-ends with Next.js or other frameworks. Headless Adobe Commerce is more complex than Shopify headless — the API surface is larger and the tooling is less mature — so the tradeoffs deserve a direct conversation before committing."
+    answer: "Yes. Adobe Commerce supports headless via its GraphQL API. We've built PWA Studio (React/GraphQL) storefronts and can also build decoupled front-ends with Next.js or other frameworks. Headless Adobe Commerce is more complex than Shopify headless — the API surface is larger and the tooling is less mature — so the tradeoffs deserve a direct conversation before committing.",
   },
   {
     question: "Can you migrate us from Magento to another platform?",
-    answer: "Yes. We handle platform assessment, data migration planning (catalog, customers, orders, SEO redirects), and the actual migration. The most common paths we support are Magento to Shopify Plus and Magento to Adobe Commerce Cloud. Migration projects start with a discovery engagement that results in a migration blueprint before any code is touched."
+    answer: "Yes. We handle platform assessment, data migration planning (catalog, customers, orders, SEO redirects), and the actual migration. The most common paths we support are Magento to Shopify Plus and Magento to Adobe Commerce Cloud. Migration projects start with a discovery engagement that results in a migration blueprint before any code is touched.",
   },
   {
     question: "How do you handle Adobe Commerce performance problems?",
-    answer: "We start with a structured audit: database query analysis, full-page cache configuration, Varnish/CDN setup, image optimization, and JavaScript bundle analysis. Adobe Commerce has well-known performance failure modes (N+1 queries, uncached API calls, large payload categories) — we've seen them before and have systematic playbooks for each."
+    answer: "We start with a structured audit: database query analysis, full-page cache configuration, Varnish/CDN setup, image optimization, and JavaScript bundle analysis. Adobe Commerce has well-known performance failure modes (N+1 queries, uncached API calls, large payload categories) — we've seen them before and have systematic playbooks for each.",
   },
 ];
 
@@ -35,24 +126,24 @@ const schema = [
   {
     "@type": "Service",
     "@id": "https://saltandscale.consulting/services/adobe-commerce/#service",
-    "name": "Adobe Commerce development",
-    "serviceType": "Adobe Commerce and Magento development",
-    "provider": { "@id": "https://saltandscale.consulting/#org" },
-    "areaServed": "United States",
-    "description": serviceDescription,
-    "offers": {
+    name: "Adobe Commerce development",
+    serviceType: "Adobe Commerce and Magento development",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
       "@type": "Offer",
-      "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD" }
-    }
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+    },
   },
   {
     "@type": "FAQPage",
-    "mainEntity": faqItems.map(item => ({
+    mainEntity: faqItems.map((item) => ({
       "@type": "Question",
-      "name": item.question,
-      "acceptedAnswer": { "@type": "Answer", "text": item.answer }
-    }))
-  }
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
 ];
 ---
 
@@ -63,154 +154,239 @@ const schema = [
   breadcrumbs={breadcrumbs}
   schema={schema}
 >
-  <!-- Breadcrumb -->
-  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
-    <ol class="flex flex-wrap items-center gap-2 text-caption text-stone">
-      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
-      <li aria-hidden="true" class="text-stone/50">›</li>
-      <li><a href="/services/" class="hover:text-ink transition-colors">Services</a></li>
-      <li aria-hidden="true" class="text-stone/50">›</li>
-      <li class="text-ink" aria-current="page">Adobe Commerce</li>
-    </ol>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Adobe Commerce</li>
+      </ol>
+    </div>
   </nav>
 
-  <!-- Hero / Answer block -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-saffron-deep mb-4">Ecommerce engineering</p>
-      <h1 class="text-display-1 text-ink mb-8 max-w-[22ch]">Adobe Commerce development.</h1>
-      <div class="max-w-[72ch] bg-cream rounded-2xl border border-sage/20 px-8 py-7">
-        <p class="text-body text-charcoal/90 m-0">{serviceDescription}</p>
+  {/* HERO */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Ecommerce engineering · Adobe Commerce</p>
+      </div>
+      <h1 class="text-display-xl max-w-[14ch] mb-10">
+        Adobe <span class="italic font-normal text-saffron">Commerce</span> development.
+      </h1>
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Module work, PWA storefronts, performance engineering, and B2B configuration. For brands that need the depth Adobe Commerce was built for — without the agency overhead.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=adobe-commerce" class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/about/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron">
+          See the engineer behind it
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
       </div>
     </div>
   </section>
 
-  <!-- What's included -->
-  <section class="py-20 md:py-28 px-4">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">Scope of work</p>
-      <h2 class="text-display-2 text-ink mb-10">What's included.</h2>
-      <ul class="grid md:grid-cols-2 gap-6">
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Module and extension development</h3>
-          <p class="text-body text-charcoal/70">Custom PHP modules for catalog, checkout, payment, shipping, and admin functionality. Built to Adobe Commerce coding standards with full test coverage.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">PWA and headless storefronts</h3>
-          <p class="text-body text-charcoal/70">React/GraphQL PWA Studio implementations and custom headless front-ends against Adobe Commerce's GraphQL API. Performance-first architecture.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">API development and integrations</h3>
-          <p class="text-body text-charcoal/70">Laravel and PHP REST/GraphQL API layers, ERP and CRM integration, and custom middleware connecting Adobe Commerce to external systems.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Performance engineering</h3>
-          <p class="text-body text-charcoal/70">Full-page cache optimization, database query analysis, CDN and image pipeline configuration, and Core Web Vitals remediation on both default and headless storefronts.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">Platform migrations</h3>
-          <p class="text-body text-charcoal/70">Inbound and outbound migrations with data integrity verification for catalog, customers, orders, and CMS content. SEO redirect maps included.</p>
-        </li>
-        <li class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-2">B2B and multi-site configuration</h3>
-          <p class="text-body text-charcoal/70">Adobe Commerce B2B module configuration, company accounts, negotiated catalogs, and multi-website/multi-store setups with shared or isolated catalogs.</p>
-        </li>
+  {/* ANSWER BLOCK */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* WHAT'S INCLUDED */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="mb-14 md:mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Scope of work</p>
+        </div>
+        <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+          What's <span class="italic font-normal text-saffron-deep">included.</span>
+        </h2>
+      </div>
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[24ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   </section>
 
-  <!-- How we work -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">The process</p>
-      <h2 class="text-display-2 text-ink mb-12">How we work.</h2>
-      <ol class="grid md:grid-cols-3 gap-8">
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">1</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Discovery and system audit</h3>
-            <p class="text-body text-charcoal/70">We review your current Adobe Commerce version, customizations, integrations, and performance baseline. Deliverable: written scope and technical risk register.</p>
-          </div>
-        </li>
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">2</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Build with staged deployment</h3>
-            <p class="text-body text-charcoal/70">All work staged against a mirror of production. Code reviews, automated tests, and manual QA before any merge to production. No surprise releases.</p>
-          </div>
-        </li>
-        <li class="flex flex-col gap-4">
-          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">3</div>
-          <div>
-            <h3 class="text-h4 text-ink mb-2">Launch and post-launch monitoring</h3>
-            <p class="text-body text-charcoal/70">Coordinated cutover, 48-hour post-launch monitoring window, and documentation of all customizations for your internal team or future vendors.</p>
-          </div>
-        </li>
-      </ol>
-    </div>
-  </section>
-
-  <!-- Outcomes -->
-  <section class="py-20 md:py-28 px-4">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">What we aim for</p>
-      <h2 class="text-display-2 text-ink mb-8">Outcomes we target.</h2>
-      <div class="grid md:grid-cols-3 gap-6 mb-8">
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Core Web Vitals passing</h3>
-          <p class="text-body text-charcoal/70">Adobe Commerce is notoriously heavy. We target LCP under 2.5s, INP under 200ms, CLS under 0.1 — measured in field data, not just Lighthouse lab runs.</p>
-        </div>
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Checkout and catalog conversion</h3>
-          <p class="text-body text-charcoal/70">Checkout friction, faceted search usability, and page speed all have measurable conversion relationships. We design and build for the conversion path, not just the feature list.</p>
-        </div>
-        <div class="bg-paper rounded-xl border border-sage/15 p-6">
-          <h3 class="text-h4 text-ink mb-3">Integration reliability</h3>
-          <p class="text-body text-charcoal/70">ERP syncs, inventory feeds, and order pipelines with retry logic, alerting, and idempotent operations — systems that fail loudly rather than silently.</p>
-        </div>
+  {/* HOW WE WORK */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
       </div>
-      <p class="text-caption text-stone max-w-[72ch]">
-        Outcomes vary by project scope, existing platform health, and traffic volume. Metrics referenced elsewhere on this site are from individual engagements and are not guarantees of future results.
-      </p>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="py-20 md:py-28 px-4 bg-paper">
-    <div class="max-w-[1120px] mx-auto">
-      <p class="text-eyebrow text-sage mb-4">Common questions</p>
-      <h2 class="text-display-2 text-ink mb-10">Frequently asked questions.</h2>
-      <div class="max-w-[800px] space-y-3">
-        {faqItems.map(item => (
-          <details class="group bg-white rounded-xl border border-[rgba(55,62,69,0.10)] overflow-hidden">
-            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-h4 text-ink hover:bg-sage/5 transition-colors">
-              {item.question}
-              <span class="flex-shrink-0 text-stone group-open:rotate-45 transition-transform duration-200" aria-hidden="true">+</span>
-            </summary>
-            <div class="px-6 pb-6 pt-1">
-              <p class="text-body text-charcoal/80">{item.answer}</p>
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Audit. Build. <span class="italic font-normal text-saffron-deep">Cutover.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
             </div>
-          </details>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
         ))}
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
-  <section class="py-20 md:py-28 px-4 bg-charcoal">
-    <div class="max-w-[1120px] mx-auto text-center">
-      <p class="text-eyebrow text-saffron mb-4">Start a project</p>
-      <h2 class="text-display-2 text-paper mb-6">Ready to talk Adobe Commerce?</h2>
-      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-10">
-        Tell us about your platform version, current challenges, and what you need to accomplish. We'll respond within one business day.
+  {/* OUTCOMES */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we aim for</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Outcomes we <span class="italic font-normal text-saffron-deep">target.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-12 border-t border-charcoal/15 mb-12">
+        {outcomes.map((o) => (
+          <article class="pt-8">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">{o.n}</span>
+            <h3 class="font-serif font-medium text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mt-5 mb-4 max-w-[20ch]">
+              {o.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {o.body}
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+        Outcomes vary by project scope, existing platform health, and traffic volume. Metrics referenced elsewhere on this site are from individual engagements and are not guarantees of future results.
       </p>
-      <a
-        href="/contact?service=adobe-commerce"
-        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
-      >
-        Start a project
-        <span aria-hidden="true">→</span>
-      </a>
     </div>
   </section>
+
+  {/* PRIOR COMMERCE WORK */}
+  <section class="bg-cream border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-copper" aria-hidden="true"></span>
+            <p class="text-eyebrow" style="color: var(--color-copper)">Prior commerce engineering</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.08] tracking-[-0.018em] text-charcoal max-w-[16ch] mb-6">
+            Enterprise <span class="italic font-normal text-saffron-deep">production</span> experience.
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch]">
+            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every Adobe Commerce engagement today.
+          </p>
+        </header>
+        <ul class="md:pt-2 border-t border-charcoal/20 divide-y divide-charcoal/20">
+          {priorWork.map((w) => (
+            <li class="py-6 grid md:grid-cols-[200px_1fr] gap-x-8 gap-y-2 items-baseline">
+              <h3 class="font-serif text-[1.25rem] leading-[1.2] tracking-[-0.012em] text-charcoal">
+                {w.company}
+              </h3>
+              <p class="text-[1rem] leading-[1.55] text-charcoal/70 max-w-[55ch]">
+                {w.detail}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA BAND */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[22ch] mx-auto">
+        Ready to talk <span class="italic font-normal text-saffron">Adobe Commerce?</span>
+      </h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Tell us about your platform version, current challenges, and what you need to accomplish. We'll respond within one business day.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=adobe-commerce" class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/services/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide">
+          See all services
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </Layout>
