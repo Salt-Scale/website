@@ -1,156 +1,309 @@
-// src/pages/api/contact.ts
 import type { APIRoute } from 'astro';
+import { Resend } from 'resend';
 
 export const prerender = false;
 
 interface ContactPayload {
-	name?: string;
-	email?: string;
-	company?: string;
-	phone?: string;
-	platform?: string;
-	['project-type']?: string;
-	timeline?: string;
-	budget?: string;
-	message?: string;
-	additional?: string;
-	['bot-field']?: string;
+  name?: string;
+  email?: string;
+  company?: string;
+  phone?: string;
+  service?: string;
+  ['project-type']?: string;
+  timeline?: string;
+  budget?: string;
+  message?: string;
+  additional?: string;
+  ['bot-field']?: string;
 }
 
-function isValidEmail(value: string | undefined): boolean {
-	if (!value) return false;
-	return /.+@.+\..+/.test(value);
+const SERVICE_LABELS: Record<string, string> = {
+  'business-websites': 'Websites for service businesses',
+  'shopify-development': 'Shopify development',
+  'adobe-commerce': 'Adobe Commerce',
+  'headless-commerce': 'Headless commerce',
+  'custom-app-development': 'Custom app development',
+  'integrations-automation': 'Integrations & automation',
+  'audits-strategy': 'Audits & strategy',
+  other: 'Other / not sure yet',
+};
+
+const PROJECT_TYPE_LABELS: Record<string, string> = {
+  'new-build': 'New website build',
+  redesign: 'Redesign of existing site',
+  migration: 'Platform migration',
+  'custom-app': 'Custom app development',
+  headless: 'Headless commerce',
+  integration: 'Systems integration',
+  audit: 'Technical audit',
+  consulting: 'Strategy consulting',
+  other: 'Other',
+};
+
+function isValidEmail(value: string): boolean {
+  return /.+@.+\..+/.test(value);
 }
 
-function isValidPhone(value: string | undefined): boolean {
-	if (!value) return false;
-	const digits = String(value).replace(/\D/g, '');
-	return digits.length === 10;
+function isValidPhone(value: string): boolean {
+  return value.replace(/\D/g, '').length === 10;
 }
 
 function sanitize(input: string | undefined): string {
-	if (!input) return '';
-	return String(input).slice(0, 5000);
+  if (!input) return '';
+  return String(input).slice(0, 5000).trim();
+}
+
+function escapeHtml(value: string): string {
+  return value
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#039;');
 }
 
 function json(body: unknown, status = 200): Response {
-	const headers: Record<string, string> = {
-		'Content-Type': 'application/json',
-		'Access-Control-Allow-Origin': '*',
-	};
-	return new Response(JSON.stringify(body), { status, headers });
+  return new Response(JSON.stringify(body), {
+    status,
+    headers: { 'Content-Type': 'application/json' },
+  });
 }
 
-export const POST: APIRoute = async ({ request, cookies }) => {
-	try {
-		const contentType = request.headers.get('content-type') || '';
-		if (!contentType.includes('application/json')) {
-			return json({ error: 'Unsupported content type' }, 415);
-		}
+function buildEmailHtml(payload: {
+  name: string;
+  email: string;
+  company: string;
+  phone: string;
+  service: string;
+  projectType: string;
+  timeline: string;
+  budget: string;
+  message: string;
+  additional: string;
+}): string {
+  const rows: Array<[string, string]> = [
+    ['Name', payload.name],
+    ['Email', payload.email],
+    ['Company', payload.company],
+    ['Phone', payload.phone],
+    ['Service', SERVICE_LABELS[payload.service] ?? payload.service],
+    ['Project type', PROJECT_TYPE_LABELS[payload.projectType] ?? payload.projectType],
+    ['Timeline', payload.timeline],
+    ['Budget', payload.budget],
+  ].filter(([, v]) => Boolean(v));
 
-		const body = (await request.json()) as ContactPayload;
+  const detailRows = rows
+    .map(
+      ([label, value]) => `
+        <tr>
+          <td style="padding:14px 16px;border-bottom:1px solid #e8e2d0;width:140px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#8e5f22;font-weight:600;vertical-align:top;">${escapeHtml(label)}</td>
+          <td style="padding:14px 16px;border-bottom:1px solid #e8e2d0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:15px;color:#2A2F35;line-height:1.55;">${escapeHtml(value)}</td>
+        </tr>`,
+    )
+    .join('');
 
-		// Honeypot
-		if (body['bot-field']) {
-			return json({ ok: true }, 200);
-		}
+  const messageBlock = payload.message
+    ? `
+      <div style="padding:24px;background:#F7F1E1;border-left:3px solid #C8893E;margin:0 0 16px;">
+        <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#8e5f22;font-weight:600;">Project details</p>
+        <p style="margin:0;font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#2A2F35;white-space:pre-wrap;">${escapeHtml(payload.message)}</p>
+      </div>`
+    : '';
 
-		const name = sanitize(body.name);
-		const email = sanitize(body.email);
-		const company = sanitize(body.company);
-		const phone = sanitize(body.phone);
-		const message = sanitize(body.message);
+  const additionalBlock = payload.additional
+    ? `
+      <div style="padding:16px 24px;background:#FFFFFF;border:1px solid #e8e2d0;margin:0 0 16px;">
+        <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#8e5f22;font-weight:600;">Additional notes</p>
+        <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;color:#373E45;white-space:pre-wrap;">${escapeHtml(payload.additional)}</p>
+      </div>`
+    : '';
 
-		// Required fields check
-		const missing: string[] = [];
-		if (!name) missing.push('name');
-		if (!email) missing.push('email');
-		if (!message) missing.push('message');
-		if (missing.length > 0) {
-			return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400);
-		}
+  return `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;padding:0;background:#F7F1E1;">
+  <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#F7F1E1;">
+    <tr>
+      <td style="padding:40px 16px;">
+        <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="600" align="center" style="max-width:600px;margin:0 auto;background:#FFFFFF;border:1px solid #e8e2d0;">
 
-		// Format validation
-		const invalid: string[] = [];
-		if (!isValidEmail(email)) invalid.push('email');
-		if (phone && !isValidPhone(phone)) invalid.push('phone');
-		if (invalid.length > 0) {
-			return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
-		}
+          <!-- Header bar -->
+          <tr>
+            <td style="background:#373E45;padding:24px 32px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%">
+                <tr>
+                  <td>
+                    <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.2em;color:#C8893E;font-weight:600;">— New project inquiry</p>
+                    <p style="margin:6px 0 0;font-family:Georgia,serif;font-size:22px;color:#F7F1E1;font-weight:600;">Salt &amp; Scale</p>
+                  </td>
+                </tr>
+              </table>
+            </td>
+          </tr>
 
-		// Basic rate limit: 1 per 30s per client
-		const clientKey = cookies.get('cfrm')?.value;
-		if (clientKey) {
-			return json({ error: 'Too many requests' }, 429);
-		}
-		cookies.set('cfrm', '1', { httpOnly: true, path: '/', maxAge: 30 });
+          <!-- Greeting -->
+          <tr>
+            <td style="padding:32px 32px 16px;">
+              <p style="margin:0 0 8px;font-family:Georgia,serif;font-size:24px;line-height:1.25;color:#2A2F35;font-weight:600;">From ${escapeHtml(payload.name)}${payload.company ? ` at <span style="font-style:italic;color:#8e5f22;">${escapeHtml(payload.company)}</span>` : ''}</p>
+              <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#6B7280;">Reply directly to this email to respond — it will go to <a href="mailto:${escapeHtml(payload.email)}" style="color:#8e5f22;">${escapeHtml(payload.email)}</a>.</p>
+            </td>
+          </tr>
 
-		// Prepare payload
-		const payload = {
-			name,
-			email,
-			company: sanitize(body.company),
-			phone,
-			platform: sanitize(body.platform),
-			projectType: sanitize(body['project-type']),
-			timeline: sanitize(body.timeline),
-			budget: sanitize(body.budget),
-			message,
-			additional: sanitize(body.additional),
-		};
+          <!-- Message block -->
+          ${messageBlock ? `<tr><td style="padding:8px 32px 0;">${messageBlock}</td></tr>` : ''}
 
-		// Email via Resend (sends both text and HTML)
-		const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
-		const CONTACT_TO = import.meta.env.CONTACT_TO;
-		const CONTACT_FROM = import.meta.env.CONTACT_FROM || 'no-reply@' + (new URL(import.meta.env.SITE_URL || 'https://example.com')).hostname;
+          <!-- Details table -->
+          <tr>
+            <td style="padding:8px 32px 16px;">
+              <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-collapse:collapse;">
+                ${detailRows}
+              </table>
+            </td>
+          </tr>
 
-		// If email service is not configured, fail explicitly so client shows an error
-		if (!RESEND_API_KEY || !CONTACT_TO) {
-			return json({ error: 'Email service not configured' }, 503);
-		}
+          ${additionalBlock ? `<tr><td style="padding:8px 32px 0;">${additionalBlock}</td></tr>` : ''}
 
-		const subject = `New Contact: ${payload.name}`;
-		const text = Object.entries(payload)
-			.map(([k, v]) => `${k}: ${v || ''}`)
-			.join('\n');
+          <!-- Footer -->
+          <tr>
+            <td style="padding:24px 32px 32px;border-top:1px solid #e8e2d0;">
+              <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:12px;color:#9A938A;line-height:1.5;">
+                Sent from the contact form on <a href="https://saltandscale.consulting/contact/" style="color:#8e5f22;text-decoration:none;">saltandscale.consulting</a>
+              </p>
+            </td>
+          </tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+</body>
+</html>`;
+}
 
-		const html = `
-		  <div style="font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;line-height:1.55;color:#111827">
-		    <h2 style="margin:0 0 12px;font-size:18px;color:#0f172a">New Contact</h2>
-		    <p style="margin:0 0 16px;color:#334155">You received a new inquiry from the website.</p>
-		    <table style="border-collapse:collapse;width:100%;max-width:640px;background:#ffffff;border:1px solid #e5e7eb;border-radius:10px">
-		      <tbody>
-		        ${Object.entries(payload).map(([k,v]) => `
-		          <tr>
-		            <td style=\"padding:10px 12px;border-bottom:1px solid #f1f5f9;width:160px;color:#64748b;text-transform:capitalize\">${k.replace(/([A-Z])/g,' $1')}</td>
-		            <td style=\"padding:10px 12px;border-bottom:1px solid #f1f5f9;color:#0f172a\">${(v || '').toString().replace(/</g,'&lt;')}</td>
-		          </tr>`).join('')}
-		      </tbody>
-		    </table>
-		  </div>`;
+function buildEmailText(payload: Record<string, string>): string {
+  const lines: string[] = [
+    'NEW PROJECT INQUIRY — Salt & Scale',
+    '',
+    `From: ${payload.name}`,
+    `Email: ${payload.email}`,
+  ];
+  if (payload.company) lines.push(`Company: ${payload.company}`);
+  if (payload.phone) lines.push(`Phone: ${payload.phone}`);
+  if (payload.service) lines.push(`Service: ${SERVICE_LABELS[payload.service] ?? payload.service}`);
+  if (payload.projectType) lines.push(`Project type: ${PROJECT_TYPE_LABELS[payload.projectType] ?? payload.projectType}`);
+  if (payload.timeline) lines.push(`Timeline: ${payload.timeline}`);
+  if (payload.budget) lines.push(`Budget: ${payload.budget}`);
+  lines.push('');
+  if (payload.message) {
+    lines.push('--- Project details ---');
+    lines.push(payload.message);
+    lines.push('');
+  }
+  if (payload.additional) {
+    lines.push('--- Additional notes ---');
+    lines.push(payload.additional);
+    lines.push('');
+  }
+  lines.push('Reply to this email to respond directly.');
+  return lines.join('\n');
+}
 
-		const resp = await fetch('https://api.resend.com/emails', {
-			method: 'POST',
-			headers: {
-				'Authorization': `Bearer ${RESEND_API_KEY}`,
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify({ from: CONTACT_FROM, to: CONTACT_TO, subject, text, html, reply_to: payload.email }),
-		});
+export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
+  try {
+    const contentType = request.headers.get('content-type') || '';
+    if (!contentType.includes('application/json')) {
+      return json({ error: 'Unsupported content type' }, 415);
+    }
 
-		if (!resp.ok) {
-			const errText = await resp.text().catch(() => '');
-			console.error('Resend error', resp.status, errText);
-			return json({ error: 'Failed to send email' }, 502);
-		}
+    const body = (await request.json()) as ContactPayload;
 
-		return json({ ok: true }, 200);
-	} catch (err) {
-		return json({ error: 'Server error' }, 500);
-	}
+    // Honeypot
+    if (body['bot-field']) {
+      // Silently accept to avoid signaling the trap
+      return json({ ok: true }, 200);
+    }
+
+    const payload = {
+      name: sanitize(body.name),
+      email: sanitize(body.email),
+      company: sanitize(body.company),
+      phone: sanitize(body.phone),
+      service: sanitize(body.service),
+      projectType: sanitize(body['project-type']),
+      timeline: sanitize(body.timeline),
+      budget: sanitize(body.budget),
+      message: sanitize(body.message),
+      additional: sanitize(body.additional),
+    };
+
+    // Required fields
+    const missing: string[] = [];
+    if (!payload.name) missing.push('name');
+    if (!payload.email) missing.push('email');
+    if (!payload.message) missing.push('message');
+    if (missing.length > 0) {
+      return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400);
+    }
+
+    // Format validation
+    const invalid: string[] = [];
+    if (!isValidEmail(payload.email)) invalid.push('email');
+    if (payload.phone && !isValidPhone(payload.phone)) invalid.push('phone');
+    if (invalid.length > 0) {
+      return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
+    }
+
+    // Rate limit: 1 submit per 30s per browser
+    if (cookies.get('cfrm')?.value) {
+      return json({ error: 'Too many requests' }, 429);
+    }
+    cookies.set('cfrm', '1', {
+      httpOnly: true,
+      sameSite: 'lax',
+      path: '/',
+      maxAge: 30,
+      secure: true,
+    });
+
+    // Resend config
+    const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
+    const CONTACT_TO = import.meta.env.CONTACT_TO;
+    const CONTACT_FROM =
+      import.meta.env.CONTACT_FROM ||
+      'Salt & Scale Website <hello@saltandscale.consulting>';
+
+    if (!RESEND_API_KEY || !CONTACT_TO) {
+      console.error('[contact] missing RESEND_API_KEY or CONTACT_TO');
+      return json({ error: 'Email service not configured' }, 503);
+    }
+
+    const resend = new Resend(RESEND_API_KEY);
+
+    const subjectCompany = payload.company ? ` / ${payload.company}` : '';
+    const subject = `New project inquiry: ${payload.name}${subjectCompany}`;
+
+    const result = await resend.emails.send({
+      from: CONTACT_FROM,
+      to: CONTACT_TO.split(',').map((s) => s.trim()).filter(Boolean),
+      replyTo: payload.email,
+      subject,
+      html: buildEmailHtml(payload),
+      text: buildEmailText(payload),
+    });
+
+    if (result.error) {
+      console.error('[contact] Resend error:', result.error);
+      return json({ error: 'Failed to send email' }, 502);
+    }
+
+    console.log('[contact] sent', { id: result.data?.id, from: clientAddress });
+    return json({ ok: true }, 200);
+  } catch (err) {
+    console.error('[contact] server error:', err);
+    return json({ error: 'Server error' }, 500);
+  }
 };
 
-// Allow CORS preflight / health checks
+// CORS preflight
 export const OPTIONS: APIRoute = async () => {
   return new Response(null, {
     status: 204,
