@@ -1,6 +1,8 @@
 // src/pages/api/contact.ts
 import type { APIRoute } from 'astro';
 
+export const prerender = false;
+
 interface ContactPayload {
 	name?: string;
 	email?: string;

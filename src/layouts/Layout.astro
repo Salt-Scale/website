@@ -1,6 +1,82 @@
 ---
 import "../styles/global.css";
 import Analytics from '@vercel/analytics/astro';
+
+export interface Breadcrumb {
+  name: string;
+  url: string;
+}
+
+export interface Props {
+  title?: string;
+  description?: string;
+  ogImage?: string;
+  canonicalPath?: string;
+  breadcrumbs?: Breadcrumb[];
+  schema?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const {
+  title = 'Salt & Scale – Growth, grounded in Truth.',
+  description = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.',
+  ogImage = '/og-image.jpg',
+  canonicalPath,
+  breadcrumbs,
+  schema,
+} = Astro.props;
+
+const canonicalHref = Astro.site
+  ? new URL(canonicalPath ?? Astro.url.pathname, Astro.site).toString()
+  : undefined;
+
+const ogTitle = title.replace(/–/g, '—');
+
+const defaultGraph = [
+  {
+    '@type': 'Organization',
+    name: 'Salt & Scale',
+    url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
+    logo: '/logo-mark.svg',
+    sameAs: [] as string[],
+  },
+  {
+    '@type': 'WebSite',
+    name: 'Salt & Scale',
+    url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
+    potentialAction: {
+      '@type': 'SearchAction',
+      target: Astro.site
+        ? new URL('/?q={search_term_string}', Astro.site).toString()
+        : undefined,
+      'query-input': 'required name=search_term_string',
+    },
+  },
+];
+
+const customGraph = schema
+  ? Array.isArray(schema)
+    ? schema
+    : [schema]
+  : [];
+
+const breadcrumbGraph = breadcrumbs && breadcrumbs.length
+  ? [
+      {
+        '@type': 'BreadcrumbList',
+        itemListElement: breadcrumbs.map((b, i) => ({
+          '@type': 'ListItem',
+          position: i + 1,
+          name: b.name,
+          item: Astro.site ? new URL(b.url, Astro.site).toString() : b.url,
+        })),
+      },
+    ]
+  : [];
+
+const graph = {
+  '@context': 'https://schema.org',
+  '@graph': [...defaultGraph, ...customGraph, ...breadcrumbGraph],
+};
 ---
 
 <!doctype html>
@@ -10,58 +86,31 @@ import Analytics from '@vercel/analytics/astro';
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
-    <title>{Astro.props?.title ?? 'Salt & Scale – Growth, grounded in Truth.'}</title>
-    {Astro.site && (
-      <link rel="canonical" href={new URL(Astro.url.pathname, Astro.site).toString()} />
-    )}
-    <meta name="description" content={Astro.props?.description ?? 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.'} />
+    <title>{title}</title>
+    {canonicalHref && <link rel="canonical" href={canonicalHref} />}
+    <meta name="description" content={description} />
     <meta property="og:type" content="website" />
-    <meta property="og:title" content={Astro.props?.title ?? 'Salt & Scale — Growth, grounded in Truth.'} />
-    <meta property="og:description" content={Astro.props?.description ?? 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.'} />
-    {Astro.site && (
-      <meta property="og:url" content={new URL(Astro.url.pathname, Astro.site).toString()} />
-    )}
-    <meta property="og:image" content="/og-image.jpg" />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={description} />
+    {canonicalHref && <meta property="og:url" content={canonicalHref} />}
+    <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content="1200" />
     <meta property="og:image:height" content="630" />
     <meta property="og:image:type" content="image/jpeg" />
     <meta property="og:site_name" content="Salt & Scale" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content={Astro.props?.title ?? 'Salt & Scale — Growth, grounded in Truth.'} />
-    <meta name="twitter:description" content={Astro.props?.description ?? 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.'} />
-    <meta name="twitter:image" content="/og-image.jpg" />
+    <meta name="twitter:title" content={ogTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={ogImage} />
     <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin />
     <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
     <link rel="preload" href="/fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin>
     <Analytics />
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'Organization',
-        name: 'Salt & Scale',
-        url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
-        logo: '/logo-mark.svg',
-        sameAs: []
-      })}
-    </script>
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'WebSite',
-        name: 'Salt & Scale',
-        url: Astro.site ? new URL('/', Astro.site).toString() : undefined,
-        potentialAction: {
-          '@type': 'SearchAction',
-          target: Astro.site ? new URL('/?q={search_term_string}', Astro.site).toString() : undefined,
-          'query-input': 'required name=search_term_string'
-        }
-      })}
-    </script>
-    
+    <script type="application/ld+json" set:html={JSON.stringify(graph)}></script>
   </head>
-  <body class="bg-white font-sans text-[#373e45] antialiased">
-    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] inline-flex items-center rounded-md bg-[#5a7c65] px-3 py-2 text-white">Skip to content</a>
+  <body class="bg-white font-sans text-charcoal antialiased">
+    <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] inline-flex items-center rounded-md bg-sage px-3 py-2 text-white">Skip to content</a>
     <header
       class="sticky top-0 z-50 border-b border-[rgba(55,62,69,0.08)] bg-white/80 backdrop-blur supports-[backdrop-filter]:bg-white/70"
     >
@@ -80,41 +129,41 @@ import Analytics from '@vercel/analytics/astro';
         <nav aria-label="Primary" class="hidden md:flex items-center gap-5">
           <a
             href="#services"
-            class="flex items-center font-medium text-[#373e45] hover:underline"
+            class="flex items-center font-medium text-charcoal hover:underline"
             data-nav="services"
             >Services</a
           >
           <a
             href="#approach"
-            class="flex items-center font-medium text-[#373e45] hover:underline"
+            class="flex items-center font-medium text-charcoal hover:underline"
             data-nav="approach"
             >Approach</a
           >
           <a
             href="#experience"
-            class="flex items-center font-medium text-[#373e45] hover:underline"
+            class="flex items-center font-medium text-charcoal hover:underline"
             data-nav="experience"
             >Experience</a
           >
           <a
             href="#work"
-            class="flex items-center font-medium text-[#373e45] hover:underline"
+            class="flex items-center font-medium text-charcoal hover:underline"
             data-nav="work"
             >Work</a
           >
           <a
             href="#faq"
-            class="flex items-center font-medium text-[#373e45] hover:underline"
+            class="flex items-center font-medium text-charcoal hover:underline"
             data-nav="faq"
             >FAQ</a
           >
           <a
             href="#contact"
-            class="inline-flex items-center justify-center rounded-lg bg-[#373e45] px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-px"
+            class="inline-flex items-center justify-center rounded-lg bg-charcoal px-4 py-2 font-semibold text-white shadow-sm transition hover:opacity-90 focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 focus-visible:outline-none active:translate-y-px"
             >Start a project</a
           >
         </nav>
-        <button id="menu-toggle" class="md:hidden inline-flex items-center justify-center rounded-lg border border-[rgba(55,62,69,0.12)] px-3 py-2 text-[#373e45] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 absolute right-5 top-1/2 -translate-y-1/2 md:static md:translate-y-0" aria-controls="mobile-menu" aria-expanded="false">
+        <button id="menu-toggle" class="md:hidden inline-flex items-center justify-center rounded-lg border border-[rgba(55,62,69,0.12)] px-3 py-2 text-charcoal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 absolute right-5 top-1/2 -translate-y-1/2 md:static md:translate-y-0" aria-controls="mobile-menu" aria-expanded="false">
           <span class="sr-only">Open menu</span>
           <svg class="w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         </button>
@@ -133,7 +182,7 @@ import Analytics from '@vercel/analytics/astro';
           <a href="#experience" class="px-3 py-2 rounded-lg hover:bg-[#f7f8f9]">Experience</a>
           <a href="#work" class="px-3 py-2 rounded-lg hover:bg-[#f7f8f9]">Work</a>
           <a href="#faq" class="px-3 py-2 rounded-lg hover:bg-[#f7f8f9]">FAQ</a>
-          <a href="#contact" class="mt-2 inline-flex items-center justify-center rounded-lg bg-[#373e45] px-4 py-2 font-semibold text-white">Start a project</a>
+          <a href="#contact" class="mt-2 inline-flex items-center justify-center rounded-lg bg-charcoal px-4 py-2 font-semibold text-white">Start a project</a>
         </nav>
       </div>
     </div>
@@ -141,11 +190,11 @@ import Analytics from '@vercel/analytics/astro';
       <slot />
     </main>
     <footer class="mx-auto mt-8 max-w-[1120px] px-4 py-8">
-      <div class="h-px w-full bg-[#5a7c65]/30"></div>
+      <div class="h-px w-full bg-sage/30"></div>
       <div class="mt-4 grid gap-2 sm:grid-cols-3 sm:items-center">
         <p class="m-0 text-center sm:text-left">© {new Date().getFullYear()} Salt & Scale</p>
-        <p id="sotd-verse" class="m-0 text-[13px] leading-snug text-[#373e45]/70 text-center px-2">Loading daily scripture…</p>
-        <p class="m-0 text-[#5a7c65] text-center sm:text-right">
+        <p id="sotd-verse" class="m-0 text-[13px] leading-snug text-charcoal/70 text-center px-2">Loading daily scripture…</p>
+        <p class="m-0 text-sage text-center sm:text-right">
           Growth, grounded in Truth.
         </p>
       </div>
@@ -154,7 +203,7 @@ import Analytics from '@vercel/analytics/astro';
       // @ts-nocheck
       const sectionIds = ["services","approach","experience","work","faq","contact"];
       const links = new Map(sectionIds.map(id => [id, document.querySelector(`a[data-nav="${id}"]`)]));
-      
+
       /**
        * @param {string} activeId
        */
@@ -162,9 +211,9 @@ import Analytics from '@vercel/analytics/astro';
         links.forEach((el, id) => {
           if (!el) return;
           if (id === activeId) {
-            el.classList.add("text-[#5a7c65]","underline");
+            el.classList.add("text-sage","underline");
           } else {
-            el.classList.remove("text-[#5a7c65]","underline");
+            el.classList.remove("text-sage","underline");
           }
         });
       }
@@ -242,7 +291,7 @@ import Analytics from '@vercel/analytics/astro';
           })
           .catch(() => sotdEl.remove());
       };
-      
+
       if ('requestIdleCallback' in window) {
         requestIdleCallback(loadSotd, { timeout: 2000 });
       } else {

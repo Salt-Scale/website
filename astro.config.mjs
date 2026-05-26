@@ -16,7 +16,8 @@ const site = process.env.SITE_URL || "https://example.com";
 
 export default defineConfig({
   site,
-  output: 'server',
+  output: 'static',
+  trailingSlash: 'always',
   integrations: [react(), partytown(), sitemap()],
   adapter: vercel(),
 
