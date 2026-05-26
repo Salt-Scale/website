@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import headshot from "../assets/headshot-source.jpeg";
 
 const pageTitle = "Salt & Scale – Websites that book the work.";
@@ -405,13 +406,14 @@ const insightStubs = [
         {/* Portrait */}
         <div class="relative">
           <div class="aspect-[4/5] bg-cream overflow-hidden">
-            <img
-              src={headshot.src}
-              width={headshot.width}
-              height={headshot.height}
+            <Image
+              src={headshot}
               alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
+              widths={[280, 480, 640, 960]}
+              sizes="(min-width: 768px) 40vw, 100vw"
+              format="avif"
+              quality={82}
               loading="lazy"
-              decoding="async"
               class="w-full h-full object-cover"
             />
           </div>
