@@ -1,0 +1,26 @@
+---
+interface Props {
+  label: string;
+  dot?: boolean;
+  variant?: 'sage' | 'saffron' | 'cream';
+}
+
+const { label, dot = true, variant = 'sage' } = Astro.props;
+
+const variantClasses: Record<string, string> = {
+  sage: 'bg-sage/10 text-sage border border-sage/20',
+  saffron: 'bg-saffron/10 text-saffron-deep border border-saffron/20',
+  cream: 'bg-cream text-charcoal border border-charcoal/10',
+};
+
+const dotColors: Record<string, string> = {
+  sage: 'bg-sage',
+  saffron: 'bg-saffron',
+  cream: 'bg-stone',
+};
+---
+
+<span class={`inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-eyebrow ${variantClasses[variant]}`}>
+  {dot && <span class={`h-1.5 w-1.5 rounded-full shrink-0 ${dotColors[variant]}`} aria-hidden="true"></span>}
+  {label}
+</span>

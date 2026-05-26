@@ -1,0 +1,147 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Services – Salt & Scale";
+const description = "Two ways we work: websites for service businesses built fast with AI, and ecommerce engineering for Shopify, Adobe Commerce, and headless builds.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+];
+
+const schema = [
+  {
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: "https://saltandscale.consulting/" },
+      { "@type": "ListItem", position: 2, name: "Services", item: "https://saltandscale.consulting/services/" },
+    ],
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
+    <ol class="flex items-center gap-2 text-caption text-stone">
+      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
+      <li aria-hidden="true" class="text-stone/50">›</li>
+      <li class="text-ink" aria-current="page">Services</li>
+    </ol>
+  </nav>
+
+  <!-- Hero -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-saffron-deep mb-4">How we work</p>
+      <h1 class="text-display-1 text-ink mb-6 max-w-[18ch]">Two ways we work.</h1>
+      <p class="text-body-lg text-charcoal/70 max-w-[60ch]">
+        Service-business websites built fast, engineered to last. Or deep ecommerce engineering for Shopify, Adobe Commerce, and headless builds. Both delivered by one senior engineer, end to end.
+      </p>
+    </div>
+  </section>
+
+  <!-- Two tracks -->
+  <section class="py-20 md:py-28 px-4">
+    <div class="max-w-[1120px] mx-auto grid md:grid-cols-2 gap-8">
+
+      <!-- Track 1: Business websites (primary) -->
+      <article class="relative bg-paper rounded-2xl border border-sage/20 p-10 flex flex-col gap-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-saffron rounded-t-2xl"></div>
+        <div>
+          <p class="text-eyebrow text-saffron-deep mb-3">Primary track</p>
+          <h2 class="text-display-3 text-ink mb-4">Websites for service businesses.</h2>
+          <p class="text-body text-charcoal/80">
+            Production-grade sites built fast with AI — designed to get the phone ringing and the form filling. Brand integration, mobile-first, local SEO foundation, and full deployment included. Built on Astro, Tailwind, and Vercel.
+          </p>
+        </div>
+        <ul class="space-y-2 text-body text-charcoal/80">
+          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Brand integration and custom design</li>
+          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Mobile-first, fast-loading builds</li>
+          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Contact forms and lead routing</li>
+          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> Local SEO foundation baked in</li>
+          <li class="flex items-start gap-2"><span class="text-sage mt-1" aria-hidden="true">+</span> WCAG 2.2 AA accessibility</li>
+        </ul>
+        <div class="mt-auto pt-2">
+          <a
+            href="/services/business-websites/"
+            class="inline-flex items-center gap-2 rounded-xl bg-saffron px-6 py-3 font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+          >
+            See what's included
+            <span aria-hidden="true">→</span>
+          </a>
+        </div>
+      </article>
+
+      <!-- Track 2: Ecommerce -->
+      <article class="relative bg-white rounded-2xl border border-[rgba(55,62,69,0.10)] p-10 flex flex-col gap-6">
+        <div class="absolute top-0 left-0 right-0 h-1 bg-sage rounded-t-2xl"></div>
+        <div>
+          <p class="text-eyebrow text-sage mb-3">Ecommerce engineering</p>
+          <h2 class="text-display-3 text-ink mb-4">Ecommerce engineering for Shopify, Adobe Commerce, and headless.</h2>
+          <p class="text-body text-charcoal/80">
+            Deep platform engineering backed by 10+ years of production commerce experience. Headless builds, custom apps, systems integrations, audits, and strategy — all delivered by one senior engineer who owns every line.
+          </p>
+        </div>
+        <nav aria-label="Ecommerce services">
+          <ul class="space-y-2 text-body text-charcoal/80">
+            <li>
+              <a href="/services/shopify-development/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Shopify development
+              </a>
+            </li>
+            <li>
+              <a href="/services/adobe-commerce/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Adobe Commerce
+              </a>
+            </li>
+            <li>
+              <a href="/services/headless-commerce/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Headless commerce builds
+              </a>
+            </li>
+            <li>
+              <a href="/services/custom-app-development/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Custom app development
+              </a>
+            </li>
+            <li>
+              <a href="/services/integrations-automation/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Integrations and automation
+              </a>
+            </li>
+            <li>
+              <a href="/services/audits-strategy/" class="flex items-center gap-2 hover:text-sage transition-colors">
+                <span class="text-sage" aria-hidden="true">→</span> Technical audits and strategy
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Not sure CTA -->
+  <section class="py-20 md:py-28 px-4 bg-cream">
+    <div class="max-w-[1120px] mx-auto text-center">
+      <h2 class="text-display-2 text-ink mb-6">Not sure which fits?</h2>
+      <p class="text-body-lg text-charcoal/70 max-w-[58ch] mx-auto mb-10">
+        If you're a service business that needs a professional site, start there. If you're running a Shopify or Adobe Commerce store and need engineering depth, we can help with that too. When in doubt — just tell us what you're trying to solve.
+      </p>
+      <a
+        href="/contact?service=general"
+        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+      >
+        Start a conversation
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Layout>

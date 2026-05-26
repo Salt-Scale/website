@@ -1,0 +1,43 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Legal', url: '/legal/terms/' },
+  { name: 'Terms', url: '/legal/terms/' },
+];
+---
+
+<Layout
+  title="Terms of Service — Salt & Scale"
+  description="Terms of service for Salt & Scale, an AI-accelerated web design and development consultancy based in Houston, TX."
+  canonicalPath="/legal/terms/"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="mx-auto max-w-[1120px] px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-caption text-stone">
+        <li><a href="/" class="hover:underline text-stone">Home</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li><span class="text-stone">Legal</span></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li aria-current="page" class="text-charcoal font-medium">Terms</li>
+      </ol>
+    </nav>
+
+    <div class="max-w-[720px]">
+      <h1 class="text-display-2 text-ink mb-3">Terms of Service</h1>
+      <p class="text-caption text-stone mb-10">Last updated: May 2026</p>
+
+      <div class="prose prose-charcoal max-w-none text-body text-charcoal/80 space-y-6">
+        <p>
+          This page will contain the full terms of service for Salt & Scale. Please check back soon or
+          contact <a href="mailto:gabe@saltandscale.consulting" class="text-saffron-deep hover:underline">gabe@saltandscale.consulting</a> with any questions.
+        </p>
+      </div>
+    </div>
+
+  </div>
+</Layout>

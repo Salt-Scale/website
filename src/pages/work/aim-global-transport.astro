@@ -1,0 +1,192 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  '@type': 'CreativeWork',
+  '@id': 'https://saltandscale.consulting/work/aim-global-transport/#case-study',
+  'name': 'AIM Global Transport — B2B freight website',
+  'creator': { '@id': 'https://saltandscale.consulting/#org' },
+  'about': {
+    '@type': 'Organization',
+    'name': 'AIM Global Transport',
+    'url': 'https://www.aimtransports.com/',
+  },
+  'abstract': 'A nationwide freight carrier operating across all 48 contiguous states plus cross-border. Modern fleet, GPS-tracked, with a 24/7 dispatch operation. Audience is logistics buyers and operations managers, not consumers.',
+};
+---
+
+<Layout
+  title="AIM Global Transport — Salt & Scale"
+  description="How Salt & Scale built a stat-led, B2B-first website for AIM Global Transport, covering all 48 states with a dual-path conversion design for logistics buyers."
+  canonicalPath="/work/aim-global-transport/"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+    { name: 'AIM Global Transport', url: '/work/aim-global-transport/' },
+  ]}
+  schema={schema}
+>
+  <div class="bg-paper">
+
+    <!-- Breadcrumb -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pt-8">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1 text-caption text-stone">
+          <li class="flex items-center gap-1">
+            <a href="/" class="hover:text-sage hover:underline transition-colors duration-150">Home</a>
+          </li>
+          <li class="flex items-center gap-1">
+            <span aria-hidden="true" class="text-stone/40">/</span>
+            <a href="/work/" class="hover:text-sage hover:underline transition-colors duration-150">Work</a>
+          </li>
+          <li class="flex items-center gap-1">
+            <span aria-hidden="true" class="text-stone/40">/</span>
+            <span aria-current="page" class="text-charcoal font-medium">AIM Global Transport</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 py-20 md:py-28">
+
+      <!-- H1 -->
+      <h1 class="text-display-1 text-ink mb-8">AIM Global Transport</h1>
+
+      <!-- Header strip -->
+      <div class="flex flex-wrap gap-x-8 gap-y-3 text-body text-stone border-t border-b border-charcoal/10 py-5 mb-12">
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Sector</span>
+          <span class="text-charcoal font-medium">B2B Freight</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Year</span>
+          <span class="text-charcoal font-medium">2024</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Type</span>
+          <span class="text-charcoal font-medium">Full website build</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Live site</span>
+          <a
+            href="https://www.aimtransports.com/"
+            rel="noopener"
+            target="_blank"
+            class="text-sage hover:underline font-medium transition-colors duration-150"
+          >aimtransports.com &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Brief -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">Brief</h2>
+        <p class="text-body text-charcoal max-w-[72ch]">
+          A nationwide freight carrier operating across all 48 contiguous states plus cross-border. Modern fleet, GPS-tracked, with a 24/7 dispatch operation. Audience is logistics buyers and operations managers, not consumers.
+        </p>
+      </section>
+
+      <!-- What we shipped -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">What we shipped</h2>
+        <ul class="space-y-3">
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Stat-led hero block (15+ years, 20+ fleet vehicles, 99.9% on-time delivery, 24/7 dispatch) &mdash; quantifies credibility before scrolling
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            6-service B2B catalog: Flatbed Hauling, Step-Deck/Drop Deck, Hotshot, Over-Dimensional, Dry Van, Dedicated &amp; Contract Freight
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Dual conversion path: "Get a Quote" form + direct dispatch phone number, both above the fold
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Dispatch + sales email split for proper lead routing (24/7 dispatch line vs. sales@aimtransports.com)
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            All 48 + cross-border positioning baked into copy
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Career, fleet, and safety-standards links anchored in footer for HR + procurement audiences
+          </li>
+        </ul>
+      </section>
+
+      <!-- Stack -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">Stack</h2>
+        <div class="flex flex-wrap gap-2">
+          {['Astro', 'Tailwind', 'Vercel'].map((tech) => (
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-cream text-charcoal text-caption font-medium border border-charcoal/10">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">In their words</h2>
+        <!-- DRAFT — requires client sign-off before publishing -->
+        <blockquote class="border-l-4 border-saffron pl-6 py-2 bg-cream/40 rounded-r-lg">
+          <p class="text-body-lg text-charcoal italic mb-4">
+            "We needed a site that talks to logistics buyers, not consumers. Salt &amp; Scale got the brief on the first call &mdash; service-by-service breakdown, 24/7 dispatch front and center, real stats not stock copy, and a quote form that actually routes leads to dispatch. Launched fast and looks like we've been operating for two decades."
+          </p>
+          <footer class="text-caption text-stone">
+            <cite class="not-italic"><strong class="text-charcoal">AIM Global Transport</strong> (Houston, TX)</cite>
+          </footer>
+        </blockquote>
+        <p class="text-caption text-stone/60 mt-3">Draft testimonial &mdash; pending client sign-off before publishing.</p>
+      </section>
+
+      <!-- Visit live -->
+      <section class="mb-16">
+        <a
+          href="https://www.aimtransports.com/"
+          rel="noopener"
+          target="_blank"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 bg-sage text-white hover:opacity-90 px-7 py-3.5 text-body"
+        >
+          Visit live site &rarr;
+        </a>
+      </section>
+
+      <!-- Navigation -->
+      <div class="flex flex-wrap items-center justify-between gap-4 border-t border-charcoal/10 pt-8">
+        <a href="/work/" class="text-body text-stone hover:text-sage hover:underline transition-colors duration-150">
+          &larr; Back to all work
+        </a>
+        <a href="/work/premier-door-innovations/" class="text-body text-charcoal hover:text-sage hover:underline transition-colors duration-150 font-medium">
+          Next: Premier Door Innovations &rarr;
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA Band -->
+  <section class="bg-charcoal text-white py-20 px-4">
+    <div class="mx-auto max-w-[1120px] text-center">
+      <h2 class="text-display-2 text-white mb-4">Ready to build something?</h2>
+      <div class="mb-10"></div>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal bg-saffron text-ink hover:opacity-90 px-7 py-3.5 text-lg"
+        >
+          Start a project
+        </a>
+        <a
+          href="/work/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal border border-white/20 text-white hover:border-white/50 px-7 py-3.5 text-lg"
+        >
+          View all work
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

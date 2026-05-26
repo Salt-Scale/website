@@ -1,0 +1,159 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const breadcrumbs = [
+  { name: 'Home', href: '/' },
+  { name: 'Work', href: '/work/' },
+];
+
+const cases = [
+  {
+    slug: 'mahi-plumbing',
+    name: 'Mahi Plumbing',
+    sector: 'Plumbing',
+    sectorLabel: 'Residential Plumbing',
+    description: 'Phone-first emergency UX. 4 services. 9-city coverage.',
+    hook: '24/7 emergency-services UX built around a "Trophy Catch Plumber" brand — phone anchored in header, hero, and footer.',
+    href: '/work/mahi-plumbing/',
+  },
+  {
+    slug: 'aim-global-transport',
+    name: 'AIM Global Transport',
+    sector: 'Logistics',
+    sectorLabel: 'B2B Freight',
+    description: 'Stat-led hero. 6 B2B services. All 48 states.',
+    hook: 'Stat-led hero block quantifying 15+ years, 20+ fleet vehicles, 99.9% on-time delivery — before the user scrolls.',
+    href: '/work/aim-global-transport/',
+  },
+  {
+    slug: 'premier-door-innovations',
+    name: 'Premier Door Innovations',
+    sector: 'Manufacturing',
+    sectorLabel: 'Aluminum Doors',
+    description: '4 product categories. Filterable gallery. Multi-form lead routing.',
+    hook: 'Filterable gallery across 5 categories with multi-form contact routing by inquiry type for sales prioritization.',
+    href: '/work/premier-door-innovations/',
+  },
+  {
+    slug: 'elevated-water-solutions',
+    name: 'Elevated Water Solutions',
+    sector: 'Multi-service',
+    sectorLabel: 'Licensed Plumbing',
+    description: '11 services. 15 service areas. Quote form on every page.',
+    hook: '11 services across 3 categories with 15-area service-area architecture and a quote form on every page.',
+    href: '/work/elevated-water-solutions/',
+  },
+];
+---
+
+<Layout
+  title="Work — Salt & Scale"
+  description="Four service businesses. Real builds. No invented metrics, no stock-photo clients. See what Salt & Scale has shipped."
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+  ]}
+>
+  <div class="bg-paper">
+
+    <!-- Breadcrumb -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pt-8">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1 text-caption text-stone">
+          <li class="flex items-center gap-1">
+            <a href="/" class="hover:text-sage hover:underline transition-colors duration-150">Home</a>
+          </li>
+          <li class="flex items-center gap-1">
+            <span aria-hidden="true" class="text-stone/40">/</span>
+            <span aria-current="page" class="text-charcoal font-medium">Work</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <!-- Header -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 py-20 md:py-28">
+      <p class="text-eyebrow text-saffron mb-4">Selected projects</p>
+      <h1 class="text-display-1 text-ink mb-6">Work.</h1>
+      <p class="text-body-lg text-stone max-w-[65ch]">
+        Four service businesses. Real builds. No invented metrics, no stock-photo clients.
+      </p>
+    </div>
+
+    <!-- Filter tabs -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-8">
+      <div class="flex flex-wrap gap-2" role="list" aria-label="Filter by sector">
+        {['All', 'Plumbing', 'Logistics', 'Manufacturing', 'Multi-service'].map((tab) => (
+          <span
+            role="listitem"
+            class="inline-flex items-center px-4 py-1.5 rounded-full border border-charcoal/20 text-caption text-charcoal font-medium cursor-default"
+          >
+            {tab}
+          </span>
+        ))}
+      </div>
+      <p class="text-caption text-stone/60 mt-3">Filtering available in Phase 2.</p>
+    </div>
+
+    <!-- Cards grid -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pb-20 md:pb-28">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+        {cases.map((c) => (
+          <article class="bg-white rounded-xl border border-charcoal/10 p-8 flex flex-col gap-4 hover:border-sage/40 transition-colors duration-150">
+
+            <!-- Logo placeholder -->
+            <div class="h-12 w-32 rounded bg-cream flex items-center justify-center">
+              <span class="text-caption text-stone">Logo — Phase 2</span>
+            </div>
+
+            <!-- Name + sector -->
+            <div class="flex items-start justify-between gap-4">
+              <h2 class="text-display-3 text-ink">{c.name}</h2>
+              <span class="text-eyebrow text-saffron border border-saffron/30 rounded-full px-3 py-1 shrink-0">{c.sector}</span>
+            </div>
+
+            <!-- Sector label + description -->
+            <p class="text-caption text-stone uppercase tracking-wide">{c.sectorLabel}</p>
+            <p class="text-body text-charcoal">{c.description}</p>
+
+            <!-- Hook -->
+            <p class="text-body text-stone">{c.hook}</p>
+
+            <!-- Link -->
+            <div class="mt-auto pt-4">
+              <a
+                href={c.href}
+                class="inline-flex items-center gap-2 font-semibold text-sage hover:underline text-body transition-colors duration-150"
+              >
+                View case &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+
+  </div>
+
+  <!-- CTA Band -->
+  <section class="bg-charcoal text-white py-20 px-4">
+    <div class="mx-auto max-w-[1120px] text-center">
+      <h2 class="text-display-2 text-white mb-4">Ready to build something?</h2>
+      <div class="mb-10"></div>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal bg-saffron text-ink hover:opacity-90 px-7 py-3.5 text-lg"
+        >
+          Start a project
+        </a>
+        <a
+          href="/about/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal border border-white/20 text-white hover:border-white/50 px-7 py-3.5 text-lg"
+        >
+          About Salt & Scale
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

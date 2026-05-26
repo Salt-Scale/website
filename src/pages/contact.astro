@@ -1,0 +1,375 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const service = Astro.url.searchParams.get('service') ?? '';
+const projectType = Astro.url.searchParams.get('project-type') ?? '';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact/' },
+];
+---
+
+<Layout
+  title="Start a project — Salt & Scale"
+  description="Tell us about your project. We reply within 1 business day, schedule a 30-minute discovery call, and deliver a written proposal within 3 business days."
+  canonicalPath="/contact/"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="mx-auto max-w-[1120px] px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-caption text-stone">
+        <li><a href="/" class="hover:underline text-stone">Home</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li aria-current="page" class="text-charcoal font-medium">Contact</li>
+      </ol>
+    </nav>
+
+    <div class="max-w-[800px] mx-auto">
+
+      <!-- Page heading -->
+      <div class="mb-10">
+        <p class="text-eyebrow text-sage mb-3">Start a project</p>
+        <h1 class="text-display-2 text-ink mb-4">Let's talk about your website.</h1>
+        <p class="text-body-lg text-charcoal/70">
+          Tell us about your goals, constraints, and timeline. We'll follow up with next steps.
+        </p>
+      </div>
+
+      <!-- What to expect next -->
+      <div class="bg-cream rounded-2xl p-8 mb-10 border border-copper/20">
+        <h2 class="text-h4 text-ink mb-6">What to expect next</h2>
+        <ol class="space-y-4">
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-saffron flex items-center justify-center text-ink font-semibold text-sm">1</span>
+            <div>
+              <p class="font-semibold text-charcoal mb-0.5">Reply within 1 business day</p>
+              <p class="text-caption text-stone">A real response from Gabriel, not an autoresponder.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-saffron flex items-center justify-center text-ink font-semibold text-sm">2</span>
+            <div>
+              <p class="font-semibold text-charcoal mb-0.5">30-minute discovery call</p>
+              <p class="text-caption text-stone">We'll clarify scope, timeline, and fit before any proposal.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-8 h-8 rounded-full bg-saffron flex items-center justify-center text-ink font-semibold text-sm">3</span>
+            <div>
+              <p class="font-semibold text-charcoal mb-0.5">Written proposal within 3 business days</p>
+              <p class="text-caption text-stone">Scope, deliverables, timeline, and a fixed or capped fee.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+
+      <!-- Contact form -->
+      <form
+        id="contact-form"
+        name="contact"
+        method="POST"
+        action="/api/contact"
+        class="space-y-6"
+      >
+        <input type="hidden" name="bot-field" />
+
+        <!-- Personal Information -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="name" class="block text-sm font-medium text-charcoal mb-2">Your name <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+            <p id="error-name" class="mt-1 text-sm text-red-700 hidden" role="alert">Please enter your name.</p>
+            <input
+              required
+              id="name"
+              name="name"
+              placeholder="Enter your name"
+              autocomplete="name"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            />
+          </div>
+
+          <div>
+            <label for="email" class="block text-sm font-medium text-charcoal mb-2">Email <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+            <p id="error-email" class="mt-1 text-sm text-red-700 hidden" role="alert">Please enter a valid email.</p>
+            <input
+              required
+              id="email"
+              type="email"
+              name="email"
+              placeholder="Enter your email"
+              autocomplete="email"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            />
+          </div>
+        </div>
+
+        <!-- Company Information -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="company" class="block text-sm font-medium text-charcoal mb-2">Company name</label>
+            <p id="error-company" class="mt-1 text-sm text-red-700 hidden" role="alert">Please enter your company name.</p>
+            <input
+              id="company"
+              name="company"
+              placeholder="Your company or organization"
+              autocomplete="organization"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            />
+          </div>
+
+          <div>
+            <label for="phone" class="block text-sm font-medium text-charcoal mb-2">Phone number</label>
+            <p id="error-phone" class="mt-1 text-sm text-red-700 hidden" role="alert">Please enter a valid phone number (e.g., 555-123-4567).</p>
+            <input
+              id="phone"
+              name="phone"
+              type="tel"
+              inputmode="numeric"
+              autocomplete="tel"
+              pattern="\d{3}-\d{3}-\d{4}"
+              maxlength="12"
+              placeholder="Your phone number"
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            />
+          </div>
+        </div>
+
+        <!-- Project Details -->
+        <div class="grid md:grid-cols-2 gap-6">
+          <div>
+            <label for="service" class="block text-sm font-medium text-charcoal mb-2">Service</label>
+            <select
+              id="service"
+              name="service"
+              value={service}
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            >
+              <option value="">Select a service</option>
+              <option value="business-websites" selected={service === 'business-websites'}>Websites for service businesses</option>
+              <option value="shopify-development" selected={service === 'shopify-development'}>Shopify development</option>
+              <option value="adobe-commerce" selected={service === 'adobe-commerce'}>Adobe Commerce</option>
+              <option value="headless-commerce" selected={service === 'headless-commerce'}>Headless commerce</option>
+              <option value="custom-app-development" selected={service === 'custom-app-development'}>Custom app development</option>
+              <option value="integrations-automation" selected={service === 'integrations-automation'}>Integrations & automation</option>
+              <option value="audits-strategy" selected={service === 'audits-strategy'}>Audits & strategy</option>
+              <option value="other">Other / not sure yet</option>
+            </select>
+          </div>
+
+          <div>
+            <label for="project-type" class="block text-sm font-medium text-charcoal mb-2">Project type</label>
+            <select
+              id="project-type"
+              name="project-type"
+              value={projectType}
+              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150"
+            >
+              <option value="">Select project type</option>
+              <option value="new-build" selected={projectType === 'new-build'}>New website build</option>
+              <option value="redesign" selected={projectType === 'redesign'}>Redesign of existing site</option>
+              <option value="migration" selected={projectType === 'migration'}>Platform migration</option>
+              <option value="custom-app" selected={projectType === 'custom-app'}>Custom app development</option>
+              <option value="headless" selected={projectType === 'headless'}>Headless commerce</option>
+              <option value="integration" selected={projectType === 'integration'}>Systems integration</option>
+              <option value="audit" selected={projectType === 'audit'}>Technical audit</option>
+              <option value="consulting" selected={projectType === 'consulting'}>Strategy consulting</option>
+              <option value="other">Other</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Project Description -->
+        <div>
+          <label for="message" class="block text-sm font-medium text-charcoal mb-2">Project details <span aria-hidden="true">*</span><span class="sr-only">(required)</span></label>
+          <p id="error-message" class="mt-1 text-sm text-red-700 hidden" role="alert">Please share a few details about your project.</p>
+          <textarea
+            required
+            id="message"
+            name="message"
+            placeholder="Tell us about your goals, constraints, and what success looks like..."
+            rows="6"
+            class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-charcoal placeholder-charcoal/50 focus:outline-none focus:ring-2 focus:ring-sage focus:border-transparent transition-colors duration-150 resize-none"
+          ></textarea>
+        </div>
+
+        <div>
+          <button
+            id="contact-submit"
+            class="inline-flex items-center justify-center rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink border border-saffron shadow-sm transition-colors duration-150 hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
+            type="submit"
+          >
+            Send message
+            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+            </svg>
+          </button>
+          <div id="contact-toast" class="pointer-events-none fixed left-1/2 bottom-6 -translate-x-1/2 z-50 hidden">
+            <div id="contact-toast-inner" class="rounded-xl text-white px-4 py-3 shadow-lg">
+              <p id="contact-status" class="m-0 text-sm" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <!-- Direct contact fallback -->
+      <div class="mt-10 pt-8 border-t border-[rgba(55,62,69,0.1)]">
+        <p class="text-caption text-stone">
+          Prefer email?
+          <a href="mailto:gabe@saltandscale.consulting" class="text-saffron-deep hover:underline font-medium">gabe@saltandscale.consulting</a>
+          <span aria-hidden="true"> · </span>
+          <span class="sr-only">or find me on </span>LinkedIn:
+          <a href="https://www.linkedin.com/in/gabriel-rosales/" rel="noopener noreferrer" class="text-saffron-deep hover:underline font-medium">/in/gabriel-rosales</a>
+        </p>
+      </div>
+
+    </div>
+  </div>
+</Layout>
+
+<script>
+  // @ts-nocheck
+  const formatPhone = (value) => {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 10);
+    const parts = [];
+    if (digits.length > 0) parts.push(digits.slice(0, Math.min(3, digits.length)));
+    if (digits.length >= 4) parts.push(digits.slice(3, Math.min(6, digits.length)));
+    if (digits.length >= 7) parts.push(digits.slice(6, 10));
+    return parts.join('-');
+  };
+  const isValidEmail = (value) => /.+@.+\..+/.test(String(value || ''));
+  const isValidPhone = (value) => String(value || '').replace(/\D/g, '').length === 10;
+
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('contact-submit');
+  const statusEl = document.getElementById('contact-status');
+  const toast = document.getElementById('contact-toast');
+  const toastInner = document.getElementById('contact-toast-inner');
+  const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
+  const nameInput = document.getElementById('name');
+  const companyInput = document.getElementById('company');
+  const messageInput = document.getElementById('message');
+
+  const setFieldError = (input, errorEl, hasError) => {
+    if (!input || !errorEl) return;
+    if (hasError) {
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', errorEl.id);
+      errorEl.classList.remove('hidden');
+    } else {
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+      errorEl.classList.add('hidden');
+    }
+  };
+
+  // Phone input formatting
+  phoneInput?.addEventListener('input', (e) => {
+    const before = e.target.value;
+    const caret = e.target.selectionStart;
+    e.target.value = formatPhone(e.target.value);
+    const delta = e.target.value.length - before.length;
+    const next = Math.max(0, (caret || 0) + delta);
+    e.target.setSelectionRange(next, next);
+  });
+  phoneInput?.addEventListener('blur', (e) => {
+    e.target.value = formatPhone(e.target.value);
+  });
+
+  const showToast = (message, type = 'info') => {
+    statusEl.textContent = message;
+    statusEl.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+    const success = 'bg-[#14532d]';
+    const error = 'bg-[#7f1d1d]';
+    const info = 'bg-[#0f172a]';
+    toastInner.classList.remove(success, error, info);
+    toastInner.classList.add(type === 'success' ? success : type === 'error' ? error : info);
+    toast.classList.remove('hidden');
+    toast.classList.add('block');
+    setTimeout(() => toast.classList.add('hidden'), type === 'success' ? 3500 : 4500);
+  };
+
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!contactForm) return;
+    statusEl.textContent = '';
+    submitBtn.disabled = true;
+    try {
+      const formData = new FormData(contactForm);
+      // Honeypot check
+      if (formData.get('bot-field')) {
+        submitBtn.disabled = false;
+        return;
+      }
+
+      // Client-side validation
+      const name = String(formData.get('name') || '').trim();
+      const email = String(formData.get('email') || '').trim();
+      const company = String(formData.get('company') || '').trim();
+      const phoneRaw = String(formData.get('phone') || '').trim();
+      const message = String(formData.get('message') || '').trim();
+      const phone = formatPhone(phoneRaw);
+
+      const errors = {
+        name: !name,
+        email: !email || !isValidEmail(email),
+        company: false,
+        phone: Boolean(phone) && !isValidPhone(phone),
+        message: !message,
+      };
+      setFieldError(nameInput, document.getElementById('error-name'), errors.name);
+      setFieldError(emailInput, document.getElementById('error-email'), errors.email);
+      setFieldError(companyInput, document.getElementById('error-company'), errors.company);
+      setFieldError(phoneInput, document.getElementById('error-phone'), errors.phone);
+      setFieldError(messageInput, document.getElementById('error-message'), errors.message);
+
+      if (Object.values(errors).some(Boolean)) {
+        showToast('Please correct the highlighted fields.', 'error');
+        (errors.name && nameInput?.focus()) ||
+        (errors.email && emailInput?.focus()) ||
+        (errors.company && companyInput?.focus()) ||
+        (errors.phone && phoneInput?.focus()) ||
+        (errors.message && messageInput?.focus());
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const payload = { ...Object.fromEntries(formData.entries()), phone };
+      window.va?.('event', { name: 'contact_submit_start' });
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        window.va?.('event', { name: 'contact_submit_error', status: res.status });
+        if (res.status === 400) {
+          showToast(data?.error || 'Please complete the required fields.', 'error');
+        } else if (res.status === 422) {
+          showToast('Please check your email and phone format (e.g., 555-123-4567).', 'error');
+        } else if (res.status === 429) {
+          showToast('Too many requests. Please wait a moment and try again.', 'error');
+        } else if (res.status === 503) {
+          showToast('Service temporarily unavailable. Please try again shortly.', 'error');
+        } else if (res.status === 502) {
+          showToast('We could not send your message right now. Please try again later.', 'error');
+        } else {
+          showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+        }
+        return;
+      }
+
+      showToast('Thanks! We received your message and will get back to you soon.', 'success');
+      window.va?.('event', { name: 'contact_submit_success' });
+      contactForm.reset();
+    } catch (err) {
+      showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>

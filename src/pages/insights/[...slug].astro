@@ -1,0 +1,193 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights', ({ data }) => !data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const { title, description, datePublished, dateModified, author, tags, ogImage } = entry.data;
+
+// Reading time: rough estimate at 200 wpm
+const wordCount = entry.body.split(/\s+/).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 200));
+
+// Related articles: same tag, exclude current
+const allPosts = await getCollection('insights', ({ data }) => !data.draft);
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== entry.slug && p.data.tags.some((t) => tags.includes(t)))
+  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
+  .slice(0, 3);
+
+const canonicalUrl = `https://saltandscale.consulting/insights/${entry.slug}/`;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Insights', url: '/insights/' },
+  { name: title, url: `/insights/${entry.slug}/` },
+];
+
+const articleSchema = {
+  '@type': 'Article',
+  '@id': `${canonicalUrl}#article`,
+  headline: title,
+  description: description,
+  image: ogImage ?? '/og-image.jpg',
+  datePublished: datePublished.toISOString(),
+  dateModified: (dateModified ?? datePublished).toISOString(),
+  author: { '@id': 'https://saltandscale.consulting/#founder' },
+  publisher: { '@id': 'https://saltandscale.consulting/#org' },
+  mainEntityOfPage: canonicalUrl,
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title={`${title} — Salt & Scale`}
+  description={description}
+  ogImage={ogImage}
+  canonicalPath={`/insights/${entry.slug}/`}
+  breadcrumbs={breadcrumbs}
+  schema={articleSchema}
+>
+  <div class="mx-auto max-w-[1120px] px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-caption text-stone flex-wrap">
+        <li><a href="/" class="hover:underline text-stone">Home</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li><a href="/insights/" class="hover:underline text-stone">Insights</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li aria-current="page" class="text-charcoal font-medium truncate max-w-[30ch]">{title}</li>
+      </ol>
+    </nav>
+
+    <div class="max-w-[720px]">
+
+      <!-- Eyebrow: first tag -->
+      {tags.length > 0 && (
+        <p class="text-eyebrow text-sage mb-4">{tags[0]}</p>
+      )}
+
+      <!-- H1 -->
+      <h1 class="text-display-2 text-ink mb-6">{title}</h1>
+
+      <!-- Byline + meta -->
+      <div class="flex flex-col sm:flex-row sm:items-center gap-4 mb-8 pb-8 border-b border-[rgba(55,62,69,0.1)]">
+        <div class="flex items-center gap-3">
+          <div class="w-9 h-9 rounded-full bg-sage/20 flex items-center justify-center flex-shrink-0" aria-hidden="true">
+            <span class="text-sage font-semibold text-sm">GR</span>
+          </div>
+          <div>
+            <p class="text-sm font-semibold text-charcoal leading-tight">{author}</p>
+            <a
+              href="https://www.linkedin.com/in/gabriel-rosales/"
+              rel="noopener noreferrer"
+              class="text-caption text-saffron-deep hover:underline"
+            >
+              LinkedIn
+            </a>
+          </div>
+        </div>
+        <div class="flex items-center gap-4 sm:ml-auto text-caption text-stone flex-wrap">
+          <time datetime={datePublished.toISOString()}>
+            {dateFormatter.format(datePublished)}
+          </time>
+          {dateModified && dateModified.valueOf() !== datePublished.valueOf() && (
+            <span>
+              Updated <time datetime={dateModified.toISOString()}>{dateFormatter.format(dateModified)}</time>
+            </span>
+          )}
+          <span>{readingMinutes} min read</span>
+        </div>
+      </div>
+
+      <!-- Article body -->
+      <div class="prose prose-stone max-w-none text-body text-charcoal/80 leading-relaxed
+        prose-headings:font-serif prose-headings:text-ink
+        prose-h2:text-display-3 prose-h2:mt-10 prose-h2:mb-4
+        prose-h3:text-h4 prose-h3:mt-8 prose-h3:mb-3
+        prose-p:mb-5
+        prose-a:text-saffron-deep prose-a:no-underline hover:prose-a:underline
+        prose-code:font-mono prose-code:text-sm prose-code:bg-cream prose-code:px-1 prose-code:py-0.5 prose-code:rounded
+        prose-pre:bg-charcoal prose-pre:text-paper prose-pre:rounded-xl prose-pre:p-5 prose-pre:overflow-x-auto
+        prose-ul:space-y-1 prose-ol:space-y-1
+        prose-li:text-charcoal/80
+        prose-strong:text-charcoal prose-strong:font-semibold
+      ">
+        <Content />
+      </div>
+
+      <!-- CTA band -->
+      <div class="mt-14 rounded-2xl bg-cream border border-copper/20 p-8 text-center">
+        <p class="text-eyebrow text-sage mb-3">Ready to apply this to your site?</p>
+        <h2 class="text-display-3 text-ink mb-4">Start a project with Salt & Scale.</h2>
+        <p class="text-body text-charcoal/70 mb-6 max-w-[50ch] mx-auto">
+          AI-accelerated website design and development for service businesses, built by a senior engineer.
+        </p>
+        <a
+          href="/contact/?service=business-websites"
+          class="inline-flex items-center justify-center rounded-xl bg-saffron px-7 py-3.5 font-semibold text-ink shadow-sm hover:bg-saffron/90 transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+        >
+          Start a project
+          <svg class="ml-2 w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Related articles -->
+      {relatedPosts.length > 0 && (
+        <aside class="mt-14" aria-labelledby="related-heading">
+          <h2 id="related-heading" class="text-h4 text-ink mb-6">Related articles</h2>
+          <ul class="grid sm:grid-cols-3 gap-6 list-none pl-0" role="list">
+            {relatedPosts.map((related) => (
+              <li>
+                <article class="h-full flex flex-col bg-white rounded-xl border border-[rgba(55,62,69,0.08)] shadow-sm p-5">
+                  {related.data.tags.length > 0 && (
+                    <p class="text-eyebrow text-sage mb-2">{related.data.tags[0]}</p>
+                  )}
+                  <h3 class="text-sm font-semibold text-ink mb-2 flex-grow">
+                    <a href={`/insights/${related.slug}/`} class="hover:underline decoration-saffron/60 underline-offset-2">
+                      {related.data.title}
+                    </a>
+                  </h3>
+                  <time
+                    datetime={related.data.datePublished.toISOString()}
+                    class="text-caption text-stone mt-auto"
+                  >
+                    {dateFormatter.format(related.data.datePublished)}
+                  </time>
+                </article>
+              </li>
+            ))}
+          </ul>
+        </aside>
+      )}
+
+      <!-- Back to insights -->
+      <div class="mt-10">
+        <a href="/insights/" class="inline-flex items-center gap-2 text-caption text-stone hover:text-charcoal hover:underline transition-colors duration-150">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M7 16l-4-4m0 0l4-4m-4 4h18"></path>
+          </svg>
+          Back to Insights
+        </a>
+      </div>
+
+    </div>
+  </div>
+</Layout>

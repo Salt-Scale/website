@@ -1,0 +1,200 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  '@type': 'CreativeWork',
+  '@id': 'https://saltandscale.consulting/work/elevated-water-solutions/#case-study',
+  'name': 'Elevated Water Solutions — multi-service licensed plumbing website',
+  'creator': { '@id': 'https://saltandscale.consulting/#org' },
+  'about': {
+    '@type': 'Organization',
+    'name': 'Elevated Water Solutions',
+    'url': 'https://www.elevatedwatersolution.com/',
+  },
+  'abstract': 'An 11+ year master-plumber operation expanding from water-heater specialty into water treatment, reverse osmosis, gas line work, and plumbing remodels across the Houston metro.',
+};
+---
+
+<Layout
+  title="Elevated Water Solutions — Salt & Scale"
+  description="How Salt & Scale built an 11-service, 15-area website for Elevated Water Solutions — with a quote form on every page and a recent-installations gallery for local proof."
+  canonicalPath="/work/elevated-water-solutions/"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+    { name: 'Elevated Water Solutions', url: '/work/elevated-water-solutions/' },
+  ]}
+  schema={schema}
+>
+  <div class="bg-paper">
+
+    <!-- Breadcrumb -->
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 pt-8">
+      <nav aria-label="Breadcrumb">
+        <ol class="flex flex-wrap items-center gap-1 text-caption text-stone">
+          <li class="flex items-center gap-1">
+            <a href="/" class="hover:text-sage hover:underline transition-colors duration-150">Home</a>
+          </li>
+          <li class="flex items-center gap-1">
+            <span aria-hidden="true" class="text-stone/40">/</span>
+            <a href="/work/" class="hover:text-sage hover:underline transition-colors duration-150">Work</a>
+          </li>
+          <li class="flex items-center gap-1">
+            <span aria-hidden="true" class="text-stone/40">/</span>
+            <span aria-current="page" class="text-charcoal font-medium">Elevated Water Solutions</span>
+          </li>
+        </ol>
+      </nav>
+    </div>
+
+    <div class="max-w-[1120px] mx-auto px-4 md:px-6 py-20 md:py-28">
+
+      <!-- H1 -->
+      <h1 class="text-display-1 text-ink mb-8">Elevated Water Solutions</h1>
+
+      <!-- Header strip -->
+      <div class="flex flex-wrap gap-x-8 gap-y-3 text-body text-stone border-t border-b border-charcoal/10 py-5 mb-12">
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Sector</span>
+          <span class="text-charcoal font-medium">Multi-service Licensed Plumbing</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Year</span>
+          <span class="text-charcoal font-medium">2024</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Type</span>
+          <span class="text-charcoal font-medium">Full website build</span>
+        </div>
+        <div>
+          <span class="text-eyebrow text-stone/60 block mb-1">Live site</span>
+          <a
+            href="https://www.elevatedwatersolution.com/"
+            rel="noopener"
+            target="_blank"
+            class="text-sage hover:underline font-medium transition-colors duration-150"
+          >elevatedwatersolution.com &rarr;</a>
+        </div>
+      </div>
+
+      <!-- Brief -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">Brief</h2>
+        <p class="text-body text-charcoal max-w-[72ch]">
+          An 11+ year master-plumber operation expanding from water-heater specialty into water treatment, reverse osmosis, gas line work, and plumbing remodels across the Houston metro.
+        </p>
+      </section>
+
+      <!-- What we shipped -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">What we shipped</h2>
+        <ul class="space-y-3">
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            11 services across 3 categories (Water Heater work, Water Treatment, Gas Lines + Remodels) with deep navigation
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            15-area service-area map for local SEO (Houston, Katy, Cypress, Spring, The Woodlands, Conroe, Magnolia, Sugar Land, Channelview, Pasadena, Deer Park, Baytown, La Porte, Galena Park, Jacinto City)
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Recent-installations photo gallery with location attribution (each install captioned with city for trust + local proof)
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            5-star review block with named-customer attribution (Alexis A., Daniel R., James T.) &mdash; real reviews, retained from existing site
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Trusted-brand row (Rheem, Bradford White, Navien, Rinnai, A.O. Smith) &mdash; installer-credibility signal
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            License/insurance display (RMPL #47030) + master-plumber positioning
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Dropdown service-needed contact form for free estimates, present on every service page
+          </li>
+          <li class="flex gap-3 text-body text-charcoal">
+            <span aria-hidden="true" class="text-sage mt-1 shrink-0">&mdash;</span>
+            Per-service sub-pages with scoped FAQs and CTAs
+          </li>
+        </ul>
+      </section>
+
+      <!-- Stack -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">Stack</h2>
+        <div class="flex flex-wrap gap-2">
+          {['Astro', 'Tailwind', 'Vercel'].map((tech) => (
+            <span class="inline-flex items-center px-4 py-1.5 rounded-full bg-cream text-charcoal text-caption font-medium border border-charcoal/10">
+              {tech}
+            </span>
+          ))}
+        </div>
+      </section>
+
+      <!-- Testimonial -->
+      <section class="mb-12">
+        <h2 class="text-display-2 text-ink mb-6">In their words</h2>
+        <!-- DRAFT — requires client sign-off before publishing -->
+        <blockquote class="border-l-4 border-saffron pl-6 py-2 bg-cream/40 rounded-r-lg">
+          <p class="text-body-lg text-charcoal italic mb-4">
+            "Eleven years of work and I never had a site that represented it right. Gabriel built me one that looks as careful as the work itself &mdash; eleven services laid out the way a customer thinks about them, fifteen service areas that actually rank locally, and a quote form on every page that gets me real leads. I send people to it before they call."
+          </p>
+          <footer class="text-caption text-stone">
+            <cite class="not-italic"><strong class="text-charcoal">Emmanuel</strong>, Owner &mdash; Elevated Water Solutions (Houston, TX)</cite>
+          </footer>
+        </blockquote>
+        <p class="text-caption text-stone/60 mt-3">Draft testimonial &mdash; pending client sign-off before publishing.</p>
+      </section>
+
+      <!-- Visit live -->
+      <section class="mb-16">
+        <a
+          href="https://www.elevatedwatersolution.com/"
+          rel="noopener"
+          target="_blank"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 bg-sage text-white hover:opacity-90 px-7 py-3.5 text-body"
+        >
+          Visit live site &rarr;
+        </a>
+      </section>
+
+      <!-- Navigation -->
+      <div class="flex flex-wrap items-center justify-between gap-4 border-t border-charcoal/10 pt-8">
+        <a href="/work/" class="text-body text-stone hover:text-sage hover:underline transition-colors duration-150">
+          &larr; Back to all work
+        </a>
+        <a href="/work/mahi-plumbing/" class="text-body text-charcoal hover:text-sage hover:underline transition-colors duration-150 font-medium">
+          First case: Mahi Plumbing &rarr;
+        </a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- CTA Band -->
+  <section class="bg-charcoal text-white py-20 px-4">
+    <div class="mx-auto max-w-[1120px] text-center">
+      <h2 class="text-display-2 text-white mb-4">Ready to build something?</h2>
+      <div class="mb-10"></div>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/contact/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal bg-saffron text-ink hover:opacity-90 px-7 py-3.5 text-lg"
+        >
+          Start a project
+        </a>
+        <a
+          href="/work/"
+          class="inline-flex items-center gap-2 font-semibold rounded-lg transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sage focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal border border-white/20 text-white hover:border-white/50 px-7 py-3.5 text-lg"
+        >
+          View all work
+        </a>
+      </div>
+    </div>
+  </section>
+</Layout>

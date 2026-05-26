@@ -1,0 +1,168 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Legal', url: '/legal/accessibility/' },
+  { name: 'Accessibility', url: '/legal/accessibility/' },
+];
+---
+
+<Layout
+  title="Accessibility Statement — Salt & Scale"
+  description="Salt & Scale aims to conform to WCAG 2.2 Level AA across all pages of saltandscale.consulting."
+  canonicalPath="/legal/accessibility/"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="mx-auto max-w-[1120px] px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-caption text-stone">
+        <li><a href="/" class="hover:underline text-stone">Home</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li><span class="text-stone">Legal</span></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li aria-current="page" class="text-charcoal font-medium">Accessibility</li>
+      </ol>
+    </nav>
+
+    <div class="max-w-[720px]">
+      <h1 class="text-display-2 text-ink mb-3">Accessibility Statement</h1>
+      <p class="text-caption text-stone mb-10">Last reviewed: May 2026</p>
+
+      <div class="space-y-10 text-body text-charcoal/80">
+
+        <!-- Conformance statement -->
+        <section aria-labelledby="conformance-heading">
+          <h2 id="conformance-heading" class="text-display-3 text-ink mb-4">Conformance statement</h2>
+          <p>
+            Salt & Scale aims to conform to <strong>WCAG 2.2 Level AA</strong> across all pages of
+            <a href="https://saltandscale.consulting/" class="text-saffron-deep hover:underline">saltandscale.consulting</a>.
+            WCAG 2.2 defines how to make web content more accessible to people with disabilities.
+            Conformance with these guidelines helps make the web more usable for everyone.
+          </p>
+        </section>
+
+        <!-- What this means -->
+        <section aria-labelledby="what-this-means-heading">
+          <h2 id="what-this-means-heading" class="text-display-3 text-ink mb-4">What this means</h2>
+          <ul class="space-y-3 list-none pl-0">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>Pages are designed to work with screen readers, keyboard-only navigation, and 200% zoom</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>Color contrast meets or exceeds 4.5:1 for body text and 3:1 for large text and UI components</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>All interactive targets are at least 24&times;24 CSS pixels with adequate spacing (WCAG 2.2 §2.5.8)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>Focus indicators remain visible at all times during keyboard navigation; focused elements are never fully hidden behind sticky UI (WCAG 2.2 §2.4.11)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>Forms support browser autofill and never require previously entered information to be re-typed within a session (WCAG 2.2 §3.3.7)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>Help (contact link) is available in the same relative location across all pages (WCAG 2.2 §3.2.6)</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>This site has no authentication, drag interactions, or cognitive tests — WCAG 2.2 §3.3.8 and §2.5.7 are not applicable</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Technical approach -->
+        <section aria-labelledby="technical-heading">
+          <h2 id="technical-heading" class="text-display-3 text-ink mb-4">Technical approach</h2>
+          <p>
+            This site is built with <strong>Astro 5</strong> and outputs static HTML by default.
+            JavaScript is used only where necessary for interactive elements (navigation menu, contact form).
+            No JavaScript is required to read any content. Pages are structured with semantic HTML5 landmarks
+            (<code>header</code>, <code>main</code>, <code>nav</code>, <code>footer</code>),
+            logical heading hierarchies, and ARIA attributes where native semantics are insufficient.
+          </p>
+          <p class="mt-4">
+            Accessibility is verified using Lighthouse, axe-core, keyboard-only walkthroughs, and screen-reader
+            smoke tests (VoiceOver on macOS, NVDA on Windows).
+          </p>
+        </section>
+
+        <!-- Known limitations -->
+        <section aria-labelledby="limitations-heading">
+          <h2 id="limitations-heading" class="text-display-3 text-ink mb-4">Known limitations</h2>
+          <p>None at this time.</p>
+          <p class="mt-3 text-caption text-stone">
+            This statement will be updated as the site expands. Dates of any newly discovered issues
+            and their remediation status will be tracked here.
+          </p>
+        </section>
+
+        <!-- Remediation timeline -->
+        <section aria-labelledby="remediation-heading">
+          <h2 id="remediation-heading" class="text-display-3 text-ink mb-4">Remediation timeline</h2>
+          <p>
+            When an accessibility issue is identified — whether through internal audit, user feedback,
+            or automated tooling — we aim to:
+          </p>
+          <ul class="space-y-3 list-none pl-0 mt-4">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-copper mt-2.5" aria-hidden="true"></span>
+              <span><strong>Critical barriers</strong> (blocks access to a page or feature): resolved within 2 business days</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-copper mt-2.5" aria-hidden="true"></span>
+              <span><strong>Significant issues</strong> (degrades usability for assistive technology users): resolved within 5 business days</span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-copper mt-2.5" aria-hidden="true"></span>
+              <span><strong>Minor issues</strong>: addressed in the next scheduled maintenance cycle</span>
+            </li>
+          </ul>
+        </section>
+
+        <!-- Feedback -->
+        <section aria-labelledby="feedback-heading" class="bg-cream rounded-2xl p-8 border border-copper/20">
+          <h2 id="feedback-heading" class="text-display-3 text-ink mb-4">Feedback</h2>
+          <p>
+            If you encounter an accessibility barrier on this site, please let us know. We take all
+            reports seriously and aim to respond within <strong>2 business days</strong>.
+          </p>
+          <ul class="space-y-3 list-none pl-0 mt-6">
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>
+                Email:
+                <a href="mailto:gabe@saltandscale.consulting" class="text-saffron-deep hover:underline font-medium">
+                  gabe@saltandscale.consulting
+                </a>
+              </span>
+            </li>
+            <li class="flex items-start gap-3">
+              <span class="flex-shrink-0 w-1.5 h-1.5 rounded-full bg-sage mt-2.5" aria-hidden="true"></span>
+              <span>
+                Contact form:
+                <a href="/contact/" class="text-saffron-deep hover:underline font-medium">
+                  saltandscale.consulting/contact/
+                </a>
+              </span>
+            </li>
+          </ul>
+          <p class="mt-6 text-caption text-stone">
+            Please describe the barrier you encountered, the URL where it occurred, and the assistive
+            technology or browser you were using. This helps us reproduce and fix the issue quickly.
+          </p>
+        </section>
+
+      </div>
+    </div>
+
+  </div>
+</Layout>

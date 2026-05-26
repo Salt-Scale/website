@@ -1,0 +1,245 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Shopify Development – Salt & Scale";
+const description = "Shopify and Shopify Plus development by a Shopify Partner with 10+ years of production commerce experience. Custom themes, headless builds, app development, and migrations.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Shopify development", url: "/services/shopify-development/" },
+];
+
+const serviceDescription = "Salt & Scale delivers Shopify and Shopify Plus development backed by 10+ years of production commerce experience and a current Shopify Partner credential. Work spans custom Liquid theme development, headless storefronts using Hydrogen and Remix on Oxygen, checkout extensibility, post-purchase flows, and Shopify app development (private and public). Every engagement is handled by one senior engineer — no handoffs to juniors, no agency layer — which keeps communication direct and code quality consistent. Prior work at this level includes headless Shopify Plus programs for PAX Labs and enterprise commerce work for Sanrio through Corra, as well as Liquid and JavaScript feature development for Thursday Boots Co.";
+
+const faqItems = [
+  {
+    question: "What's the difference between Shopify and Shopify Plus development?",
+    answer: "Shopify handles most mid-market stores. Shopify Plus adds checkout extensibility, multi-store setups, B2B functionality, and advanced scripting — it's the enterprise tier. The development work differs significantly: Plus unlocks APIs and customization points that aren't available on standard plans. We work on both, and can advise on whether a Plus upgrade is warranted for your goals."
+  },
+  {
+    question: "Do you build headless Shopify storefronts?",
+    answer: "Yes. Headless Shopify uses the Storefront API with a custom front-end framework — typically Hydrogen (Shopify's official framework built on Remix) deployed to Oxygen. The tradeoff is more flexibility and better performance ceilings versus higher build complexity and cost. We'll tell you honestly whether headless is the right choice for your scale and team."
+  },
+  {
+    question: "Can you work on an existing Shopify theme?",
+    answer: "Yes. Whether it's a custom theme, a modified third-party theme (Dawn, Impulse, Prestige, etc.), or a full Liquid codebase, we can audit it, add features, fix performance issues, or do a targeted refactor without disrupting what's already working."
+  },
+  {
+    question: "How do Shopify app builds work?",
+    answer: "Private apps are bespoke tools built for one store — OMS integrations, custom admin UIs, bulk-operation automations. Public apps go through Shopify's review process and can be installed by any merchant. Both use the same App Bridge and REST/GraphQL Admin API pattern; the main difference is the review and billing infrastructure. Timelines are four to eight weeks for a private app, eight to twelve for a public one."
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/shopify-development/#service",
+    "name": "Shopify development",
+    "serviceType": "Shopify and Shopify Plus development",
+    "provider": { "@id": "https://saltandscale.consulting/#org" },
+    "areaServed": "United States",
+    "description": serviceDescription,
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": { "@type": "PriceSpecification", "priceCurrency": "USD" }
+    }
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": { "@type": "Answer", "text": item.answer }
+    }))
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/shopify-development/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
+    <ol class="flex flex-wrap items-center gap-2 text-caption text-stone">
+      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
+      <li aria-hidden="true" class="text-stone/50">›</li>
+      <li><a href="/services/" class="hover:text-ink transition-colors">Services</a></li>
+      <li aria-hidden="true" class="text-stone/50">›</li>
+      <li class="text-ink" aria-current="page">Shopify development</li>
+    </ol>
+  </nav>
+
+  <!-- Hero / Answer block -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-saffron-deep mb-4">Ecommerce engineering</p>
+      <h1 class="text-display-1 text-ink mb-8 max-w-[22ch]">Shopify development.</h1>
+      <div class="max-w-[72ch] bg-cream rounded-2xl border border-sage/20 px-8 py-7">
+        <p class="text-body text-charcoal/90 m-0">{serviceDescription}</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="py-20 md:py-28 px-4">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">Scope of work</p>
+      <h2 class="text-display-2 text-ink mb-10">What's included.</h2>
+      <ul class="grid md:grid-cols-2 gap-6">
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Custom theme development</h3>
+          <p class="text-body text-charcoal/70">Liquid and JavaScript theme work — new builds, existing theme modifications, performance refactors, and feature additions across PDP, cart, and checkout.</p>
+        </li>
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Headless storefronts</h3>
+          <p class="text-body text-charcoal/70">Hydrogen and Remix on Oxygen, or custom React/Next.js front-ends against the Storefront API. Core Web Vitals treated as a hard requirement, not an afterthought.</p>
+        </li>
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Checkout extensibility</h3>
+          <p class="text-body text-charcoal/70">Checkout UI Extensions, post-purchase offers, Checkout Functions for custom discount and shipping logic — on Plus plans.</p>
+        </li>
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Shopify app development</h3>
+          <p class="text-body text-charcoal/70">Private apps for internal tooling and integrations, public apps through Shopify's review process. Admin and Storefront API work with App Bridge and REST/GraphQL.</p>
+        </li>
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Platform migrations</h3>
+          <p class="text-body text-charcoal/70">Migration planning and execution from WooCommerce, Magento, BigCommerce, or custom platforms. Data integrity and SEO continuity are explicit deliverables.</p>
+        </li>
+        <li class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-2">Technical leadership</h3>
+          <p class="text-body text-charcoal/70">Architecture decisions, stack evaluation, roadmap planning, and fractional CTO-style engagement for brands scaling their Shopify infrastructure.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">The process</p>
+      <h2 class="text-display-2 text-ink mb-12">How we work.</h2>
+      <ol class="grid md:grid-cols-3 gap-8">
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">1</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Discovery and technical audit</h3>
+            <p class="text-body text-charcoal/70">We review your current stack, catalog, integrations, and pain points. Deliverable: a written brief with scope, timeline, and tradeoffs.</p>
+          </div>
+        </li>
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">2</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Build in short cycles</h3>
+            <p class="text-body text-charcoal/70">Work ships in two-week increments on a staging environment you can review. Clear milestones, no long black-box sprints. You always know what's done and what's next.</p>
+          </div>
+        </li>
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">3</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Launch and handoff</h3>
+            <p class="text-body text-charcoal/70">Zero-downtime cutover, post-launch monitoring window, and full documentation for your team. Source code delivered to your own repositories.</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Outcomes -->
+  <section class="py-20 md:py-28 px-4">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">What we aim for</p>
+      <h2 class="text-display-2 text-ink mb-8">Outcomes we target.</h2>
+      <div class="grid md:grid-cols-3 gap-6 mb-8">
+        <div class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-3">Core Web Vitals passing at the 75th percentile</h3>
+          <p class="text-body text-charcoal/70">LCP under 2.5s, INP under 200ms, CLS under 0.1 — measured against real-user data, not just lab scores.</p>
+        </div>
+        <div class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-3">Conversion improvements</h3>
+          <p class="text-body text-charcoal/70">Checkout friction, form usability, and page speed all have direct and measurable relationships to conversion rate. We optimize for each.</p>
+        </div>
+        <div class="bg-paper rounded-xl border border-sage/15 p-6">
+          <h3 class="text-h4 text-ink mb-3">Integration reliability</h3>
+          <p class="text-body text-charcoal/70">Integrations with retry logic, error alerting, and idempotent operations — so ERP syncs, inventory feeds, and order pipelines don't fail silently.</p>
+        </div>
+      </div>
+      <p class="text-caption text-stone max-w-[72ch]">
+        Outcomes vary by project scope, existing stack health, and traffic patterns. Prior-work metrics referenced on this site are from individual engagements and are not guarantees of future results.
+      </p>
+    </div>
+  </section>
+
+  <!-- Prior work note -->
+  <section class="py-12 px-4 bg-cream">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-copper mb-4">Prior commerce work</p>
+      <h2 class="text-display-3 text-ink mb-6">10 years of production Shopify experience.</h2>
+      <p class="text-body text-charcoal/70 max-w-[72ch] mb-6">
+        The following is prior-employment and contracting work — not Salt & Scale projects, but the experience that informs every engagement today.
+      </p>
+      <ul class="grid md:grid-cols-2 gap-4 text-body text-charcoal/70">
+        <li class="flex items-start gap-3">
+          <span class="text-copper mt-1" aria-hidden="true">→</span>
+          <span><strong class="text-ink">PAX Labs</strong> — Shopify Plus headless program (Hydrogen, Remix, Oxygen), custom OMS in PHP/MySQL</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-copper mt-1" aria-hidden="true">→</span>
+          <span><strong class="text-ink">Thursday Boots Co.</strong> — Shopify Liquid/JS audits and front-end feature development</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-copper mt-1" aria-hidden="true">→</span>
+          <span><strong class="text-ink">Sanrio (via Corra)</strong> — Shopify Plus with Laravel APIs and Magento PWA features</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span class="text-copper mt-1" aria-hidden="true">→</span>
+          <span>Open-source contributor to <a href="https://github.com/Shopify/hydrogen" class="text-saffron-deep hover:underline" rel="noopener">Shopify/hydrogen</a></span>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">Common questions</p>
+      <h2 class="text-display-2 text-ink mb-10">Frequently asked questions.</h2>
+      <div class="max-w-[800px] space-y-3">
+        {faqItems.map(item => (
+          <details class="group bg-white rounded-xl border border-[rgba(55,62,69,0.10)] overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-h4 text-ink hover:bg-sage/5 transition-colors">
+              {item.question}
+              <span class="flex-shrink-0 text-stone group-open:rotate-45 transition-transform duration-200" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pt-1">
+              <p class="text-body text-charcoal/80">{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 px-4 bg-charcoal">
+    <div class="max-w-[1120px] mx-auto text-center">
+      <p class="text-eyebrow text-saffron mb-4">Start a project</p>
+      <h2 class="text-display-2 text-paper mb-6">Let's talk Shopify.</h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-10">
+        Describe your project, stack, and what's blocking you. We'll respond within one business day with a direct read on whether and how we can help.
+      </p>
+      <a
+        href="/contact?service=shopify-development"
+        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+      >
+        Start a project
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Layout>

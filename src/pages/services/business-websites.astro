@@ -1,0 +1,303 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Websites for Service Businesses – Salt & Scale";
+const description = "AI-accelerated website design and development for plumbers, contractors, freight companies, and other service businesses. Built on Astro, Tailwind, and Vercel by one senior engineer.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Websites for service businesses", url: "/services/business-websites/" },
+];
+
+const serviceDescription = "Salt & Scale builds production-grade websites for service businesses — plumbers, contractors, freight companies, and anyone whose phone needs to ring. Sites are designed with a mobile-first layout, contact and lead-routing forms, a local SEO foundation, and WCAG 2.2 AA accessibility. Every project ships on Astro, Tailwind CSS, and Vercel — a stack chosen for speed, stability, and near-zero maintenance cost. AI tools are used throughout the build to move fast; every line is reviewed and owned by one senior engineer. A typical engagement runs four to six weeks from kickoff to a live, indexed site you fully control.";
+
+const faqItems = [
+  {
+    question: "How long does a service-business website take?",
+    answer: "A typical site takes four to six weeks from kickoff to live. That includes a discovery call, brand and copy review, design approval, build, accessibility and performance checks, and deployment. Scope changes or extended copy revision rounds can extend this, but the standard timeline is four to six weeks."
+  },
+  {
+    question: "What do I need to provide before we start?",
+    answer: "A logo or brand direction, the services you offer, the areas you serve, and any existing photos. We can work with rough drafts for copy — you don't need polished text before kickoff. A short onboarding form collects everything we need after you sign."
+  },
+  {
+    question: "Will I be able to update the site myself after launch?",
+    answer: "Yes. Deployment goes to your own Vercel account and the source is in a GitHub repo you own. For content-heavy sites we can add a lightweight CMS (like Netlify CMS or Tina) at no extra complexity. Either way, you own the site outright — there's no monthly platform fee, no lock-in."
+  },
+  {
+    question: "Does the site include SEO?",
+    answer: "Every site ships with a local SEO foundation: per-page title and description tags, canonical URLs, structured data (Organization and LocalBusiness schema), an auto-generated sitemap, and a service-area architecture where relevant. We don't offer ongoing SEO management, but we set the technical foundation correctly from day one."
+  },
+  {
+    question: "What does 'WCAG 2.2 AA accessibility' mean in practice?",
+    answer: "It means the site works for people who navigate by keyboard, use screen readers, operate at 200% zoom, or use assistive technology. Every form has proper labels, focus states are visible, color contrast meets 4.5:1 for body text, and interactive targets are large enough to tap on mobile. We run axe-core and Lighthouse accessibility checks before handoff."
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/business-websites/#service",
+    "name": "Websites for service businesses",
+    "serviceType": "Web design and development",
+    "provider": { "@id": "https://saltandscale.consulting/#org" },
+    "areaServed": "United States",
+    "description": serviceDescription,
+    "offers": {
+      "@type": "Offer",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "priceCurrency": "USD"
+      }
+    }
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": faqItems.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
+  }
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/business-websites/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+  <!-- Breadcrumb -->
+  <nav aria-label="Breadcrumb" class="max-w-[1120px] mx-auto px-4 pt-6">
+    <ol class="flex flex-wrap items-center gap-2 text-caption text-stone">
+      <li><a href="/" class="hover:text-ink transition-colors">Home</a></li>
+      <li aria-hidden="true" class="text-stone/50">›</li>
+      <li><a href="/services/" class="hover:text-ink transition-colors">Services</a></li>
+      <li aria-hidden="true" class="text-stone/50">›</li>
+      <li class="text-ink" aria-current="page">Websites for service businesses</li>
+    </ol>
+  </nav>
+
+  <!-- Hero / Answer block -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-saffron-deep mb-4">Service business websites</p>
+      <h1 class="text-display-1 text-ink mb-8 max-w-[22ch]">Websites for service businesses.</h1>
+      <div class="max-w-[72ch] bg-cream rounded-2xl border border-sage/20 px-8 py-7">
+        <p class="text-body text-charcoal/90 m-0">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's included -->
+  <section class="py-20 md:py-28 px-4">
+    <div class="max-w-[1120px] mx-auto grid md:grid-cols-2 gap-16 items-start">
+      <div>
+        <p class="text-eyebrow text-sage mb-4">Every project includes</p>
+        <h2 class="text-display-2 text-ink mb-8">What's included.</h2>
+        <ul class="space-y-5">
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Brand integration</p>
+              <p class="text-body text-charcoal/70">Logo, colors, typography, and voice applied consistently across every page — your business, not a template.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Mobile-first design</p>
+              <p class="text-body text-charcoal/70">Designed for the phone screen first — where most service-business searches happen. Phone numbers click-to-call, forms are thumb-friendly, layout works at any size.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Contact and lead routing</p>
+              <p class="text-body text-charcoal/70">Forms with smart field structure, graceful error handling, and routing logic (service type, location, urgency) so leads reach the right inbox.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Local SEO foundation</p>
+              <p class="text-body text-charcoal/70">Structured data, service-area architecture, per-page title and description tags, sitemap, and canonical URLs — all set correctly from day one.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Accessibility-conformant build</p>
+              <p class="text-body text-charcoal/70">WCAG 2.2 AA: keyboard navigation, screen-reader semantics, visible focus states, 4.5:1 contrast on body text, and accessible forms throughout.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Performance budget</p>
+              <p class="text-body text-charcoal/70">Lighthouse mobile scores targeted at 95+ across Performance, Accessibility, Best Practices, and SEO. Core Web Vitals checked before handoff.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-4">
+            <span class="flex-shrink-0 w-6 h-6 rounded-full bg-sage/15 flex items-center justify-center text-sage text-sm font-bold" aria-hidden="true">+</span>
+            <div>
+              <p class="text-h4 text-ink mb-1">Deployment and handoff</p>
+              <p class="text-body text-charcoal/70">Live on Vercel under your own account. Source in a GitHub repo you own. Domain configuration, DNS, and a walkthrough of how to manage the site post-launch.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+
+      <!-- Stack -->
+      <div class="bg-paper rounded-2xl border border-sage/15 p-8">
+        <p class="text-eyebrow text-sage mb-4">Stack we ship on</p>
+        <h2 class="text-display-3 text-ink mb-6">Built on a proven, low-maintenance stack.</h2>
+        <ul class="space-y-4 mb-8">
+          <li class="flex items-start gap-3">
+            <span class="text-sage mt-1" aria-hidden="true">→</span>
+            <div>
+              <p class="font-semibold text-ink">Astro 5</p>
+              <p class="text-body text-charcoal/70">Static output by default — pages load as plain HTML, no JavaScript hydration tax, near-perfect Lighthouse scores out of the box.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sage mt-1" aria-hidden="true">→</span>
+            <div>
+              <p class="font-semibold text-ink">Tailwind CSS v4</p>
+              <p class="text-body text-charcoal/70">Design tokens baked into CSS — consistent spacing, typography, and color without a design-system overhead your team can't maintain.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-sage mt-1" aria-hidden="true">→</span>
+            <div>
+              <p class="font-semibold text-ink">Vercel</p>
+              <p class="text-body text-charcoal/70">Global CDN, automatic deploys on every push, free tier covers most service-business sites indefinitely. No server to manage.</p>
+            </div>
+          </li>
+          <li class="flex items-start gap-3">
+            <span class="text-saffron-deep mt-1" aria-hidden="true">→</span>
+            <div>
+              <p class="font-semibold text-ink">AI-augmented build</p>
+              <p class="text-body text-charcoal/70">Anthropic Claude Partner. AI is used throughout the build to accelerate — copy structure, component drafts, schema generation. Every output is reviewed by a senior engineer before it ships.</p>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <!-- How we work -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">The process</p>
+      <h2 class="text-display-2 text-ink mb-12">How we work.</h2>
+      <ol class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">1</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Discovery call</h3>
+            <p class="text-body text-charcoal/70 mb-3">30 minutes. We cover your services, audience, goals, and anything the site needs to replace or improve. You get a written summary.</p>
+            <p class="text-caption text-stone">Deliverable: project brief + scope document</p>
+          </div>
+        </li>
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">2</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Design approval</h3>
+            <p class="text-body text-charcoal/70 mb-3">We build a high-fidelity mockup of the homepage and one inner page. You review and approve before any code is written at scale.</p>
+            <p class="text-caption text-stone">Deliverable: approved design mockups</p>
+          </div>
+        </li>
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">3</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Build and review</h3>
+            <p class="text-body text-charcoal/70 mb-3">Full site build on a staging URL. You review every page, request revisions, and sign off before deployment. Two revision rounds included.</p>
+            <p class="text-caption text-stone">Deliverable: staging site with all content</p>
+          </div>
+        </li>
+        <li class="flex flex-col gap-4">
+          <div class="w-10 h-10 rounded-full bg-saffron flex items-center justify-center text-ink font-bold text-sm flex-shrink-0">4</div>
+          <div>
+            <h3 class="text-h4 text-ink mb-2">Launch and handoff</h3>
+            <p class="text-body text-charcoal/70 mb-3">DNS cutover, sitemap submission, walkthrough call, and a recorded Loom of how to manage the site. You own everything.</p>
+            <p class="text-caption text-stone">Deliverable: live site + handoff documentation</p>
+          </div>
+        </li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- Related work -->
+  <section class="py-20 md:py-28 px-4">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">Related work</p>
+      <h2 class="text-display-2 text-ink mb-10">Two sites we've built on this track.</h2>
+      <div class="grid md:grid-cols-2 gap-8">
+        <article class="bg-paper rounded-2xl border border-sage/15 p-8">
+          <h3 class="text-display-3 text-ink mb-3">Mahi Plumbing</h3>
+          <p class="text-caption text-stone mb-4">Houston, TX — Residential plumbing</p>
+          <p class="text-body text-charcoal/70 mb-6">24/7 emergency-services UX with phone-first conversion path, 9-city service-area architecture, and bespoke "Trophy Catch" brand language throughout.</p>
+          <a href="/work/mahi-plumbing/" class="inline-flex items-center gap-2 font-semibold text-sage hover:underline">
+            View case study <span aria-hidden="true">→</span>
+          </a>
+        </article>
+        <article class="bg-paper rounded-2xl border border-sage/15 p-8">
+          <h3 class="text-display-3 text-ink mb-3">Elevated Water Solutions</h3>
+          <p class="text-caption text-stone mb-4">Houston, TX — Water heaters, treatment, gas, plumbing</p>
+          <p class="text-body text-charcoal/70 mb-6">11 services across 3 categories, 15-area service map for local SEO, recent-installations photo gallery with location attribution, and a quote form on every page.</p>
+          <a href="/work/elevated-water-solutions/" class="inline-flex items-center gap-2 font-semibold text-sage hover:underline">
+            View case study <span aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="py-20 md:py-28 px-4 bg-paper">
+    <div class="max-w-[1120px] mx-auto">
+      <p class="text-eyebrow text-sage mb-4">Common questions</p>
+      <h2 class="text-display-2 text-ink mb-10">Frequently asked questions.</h2>
+      <div class="max-w-[800px] space-y-3">
+        {faqItems.map(item => (
+          <details class="group bg-white rounded-xl border border-[rgba(55,62,69,0.10)] overflow-hidden">
+            <summary class="flex items-center justify-between gap-4 cursor-pointer list-none px-6 py-5 text-h4 text-ink hover:bg-sage/5 transition-colors">
+              {item.question}
+              <span class="flex-shrink-0 text-stone group-open:rotate-45 transition-transform duration-200" aria-hidden="true">+</span>
+            </summary>
+            <div class="px-6 pb-6 pt-1">
+              <p class="text-body text-charcoal/80">{item.answer}</p>
+            </div>
+          </details>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="py-20 md:py-28 px-4 bg-charcoal">
+    <div class="max-w-[1120px] mx-auto text-center">
+      <p class="text-eyebrow text-saffron mb-4">Ready to start?</p>
+      <h2 class="text-display-2 text-paper mb-6">Let's build a site that books the work.</h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-10">
+        Tell us about your business, the services you offer, and what you need the site to do. We'll follow up within one business day.
+      </p>
+      <a
+        href="/contact?service=business-websites"
+        class="inline-flex items-center gap-2 rounded-xl bg-saffron px-8 py-4 text-lg font-semibold text-ink shadow-sm transition-colors hover:bg-saffron/90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
+      >
+        Start a project
+        <span aria-hidden="true">→</span>
+      </a>
+    </div>
+  </section>
+</Layout>

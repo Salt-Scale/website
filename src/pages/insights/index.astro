@@ -1,0 +1,109 @@
+---
+import { getCollection } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Insights', url: '/insights/' },
+];
+
+const allPosts = await getCollection('insights', ({ data }) => !data.draft);
+const posts = allPosts.sort(
+  (a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf()
+);
+
+const upcomingTopics = [
+  'Service Businesses',
+  'Local SEO',
+  'Performance',
+  'WCAG 2.2',
+  'AI in Engineering',
+  'Commerce',
+];
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<Layout
+  title="Insights — Salt & Scale"
+  description="Engineering depth and service-business strategy from Gabriel Rosales. 1–2 posts per month on service-business websites, local SEO, WCAG 2.2, Core Web Vitals, and AI in engineering."
+  canonicalPath="/insights/"
+  breadcrumbs={breadcrumbs}
+>
+  <div class="mx-auto max-w-[1120px] px-4 py-12">
+
+    <!-- Breadcrumb -->
+    <nav aria-label="Breadcrumb" class="mb-8">
+      <ol class="flex items-center gap-2 text-caption text-stone">
+        <li><a href="/" class="hover:underline text-stone">Home</a></li>
+        <li aria-hidden="true" class="text-stone/60">/</li>
+        <li aria-current="page" class="text-charcoal font-medium">Insights</li>
+      </ol>
+    </nav>
+
+    <!-- Header -->
+    <div class="mb-12">
+      <p class="text-eyebrow text-sage mb-3">Engineering depth, service-business focus.</p>
+      <h1 class="text-display-1 text-ink mb-5">Insights.</h1>
+      <p class="text-body-lg text-charcoal/70 max-w-[60ch]">
+        1–2 posts per month. Written by Gabriel Rosales — not AI-generated content, but AI-informed
+        engineering and business strategy.
+      </p>
+    </div>
+
+    {posts.length === 0 ? (
+      <!-- Empty state -->
+      <div class="rounded-2xl bg-cream border border-copper/20 p-10 max-w-[640px]">
+        <h2 class="text-h4 text-ink mb-3">First articles coming soon.</h2>
+        <p class="text-body text-charcoal/70 mb-6">
+          Topics: service-business websites, local SEO, WCAG 2.2, Core Web Vitals.
+        </p>
+        <div class="flex flex-wrap gap-2" aria-label="Upcoming topics">
+          {upcomingTopics.map((topic) => (
+            <span class="inline-flex items-center px-3 py-1 rounded-full bg-paper border border-stone/20 text-caption text-stone font-medium">
+              {topic}
+            </span>
+          ))}
+        </div>
+      </div>
+    ) : (
+      <!-- Posts grid -->
+      <ul class="grid sm:grid-cols-2 lg:grid-cols-3 gap-8 list-none pl-0" role="list">
+        {posts.map((post) => (
+          <li>
+            <article class="h-full flex flex-col bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-sm hover:shadow-md transition-shadow duration-150 p-6">
+              {post.data.tags.length > 0 && (
+                <div class="flex flex-wrap gap-2 mb-4">
+                  {post.data.tags.slice(0, 2).map((tag) => (
+                    <span class="inline-flex items-center px-2.5 py-0.5 rounded-full bg-sage/10 text-eyebrow text-sage">
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              )}
+              <h2 class="text-h4 text-ink mb-3 flex-grow-0">
+                <a href={`/insights/${post.slug}/`} class="hover:underline decoration-saffron/60 underline-offset-2">
+                  {post.data.title}
+                </a>
+              </h2>
+              <p class="text-body text-charcoal/70 mb-4 flex-grow line-clamp-3">{post.data.description}</p>
+              <footer class="mt-auto">
+                <time
+                  datetime={post.data.datePublished.toISOString()}
+                  class="text-caption text-stone"
+                >
+                  {dateFormatter.format(post.data.datePublished)}
+                </time>
+              </footer>
+            </article>
+          </li>
+        ))}
+      </ul>
+    )}
+
+  </div>
+</Layout>
