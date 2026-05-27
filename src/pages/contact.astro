@@ -1,8 +1,10 @@
 ---
 import Layout from "../layouts/Layout.astro";
 
-const service = Astro.url.searchParams.get('service') ?? '';
-const projectType = Astro.url.searchParams.get('project-type') ?? '';
+// `?service=` and `?project-type=` preselection is wired up in the script
+// block at the bottom of this file. We can't read query params in the
+// frontmatter because `output: 'static'` pre-renders this page once at
+// build time, with no request context.
 
 const breadcrumbs = [
   { name: 'Home', url: '/' },
@@ -262,13 +264,13 @@ const steps = [
                   class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 >
                   <option value="">Select a service</option>
-                  <option value="business-websites" selected={service === 'business-websites'}>Websites for service businesses</option>
-                  <option value="shopify-development" selected={service === 'shopify-development'}>Shopify development</option>
-                  <option value="adobe-commerce" selected={service === 'adobe-commerce'}>Adobe Commerce</option>
-                  <option value="headless-commerce" selected={service === 'headless-commerce'}>Headless commerce</option>
-                  <option value="custom-app-development" selected={service === 'custom-app-development'}>Custom app development</option>
-                  <option value="integrations-automation" selected={service === 'integrations-automation'}>Integrations & automation</option>
-                  <option value="audits-strategy" selected={service === 'audits-strategy'}>Audits & strategy</option>
+                  <option value="business-websites">Websites for service businesses</option>
+                  <option value="shopify-development">Shopify development</option>
+                  <option value="adobe-commerce">Adobe Commerce</option>
+                  <option value="headless-commerce">Headless commerce</option>
+                  <option value="custom-app-development">Custom app development</option>
+                  <option value="integrations-automation">Integrations & automation</option>
+                  <option value="audits-strategy">Audits & strategy</option>
                   <option value="other">Other / not sure yet</option>
                 </select>
               </div>
@@ -281,14 +283,14 @@ const steps = [
                   class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 >
                   <option value="">Select project type</option>
-                  <option value="new-build" selected={projectType === 'new-build'}>New website build</option>
-                  <option value="redesign" selected={projectType === 'redesign'}>Redesign of existing site</option>
-                  <option value="migration" selected={projectType === 'migration'}>Platform migration</option>
-                  <option value="custom-app" selected={projectType === 'custom-app'}>Custom app development</option>
-                  <option value="headless" selected={projectType === 'headless'}>Headless commerce</option>
-                  <option value="integration" selected={projectType === 'integration'}>Systems integration</option>
-                  <option value="audit" selected={projectType === 'audit'}>Technical audit</option>
-                  <option value="consulting" selected={projectType === 'consulting'}>Strategy consulting</option>
+                  <option value="new-build">New website build</option>
+                  <option value="redesign">Redesign of existing site</option>
+                  <option value="migration">Platform migration</option>
+                  <option value="custom-app">Custom app development</option>
+                  <option value="headless">Headless commerce</option>
+                  <option value="integration">Systems integration</option>
+                  <option value="audit">Technical audit</option>
+                  <option value="consulting">Strategy consulting</option>
                   <option value="other">Other</option>
                 </select>
               </div>
@@ -334,6 +336,23 @@ const steps = [
 
 <script>
   // @ts-nocheck
+
+  // Preselect <select> values from query params (?service=…&project-type=…).
+  // Done client-side because the page is statically pre-rendered and has no
+  // server context at request time. We only set the value if the param matches
+  // an existing option, so a malicious link can't inject anything.
+  const presetParams = new URLSearchParams(location.search);
+  const applyPreset = (selectId, paramName) => {
+    const value = presetParams.get(paramName);
+    if (!value) return;
+    const select = document.getElementById(selectId);
+    if (!select) return;
+    const isKnown = Array.from(select.options).some((opt) => opt.value === value);
+    if (isKnown) select.value = value;
+  };
+  applyPreset('service', 'service');
+  applyPreset('project-type', 'project-type');
+
   const formatPhone = (value) => {
     let digits = String(value || '').replace(/\D/g, '');
     // Strip leading country code: +1 or a leading 1 before 10 digits

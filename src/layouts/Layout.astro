@@ -14,6 +14,8 @@ export interface Props {
   canonicalPath?: string;
   breadcrumbs?: Breadcrumb[];
   schema?: Record<string, unknown> | Record<string, unknown>[];
+  /** Set to true on utility pages (404, etc.) that shouldn't appear in search results. */
+  noindex?: boolean;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   canonicalPath,
   breadcrumbs,
   schema,
+  noindex = false,
 } = Astro.props;
 
 const canonicalHref = Astro.site
@@ -122,7 +125,8 @@ const graphJson = JSON.stringify(graph).replace(/</g, '\\u003c');
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    {canonicalHref && <link rel="canonical" href={canonicalHref} />}
+    {noindex && <meta name="robots" content="noindex, follow" />}
+    {canonicalHref && !noindex && <link rel="canonical" href={canonicalHref} />}
     <meta name="description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:title" content={ogTitle} />
