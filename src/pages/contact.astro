@@ -181,6 +181,7 @@ const steps = [
             name="contact"
             method="POST"
             action="/api/contact"
+            novalidate
             class="space-y-6"
           >
             {/* Honeypot — visually + a11y-hidden text field. Real users won't fill it; bots that fill all inputs trigger the trap. */}
@@ -244,8 +245,7 @@ const steps = [
                   type="tel"
                   inputmode="numeric"
                   autocomplete="tel"
-                  pattern="\d{3}-\d{3}-\d{4}"
-                  maxlength="12"
+                  maxlength="14"
                   placeholder="Your phone number"
                   class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 />
@@ -337,7 +337,10 @@ const steps = [
 <script>
   // @ts-nocheck
   const formatPhone = (value) => {
-    const digits = String(value || '').replace(/\D/g, '').slice(0, 10);
+    let digits = String(value || '').replace(/\D/g, '');
+    // Strip leading country code: +1 or a leading 1 before 10 digits
+    if (digits.length === 11 && digits[0] === '1') digits = digits.slice(1);
+    digits = digits.slice(0, 10);
     const parts = [];
     if (digits.length > 0) parts.push(digits.slice(0, Math.min(3, digits.length)));
     if (digits.length >= 4) parts.push(digits.slice(3, Math.min(6, digits.length)));
@@ -382,6 +385,11 @@ const steps = [
   });
   phoneInput?.addEventListener('blur', (e) => {
     e.target.value = formatPhone(e.target.value);
+  });
+  phoneInput?.addEventListener('paste', (e) => {
+    e.preventDefault();
+    const pasted = (e.clipboardData || window.clipboardData).getData('text');
+    e.target.value = formatPhone(pasted);
   });
 
   const showToast = (message, type = 'info') => {
