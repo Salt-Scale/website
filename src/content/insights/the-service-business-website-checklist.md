@@ -5,6 +5,13 @@ datePublished: 2026-04-29
 author: "Gabriel Rosales"
 tags:
   - "Service Businesses"
+takeaways:
+  - "The five conversion essentials: visible phone number in the hero, one CTA per page, five-field form max, trust signals next to the CTA, and a clear 'what happens after I submit' message."
+  - "Local SEO is mostly Tier 1 fundamentals: verified Google Business Profile, LocalBusiness schema, consistent NAP across the web, real service pages and service-area pages, breadcrumb and FAQ schema. Skip the combo-page sprawl until the fundamentals are nailed."
+  - "Core Web Vitals thresholds at the 75th percentile of real-user data: LCP ≤ 2.5s, INP ≤ 200ms, CLS ≤ 0.1. Lighthouse lab scores are debugging tools; field data is what Google ranks on."
+  - "Trust signals specific to service buyers: license number, real photos of your work, real reviews with first names, explicit service area, insurance and bonding, years in business, stated response time."
+  - "WCAG 2.2 AA is non-optional: keyboard nav, visible focus, 4.5:1 contrast on body text, alt text on content images, 24×24px tap targets, page works at 200% zoom, prefers-reduced-motion honored."
+  - "Things that don't help and often hurt: homepage carousels, live chat for most service businesses, stock photos of generic technicians, vanity award badges, blogs you'll never update, calendar embeds you don't use."
 draft: false
 ---
 
@@ -102,6 +109,8 @@ A working service-business website nails fifteen of the items on this checklist.
 
 Go through your current site honestly. Score it. Fix the gaps in priority order: conversion essentials first, then local SEO, then performance and accessibility.
 
+If you're trying to figure out whether a custom build is the right call vs. a website builder, see [How to choose a website builder for a service business in 2026](/insights/how-to-choose-a-website-builder-for-a-service-business-in-2026/). If you've already decided custom is the right path and want to know how a project actually goes, see [the walkthrough for solo-shop owners](/insights/how-a-project-actually-goes-with-a-solo-engineer/).
+
 ---
 
-Want a written audit of where your site sits against this checklist? [Get in touch.](/contact/) We deliver fixed-scope audits with a prioritized written report inside of a week.
+Want a written audit of where your site sits against this checklist? [Get in touch.](/contact/?service=audits-strategy) We deliver fixed-scope audits with a prioritized written report inside of a week.

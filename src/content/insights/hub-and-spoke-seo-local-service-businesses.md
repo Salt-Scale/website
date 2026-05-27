@@ -6,6 +6,11 @@ author: "Gabriel Rosales"
 tags:
   - "Local SEO"
   - "Service Businesses"
+takeaways:
+  - "The Tier 1 fundamentals (verified Google Business Profile, LocalBusiness schema, one page per service, one page per city, mobile/HTTPS, internal links, breadcrumb and FAQ schema) outrank a bloated 200-page site with thin content every time."
+  - "Service × city combo pages can work, but only when each page has genuinely unique content. Templated pages with the city name swapped in trigger Google's doorway-page policy and dilute rankings."
+  - "Hub-and-spoke (every service page links to every city page and back) gives you most of the SEO surface area of combo pages with a fraction of the maintenance burden."
+  - "If you do build combo pages, start with the top 3 services × top 5–6 cities, write them right, measure for 3–6 months, and expand based on what works. Not 165 templated pages on day one."
 draft: false
 ---
 
@@ -65,6 +70,8 @@ Nail Tier 1. Build the hub-and-spoke links. Then let the data tell you which com
 
 That's a smaller bet with a higher hit rate than 165 templated pages, and it won't get your site penalized while you wait to find out.
 
+For a fuller picture of what a working service-business site actually needs (conversion essentials, performance budget, accessibility, the things to leave out), see [the service-business website checklist](/insights/the-service-business-website-checklist/).
+
 ---
 
-Have a local service business whose SEO structure needs work? [Get in touch.](/contact/)
+Have a local service business whose SEO structure needs work? [Get in touch.](/contact/?service=business-websites)

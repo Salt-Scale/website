@@ -5,6 +5,13 @@ datePublished: 2026-04-15
 author: "Gabriel Rosales"
 tags:
   - "Performance"
+takeaways:
+  - "INP replaced FID as a Core Web Vital in March 2024. It measures the full latency of every interaction across the session, from tap to next paint, and reports the worst performer at the 75th percentile."
+  - "Thresholds: ≤ 200ms is good, 200–500ms needs improvement, > 500ms is poor. Roughly one in three mobile sites on the public web fail this. Service-business sites with heavy WordPress themes and chat-widget overload fail more often than average."
+  - "The four common killers: heavy JavaScript frameworks rendering content that doesn't need them, third-party scripts on the main thread, long tasks during interaction, and layout thrashing on late-loading content."
+  - "Measure on real users with the web-vitals library reporting to your analytics, or via the CrUX dashboard inside PageSpeed Insights. Chrome DevTools Performance panel is for diagnosis, not for tracking over time."
+  - "The fixes that move the needle, in order of impact: ship less JavaScript by default, defer non-critical third-party scripts, use native UI (`<details>`, `<select>`, native form validation) where possible, lazy-load below-the-fold content, reserve space for late-loading elements."
+  - "Templated WordPress sites usually need 20–60 hours of engineering work to pass INP. Squarespace and Wix INP is largely outside your control. Custom static-first sites usually pass by default."
 draft: false
 ---
 
@@ -125,6 +132,8 @@ Service-business sites that nail INP feel snappy and book more work. Service-bus
 
 Measure it on real users. Fix the four common culprits in order. Don't optimize for Lighthouse scores at the expense of the field data, because Google ranks on the field data.
 
+INP is one piece of a working service-business site. For the full picture (conversion essentials, local SEO, trust signals, accessibility, and the things to leave out), see [the service-business website checklist](/insights/the-service-business-website-checklist/).
+
 ---
 
-Wondering where your site's INP actually sits, and what's worth fixing first? [Get in touch.](/contact/) A fixed-scope performance audit with a prioritized written report runs about a week start to finish.
+Wondering where your site's INP actually sits, and what's worth fixing first? [Get in touch.](/contact/?service=audits-strategy) A fixed-scope performance audit with a prioritized written report runs about a week start to finish.

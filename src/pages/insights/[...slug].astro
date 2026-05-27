@@ -26,12 +26,15 @@ const proseBody = (entry.body ?? '')
 const wordCount = proseBody.split(/\s+/).filter(Boolean).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 200));
 
-// Related articles: same tag, exclude current.
+// Related articles: prefer same-tag matches, fall back to most-recent so
+// every post has a "Keep reading" section even when its topic is unique.
 const allPosts = await getCollection('insights', ({ data }) => !data.draft);
-const relatedPosts = allPosts
-  .filter((p) => p.id !== entry.id && p.data.tags.some((t) => tags.includes(t)))
-  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
-  .slice(0, 3);
+const otherPosts = allPosts
+  .filter((p) => p.id !== entry.id)
+  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf());
+const tagMatches = otherPosts.filter((p) => p.data.tags.some((t) => tags.includes(t)));
+const fillers = otherPosts.filter((p) => !tagMatches.includes(p));
+const relatedPosts = [...tagMatches, ...fillers].slice(0, 3);
 
 const canonicalPath = `/insights/${entry.id}/`;
 const canonicalUrl = Astro.site
