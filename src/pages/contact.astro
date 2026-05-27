@@ -26,13 +26,13 @@ const steps = [
     n: "03",
     label: "Proposal",
     title: "Written, within 3 days.",
-    body: "Scope, deliverables, timeline, and a fixed or capped fee — in writing, sent within three business days.",
+    body: "Scope, deliverables, timeline, and a fixed or capped fee. In writing, sent within three business days.",
   },
 ];
 ---
 
 <Layout
-  title="Start a project — Salt & Scale"
+  title="Start a project · Salt & Scale"
   description="Tell us about your project. We reply within 1 business day, schedule a 30-minute discovery call, and deliver a written proposal within 3 business days."
   canonicalPath="/contact/"
   breadcrumbs={breadcrumbs}
@@ -469,7 +469,7 @@ const steps = [
         } else if (res.status === 502) {
           showToast('We could not send your message right now. Please try again later.', 'error');
         } else {
-          showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+          showToast('Sorry, there was a problem sending your message. Please try again later.', 'error');
         }
         return;
       }
@@ -478,7 +478,7 @@ const steps = [
       window.va?.('event', { name: 'contact_submit_success' });
       contactForm.reset();
     } catch (err) {
-      showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+      showToast('Sorry, there was a problem sending your message. Please try again later.', 'error');
     } finally {
       submitBtn.disabled = false;
     }

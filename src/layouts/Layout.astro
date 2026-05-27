@@ -17,8 +17,8 @@ export interface Props {
 }
 
 const {
-  title = 'Salt & Scale – Growth, grounded in Truth.',
-  description = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.',
+  title = 'Salt & Scale · Growth, grounded in Truth.',
+  description = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance, delivered with clear tradeoffs and measurable outcomes.',
   ogImage = '/og-image.jpg',
   canonicalPath,
   breadcrumbs,
@@ -29,7 +29,7 @@ const canonicalHref = Astro.site
   ? new URL(canonicalPath ?? Astro.url.pathname, Astro.site).toString()
   : undefined;
 
-const ogTitle = title.replace(/–/g, '—');
+const ogTitle = title;
 
 const siteUrl = Astro.site ? new URL('/', Astro.site).toString() : 'https://saltandscale.consulting/';
 

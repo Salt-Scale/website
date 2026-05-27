@@ -15,7 +15,7 @@ const caseStudies = [
     sector: "Residential plumbing",
     client: "Mahi Plumbing",
     location: "Houston, TX",
-    description: "Owner-operated 24/7 plumber serving Houston and nine surrounding cities — built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.",
+    description: "Owner-operated 24/7 plumber serving Houston and nine surrounding cities. Built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.",
   },
   {
     n: "02",
@@ -23,7 +23,7 @@ const caseStudies = [
     sector: "Multi-service plumbing",
     client: "Elevated Water Solutions",
     location: "Houston, TX",
-    description: "Eleven-year master-plumber operation — eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.",
+    description: "Eleven-year master-plumber operation. Eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.",
   },
   {
     n: "03",
@@ -31,7 +31,7 @@ const caseStudies = [
     sector: "Aluminum doors",
     client: "Premier Door Innovations",
     location: "Houston, TX",
-    description: "Houston aluminum door manufacturer — filterable gallery, four-category product architecture, and multi-form routing for contractor partners.",
+    description: "Houston aluminum door manufacturer. Filterable gallery, four-category product architecture, and multi-form routing for contractor partners.",
   },
   {
     n: "04",
@@ -39,7 +39,7 @@ const caseStudies = [
     sector: "B2B freight",
     client: "AIM Global Transport",
     location: "Houston, TX",
-    description: "Nationwide freight carrier serving all 48 states — stat-led hero, six-service B2B catalog, and dual conversion paths for logistics buyers.",
+    description: "Nationwide freight carrier serving all 48 states. Stat-led hero, six-service B2B catalog, and dual conversion paths for logistics buyers.",
   },
 ];
 
@@ -57,19 +57,19 @@ const audienceMarkers = [
 const faqs = [
   {
     question: "Will this be too technical for me to manage day-to-day?",
-    answer: "No. After launch you get a one-page written guide for the few things you'll actually touch — updating phone numbers, adding service areas, swapping photos. Most owners spend less than 10 minutes a month on the site. For anything bigger, send a Loom or a text and I handle it.",
+    answer: "No. After launch you get a one-page written guide for the few things you'll actually touch: updating phone numbers, adding service areas, swapping photos. Most owners spend less than 10 minutes a month on the site. For anything bigger, send a Loom or a text and I handle it.",
   },
   {
     question: "How much does a site like this cost?",
-    answer: "Fixed-price, written quote upfront. No hourly billing. Pricing depends on scope (number of services, service-area pages, custom features), but I'll give you a number in writing within three business days of the discovery call — and that's the number. No change-orders unless you change the scope.",
+    answer: "Fixed-price, written quote upfront. No hourly billing. Pricing depends on scope (number of services, service-area pages, custom features), but I'll give you a number in writing within three business days of the discovery call. That's the number. No change-orders unless you change the scope.",
   },
   {
     question: "How long does it take to build?",
-    answer: "Most builds ship in one to three weeks from kick-off. The fastest so far — Elevated Water Solutions — went from idea to production in seven days. Bigger scope (15+ pages, custom integrations, multiple stakeholders) can push toward four weeks. Every project has a written timeline before any code is written.",
+    answer: "Most builds ship in one to three weeks from kick-off. The fastest so far, Elevated Water Solutions, went from idea to production in seven days. Bigger scope (15+ pages, custom integrations, multiple stakeholders) can push toward four weeks. Every project has a written timeline before any code is written.",
   },
   {
     question: "Do I own the site or am I renting it from you?",
-    answer: "You own everything. The code lives in a GitHub repo you own. The domain stays in your name. Hosting is on Vercel under your account. If we ever part ways, you walk away with the keys to the whole thing — no platform lock-in, no ransom.",
+    answer: "You own everything. The code lives in a GitHub repo you own. The domain stays in your name. Hosting is on Vercel under your account. If we ever part ways, you walk away with the keys to the whole thing. No platform lock-in, no ransom.",
   },
   {
     question: "What if I want to change something after launch?",
@@ -106,7 +106,7 @@ const pillars = [
   {
     n: "01",
     title: "One senior engineer, end to end.",
-    body: "No handoffs. No junior work shipped. No agency overhead. Every line of code is written and reviewed by Gabriel personally — the same engineer who scoped the work and who'll be there a year after launch.",
+    body: "No handoffs. No junior work shipped. No agency overhead. Every line of code is written and reviewed by Gabriel personally. The same engineer who scoped the work and who'll be there a year after launch.",
   },
   {
     n: "02",
@@ -116,7 +116,7 @@ const pillars = [
   {
     n: "03",
     title: "Production-grade fundamentals.",
-    body: "Hydrogen contributor. Shopify Partner. Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
+    body: "Hydrogen contributor. Shopify Partner. Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI, not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
   },
 ];
 
@@ -165,7 +165,7 @@ const insightStubs = [
       </p>
 
       {/* CTAs — "Schedule a call" leads (small-biz buyers want to talk) */}
-      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-20 md:mb-28">
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-8 md:mb-10">
         <a
           href="/contact/"
           class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
@@ -182,12 +182,32 @@ const insightStubs = [
         </a>
       </div>
 
+      {/* Visual trust strip — partners, directly under CTAs for skimmers */}
+      <ul aria-label="Partner credentials" class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-20 md:mb-28 text-[0.6875rem] uppercase tracking-[0.18em] font-semibold text-paper/55">
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Shopify Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Anthropic Claude Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Vercel Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Adobe Commerce engineer
+        </li>
+      </ul>
+
       {/* Owner-friendly attributes (not engineer credentials) */}
       <div class="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-20 pt-12 border-t border-paper/15">
         <div>
           <p class="text-eyebrow text-saffron mb-5">What we do</p>
           <p class="text-[1.0625rem] leading-[1.7] text-paper/75 max-w-[58ch]">
-            Salt &amp; Scale builds the website your business actually needs — phone-first, mobile-first, fast, and easy to find on Google. Most builds ship in one to three weeks (Elevated Water Solutions: seven days, idea to production). One senior engineer, ten years in production web work. No agency middlemen, no junior hands on the code, no surprise fees.
+            Salt &amp; Scale builds the website your business actually needs: phone-first, mobile-first, fast, and easy to find on Google. Most builds ship in one to three weeks (Elevated Water Solutions: seven days, idea to production). One senior engineer, ten years in production web work. No agency middlemen, no junior hands on the code, no surprise fees.
           </p>
         </div>
         <div>
@@ -207,7 +227,7 @@ const insightStubs = [
             </li>
             <li class="flex items-baseline gap-3">
               <span class="text-saffron/60 numeral text-sm" aria-hidden="true">+</span>
-              You own everything — code, domain, host
+              You own everything: code, domain, host
             </li>
           </ul>
         </div>
@@ -475,7 +495,7 @@ const insightStubs = [
             <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
               <Image
                 src={headshot}
-                alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
+                alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
                 widths={[320, 480, 720]}
                 sizes="(min-width: 768px) 40vw, 100vw"
                 format="avif"
@@ -500,7 +520,7 @@ const insightStubs = [
           </h2>
 
           <p class="text-body-lg text-charcoal/75 mb-8 max-w-[56ch]">
-            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years shipping commerce engineering for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots — and open-source contributor to Shopify&rsquo;s Hydrogen storefront framework.
+            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years shipping commerce engineering for brands including Sanrio (at Corra), PAX Labs, and Hive Brands, currently a Sr. Customer Success Engineer at Adobe Commerce, and open-source contributor to Shopify&rsquo;s Hydrogen storefront framework.
           </p>
 
           {/* Partner badges — typographic, not pill-y */}
@@ -584,7 +604,7 @@ const insightStubs = [
             Lock-in. You own it.
           </h3>
           <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
-            Code in a GitHub repo you own. Domain in your name. Hosting under your Vercel account. If we ever part ways, you walk away with everything &mdash; no ransom.
+            Code in a GitHub repo you own. Domain in your name. Hosting under your Vercel account. If we ever part ways, you walk away with everything. No ransom.
           </p>
         </article>
       </div>
@@ -607,7 +627,7 @@ const insightStubs = [
             The questions <span class="italic font-normal text-saffron-deep">owners actually ask.</span>
           </h2>
           <p class="text-[1rem] leading-[1.65] text-charcoal/65 max-w-[36ch]">
-            Don&rsquo;t see your question? Bring it to the discovery call &mdash; or just <a href="mailto:gabe@saltandscale.consulting" class="link-edit">send an email</a>.
+            Don&rsquo;t see your question? Bring it to the discovery call, or just <a href="mailto:gabe@saltandscale.consulting" class="link-edit">send an email</a>.
           </p>
         </div>
 

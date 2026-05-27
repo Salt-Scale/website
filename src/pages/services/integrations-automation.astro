@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const title = "Systems Integration and Automation – Salt & Scale";
+const title = "Systems Integration and Automation · Salt & Scale";
 const description = "ERP, CRM, and 3PL integrations for Shopify and Adobe Commerce. Real-time and batch sync, webhook handlers, middleware, and automations for marketing and fulfillment.";
 
 const breadcrumbs = [
@@ -10,38 +10,38 @@ const breadcrumbs = [
   { name: "Integrations and automation", url: "/services/integrations-automation/" },
 ];
 
-const serviceDescription = "Ecommerce operations break when systems don't talk to each other reliably. Salt & Scale builds the integrations that keep Shopify or Adobe Commerce in sync with your ERP, CRM, 3PL, and warehouse management systems — in real time and in batch. Work includes webhook handlers, REST and GraphQL middleware, order and inventory sync pipelines, and automation workflows for marketing and fulfillment. Every integration ships with retry logic, observable failure states, and enough documentation that your team can diagnose problems without calling us. Prior integration work includes a microservices suite built for Hive Brands that achieved 99.9% sync reliability across promotions and operations systems.";
+const serviceDescription = "Ecommerce operations break when systems don't talk to each other reliably. Salt & Scale builds the integrations that keep Shopify or Adobe Commerce in sync with your ERP, CRM, 3PL, and warehouse management systems, in real time and in batch. Work includes webhook handlers, REST and GraphQL middleware, order and inventory sync pipelines, and automation workflows for marketing and fulfillment. Every integration ships with retry logic, observable failure states, and enough documentation that your team can diagnose problems without calling us. Prior integration work includes a microservices suite built for Hive Brands that achieved 99.9% sync reliability across promotions and operations systems.";
 
 const includedItems = [
   {
     n: "01",
     title: "ERP, CRM, and 3PL integrations",
-    body: "Real-time and batch sync between Shopify or Adobe Commerce and NetSuite, SAP, Salesforce, ShipBob, and other systems — with retry logic and observable failure states built in.",
+    body: "Real-time and batch sync between Shopify or Adobe Commerce and NetSuite, SAP, Salesforce, ShipBob, and other systems, with retry logic and observable failure states built in.",
   },
   {
     n: "02",
     title: "Inventory and order sync",
-    body: "Bidirectional sync keeping inventory counts, order status, and fulfillment data consistent across your storefront and warehouse or 3PL — with conflict resolution for oversell scenarios.",
+    body: "Bidirectional sync keeping inventory counts, order status, and fulfillment data consistent across your storefront and warehouse or 3PL, with conflict resolution for oversell scenarios.",
   },
   {
     n: "03",
     title: "Customer data sync",
-    body: "Shopify customer records to CRM and email platform — Klaviyo, HubSpot, Salesforce — with segment tagging, purchase history, and lifecycle events mapped correctly.",
+    body: "Shopify customer records to CRM and email platform (Klaviyo, HubSpot, Salesforce), with segment tagging, purchase history, and lifecycle events mapped correctly.",
   },
   {
     n: "04",
     title: "Marketing and fulfillment automation",
-    body: "Event-triggered automations — post-purchase sequences, reorder reminders, back-in-stock notifications, and fulfillment status updates — built on reliable webhook infrastructure.",
+    body: "Event-triggered automations (post-purchase sequences, reorder reminders, back-in-stock notifications, and fulfillment status updates) built on reliable webhook infrastructure.",
   },
   {
     n: "05",
     title: "Webhooks, middleware, and connectors",
-    body: "Custom webhook handlers, transformation middleware, and API connectors — the plumbing that moves data reliably between systems that don't speak each other's language natively.",
+    body: "Custom webhook handlers, transformation middleware, and API connectors. The plumbing that moves data reliably between systems that don't speak each other's language natively.",
   },
   {
     n: "06",
     title: "Integration audits",
-    body: "A scoped review of an existing integration that's causing problems — failure log analysis, retry behavior review, data contract verification, and a written report with prioritized recommendations.",
+    body: "A scoped review of an existing integration that's causing problems: failure log analysis, retry behavior review, data contract verification, and a written report with prioritized recommendations.",
   },
 ];
 
@@ -56,7 +56,7 @@ const processSteps = [
     n: "02",
     label: "Build",
     title: "Live test data, full round-trip.",
-    body: "Integration built and tested against sandbox environments for both systems — not mocked data. We verify the full round-trip, including failure and retry scenarios, before go-live.",
+    body: "Integration built and tested against sandbox environments for both systems, not mocked data. We verify the full round-trip, including failure and retry scenarios, before go-live.",
   },
   {
     n: "03",
@@ -80,45 +80,41 @@ const outcomes = [
   {
     n: "03",
     title: "Observable systems",
-    body: "Monitoring dashboards, structured logs, and alerting thresholds — so your operations team can see the state of every sync without reading code.",
+    body: "Monitoring dashboards, structured logs, and alerting thresholds, so your operations team can see the state of every sync without reading code.",
   },
 ];
 
 const priorWork = [
   {
     company: "Hive Brands",
-    detail: "Microservices suite for promotions and operations integration — 99.9% sync reliability across promotional logic, order pipelines, and operational systems.",
+    detail: "Microservices suite for promotions and operations integration. 99.9% sync reliability across promotional logic, order pipelines, and operational systems.",
   },
   {
     company: "PAX Labs",
-    detail: "Custom OMS in PHP and MySQL alongside the Shopify Plus headless program — the order operations layer that connected commerce to fulfillment reliably at scale.",
+    detail: "Custom OMS in PHP and MySQL on the backend of PAX Labs' headless Shopify contract — the order operations layer that connected commerce to fulfillment reliably at scale.",
   },
   {
     company: "Sanrio (via Corra)",
     detail: "Laravel API layer integrating Shopify Plus, Magento, and back-office systems across multiple regional brands and currencies.",
-  },
-  {
-    company: "Thursday Boots Co.",
-    detail: "Front-end and API surface work that interacted with Shopify and adjacent service integrations.",
   },
 ];
 
 const faqItems = [
   {
     question: "What systems do you integrate with?",
-    answer: "We've built integrations with NetSuite, SAP, Salesforce, HubSpot, ShipBob, ShipStation, Klaviyo, and custom ERP and WMS systems. If the system has a documented API, we can integrate with it. If it doesn't — or if the API is underdocumented — we'll tell you upfront and help you evaluate alternatives.",
+    answer: "We've built integrations with NetSuite, SAP, Salesforce, HubSpot, ShipBob, ShipStation, Klaviyo, and custom ERP and WMS systems. If the system has a documented API, we can integrate with it. If it doesn't, or if the API is underdocumented, we'll tell you upfront and help you evaluate alternatives.",
   },
   {
     question: "What's the difference between real-time and batch sync?",
-    answer: "Real-time sync uses webhooks — when something changes in one system, a webhook fires and the other system is updated within seconds. Batch sync runs on a schedule (every 15 minutes, hourly, nightly) and reconciles data in bulk. Real-time is better for order status and inventory. Batch is more reliable for large catalog syncs and financial reporting where occasional lag is acceptable. Most production integrations use both.",
+    answer: "Real-time sync uses webhooks: when something changes in one system, a webhook fires and the other system is updated within seconds. Batch sync runs on a schedule (every 15 minutes, hourly, nightly) and reconciles data in bulk. Real-time is better for order status and inventory. Batch is more reliable for large catalog syncs and financial reporting where occasional lag is acceptable. Most production integrations use both.",
   },
   {
     question: "How do you handle integration failures?",
-    answer: "Every integration we build includes retry logic with exponential backoff, dead-letter queues for failed messages, and alerting when failure rates exceed a threshold. We instrument the pipeline so failures show up in your monitoring dashboard — not in a customer complaint two days later. We also document common failure modes and how to resolve them.",
+    answer: "Every integration we build includes retry logic with exponential backoff, dead-letter queues for failed messages, and alerting when failure rates exceed a threshold. We instrument the pipeline so failures show up in your monitoring dashboard, not in a customer complaint two days later. We also document common failure modes and how to resolve them.",
   },
   {
     question: "Can you audit an existing integration that's causing problems?",
-    answer: "Yes. A focused integration audit — reviewing the code, checking retry behavior, examining failure logs, and assessing the data contract between systems — is a scoped engagement we offer independently of a full rebuild. We'll give you a written report on what's breaking and why, with prioritized recommendations.",
+    answer: "Yes. A focused integration audit (reviewing the code, checking retry behavior, examining failure logs, and assessing the data contract between systems) is a scoped engagement we offer independently of a full rebuild. We'll give you a written report on what's breaking and why, with prioritized recommendations.",
   },
 ];
 
@@ -179,7 +175,7 @@ const schema = [
         Integrations &amp; <span class="italic font-normal text-saffron">automation.</span>
       </h1>
       <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
-        ERP, CRM, and 3PL pipelines for Shopify and Adobe Commerce — real-time and batch, with retry logic and dead-letter queues. Built so failures show up in your dashboard, not in a customer complaint.
+        ERP, CRM, and 3PL pipelines for Shopify and Adobe Commerce: real-time and batch, with retry logic and dead-letter queues. Built so failures show up in your dashboard, not in a customer complaint.
       </p>
       <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
         <a href="/contact/?service=integrations-automation" class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
@@ -312,7 +308,7 @@ const schema = [
             Systems that <span class="italic font-normal text-saffron-deep">stayed</span> in sync.
           </h2>
           <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch]">
-            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every integration engagement today.
+            The work below is prior employment and contracting, not Salt &amp; Scale case studies, but the experience that informs every integration engagement today.
           </p>
         </header>
         <ul class="md:pt-2 border-t border-charcoal/20 divide-y divide-charcoal/20">
