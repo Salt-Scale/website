@@ -430,7 +430,7 @@ const steps = [
         name: !name,
         email: !email || !isValidEmail(email),
         company: false,
-        phone: Boolean(phone) && !isValidPhone(phone),
+        phone: phone.length > 0 && !isValidPhone(phone),
         message: !message,
       };
       setFieldError(nameInput, document.getElementById('error-name'), errors.name);

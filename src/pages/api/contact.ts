@@ -53,12 +53,23 @@ function isValidEmail(value: string): boolean {
 }
 
 function isValidPhone(value: string): boolean {
-  return value.replace(/\D/g, '').length === 10;
+  const digits = value.replace(/\D/g, '');
+  const normalized = digits.length === 11 && digits[0] === '1' ? digits.slice(1) : digits;
+  return normalized.length === 10;
 }
 
-function sanitize(input: string | undefined): string {
+// Field-specific length caps. Long-form fields (message, additional) get the
+// full 5000 char budget; short fields get tight caps so a malicious POST can't
+// bloat the email subject or HTML body.
+const FIELD_CAPS = {
+  short: 200,
+  medium: 500,
+  long: 5000,
+} as const;
+
+function sanitize(input: string | undefined, cap: number = FIELD_CAPS.long): string {
   if (!input) return '';
-  return String(input).slice(0, 5000).trim();
+  return String(input).slice(0, cap).trim();
 }
 
 function escapeHtml(value: string): string {
@@ -82,12 +93,18 @@ function labelFor(map: Record<string, string>, value: string): string {
   return map[value] ?? humanize(value);
 }
 
+// In production, only the site's own origin can POST. In dev, allow any origin
+// so localhost / preview deploys work without ceremony.
+const ALLOWED_ORIGIN = import.meta.env.PROD
+  ? 'https://saltandscale.consulting'
+  : '*';
+
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
     },
   });
 }
@@ -282,16 +299,16 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
     }
 
     const payload = {
-      name: sanitize(body.name),
-      email: sanitize(body.email),
-      company: sanitize(body.company),
-      phone: sanitize(body.phone),
-      service: sanitize(body.service),
-      projectType: sanitize(body['project-type']),
-      timeline: sanitize(body.timeline),
-      budget: sanitize(body.budget),
-      message: sanitize(body.message),
-      additional: sanitize(body.additional),
+      name: sanitize(body.name, FIELD_CAPS.short),
+      email: sanitize(body.email, FIELD_CAPS.short),
+      company: sanitize(body.company, FIELD_CAPS.short),
+      phone: sanitize(body.phone, FIELD_CAPS.short),
+      service: sanitize(body.service, FIELD_CAPS.short),
+      projectType: sanitize(body['project-type'], FIELD_CAPS.short),
+      timeline: sanitize(body.timeline, FIELD_CAPS.medium),
+      budget: sanitize(body.budget, FIELD_CAPS.medium),
+      message: sanitize(body.message, FIELD_CAPS.long),
+      additional: sanitize(body.additional, FIELD_CAPS.long),
     };
 
     // Required fields
@@ -369,7 +386,7 @@ export const OPTIONS: APIRoute = async () => {
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
     },
