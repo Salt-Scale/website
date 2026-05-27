@@ -2,7 +2,7 @@
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import { getCollection } from "astro:content";
-import headshot from "../assets/headshot-source.jpeg";
+import headshot from "../assets/headshot.jpeg";
 
 const latestPosts = (await getCollection("insights", ({ data }) => !data.draft))
   .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
@@ -482,11 +482,11 @@ const pillars = [
         {/* Portrait — wrapper isolates the face-focus zoom from object-cover */}
         <div class="relative">
           <div class="aspect-[4/5] bg-cream overflow-hidden">
-            <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
+            <div class="w-full h-full scale-[2.4] origin-[50%_18%]">
               <Image
                 src={headshot}
                 alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
-                widths={[480, 720, 1100, 1600]}
+                widths={[480, 720]}
                 sizes="(min-width: 768px) 75vw, 100vw"
                 format="avif"
                 quality={72}
