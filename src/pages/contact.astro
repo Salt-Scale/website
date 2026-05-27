@@ -44,7 +44,7 @@ const steps = [
   <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
     <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
       <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
-        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li><a href="/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Home</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
         <li aria-current="page" class="text-charcoal/80">Contact</li>
       </ol>
@@ -88,7 +88,7 @@ const steps = [
           <article>
             <div class="border-t border-charcoal/20 pt-6 flex items-baseline justify-between mb-8">
               <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
-              <span class="text-eyebrow text-charcoal/40">{s.label}</span>
+              <span class="text-eyebrow text-charcoal/65">{s.label}</span>
             </div>
             <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
               {s.title}
@@ -127,7 +127,7 @@ const steps = [
 
           <ul class="space-y-5 mb-10">
             <li>
-              <p class="text-eyebrow text-charcoal/40 mb-2">Email</p>
+              <p class="text-eyebrow text-charcoal/65 mb-2">Email</p>
               <a
                 href="mailto:gabe@saltandscale.consulting"
                 class="font-serif text-[1.25rem] text-charcoal hover:text-saffron-deep transition-colors border-b border-saffron pb-0.5"
@@ -136,7 +136,7 @@ const steps = [
               </a>
             </li>
             <li>
-              <p class="text-eyebrow text-charcoal/40 mb-2">LinkedIn</p>
+              <p class="text-eyebrow text-charcoal/65 mb-2">LinkedIn</p>
               <a
                 href="https://www.linkedin.com/in/gabriel-rosales/"
                 rel="noopener noreferrer"
@@ -147,7 +147,7 @@ const steps = [
               </a>
             </li>
             <li>
-              <p class="text-eyebrow text-charcoal/40 mb-2">GitHub</p>
+              <p class="text-eyebrow text-charcoal/65 mb-2">GitHub</p>
               <a
                 href="https://github.com/notoriousgor"
                 rel="noopener noreferrer"
@@ -159,15 +159,9 @@ const steps = [
             </li>
           </ul>
 
-          <div class="pt-8 border-t border-charcoal/15 space-y-4">
-            <div>
-              <p class="text-eyebrow text-charcoal/40 mb-2">Hours</p>
-              <p class="text-[0.9375rem] text-charcoal/70">Monday – Friday, 9 AM – 6 PM Central</p>
-            </div>
-            <div>
-              <p class="text-eyebrow text-charcoal/40 mb-2">Location</p>
-              <p class="text-[0.9375rem] text-charcoal/70">Houston, TX (Central Time)</p>
-            </div>
+          <div class="pt-8 border-t border-charcoal/15">
+            <p class="text-eyebrow text-charcoal/65 mb-2">Location</p>
+            <p class="text-[0.9375rem] text-charcoal/70">Houston, TX (Central Time)</p>
           </div>
         </aside>
 
@@ -200,7 +194,7 @@ const steps = [
             {/* Personal Information */}
             <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <label for="name" class="block text-eyebrow text-charcoal/55 mb-3">Your name <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+                <label for="name" class="block text-eyebrow text-charcoal/70 mb-3">Your name <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
                 <p id="error-name" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter your name.</p>
                 <input
                   required
@@ -208,12 +202,12 @@ const steps = [
                   name="name"
                   placeholder="Enter your name"
                   autocomplete="name"
-                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 />
               </div>
 
               <div>
-                <label for="email" class="block text-eyebrow text-charcoal/55 mb-3">Email <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+                <label for="email" class="block text-eyebrow text-charcoal/70 mb-3">Email <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
                 <p id="error-email" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter a valid email.</p>
                 <input
                   required
@@ -222,7 +216,7 @@ const steps = [
                   name="email"
                   placeholder="Enter your email"
                   autocomplete="email"
-                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 />
               </div>
             </div>
@@ -230,19 +224,19 @@ const steps = [
             {/* Company Information */}
             <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <label for="company" class="block text-eyebrow text-charcoal/55 mb-3">Company name</label>
+                <label for="company" class="block text-eyebrow text-charcoal/70 mb-3">Company name</label>
                 <p id="error-company" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter your company name.</p>
                 <input
                   id="company"
                   name="company"
                   placeholder="Your company or organization"
                   autocomplete="organization"
-                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 />
               </div>
 
               <div>
-                <label for="phone" class="block text-eyebrow text-charcoal/55 mb-3">Phone number</label>
+                <label for="phone" class="block text-eyebrow text-charcoal/70 mb-3">Phone number</label>
                 <p id="error-phone" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter a valid phone number (e.g., 555-123-4567).</p>
                 <input
                   id="phone"
@@ -253,7 +247,7 @@ const steps = [
                   pattern="\d{3}-\d{3}-\d{4}"
                   maxlength="12"
                   placeholder="Your phone number"
-                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 />
               </div>
             </div>
@@ -261,7 +255,7 @@ const steps = [
             {/* Project Details */}
             <div class="grid md:grid-cols-2 gap-6">
               <div>
-                <label for="service" class="block text-eyebrow text-charcoal/55 mb-3">Service</label>
+                <label for="service" class="block text-eyebrow text-charcoal/70 mb-3">Service</label>
                 <select
                   id="service"
                   name="service"
@@ -281,7 +275,7 @@ const steps = [
               </div>
 
               <div>
-                <label for="project-type" class="block text-eyebrow text-charcoal/55 mb-3">Project type</label>
+                <label for="project-type" class="block text-eyebrow text-charcoal/70 mb-3">Project type</label>
                 <select
                   id="project-type"
                   name="project-type"
@@ -304,7 +298,7 @@ const steps = [
 
             {/* Project Description */}
             <div>
-              <label for="message" class="block text-eyebrow text-charcoal/55 mb-3">Project details <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+              <label for="message" class="block text-eyebrow text-charcoal/70 mb-3">Project details <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
               <p id="error-message" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please share a few details about your project.</p>
               <textarea
                 required
@@ -312,7 +306,7 @@ const steps = [
                 name="message"
                 placeholder="Tell us about your goals, constraints, and what success looks like..."
                 rows="6"
-                class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150 resize-none"
+                class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/65 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150 resize-none"
               ></textarea>
             </div>
 
