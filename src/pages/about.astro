@@ -3,13 +3,17 @@ import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
 import headshot from "../assets/headshot.jpeg";
 
+const headshotUrl = Astro.site
+  ? new URL("/headshot-square.jpg", Astro.site).toString()
+  : "https://saltandscale.consulting/headshot-square.jpg";
+
 const personSchema = {
   "@type": "Person",
   "@id": "https://saltandscale.consulting/#founder",
   name: "Gabriel Rosales",
   jobTitle: "Founder & Principal Engineer",
   worksFor: { "@id": "https://saltandscale.consulting/#org" },
-  image: "https://saltandscale.consulting/headshot-square.jpg",
+  image: headshotUrl,
   sameAs: [
     "https://www.linkedin.com/in/gabriel-rosales/",
     "https://github.com/notoriousgor",
@@ -138,15 +142,18 @@ const partnerBadges = [
 
       <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
 
-        {/* Portrait — wrapper isolates the face-focus zoom from object-cover */}
+        {/* Portrait — wrapper isolates the face-focus zoom from object-cover.
+            Widths account for the 2.4× CSS zoom so the rendered face isn't
+            soft on Retina. Eager-loaded because this is the LCP element
+            above the fold on /about/. */}
         <div class="relative">
           <div class="aspect-[4/5] bg-cream overflow-hidden">
             <div class="w-full h-full scale-[2.4] origin-[50%_18%]">
               <Image
                 src={headshot}
                 alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
-                widths={[480, 720]}
-                sizes="(min-width: 768px) 75vw, 100vw"
+                widths={[720, 1200, 1800, 2400]}
+                sizes="(min-width: 768px) 42vw, 100vw"
                 format="avif"
                 quality={72}
                 loading="eager"

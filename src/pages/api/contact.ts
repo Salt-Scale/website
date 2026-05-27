@@ -10,10 +10,7 @@ interface ContactPayload {
   phone?: string;
   service?: string;
   ['project-type']?: string;
-  timeline?: string;
-  budget?: string;
   message?: string;
-  additional?: string;
   ['bot-field']?: string;
 }
 
@@ -49,7 +46,10 @@ const RESEND_TIMEOUT_MS = 8000;
 const RATE_LIMIT_SECONDS = 30;
 
 function isValidEmail(value: string): boolean {
-  return /.+@.+\..+/.test(value);
+  // Loose-but-not-permissive: requires non-empty local + host + TLD with no
+  // whitespace. Resend rejects truly bad addresses; this just keeps obvious
+  // junk out of the inbox.
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
 function isValidPhone(value: string): boolean {
@@ -93,18 +93,30 @@ function labelFor(map: Record<string, string>, value: string): string {
   return map[value] ?? humanize(value);
 }
 
-// In production, only the site's own origin can POST. In dev, allow any origin
-// so localhost / preview deploys work without ceremony.
-const ALLOWED_ORIGIN = import.meta.env.PROD
-  ? 'https://saltandscale.consulting'
-  : '*';
+// CORS allowlist. In dev we echo any origin so localhost works without
+// ceremony; in prod we only echo origins that match the canonical apex,
+// the `www.` variant, or a Vercel preview deploy.
+const PROD_ORIGIN_ALLOWLIST = [
+  'https://saltandscale.consulting',
+  'https://www.saltandscale.consulting',
+];
+const PROD_ORIGIN_REGEX = /^https:\/\/[a-z0-9-]+\.vercel\.app$/;
 
-function json(body: unknown, status = 200): Response {
+function resolveAllowedOrigin(requestOrigin: string | null): string {
+  if (!import.meta.env.PROD) return requestOrigin || '*';
+  if (!requestOrigin) return PROD_ORIGIN_ALLOWLIST[0];
+  if (PROD_ORIGIN_ALLOWLIST.includes(requestOrigin)) return requestOrigin;
+  if (PROD_ORIGIN_REGEX.test(requestOrigin)) return requestOrigin;
+  return PROD_ORIGIN_ALLOWLIST[0];
+}
+
+function json(body: unknown, status = 200, requestOrigin: string | null = null): Response {
   return new Response(JSON.stringify(body), {
     status,
     headers: {
       'Content-Type': 'application/json',
-      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Origin': resolveAllowedOrigin(requestOrigin),
+      Vary: 'Origin',
     },
   });
 }
@@ -127,10 +139,7 @@ function buildEmailHtml(payload: {
   phone: string;
   service: string;
   projectType: string;
-  timeline: string;
-  budget: string;
   message: string;
-  additional: string;
 }): string {
   const rows: Array<[string, string]> = [
     ['Name', payload.name],
@@ -139,8 +148,6 @@ function buildEmailHtml(payload: {
     ['Phone', payload.phone],
     ['Service', labelFor(SERVICE_LABELS, payload.service)],
     ['Project type', labelFor(PROJECT_TYPE_LABELS, payload.projectType)],
-    ['Timeline', payload.timeline],
-    ['Budget', payload.budget],
   ].filter(([, v]) => Boolean(v));
 
   const detailRows = rows
@@ -158,14 +165,6 @@ function buildEmailHtml(payload: {
       <div style="padding:24px;background:#F7F1E1;border-left:3px solid #C8893E;margin:0 0 16px;">
         <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#8e5f22;font-weight:600;">Project details</p>
         <p style="margin:0;font-family:Georgia,serif;font-size:16px;line-height:1.6;color:#2A2F35;white-space:pre-wrap;">${escapeHtml(payload.message)}</p>
-      </div>`
-    : '';
-
-  const additionalBlock = payload.additional
-    ? `
-      <div style="padding:16px 24px;background:#FFFFFF;border:1px solid #e8e2d0;margin:0 0 16px;">
-        <p style="margin:0 0 8px;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:11px;text-transform:uppercase;letter-spacing:0.15em;color:#8e5f22;font-weight:600;">Additional notes</p>
-        <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:1.55;color:#373E45;white-space:pre-wrap;">${escapeHtml(payload.additional)}</p>
       </div>`
     : '';
 
@@ -215,8 +214,6 @@ function buildEmailHtml(payload: {
             </td>
           </tr>
 
-          ${additionalBlock ? `<tr><td style="padding:8px 32px 0;">${additionalBlock}</td></tr>` : ''}
-
           <!-- Footer -->
           <tr>
             <td style="padding:24px 32px 32px;border-top:1px solid #e8e2d0;">
@@ -244,17 +241,10 @@ function buildEmailText(payload: Record<string, string>): string {
   if (payload.phone) lines.push(`Phone: ${payload.phone}`);
   if (payload.service) lines.push(`Service: ${labelFor(SERVICE_LABELS, payload.service)}`);
   if (payload.projectType) lines.push(`Project type: ${labelFor(PROJECT_TYPE_LABELS, payload.projectType)}`);
-  if (payload.timeline) lines.push(`Timeline: ${payload.timeline}`);
-  if (payload.budget) lines.push(`Budget: ${payload.budget}`);
   lines.push('');
   if (payload.message) {
     lines.push('--- Project details ---');
     lines.push(payload.message);
-    lines.push('');
-  }
-  if (payload.additional) {
-    lines.push('--- Additional notes ---');
-    lines.push(payload.additional);
     lines.push('');
   }
   lines.push('Reply to this email to respond directly.');
@@ -278,10 +268,11 @@ function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise
 }
 
 export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
+  const origin = request.headers.get('origin');
   try {
     const contentType = request.headers.get('content-type') || '';
     if (!contentType.includes('application/json')) {
-      return json({ error: 'Unsupported content type' }, 415);
+      return json({ error: 'Unsupported content type' }, 415, origin);
     }
 
     const body = (await request.json()) as ContactPayload;
@@ -290,12 +281,12 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
     // rate-limit cookie here so bots can't spam-probe cheaply.
     if (body['bot-field']) {
       setRateLimitCookie(cookies);
-      return json({ ok: true }, 200);
+      return json({ ok: true }, 200, origin);
     }
 
     // Rate limit check (BEFORE expensive work like Resend call).
     if (cookies.get('cfrm')?.value) {
-      return json({ error: 'Too many requests' }, 429);
+      return json({ error: 'Too many requests' }, 429, origin);
     }
 
     const payload = {
@@ -305,10 +296,7 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
       phone: sanitize(body.phone, FIELD_CAPS.short),
       service: sanitize(body.service, FIELD_CAPS.short),
       projectType: sanitize(body['project-type'], FIELD_CAPS.short),
-      timeline: sanitize(body.timeline, FIELD_CAPS.medium),
-      budget: sanitize(body.budget, FIELD_CAPS.medium),
       message: sanitize(body.message, FIELD_CAPS.long),
-      additional: sanitize(body.additional, FIELD_CAPS.long),
     };
 
     // Required fields
@@ -317,15 +305,18 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
     if (!payload.email) missing.push('email');
     if (!payload.message) missing.push('message');
     if (missing.length > 0) {
-      return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400);
+      return json({ error: `Missing required fields: ${missing.join(', ')}` }, 400, origin);
     }
 
-    // Format validation
+    // Format validation. A failed format check is still a "submit attempt,"
+    // so we set the rate-limit cookie to keep an attacker from cheaply
+    // probing the validator.
     const invalid: string[] = [];
     if (!isValidEmail(payload.email)) invalid.push('email');
     if (payload.phone && !isValidPhone(payload.phone)) invalid.push('phone');
     if (invalid.length > 0) {
-      return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
+      setRateLimitCookie(cookies);
+      return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422, origin);
     }
 
     // Resend config
@@ -337,7 +328,7 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
 
     if (!RESEND_API_KEY || !CONTACT_TO) {
       console.error('[contact] missing RESEND_API_KEY or CONTACT_TO');
-      return json({ error: 'Email service not configured' }, 503);
+      return json({ error: 'Email service not configured' }, 503, origin);
     }
 
     const resend = new Resend(RESEND_API_KEY);
@@ -362,33 +353,35 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
     } catch (err) {
       console.error('[contact] Resend timeout or network error:', err);
       // No rate-limit cookie — let the user retry immediately.
-      return json({ error: 'Failed to send email' }, 502);
+      return json({ error: 'Failed to send email' }, 502, origin);
     }
 
     if (result.error) {
       console.error('[contact] Resend API error:', result.error);
       // No rate-limit cookie — Resend reported error, retry is fine.
-      return json({ error: 'Failed to send email' }, 502);
+      return json({ error: 'Failed to send email' }, 502, origin);
     }
 
     // Success path: set rate-limit cookie now so the user can't spam-submit.
     setRateLimitCookie(cookies);
     console.log('[contact] sent', { id: result.data?.id, from: clientAddress });
-    return json({ ok: true }, 200);
+    return json({ ok: true }, 200, origin);
   } catch (err) {
     console.error('[contact] server error:', err);
-    return json({ error: 'Server error' }, 500);
+    return json({ error: 'Server error' }, 500, origin);
   }
 };
 
 // CORS preflight
-export const OPTIONS: APIRoute = async () => {
+export const OPTIONS: APIRoute = async ({ request }) => {
+  const origin = request.headers.get('origin');
   return new Response(null, {
     status: 204,
     headers: {
-      'Access-Control-Allow-Origin': ALLOWED_ORIGIN,
+      'Access-Control-Allow-Origin': resolveAllowedOrigin(origin),
       'Access-Control-Allow-Methods': 'POST, OPTIONS',
       'Access-Control-Allow-Headers': 'Content-Type',
+      Vary: 'Origin',
     },
   });
 };

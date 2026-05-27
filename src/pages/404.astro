@@ -2,20 +2,71 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-  <section class="mx-auto max-w-[720px] px-4 py-24 text-center">
-    <div class="inline-flex items-center justify-center gap-2.5 px-3.5 py-1.5 bg-sage/10 border border-sage/20 rounded-full mb-6">
-      <span class="w-1.5 h-1.5 bg-sage rounded-full"></span>
-      <span class="text-[12px] leading-[1] font-medium text-sage">Page not found</span>
+<Layout
+  title="Page not found · Salt & Scale"
+  description="The link may be broken or the page may have moved. Try the homepage or the navigation above."
+>
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-24 pb-32 md:pt-32 md:pb-40">
+
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">404 · Page not found</p>
+      </div>
+
+      <h1 class="text-display-1 max-w-[18ch] mb-10">
+        That page <span class="italic font-normal text-saffron">isn&rsquo;t here</span>.
+      </h1>
+
+      <p class="text-[clamp(1.125rem,1.5vw,1.375rem)] leading-[1.55] text-paper/75 max-w-[54ch] font-light mb-12 md:mb-14">
+        The link may be broken or the page may have moved. Try the homepage, the navigation above, or jump to one of the destinations below.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-16 md:mb-20">
+        <a
+          href="/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Go home
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/contact/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron"
+        >
+          Start a project
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <div class="grid sm:grid-cols-2 md:grid-cols-4 gap-8 md:gap-10 pt-12 border-t border-paper/15">
+        <div>
+          <p class="text-eyebrow text-saffron mb-4">Services</p>
+          <ul class="space-y-2">
+            <li><a href="/services/business-websites/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Websites for service businesses</a></li>
+            <li><a href="/services/" class="text-[0.9375rem] text-paper/55 hover:text-saffron transition-colors">All services →</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-eyebrow text-saffron mb-4">Work</p>
+          <ul class="space-y-2">
+            <li><a href="/work/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Selected case studies</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-eyebrow text-saffron mb-4">Insights</p>
+          <ul class="space-y-2">
+            <li><a href="/insights/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">From the field</a></li>
+          </ul>
+        </div>
+        <div>
+          <p class="text-eyebrow text-saffron mb-4">Company</p>
+          <ul class="space-y-2">
+            <li><a href="/about/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">About</a></li>
+            <li><a href="/contact/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Contact</a></li>
+          </ul>
+        </div>
+      </div>
     </div>
-    <h1 class="text-5xl font-bold mb-4">Page not found</h1>
-    <p class="text-lg text-charcoal/70 mb-8">The link may be broken or the page may have moved. Try the homepage or the navigation above.</p>
-    <a href="/" class="inline-flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-sage to-copper text-white font-semibold rounded-xl shadow-lg hover:shadow-xl transition">
-      Go home
-      <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-    </a>
   </section>
 </Layout>
-
-
-

@@ -32,9 +32,14 @@ const canonicalHref = Astro.site
 const ogTitle = title;
 
 const siteUrl = Astro.site ? new URL('/', Astro.site).toString() : 'https://saltandscale.consulting/';
+const absolute = (path: string) =>
+  Astro.site ? new URL(path, Astro.site).toString() : `https://saltandscale.consulting${path}`;
 
 const currentPath = Astro.url.pathname;
 
+// JSON-LD `@id` URIs are stable entity identifiers, not URLs that get fetched —
+// they intentionally stay pinned to the canonical domain even on preview deploys
+// so structured-data graph identity is consistent.
 const defaultGraph = [
   {
     '@type': 'Organization',
@@ -43,7 +48,7 @@ const defaultGraph = [
     url: siteUrl,
     logo: {
       '@type': 'ImageObject',
-      url: 'https://saltandscale.consulting/icons/icon-c-monogram.svg',
+      url: absolute('/icons/icon-c-monogram.svg'),
     },
     founder: { '@id': 'https://saltandscale.consulting/#founder' },
     areaServed: 'United States',
@@ -65,7 +70,7 @@ const defaultGraph = [
     name: 'Gabriel Rosales',
     jobTitle: 'Founder & Principal Engineer',
     worksFor: { '@id': 'https://saltandscale.consulting/#org' },
-    image: 'https://saltandscale.consulting/headshot-square.jpg',
+    image: absolute('/headshot-square.jpg'),
     sameAs: [
       'https://www.linkedin.com/in/gabriel-rosales/',
       'https://github.com/notoriousgor',
@@ -82,11 +87,7 @@ const defaultGraph = [
   },
 ];
 
-const customGraph = schema
-  ? Array.isArray(schema)
-    ? schema
-    : [schema]
-  : [];
+const customGraph = schema ? [schema].flat() : [];
 
 const breadcrumbGraph = breadcrumbs && breadcrumbs.length
   ? [
@@ -96,7 +97,7 @@ const breadcrumbGraph = breadcrumbs && breadcrumbs.length
           '@type': 'ListItem',
           position: i + 1,
           name: b.name,
-          item: Astro.site ? new URL(b.url, Astro.site).toString() : b.url,
+          item: absolute(b.url),
         })),
       },
     ]
@@ -106,13 +107,18 @@ const graph = {
   '@context': 'https://schema.org',
   '@graph': [...defaultGraph, ...customGraph, ...breadcrumbGraph],
 };
+
+// Defense in depth — escape the only character sequence that can break out of
+// a <script> tag from inside a JSON literal. Even with `set:html` the JSON.stringify
+// output is safe except for `</`, which we encode as \u003c per spec.
+const graphJson = JSON.stringify(graph).replace(/</g, '\\u003c');
 ---
 
 <!doctype html>
 <html lang="en" class="scroll-smooth">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
@@ -133,10 +139,8 @@ const graph = {
     <meta name="twitter:image" content={ogImage} />
     <link rel="dns-prefetch" href="https://vitals.vercel-insights.com" />
     <link rel="preconnect" href="https://vitals.vercel-insights.com" crossorigin />
-    <link rel="preload" href="/fonts/inter-var.woff2" as="font" type="font/woff2" crossorigin>
-    <link rel="preload" href="/fonts/playfair-var.woff2" as="font" type="font/woff2" crossorigin>
     <Analytics />
-    <script type="application/ld+json" set:html={JSON.stringify(graph)}></script>
+    <script type="application/ld+json" set:html={graphJson}></script>
   </head>
   <body class="bg-paper font-sans text-charcoal antialiased">
     <a href="#main" class="sr-only focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-[60] inline-flex items-center bg-saffron px-4 py-2 text-ink font-medium">Skip to content</a>
@@ -374,15 +378,20 @@ const graph = {
 
       const mainEl = document.getElementById('main');
       const headerEl = document.querySelector('header');
+      const footerEl = document.querySelector('footer');
+      const skipLinkEl = document.querySelector('a[href="#main"]');
 
       const openMenu = () => {
         menu?.classList.remove('hidden');
         openBtn?.setAttribute('aria-expanded','true');
         closeBtn?.focus();
         document.body.style.overflow = 'hidden';
-        // WCAG 2.2 §9.2 — inert siblings so screen readers can't escape the dialog
+        // WCAG 2.2 §9.2 — inert every focusable sibling of the dialog so
+        // keyboard + AT can't escape behind it (skip-link, header, main, footer).
+        if (skipLinkEl) skipLinkEl.inert = true;
         if (mainEl) mainEl.inert = true;
         if (headerEl) headerEl.inert = true;
+        if (footerEl) footerEl.inert = true;
       };
 
       const closeMenu = () => {
@@ -390,8 +399,10 @@ const graph = {
         openBtn?.setAttribute('aria-expanded','false');
         openBtn?.focus();
         document.body.style.overflow = '';
+        if (skipLinkEl) skipLinkEl.inert = false;
         if (mainEl) mainEl.inert = false;
         if (headerEl) headerEl.inert = false;
+        if (footerEl) footerEl.inert = false;
       };
 
       openBtn?.addEventListener('click', openMenu);
@@ -402,11 +413,16 @@ const graph = {
         if (e.key === 'Escape') closeMenu();
       });
 
-      // Scripture of the Day (idle to avoid impacting metrics)
+      // Scripture of the Day — idle, low-priority, no-referrer.
+      // Disclosed in /legal/privacy/. Cached at the HTTP layer (the API
+      // returns a daily payload) so we drop the `no-store` that was forcing
+      // a full round-trip on every page view.
       const sotdEl = document.getElementById('sotd-verse');
       const loadSotd = () => {
         if (!sotdEl) return;
-        fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily', { cache: 'no-store' })
+        fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily', {
+          referrerPolicy: 'no-referrer',
+        })
           .then(r => r.json())
           .then(d => {
             const details = d?.verse?.details || d?.verses?.[0] || d;

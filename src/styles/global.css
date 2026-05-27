@@ -259,22 +259,11 @@
 }
 
 @layer base {
-  /* Self-hosted variable fonts */
-  @font-face {
-    font-family: "Inter Variable";
-    src: url("/fonts/inter-var.woff2") format("woff2");
-    font-weight: 100 900;
-    font-style: normal;
-    font-display: swap;
-  }
-
-  @font-face {
-    font-family: "Playfair Display Variable";
-    src: url("/fonts/playfair-var.woff2") format("woff2");
-    font-weight: 400 900;
-    font-style: normal;
-    font-display: swap;
-  }
+  /* "Inter Variable" + "Playfair Display Variable" @font-face rules are
+     provided by the `@fontsource-variable/inter` and
+     `@fontsource-variable/playfair-display` imports at the top of this file.
+     Fontsource ships subset-split woff2 with proper unicode-range, so the
+     browser only downloads the latin slice for English content. */
 
   html {
     scroll-behavior: smooth;

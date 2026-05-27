@@ -12,6 +12,7 @@ const insights = defineCollection({
     tags: z.array(z.string()).default([]),
     ogImage: z.string().optional(),
     draft: z.boolean().default(false),
+    takeaways: z.array(z.string()).optional(),
   }),
 });
 

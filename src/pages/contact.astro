@@ -243,7 +243,7 @@ const steps = [
                   id="phone"
                   name="phone"
                   type="tel"
-                  inputmode="numeric"
+                  inputmode="tel"
                   autocomplete="tel"
                   maxlength="14"
                   placeholder="Your phone number"
@@ -259,7 +259,6 @@ const steps = [
                 <select
                   id="service"
                   name="service"
-                  value={service}
                   class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 >
                   <option value="">Select a service</option>
@@ -279,7 +278,6 @@ const steps = [
                 <select
                   id="project-type"
                   name="project-type"
-                  value={projectType}
                   class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
                 >
                   <option value="">Select project type</option>
@@ -347,7 +345,7 @@ const steps = [
     if (digits.length >= 7) parts.push(digits.slice(6, 10));
     return parts.join('-');
   };
-  const isValidEmail = (value) => /.+@.+\..+/.test(String(value || ''));
+  const isValidEmail = (value) => /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(value || ''));
   const isValidPhone = (value) => String(value || '').replace(/\D/g, '').length === 10;
 
   const contactForm = document.getElementById('contact-form');
@@ -441,11 +439,17 @@ const steps = [
 
       if (Object.values(errors).some(Boolean)) {
         showToast('Please correct the highlighted fields.', 'error');
-        (errors.name && nameInput?.focus()) ||
-        (errors.email && emailInput?.focus()) ||
-        (errors.company && companyInput?.focus()) ||
-        (errors.phone && phoneInput?.focus()) ||
-        (errors.message && messageInput?.focus());
+        // Focus the first invalid field so a screen reader announces it via
+        // aria-describedby (set by setFieldError above).
+        const fieldOrder = [
+          [errors.name, nameInput],
+          [errors.email, emailInput],
+          [errors.company, companyInput],
+          [errors.phone, phoneInput],
+          [errors.message, messageInput],
+        ];
+        const firstInvalid = fieldOrder.find(([hasError]) => hasError);
+        if (firstInvalid && firstInvalid[1]) firstInvalid[1].focus();
         submitBtn.disabled = false;
         return;
       }

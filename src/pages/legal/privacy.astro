@@ -6,11 +6,13 @@ const breadcrumbs = [
   { name: 'Legal', url: '/legal/privacy/' },
   { name: 'Privacy', url: '/legal/privacy/' },
 ];
+
+const lastReviewed = 'May 2026';
 ---
 
 <Layout
   title="Privacy Policy · Salt & Scale"
-  description="Privacy policy for Salt & Scale, an AI-accelerated web design and development consultancy based in Houston, TX."
+  description="What Salt & Scale collects, how we use it, who we share it with, and how to contact us about your data."
   canonicalPath="/legal/privacy/"
   breadcrumbs={breadcrumbs}
 >
@@ -42,7 +44,7 @@ const breadcrumbs = [
       <h1 class="text-display-2 text-charcoal mb-4">
         Privacy <span class="italic font-normal text-saffron-deep">policy</span>.
       </h1>
-      <p class="text-caption text-stone">Last reviewed: May 2026</p>
+      <p class="text-caption text-stone">Last reviewed: {lastReviewed}</p>
     </div>
   </section>
 
@@ -53,9 +55,66 @@ const breadcrumbs = [
     <div class="mx-auto max-w-[680px] px-6 md:px-10 pb-20 md:pb-28">
       <article class="prose-editorial">
         <p>
-          This page will contain the full privacy policy for Salt &amp; Scale. Please check back or contact
-          <a href="mailto:gabe@saltandscale.consulting">gabe@saltandscale.consulting</a> with any questions in the
-          meantime.
+          Salt &amp; Scale (&ldquo;we,&rdquo; &ldquo;our&rdquo;) is a solo consultancy based in Houston, Texas. This policy explains what data we collect when you use <a href="https://saltandscale.consulting/">saltandscale.consulting</a>, why we collect it, who we share it with, and how to reach us with questions or requests.
+        </p>
+
+        <h2>What we collect and why</h2>
+        <p>
+          <strong>Contact-form submissions.</strong> When you submit the form at <a href="/contact/">/contact/</a>, we collect the fields you fill in: your name, email address, optional company, optional phone number, selected service and project type, and your free-text project description. We use this information solely to reply to you, scope possible work, and (if we proceed) deliver the engagement.
+        </p>
+        <p>
+          <strong>Analytics.</strong> We use <a href="https://vercel.com/docs/analytics" rel="noopener noreferrer" target="_blank">Vercel Analytics</a> to collect aggregated, privacy-friendly traffic data: page views, anonymized geographic region, device class, referrer, and Core Web Vitals. Vercel Analytics does not use cookies and does not build cross-site profiles of visitors.
+        </p>
+        <p>
+          <strong>Server logs.</strong> When you load a page or submit the form, the Vercel hosting platform records the request (IP address, user agent, timestamp, requested path, response code) for security and operational purposes. These logs are retained on the Vercel platform under their standard retention policy.
+        </p>
+        <p>
+          <strong>Cookies.</strong> The site sets one functional cookie, <code>cfrm</code>, on the <code>/api/contact</code> endpoint after a submit attempt. It contains no personal data, expires in 30 seconds, and exists only to rate-limit repeat submissions. We do not set advertising or cross-site tracking cookies.
+        </p>
+
+        <h2>Third parties we share data with</h2>
+        <p>
+          <strong>Resend</strong> (<a href="https://resend.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">privacy policy</a>). Contact-form submissions are delivered to our inbox through Resend&rsquo;s email API. The contents of your submission transit Resend&rsquo;s infrastructure and may be stored briefly in their logs for deliverability and abuse-prevention purposes.
+        </p>
+        <p>
+          <strong>Vercel</strong> (<a href="https://vercel.com/legal/privacy-policy" rel="noopener noreferrer" target="_blank">privacy policy</a>). The site is hosted on Vercel; all requests transit Vercel&rsquo;s edge network and serverless infrastructure.
+        </p>
+        <p>
+          <strong>OurManna</strong> (<a href="https://beta.ourmanna.com/" rel="noopener noreferrer" target="_blank">site</a>). The footer of each page makes one background request to <code>beta.ourmanna.com</code> to fetch a daily Bible verse. The request is sent with a <code>no-referrer</code> policy, so OurManna receives your IP address and user agent but not the page you came from. We do not share any personal information with OurManna. You can block this request with any ad-blocker or privacy extension without affecting the rest of the site.
+        </p>
+
+        <h2>How long we keep contact-form data</h2>
+        <p>
+          We retain inbound contact-form emails in our inbox for as long as the conversation is active and for a reasonable period afterward for record-keeping (typically 12&ndash;24 months). If we engage on a project, we may keep records for longer as required by our accountants or by Texas law.
+        </p>
+
+        <h2>How we protect it</h2>
+        <p>
+          All traffic to the site is served over HTTPS with HSTS. The contact API rejects requests over insecure channels and includes a same-origin CSRF posture, a basic honeypot for bots, and a short-lived rate-limit cookie. The Vercel platform provides DDoS mitigation and infrastructure security.
+        </p>
+
+        <h2>Your rights</h2>
+        <p>
+          You can ask us at any time to (a) tell you what data we hold about you, (b) correct anything that&rsquo;s wrong, or (c) delete it. We will respond within a reasonable timeframe, normally inside 30 days. If you submitted the contact form and would like the resulting email and any related notes removed, just reply to that thread or email us at the address below.
+        </p>
+
+        <h2>Children</h2>
+        <p>
+          The site is intended for business owners and operators. We do not knowingly collect information from children under 13.
+        </p>
+
+        <h2>Changes to this policy</h2>
+        <p>
+          When we update this policy we revise the &ldquo;Last reviewed&rdquo; date at the top. For material changes (new categories of data, new third parties, new uses), we will note the change in a visible header on this page for at least 30 days.
+        </p>
+
+        <h2>Contact</h2>
+        <p>
+          Questions, complaints, or data requests:
+          <br />
+          <a href="mailto:gabe@saltandscale.consulting">gabe@saltandscale.consulting</a>
+          <br />
+          Gabriel Rosales, Salt &amp; Scale &middot; Houston, TX
         </p>
       </article>
 

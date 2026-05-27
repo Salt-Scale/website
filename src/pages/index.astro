@@ -52,11 +52,11 @@ const caseStudies = [
 
 // "Who this is for" — explicit audience markers
 const audienceMarkers = [
-  "Solo tradespeople &amp; one-truck operators",
+  "Solo tradespeople & one-truck operators",
   "Two- to ten-person service crews",
   "Family-run plumbing, HVAC, electrical, roofing",
   "Independent contractors and remodelers",
-  "Local landscaping, lawn &amp; pool operators",
+  "Local landscaping, lawn & pool operators",
   "Drain cleaning, pest control, locksmith shops",
 ];
 
@@ -244,7 +244,7 @@ const pillars = [
           {audienceMarkers.map((marker) => (
             <li class="flex items-baseline gap-3">
               <span class="text-saffron-deep numeral text-sm shrink-0" aria-hidden="true">+</span>
-              <span set:html={marker} />
+              <span>{marker}</span>
             </li>
           ))}
         </ul>
@@ -479,15 +479,18 @@ const pillars = [
 
       <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
 
-        {/* Portrait — wrapper isolates the face-focus zoom from object-cover */}
+        {/* Portrait — wrapper isolates the face-focus zoom from object-cover.
+            Widths account for the 2.4× CSS zoom: a 720px source rendered at
+            2.4× looked soft. We now ship enough resolution for a Retina
+            column at the largest viewport size. */}
         <div class="relative">
           <div class="aspect-[4/5] bg-cream overflow-hidden">
             <div class="w-full h-full scale-[2.4] origin-[50%_18%]">
               <Image
                 src={headshot}
                 alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
-                widths={[480, 720]}
-                sizes="(min-width: 768px) 75vw, 100vw"
+                widths={[720, 1200, 1800, 2400]}
+                sizes="(min-width: 768px) 50vw, 100vw"
                 format="avif"
                 quality={72}
                 loading="lazy"

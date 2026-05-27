@@ -9,16 +9,6 @@ const breadcrumbs = [
   { name: "Services", url: "/services/" },
 ];
 
-const schema = [
-  {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://saltandscale.consulting/" },
-      { "@type": "ListItem", position: 2, name: "Services", item: "https://saltandscale.consulting/services/" },
-    ],
-  },
-];
-
 const ecommerceLinks = [
   {
     href: "/services/shopify-development/",
@@ -58,7 +48,6 @@ const ecommerceLinks = [
   description={description}
   canonicalPath="/services/"
   breadcrumbs={breadcrumbs}
-  schema={schema}
 >
 
   {/* Breadcrumb */}

@@ -13,25 +13,35 @@ export async function getStaticPaths() {
 const { entry } = Astro.props;
 const { Content } = await render(entry);
 
-const { title, description, datePublished, dateModified, author, tags, ogImage } = entry.data;
+const { title, description, datePublished, dateModified, author, tags, ogImage, takeaways } = entry.data;
 
-// Reading time: rough estimate at 200 wpm
-const wordCount = (entry.body ?? '').split(/\s+/).length;
+// Reading time: rough estimate at 200 wpm. Strip markdown punctuation and
+// link/image URLs so we count actual prose, not syntax.
+const proseBody = (entry.body ?? '')
+  .replace(/```[\s\S]*?```/g, ' ')
+  .replace(/`[^`]*`/g, ' ')
+  .replace(/!?\[([^\]]*)\]\([^)]*\)/g, '$1')
+  .replace(/[#*_>~`[\](){}|]/g, ' ')
+  .replace(/https?:\/\/\S+/g, ' ');
+const wordCount = proseBody.split(/\s+/).filter(Boolean).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 200));
 
-// Related articles: same tag, exclude current
+// Related articles: same tag, exclude current.
 const allPosts = await getCollection('insights', ({ data }) => !data.draft);
 const relatedPosts = allPosts
-  .filter((p) => p.slug !== entry.id && p.data.tags.some((t) => tags.includes(t)))
+  .filter((p) => p.id !== entry.id && p.data.tags.some((t) => tags.includes(t)))
   .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
   .slice(0, 3);
 
-const canonicalUrl = `https://saltandscale.consulting/insights/${entry.id}/`;
+const canonicalPath = `/insights/${entry.id}/`;
+const canonicalUrl = Astro.site
+  ? new URL(canonicalPath, Astro.site).toString()
+  : canonicalPath;
 
 const breadcrumbs = [
   { name: 'Home', url: '/' },
   { name: 'Insights', url: '/insights/' },
-  { name: title, url: `/insights/${entry.id}/` },
+  { name: title, url: canonicalPath },
 ];
 
 const articleSchema = {
@@ -52,9 +62,6 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
   month: 'long',
   day: 'numeric',
 });
-
-// Pull optional key takeaways from frontmatter if available (graceful if missing)
-const takeaways = (entry.data as any).takeaways as string[] | undefined;
 ---
 
 <Layout
@@ -179,7 +186,7 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
           {relatedPosts.map((related, i) => (
             <li>
               <a
-                href={`/insights/${related.slug}/`}
+                href={`/insights/${related.id}/`}
                 class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 group hover:text-saffron-deep transition-colors duration-150"
               >
                 <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
