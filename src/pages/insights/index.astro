@@ -150,7 +150,7 @@ const dateFormatter = new Intl.DateTimeFormat('en-US', {
             {posts.map((post, i) => (
               <li>
                 <a
-                  href={`/insights/${post.slug}/`}
+                  href={`/insights/${post.id}/`}
                   class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 md:py-10 group hover:text-saffron-deep transition-colors duration-150"
                 >
                   <span class="numeral text-saffron-deep text-[1.875rem] leading-none">{String(i + 1).padStart(2, '0')}</span>

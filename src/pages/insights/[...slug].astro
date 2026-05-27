@@ -5,7 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 export async function getStaticPaths() {
   const posts = await getCollection('insights', ({ data }) => !data.draft);
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
@@ -16,22 +16,22 @@ const { Content } = await render(entry);
 const { title, description, datePublished, dateModified, author, tags, ogImage } = entry.data;
 
 // Reading time: rough estimate at 200 wpm
-const wordCount = entry.body.split(/\s+/).length;
+const wordCount = (entry.body ?? '').split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 200));
 
 // Related articles: same tag, exclude current
 const allPosts = await getCollection('insights', ({ data }) => !data.draft);
 const relatedPosts = allPosts
-  .filter((p) => p.slug !== entry.slug && p.data.tags.some((t) => tags.includes(t)))
+  .filter((p) => p.slug !== entry.id && p.data.tags.some((t) => tags.includes(t)))
   .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
   .slice(0, 3);
 
-const canonicalUrl = `https://saltandscale.consulting/insights/${entry.slug}/`;
+const canonicalUrl = `https://saltandscale.consulting/insights/${entry.id}/`;
 
 const breadcrumbs = [
   { name: 'Home', url: '/' },
   { name: 'Insights', url: '/insights/' },
-  { name: title, url: `/insights/${entry.slug}/` },
+  { name: title, url: `/insights/${entry.id}/` },
 ];
 
 const articleSchema = {
@@ -61,7 +61,7 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
   title={`${title} · Salt & Scale`}
   description={description}
   ogImage={ogImage}
-  canonicalPath={`/insights/${entry.slug}/`}
+  canonicalPath={`/insights/${entry.id}/`}
   breadcrumbs={breadcrumbs}
   schema={articleSchema}
 >
