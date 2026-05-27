@@ -312,7 +312,8 @@ const graphJson = JSON.stringify(graph).replace(/</g, '\\u003c');
             <p class="text-eyebrow text-saffron mb-6">Services</p>
             <ul class="flex flex-col gap-3">
               <li><a href="/services/business-websites/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Websites for service businesses</a></li>
-              <li><a href="/services/" class="text-[0.9375rem] text-paper/55 hover:text-saffron transition-colors">Ecommerce engineering &rarr;</a></li>
+              <li><a href="/services/adobe-commerce/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Ecommerce engineering</a></li>
+              <li class="mt-1"><a href="/services/" class="text-[0.9375rem] text-saffron hover:text-cream transition-colors inline-flex items-baseline gap-1">All services <span aria-hidden="true">→</span></a></li>
             </ul>
           </div>
 
@@ -417,23 +418,17 @@ const graphJson = JSON.stringify(graph).replace(/</g, '\\u003c');
         if (e.key === 'Escape') closeMenu();
       });
 
-      // Scripture of the Day — idle, low-priority, no-referrer.
-      // Disclosed in /legal/privacy/. Cached at the HTTP layer (the API
-      // returns a daily payload) so we drop the `no-store` that was forcing
-      // a full round-trip on every page view.
+      // Scripture of the Day — fetched from our own /api/sotd route, which
+      // proxies the upstream and caches it at the Vercel edge for 6h. The
+      // visitor never makes a third-party request from the browser.
       const sotdEl = document.getElementById('sotd-verse');
       const loadSotd = () => {
         if (!sotdEl) return;
-        fetch('https://beta.ourmanna.com/api/v1/get/?format=json&order=daily', {
-          referrerPolicy: 'no-referrer',
-        })
-          .then(r => r.json())
+        fetch('/api/sotd/')
+          .then(r => (r.ok ? r.json() : null))
           .then(d => {
-            const details = d?.verse?.details || d?.verses?.[0] || d;
-            const text = details?.text || details?.verse || '';
-            const ref = details?.reference || details?.display_ref || '';
-            if (text) {
-              sotdEl.textContent = ref ? `"${text}" — ${ref}` : `"${text}"`;
+            if (d && d.text) {
+              sotdEl.textContent = d.reference ? `"${d.text}" — ${d.reference}` : `"${d.text}"`;
             } else {
               sotdEl.remove();
             }
