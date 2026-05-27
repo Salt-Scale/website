@@ -164,7 +164,9 @@ const graph = {
             { href: '/about/', label: 'About' },
             { href: '/insights/', label: 'Insights' },
           ].map((item) => {
-            const isActive = currentPath.startsWith(item.href);
+            // item.href always ends with '/', so startsWith correctly matches
+            // sub-pages (`/services/foo/`) without false-matching siblings (`/services-archive/`).
+            const isActive = currentPath === item.href || currentPath.startsWith(item.href);
             return (
               <a
                 href={item.href}
@@ -217,7 +219,9 @@ const graph = {
             { href: '/about/', label: 'About' },
             { href: '/insights/', label: 'Insights' },
           ].map((item) => {
-            const isActive = currentPath.startsWith(item.href);
+            // item.href always ends with '/', so startsWith correctly matches
+            // sub-pages (`/services/foo/`) without false-matching siblings (`/services-archive/`).
+            const isActive = currentPath === item.href || currentPath.startsWith(item.href);
             return (
               <a
                 href={item.href}

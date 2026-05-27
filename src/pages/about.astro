@@ -130,19 +130,21 @@ const partnerBadges = [
 
       <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
 
-        {/* Portrait */}
+        {/* Portrait — wrapper isolates the face-focus zoom from object-cover */}
         <div class="relative">
           <div class="aspect-[4/5] bg-cream overflow-hidden">
-            <Image
-              src={headshot}
-              alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
-              widths={[320, 480, 720]}
-              sizes="(min-width: 768px) 40vw, 100vw"
-              format="avif"
-              quality={62}
-              loading="eager"
-              class="w-full h-full object-cover scale-[1.85] origin-[50%_22%]"
-            />
+            <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
+              <Image
+                src={headshot}
+                alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
+                widths={[320, 480, 720]}
+                sizes="(min-width: 768px) 40vw, 100vw"
+                format="avif"
+                quality={62}
+                loading="eager"
+                class="w-full h-full object-cover"
+              />
+            </div>
           </div>
           <p class="text-eyebrow text-charcoal/45 mt-4">Gabriel Rosales · Houston, TX</p>
         </div>

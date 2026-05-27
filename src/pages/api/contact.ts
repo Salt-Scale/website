@@ -40,6 +40,14 @@ const PROJECT_TYPE_LABELS: Record<string, string> = {
   other: 'Other',
 };
 
+// Vercel function timeout default is 10s; cap Resend at 8s so we still
+// have time to log + return a clean 502.
+const RESEND_TIMEOUT_MS = 8000;
+
+// Rate-limit window. Set AFTER a successful or honeypot submit only —
+// transient Resend failures shouldn't lock the user out.
+const RATE_LIMIT_SECONDS = 30;
+
 function isValidEmail(value: string): boolean {
   return /.+@.+\..+/.test(value);
 }
@@ -62,10 +70,36 @@ function escapeHtml(value: string): string {
     .replace(/'/g, '&#039;');
 }
 
+// Format a slug as Title Case if SERVICE_LABELS/PROJECT_TYPE_LABELS mapping is missing.
+function humanize(slug: string): string {
+  return slug
+    .replace(/[-_]/g, ' ')
+    .replace(/\b\w/g, (c) => c.toUpperCase());
+}
+
+function labelFor(map: Record<string, string>, value: string): string {
+  if (!value) return '';
+  return map[value] ?? humanize(value);
+}
+
 function json(body: unknown, status = 200): Response {
   return new Response(JSON.stringify(body), {
     status,
-    headers: { 'Content-Type': 'application/json' },
+    headers: {
+      'Content-Type': 'application/json',
+      'Access-Control-Allow-Origin': '*',
+    },
+  });
+}
+
+function setRateLimitCookie(cookies: import('astro').AstroCookies): void {
+  cookies.set('cfrm', '1', {
+    httpOnly: true,
+    sameSite: 'lax',
+    path: '/',
+    maxAge: RATE_LIMIT_SECONDS,
+    // `secure` breaks localhost dev (no HTTPS). Vercel preview + prod are HTTPS.
+    secure: import.meta.env.PROD,
   });
 }
 
@@ -86,8 +120,8 @@ function buildEmailHtml(payload: {
     ['Email', payload.email],
     ['Company', payload.company],
     ['Phone', payload.phone],
-    ['Service', SERVICE_LABELS[payload.service] ?? payload.service],
-    ['Project type', PROJECT_TYPE_LABELS[payload.projectType] ?? payload.projectType],
+    ['Service', labelFor(SERVICE_LABELS, payload.service)],
+    ['Project type', labelFor(PROJECT_TYPE_LABELS, payload.projectType)],
     ['Timeline', payload.timeline],
     ['Budget', payload.budget],
   ].filter(([, v]) => Boolean(v));
@@ -118,6 +152,9 @@ function buildEmailHtml(payload: {
       </div>`
     : '';
 
+  // mailto: needs URI-encoding on the address (HTML-escape only protects the visible text)
+  const mailtoHref = `mailto:${encodeURIComponent(payload.email)}`;
+
   return `<!doctype html>
 <html lang="en">
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
@@ -145,7 +182,7 @@ function buildEmailHtml(payload: {
           <tr>
             <td style="padding:32px 32px 16px;">
               <p style="margin:0 0 8px;font-family:Georgia,serif;font-size:24px;line-height:1.25;color:#2A2F35;font-weight:600;">From ${escapeHtml(payload.name)}${payload.company ? ` at <span style="font-style:italic;color:#8e5f22;">${escapeHtml(payload.company)}</span>` : ''}</p>
-              <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#6B7280;">Reply directly to this email to respond — it will go to <a href="mailto:${escapeHtml(payload.email)}" style="color:#8e5f22;">${escapeHtml(payload.email)}</a>.</p>
+              <p style="margin:0;font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;color:#6B7280;">Reply directly to this email to respond — it will go to <a href="${mailtoHref}" style="color:#8e5f22;">${escapeHtml(payload.email)}</a>.</p>
             </td>
           </tr>
 
@@ -188,8 +225,8 @@ function buildEmailText(payload: Record<string, string>): string {
   ];
   if (payload.company) lines.push(`Company: ${payload.company}`);
   if (payload.phone) lines.push(`Phone: ${payload.phone}`);
-  if (payload.service) lines.push(`Service: ${SERVICE_LABELS[payload.service] ?? payload.service}`);
-  if (payload.projectType) lines.push(`Project type: ${PROJECT_TYPE_LABELS[payload.projectType] ?? payload.projectType}`);
+  if (payload.service) lines.push(`Service: ${labelFor(SERVICE_LABELS, payload.service)}`);
+  if (payload.projectType) lines.push(`Project type: ${labelFor(PROJECT_TYPE_LABELS, payload.projectType)}`);
   if (payload.timeline) lines.push(`Timeline: ${payload.timeline}`);
   if (payload.budget) lines.push(`Budget: ${payload.budget}`);
   lines.push('');
@@ -207,6 +244,22 @@ function buildEmailText(payload: Record<string, string>): string {
   return lines.join('\n');
 }
 
+function withTimeout<T>(promise: Promise<T>, ms: number, label: string): Promise<T> {
+  return new Promise<T>((resolve, reject) => {
+    const timer = setTimeout(() => reject(new Error(`${label} timed out after ${ms}ms`)), ms);
+    promise.then(
+      (value) => {
+        clearTimeout(timer);
+        resolve(value);
+      },
+      (err) => {
+        clearTimeout(timer);
+        reject(err);
+      },
+    );
+  });
+}
+
 export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
   try {
     const contentType = request.headers.get('content-type') || '';
@@ -216,10 +269,16 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
 
     const body = (await request.json()) as ContactPayload;
 
-    // Honeypot
+    // Honeypot — silent 200 so we don't signal the trap. Also set the
+    // rate-limit cookie here so bots can't spam-probe cheaply.
     if (body['bot-field']) {
-      // Silently accept to avoid signaling the trap
+      setRateLimitCookie(cookies);
       return json({ ok: true }, 200);
+    }
+
+    // Rate limit check (BEFORE expensive work like Resend call).
+    if (cookies.get('cfrm')?.value) {
+      return json({ error: 'Too many requests' }, 429);
     }
 
     const payload = {
@@ -252,18 +311,6 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
       return json({ error: `Invalid fields: ${invalid.join(', ')}` }, 422);
     }
 
-    // Rate limit: 1 submit per 30s per browser
-    if (cookies.get('cfrm')?.value) {
-      return json({ error: 'Too many requests' }, 429);
-    }
-    cookies.set('cfrm', '1', {
-      httpOnly: true,
-      sameSite: 'lax',
-      path: '/',
-      maxAge: 30,
-      secure: true,
-    });
-
     // Resend config
     const RESEND_API_KEY = import.meta.env.RESEND_API_KEY;
     const CONTACT_TO = import.meta.env.CONTACT_TO;
@@ -281,20 +328,34 @@ export const POST: APIRoute = async ({ request, cookies, clientAddress }) => {
     const subjectCompany = payload.company ? ` / ${payload.company}` : '';
     const subject = `New project inquiry: ${payload.name}${subjectCompany}`;
 
-    const result = await resend.emails.send({
-      from: CONTACT_FROM,
-      to: CONTACT_TO.split(',').map((s) => s.trim()).filter(Boolean),
-      replyTo: payload.email,
-      subject,
-      html: buildEmailHtml(payload),
-      text: buildEmailText(payload),
-    });
-
-    if (result.error) {
-      console.error('[contact] Resend error:', result.error);
+    let result: Awaited<ReturnType<typeof resend.emails.send>>;
+    try {
+      result = await withTimeout(
+        resend.emails.send({
+          from: CONTACT_FROM,
+          to: CONTACT_TO.split(',').map((s) => s.trim()).filter(Boolean),
+          replyTo: payload.email,
+          subject,
+          html: buildEmailHtml(payload),
+          text: buildEmailText(payload),
+        }),
+        RESEND_TIMEOUT_MS,
+        'Resend',
+      );
+    } catch (err) {
+      console.error('[contact] Resend timeout or network error:', err);
+      // No rate-limit cookie — let the user retry immediately.
       return json({ error: 'Failed to send email' }, 502);
     }
 
+    if (result.error) {
+      console.error('[contact] Resend API error:', result.error);
+      // No rate-limit cookie — Resend reported error, retry is fine.
+      return json({ error: 'Failed to send email' }, 502);
+    }
+
+    // Success path: set rate-limit cookie now so the user can't spam-submit.
+    setRateLimitCookie(cookies);
     console.log('[contact] sent', { id: result.data?.id, from: clientAddress });
     return json({ ok: true }, 200);
   } catch (err) {
