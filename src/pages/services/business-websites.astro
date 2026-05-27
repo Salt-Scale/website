@@ -102,6 +102,10 @@ const stackItems = [
 
 const faqItems = [
   {
+    question: "How much does a service-business website cost?",
+    answer: "Starter sites (4–6 pages, contact form, local SEO) start at $1,500. Growth builds with multiple services, service-area pages, photo gallery, and reviews blocks run $3,000. Authority sites with city-page clusters and a blog start at $5,000. Every quote is fixed-price, written before any code is written. No hourly billing, no surprise change-orders.",
+  },
+  {
     question: "How long does a service-business website take?",
     answer: "Most sites ship in one to three weeks from kickoff. That includes a discovery call, brand and copy review, design approval, build, accessibility and performance checks, and deployment. The fastest so far, Elevated Water Solutions, was seven days from idea to production. Scope changes or extended copy revisions can extend this, but the standard timeline is one to three weeks.",
   },
@@ -137,6 +141,7 @@ const schema = [
       priceSpecification: {
         "@type": "PriceSpecification",
         priceCurrency: "USD",
+        minPrice: 1500,
       },
     },
   },
@@ -350,6 +355,84 @@ const schema = [
             </p>
           </article>
         ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PRICING — cream, 3-tier editorial
+       ============================================================ */}
+  <section class="bg-cream border-t border-charcoal/10">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Pricing</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-6">
+        Fixed-price. <span class="italic font-normal text-saffron-deep">Written upfront.</span>
+      </h2>
+      <p class="text-body-lg text-charcoal/70 max-w-[58ch] mb-16 md:mb-24">
+        No hourly billing. No surprise change-orders. You get one number in writing before any code is written — that's the number you pay.
+      </p>
+
+      <div class="grid md:grid-cols-3 gap-x-10 gap-y-12 border-t border-charcoal/15">
+
+        <article class="pt-8">
+          <div class="flex items-baseline gap-4 mb-6">
+            <span class="numeral text-saffron-deep text-[2.5rem] leading-none">$1,500</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4">Starter</h3>
+          <p class="text-[0.9375rem] leading-[1.65] text-charcoal/70 max-w-[38ch] mb-6">
+            4–6 pages, contact form, local SEO foundation, mobile-first build. Right for a solo operator who needs a professional online presence and a way for leads to reach you.
+          </p>
+          <ul class="space-y-2 text-[0.9375rem] text-charcoal/70">
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Up to 6 pages</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Contact &amp; quote form</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Local SEO foundation</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> 1–2 week timeline</li>
+          </ul>
+        </article>
+
+        <article class="pt-8 md:border-l md:border-charcoal/10 md:pl-10">
+          <div class="flex items-baseline gap-4 mb-6">
+            <span class="numeral text-saffron-deep text-[2.5rem] leading-none">$3,000</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4">Growth</h3>
+          <p class="text-[0.9375rem] leading-[1.65] text-charcoal/70 max-w-[38ch] mb-6">
+            8–15 pages across multiple services, service-area map, photo gallery, reviews block, and a quote form on every service page. Built to rank and convert. Elevated Water Solutions is this tier.
+          </p>
+          <ul class="space-y-2 text-[0.9375rem] text-charcoal/70">
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Up to 15 service &amp; location pages</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Photo gallery with location attribution</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Reviews block, brand trust row</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> 1–3 week timeline</li>
+          </ul>
+        </article>
+
+        <article class="pt-8 md:border-l md:border-charcoal/10 md:pl-10">
+          <div class="flex items-baseline gap-4 mb-6">
+            <span class="numeral text-saffron-deep text-[2.5rem] leading-none">$5,000<span class="text-[1.5rem]">+</span></span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4">Authority</h3>
+          <p class="text-[0.9375rem] leading-[1.65] text-charcoal/70 max-w-[38ch] mb-6">
+            Full hub-and-spoke SEO architecture, city-page clusters, blog, and custom integrations for larger operations. Built for businesses actively competing for local search position.
+          </p>
+          <ul class="space-y-2 text-[0.9375rem] text-charcoal/70">
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> City-page &amp; service-area clusters</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Blog / insights section</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> Custom integrations</li>
+            <li class="flex items-baseline gap-2"><span class="text-saffron-deep numeral shrink-0">+</span> 2–4 week timeline</li>
+          </ul>
+        </article>
+
+      </div>
+
+      <div class="mt-16 pt-10 border-t border-charcoal/15">
+        <p class="text-[0.9375rem] text-charcoal/60 max-w-[58ch]">
+          Scope questions or a build that doesn't fit a tier? <a href="/contact/" class="text-saffron-deep border-b border-saffron hover:text-charcoal transition-colors">Start with a discovery call</a> — written quote within three business days.
+        </p>
       </div>
     </div>
   </section>

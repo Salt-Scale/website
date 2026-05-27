@@ -5,6 +5,12 @@ datePublished: 2026-05-13
 author: "Gabriel Rosales"
 tags:
   - "Service Businesses"
+takeaways:
+  - "There are four real paths in 2026: website builders (Squarespace/Wix), WordPress with a freelancer, custom development on a modern stack, and 'AI-built' subscription sites. None is universally right."
+  - "Three-year total costs roughly: builder ~$1,870; WordPress $4k–$11k; traditional custom development $4k–$15k (plus optional $0–$300/month retainer); AI-assisted custom development $1,500–$5,000 one-time; 'AI-built' subscription $720–$7,200 with significant lock-in."
+  - "AI-assisted custom development on a modern static stack (Astro, Vercel) has lowered the entry point for real custom builds to $1,500–$5,000 — below WordPress freelancer rates, with no ongoing hosting fees and no lock-in."
+  - "'AI-built' sites are usually AI-generated drafts hosted on a proprietary editor. Ask three questions before signing: can I export the full site as portable assets, who owns the content, and what happens to my site if I cancel."
+  - "Regardless of which path you pick, get the three-year total cost in writing, confirm you own the code, the domain, and the hosting account, and ask exactly what happens when something breaks at 9 PM on a Saturday."
 draft: false
 ---
 
@@ -45,10 +51,12 @@ Real numbers, mid-2026, for a typical 8-to-15 page service-business site.
 
 **Custom development (modern stack):**
 
-- Build: $4,000 to $15,000 one-time depending on scope.
+Traditional agencies charge $4,000 to $15,000 for a custom build. A newer category — solo engineers using AI tooling on a modern static stack — has pushed this lower.
+
+- Build: $1,500 to $5,000 one-time for AI-assisted builds (Salt & Scale pricing); $4,000 to $15,000 for traditional agency builds.
 - Hosting: $0 to $20 per month on Vercel or Cloudflare Pages free tier (most service-business sites stay free).
 - Maintenance: $0 if nothing changes; $100 to $300 per month if you keep the engineer on retainer for small updates and new features.
-- Total over 3 years: $4,000 to $15,000 if you don't add anything, $7,600 to $25,800 with a small retainer.
+- Total over 3 years: $1,500 to $5,000 one-time for AI-assisted builds, $4,000 to $15,000 for traditional builds; $7,600 to $25,800 with a retainer on the latter.
 
 **"AI-built" site (typical pricing in 2026):**
 
@@ -144,7 +152,7 @@ Regardless of which path you choose, the same questions filter out bad fits.
 
 ## The bottom line
 
-For most owner-operated service businesses with 5 to 25 services and 5 to 20 service areas, custom development at the $5,000 to $12,000 range delivers the best long-term value. You spend more upfront, you save on monthly fees, and you get a site that ranks and converts well enough to pay for itself within the first year.
+For most owner-operated service businesses with 5 to 25 services and 5 to 20 service areas, custom development delivers the best long-term value. Traditional agency builds start around $5,000; AI-assisted solo-engineer builds have pushed that entry point to $1,500–$3,000 for a production-grade site. Either way, you save on monthly fees versus WordPress or a builder, and you get a site that ranks and converts well enough to pay for itself within the first year.
 
 For a smaller operation, a website builder honestly handles the basics. Don't overspend on a custom build for a business that doesn't yet need one.
 
@@ -152,6 +160,8 @@ For everyone else: WordPress is fine if you have a freelancer you trust who will
 
 Decide based on your budget, your growth plans, and your honest comfort level. Then evaluate vendors with the same questions regardless of approach.
 
+If you've landed on custom development as the right path and want to see how a project actually goes from discovery call to launch, see [the walkthrough for solo-shop owners](/insights/how-a-project-actually-goes-with-a-solo-engineer/).
+
 ---
 
-Trying to figure out which path is right for your business? [Get in touch.](/contact/) We'll walk through your specific situation and tell you honestly whether a custom build is the right call, or whether a builder will serve you just as well.
+Trying to figure out which path is right for your business? [Get in touch.](/contact/?service=business-websites) We'll walk through your specific situation and tell you honestly whether a custom build is the right call, or whether a builder will serve you just as well.
