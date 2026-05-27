@@ -3,20 +3,262 @@
 @import "@fontsource-variable/playfair-display";
 
 @theme {
-  --color-bg: #f4e3c3;
-  --color-accent-brown: #8a5c37;
-  --color-primary-navy: #373e45;
-  --color-supporting-green: #4b6241;
-  --color-paper: #f7f0e2;
+  --color-ink: #2A2F35;
+  --color-charcoal: #373E45;
+  --color-paper: #F7F1E1;
+  --color-cream: #F4E3C3;
+  --color-sage: #4B6241;
+  --color-sage-soft: #7A9080;
+  --color-copper: #8A5C37;
+  --color-stone: #9A938A;
+  --color-saffron: #C8893E;
+  --color-saffron-deep: #8E5F22;
+
+  /* Transitional aliases retained for one PR */
+  --color-bg: #F4E3C3;
+  --color-accent-brown: #8A5C37;
+  --color-primary-navy: #373E45;
+  --color-supporting-green: #4B6241;
 
   --font-sans:
     "Inter Variable", ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Arial,
     "Apple Color Emoji", "Segoe UI Emoji";
   --font-serif: "Playfair Display Variable", ui-serif, Georgia, serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, SFMono-Regular, Consolas, monospace;
+}
+
+@layer utilities {
+  /* Display scale — editorial, dramatic */
+  .text-display-xl {
+    font-family: var(--font-serif);
+    font-size: clamp(3rem, 8vw, 6.5rem);
+    line-height: 0.95;
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  .text-display-1 {
+    font-family: var(--font-serif);
+    font-size: clamp(2.5rem, 6vw, 5rem);
+    line-height: 1.02;
+    font-weight: 600;
+    letter-spacing: -0.022em;
+  }
+  .text-display-2 {
+    font-family: var(--font-serif);
+    font-size: clamp(2rem, 4.5vw, 3.5rem);
+    line-height: 1.08;
+    font-weight: 600;
+    letter-spacing: -0.018em;
+  }
+  .text-display-3 {
+    font-family: var(--font-serif);
+    font-size: clamp(1.5rem, 3vw, 2.25rem);
+    line-height: 1.2;
+    font-weight: 500;
+    letter-spacing: -0.012em;
+  }
+  .text-h4 {
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    line-height: 1.35;
+    font-weight: 600;
+    letter-spacing: -0.005em;
+  }
+  .text-eyebrow {
+    font-family: var(--font-sans);
+    font-size: 0.75rem;
+    line-height: 1;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+  }
+  .text-body {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    font-weight: 400;
+  }
+  .text-body-lg {
+    font-family: var(--font-sans);
+    font-size: 1.25rem;
+    line-height: 1.55;
+    font-weight: 400;
+    letter-spacing: -0.005em;
+  }
+  .text-caption {
+    font-family: var(--font-sans);
+    font-size: 0.875rem;
+    line-height: 1.5;
+    font-weight: 400;
+  }
+
+  /* Editorial decorative utilities */
+  .rule-saffron {
+    background-image: linear-gradient(to right, var(--color-saffron), var(--color-saffron));
+    background-repeat: no-repeat;
+    background-size: 3rem 1px;
+    background-position: 0 50%;
+  }
+  .top-rule {
+    position: relative;
+  }
+  .top-rule::before {
+    content: "";
+    display: block;
+    width: 3rem;
+    height: 1px;
+    background: var(--color-saffron);
+    margin-bottom: 1.5rem;
+  }
+
+  /* Editorial link — saffron underline with offset */
+  .link-edit {
+    text-decoration: underline;
+    text-decoration-color: var(--color-saffron);
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: text-decoration-color 150ms, color 150ms;
+  }
+  .link-edit:hover {
+    color: var(--color-saffron-deep);
+    text-decoration-color: var(--color-saffron-deep);
+  }
+
+  /* Paper grain texture overlay — subtle warmth */
+  .grain {
+    position: relative;
+    isolation: isolate;
+  }
+  .grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    pointer-events: none;
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 0.15 0 0 0 0 0.18 0 0 0 0 0.21 0 0 0 0.9 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+  .grain-dark::after {
+    opacity: 0.08;
+    mix-blend-mode: screen;
+    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200' viewBox='0 0 200 200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/><feColorMatrix values='0 0 0 0 1 0 0 0 0 0.95 0 0 0 0 0.85 0 0 0 0.6 0'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+  }
+
+  /* Numeral display — for case-study lists, approach steps */
+  .numeral {
+    font-family: var(--font-serif);
+    font-weight: 400;
+    font-variant-numeric: lining-nums;
+    letter-spacing: -0.02em;
+    font-feature-settings: "lnum" 1;
+  }
+
+  /* Editorial long-form prose — used by /insights/[slug] and /legal/* */
+  .prose-editorial h2 {
+    font-family: var(--font-serif);
+    font-weight: 600;
+    font-size: 1.875rem;
+    line-height: 1.2;
+    margin: 3rem 0 1rem;
+    letter-spacing: -0.012em;
+    color: var(--color-charcoal);
+  }
+  .prose-editorial h3 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    font-size: 1.375rem;
+    line-height: 1.25;
+    margin: 2rem 0 0.75rem;
+    letter-spacing: -0.008em;
+    color: var(--color-charcoal);
+  }
+  .prose-editorial p {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.75;
+    margin: 1rem 0;
+    color: rgba(55, 62, 69, 0.85);
+  }
+  .prose-editorial a {
+    color: var(--color-saffron-deep);
+    text-decoration: underline;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 0.25em;
+    transition: color 150ms;
+  }
+  .prose-editorial a:hover {
+    color: var(--color-saffron);
+  }
+  .prose-editorial ul,
+  .prose-editorial ol {
+    margin: 1rem 0;
+    padding-left: 1.5rem;
+  }
+  .prose-editorial ul {
+    list-style: disc;
+  }
+  .prose-editorial ol {
+    list-style: decimal;
+  }
+  .prose-editorial li {
+    font-family: var(--font-sans);
+    font-size: 1.0625rem;
+    line-height: 1.65;
+    margin: 0.375rem 0;
+    color: rgba(55, 62, 69, 0.85);
+  }
+  .prose-editorial li::marker {
+    color: var(--color-saffron-deep);
+  }
+  .prose-editorial blockquote {
+    border-left: 2px solid var(--color-saffron);
+    padding-left: 1.5rem;
+    margin: 1.5rem 0;
+    font-style: italic;
+    color: rgba(55, 62, 69, 0.75);
+    font-family: var(--font-serif);
+    font-size: 1.125rem;
+    line-height: 1.55;
+  }
+  .prose-editorial code {
+    font-family: var(--font-mono);
+    font-size: 0.9375rem;
+    background: var(--color-cream);
+    padding: 0.1rem 0.4rem;
+    border-radius: 2px;
+    color: var(--color-ink);
+  }
+  .prose-editorial pre {
+    background: var(--color-charcoal);
+    color: var(--color-paper);
+    padding: 1.5rem;
+    overflow-x: auto;
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    line-height: 1.6;
+    margin: 1.5rem 0;
+    border-radius: 2px;
+  }
+  .prose-editorial pre code {
+    background: transparent;
+    padding: 0;
+    color: inherit;
+    font-size: inherit;
+    border-radius: 0;
+  }
+  .prose-editorial strong {
+    color: var(--color-charcoal);
+    font-weight: 600;
+  }
+  .prose-editorial hr {
+    border: none;
+    border-top: 1px solid rgba(55, 62, 69, 0.15);
+    margin: 2.5rem 0;
+  }
 }
 
 @layer base {
-
   /* Self-hosted variable fonts */
   @font-face {
     font-family: "Inter Variable";
@@ -36,19 +278,32 @@
 
   html {
     scroll-behavior: smooth;
+    /* WCAG 2.2 §2.4.11 — clear 64px sticky header on anchor jumps */
+    scroll-padding-top: 6rem;
+    /* Better text rendering across browsers */
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  /* Headings use brand serif */
-  h1,
-  h2,
-  h3,
-  h4,
-  h5,
-  h6 {
+  body {
+    font-family: var(--font-sans);
+    font-feature-settings: "cv11" 1, "ss03" 1, "cv02" 1;
+  }
+
+  /* Headings use brand serif with proper typographic tuning */
+  h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
+    font-feature-settings: "kern" 1, "liga" 1, "calt" 1, "onum" 0, "lnum" 1;
   }
 
-  /* Custom select styling for better dropdown arrow positioning */
+  /* Selection — warm saffron tint */
+  ::selection {
+    background: rgba(200, 137, 62, 0.25);
+    color: var(--color-ink);
+  }
+
+  /* Custom select styling */
   select {
     appearance: none;
     background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23373e45' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
@@ -59,65 +314,11 @@
   }
 
   select:focus {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%234b6241' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%23c8893e' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='m6 8 4 4 4-4'/%3e%3c/svg%3e");
   }
 
-  /* Custom animations for floating geometric shapes */
-  @keyframes float-bounce {
-
-    0%,
-    100% {
-      transform: translateY(0px);
-    }
-
-    50% {
-      transform: translateY(-10px);
-    }
-  }
-
-  @keyframes float-ping {
-    0% {
-      transform: scale(1);
-      opacity: 1;
-    }
-
-    50% {
-      transform: scale(1.2);
-      opacity: 0.5;
-    }
-
-    100% {
-      transform: scale(1);
-      opacity: 1;
-    }
-  }
-
-  .animate-float-bounce {
-    animation: float-bounce 2s ease-in-out infinite;
-  }
-
-  .animate-float-ping {
-    animation: float-ping 2s ease-in-out infinite;
-  }
-
-  .animate-float-bounce-delayed {
-    animation: float-bounce 2s ease-in-out infinite;
-    animation-delay: 0.5s;
-  }
-
-  @keyframes shine {
-    0% {
-      transform: translateX(-100%) skewX(-12deg);
-    }
-
-    100% {
-      transform: translateX(200%) skewX(-12deg);
-    }
-  }
-
-  /* Reduce motion for users who prefer it */
+  /* Reduce motion */
   @media (prefers-reduced-motion: reduce) {
-
     *,
     *::before,
     *::after {

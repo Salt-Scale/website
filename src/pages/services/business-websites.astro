@@ -1,0 +1,503 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Websites for Service Businesses – Salt & Scale";
+const description = "AI-accelerated website design and development for plumbers, contractors, freight companies, and other service businesses. Built on Astro, Tailwind, and Vercel by one senior engineer.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Websites for service businesses", url: "/services/business-websites/" },
+];
+
+const serviceDescription = "Salt & Scale builds production-grade websites for service businesses — plumbers, contractors, freight companies, and anyone whose phone needs to ring. Sites are designed with a mobile-first layout, contact and lead-routing forms, a local SEO foundation, and WCAG 2.2 AA accessibility. Every project ships on Astro, Tailwind CSS, and Vercel — a stack chosen for speed, stability, and near-zero maintenance cost. AI tools are used throughout the build to move fast; every line is reviewed and owned by one senior engineer. A typical engagement runs four to six weeks from kickoff to a live, indexed site you fully control.";
+
+const includedItems = [
+  {
+    n: "01",
+    title: "Brand integration",
+    body: "Logo, colors, typography, and voice applied consistently across every page — your business, not a template.",
+  },
+  {
+    n: "02",
+    title: "Mobile-first design",
+    body: "Designed for the phone screen first — where most service-business searches happen. Phone numbers click-to-call, forms are thumb-friendly, layout works at any size.",
+  },
+  {
+    n: "03",
+    title: "Contact and lead routing",
+    body: "Forms with smart field structure, graceful error handling, and routing logic (service type, location, urgency) so leads reach the right inbox.",
+  },
+  {
+    n: "04",
+    title: "Local SEO foundation",
+    body: "Structured data, service-area architecture, per-page title and description tags, sitemap, and canonical URLs — all set correctly from day one.",
+  },
+  {
+    n: "05",
+    title: "Accessibility-conformant build",
+    body: "WCAG 2.2 AA: keyboard navigation, screen-reader semantics, visible focus states, 4.5:1 contrast on body text, and accessible forms throughout.",
+  },
+  {
+    n: "06",
+    title: "Performance budget",
+    body: "Lighthouse mobile scores targeted at 95+ across Performance, Accessibility, Best Practices, and SEO. Core Web Vitals checked before handoff.",
+  },
+  {
+    n: "07",
+    title: "Deployment and handoff",
+    body: "Live on Vercel under your own account. Source in a GitHub repo you own. Domain configuration, DNS, and a walkthrough of how to manage the site post-launch.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Discovery",
+    title: "30-minute kickoff call.",
+    body: "We cover your services, audience, goals, and anything the site needs to replace or improve. You receive a written project brief and scope document before any design work begins.",
+  },
+  {
+    n: "02",
+    label: "Design",
+    title: "Approve before we build.",
+    body: "A high-fidelity mockup of the homepage and one inner page. You review and approve typography, color, and structure before any code is written at scale.",
+  },
+  {
+    n: "03",
+    label: "Build",
+    title: "Staging URL, two revisions.",
+    body: "Full site build on a staging URL. You review every page, request revisions, and sign off before deployment. Two revision rounds included in scope.",
+  },
+  {
+    n: "04",
+    label: "Launch",
+    title: "Cutover and handoff.",
+    body: "DNS cutover, sitemap submission, a walkthrough call, and a recorded Loom of how to manage the site. You own the repository and the Vercel project.",
+  },
+];
+
+const stackItems = [
+  {
+    name: "Astro 5",
+    tag: "Framework",
+    body: "Static output by default — pages load as plain HTML, no JavaScript hydration tax, near-perfect Lighthouse scores out of the box.",
+  },
+  {
+    name: "Tailwind v4",
+    tag: "Styles",
+    body: "Design tokens baked into CSS — consistent spacing, typography, and color without a design-system overhead your team can't maintain.",
+  },
+  {
+    name: "Vercel",
+    tag: "Hosting",
+    body: "Global CDN, automatic deploys on every push, free tier covers most service-business sites indefinitely. No server to manage.",
+  },
+  {
+    name: "AI-augmented build",
+    tag: "Anthropic Partner",
+    body: "AI accelerates the build — copy structure, component drafts, schema generation. Every output is reviewed by a senior engineer before it ships.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "How long does a service-business website take?",
+    answer: "A typical site takes four to six weeks from kickoff to live. That includes a discovery call, brand and copy review, design approval, build, accessibility and performance checks, and deployment. Scope changes or extended copy revision rounds can extend this, but the standard timeline is four to six weeks.",
+  },
+  {
+    question: "What do I need to provide before we start?",
+    answer: "A logo or brand direction, the services you offer, the areas you serve, and any existing photos. We can work with rough drafts for copy — you don't need polished text before kickoff. A short onboarding form collects everything we need after you sign.",
+  },
+  {
+    question: "Will I be able to update the site myself after launch?",
+    answer: "Yes. Deployment goes to your own Vercel account and the source is in a GitHub repo you own. For content-heavy sites we can add a lightweight CMS (like Netlify CMS or Tina) at no extra complexity. Either way, you own the site outright — there's no monthly platform fee, no lock-in.",
+  },
+  {
+    question: "Does the site include SEO?",
+    answer: "Every site ships with a local SEO foundation: per-page title and description tags, canonical URLs, structured data (Organization and LocalBusiness schema), an auto-generated sitemap, and a service-area architecture where relevant. We don't offer ongoing SEO management, but we set the technical foundation correctly from day one.",
+  },
+  {
+    question: "What does 'WCAG 2.2 AA accessibility' mean in practice?",
+    answer: "It means the site works for people who navigate by keyboard, use screen readers, operate at 200% zoom, or use assistive technology. Every form has proper labels, focus states are visible, color contrast meets 4.5:1 for body text, and interactive targets are large enough to tap on mobile. We run axe-core and Lighthouse accessibility checks before handoff.",
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/business-websites/#service",
+    name: "Websites for service businesses",
+    serviceType: "Web design and development",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: {
+        "@type": "PriceSpecification",
+        priceCurrency: "USD",
+      },
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/business-websites/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Websites for service businesses</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       HERO — charcoal, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Primary practice · 01</p>
+      </div>
+
+      <h1 class="text-display-xl max-w-[14ch] mb-10">
+        Websites for <span class="italic font-normal text-saffron">service businesses.</span>
+      </h1>
+
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Production-grade sites built fast with AI — designed to get the phone ringing and the form filling. Brand integration, mobile-first design, contact routing, local SEO, and WCAG 2.2 AA accessibility, all on a stack chosen for speed and near-zero maintenance.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-16 md:mb-20">
+        <a
+          href="/contact/?service=business-websites"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron"
+        >
+          See selected work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      {/* Two-column foundation block */}
+      <div class="grid md:grid-cols-[1fr_1fr] gap-12 md:gap-20 pt-12 border-t border-paper/15">
+        <div>
+          <p class="text-eyebrow text-saffron mb-5">Who this is for</p>
+          <p class="text-[1.0625rem] leading-[1.7] text-paper/75 max-w-[42ch]">
+            Plumbers, electricians, and home-service contractors. Freight and B2B logistics operators. Manufacturers and trade-network distributors. Any service business whose phone needs to ring.
+          </p>
+        </div>
+        <div>
+          <p class="text-eyebrow text-saffron mb-5">Typical timeline</p>
+          <p class="font-serif text-[2rem] leading-none tracking-[-0.012em] text-paper mb-3">
+            4 – 6 weeks
+          </p>
+          <p class="text-[1.0625rem] leading-[1.7] text-paper/65 max-w-[40ch]">
+            Kickoff to a live, indexed site you fully control. Two revision rounds included.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       ANSWER BLOCK — paper, narrow centered column (AEO target)
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       WHAT'S INCLUDED — paper, numbered editorial list
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Every project includes</p>
+          </div>
+          <h2 class="text-display-1 text-charcoal max-w-[14ch]">
+            What's <span class="italic font-normal text-saffron-deep">shipped.</span>
+          </h2>
+        </div>
+      </div>
+
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[22ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============================================================
+       HOW WE WORK — cream, 4-step grid
+       ============================================================ */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Diagnose. Design. Build. <span class="italic font-normal text-saffron-deep">Launch.</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 md:gap-x-12 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       STACK — paper, four small blocks in a row
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Stack we ship on</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[20ch] mb-16 md:mb-24">
+        Low-maintenance. <span class="italic font-normal text-saffron-deep">Built to last.</span>
+      </h2>
+
+      <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-12 border-t border-charcoal/15">
+        {stackItems.map((s) => (
+          <article class="pt-8">
+            <p class="text-eyebrow text-charcoal/45 mb-4">{s.tag}</p>
+            <h3 class="font-serif font-medium text-[1.625rem] leading-[1.15] tracking-[-0.012em] text-charcoal mb-4">
+              {s.name}
+            </h3>
+            <p class="text-[0.9375rem] leading-[1.6] text-charcoal/65 max-w-[36ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       RELATED CASE STUDIES — paper, 2-col editorial cards
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Related work</p>
+          </div>
+          <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+            Two sites on <span class="italic font-normal text-saffron-deep">this track.</span>
+          </h2>
+        </div>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          View all four
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+
+      <div class="grid md:grid-cols-2 gap-10 md:gap-16">
+        <a
+          href="/work/mahi-plumbing/"
+          class="group block border-t border-charcoal/20 pt-8"
+        >
+          <div class="flex items-baseline justify-between mb-6">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">01</span>
+            <span class="text-eyebrow text-charcoal/45">Houston · Plumbing</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[clamp(1.875rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.018em] text-charcoal group-hover:text-saffron-deep transition-colors mb-4">
+            Mahi Plumbing
+          </h3>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[48ch] mb-6">
+            24/7 emergency plumber serving Houston and nine surrounding cities — built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.
+          </p>
+          <span class="inline-flex items-baseline gap-2 text-saffron-deep text-[0.95rem] tracking-wide">
+            View case study
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+
+        <a
+          href="/work/elevated-water-solutions/"
+          class="group block border-t border-charcoal/20 pt-8"
+        >
+          <div class="flex items-baseline justify-between mb-6">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">02</span>
+            <span class="text-eyebrow text-charcoal/45">Houston · Multi-service plumbing</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[clamp(1.875rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.018em] text-charcoal group-hover:text-saffron-deep transition-colors mb-4">
+            Elevated Water Solutions
+          </h3>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[48ch] mb-6">
+            Eleven-year master-plumber operation — eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.
+          </p>
+          <span class="inline-flex items-baseline gap-2 text-saffron-deep text-[0.95rem] tracking-wide">
+            View case study
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+          </span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FAQ — paper, disclosure pattern
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Let's build a site <span class="italic font-normal text-saffron">that books work.</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Tell us about your business, the services you offer, and what you need the site to do. We'll follow up within one business day.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=business-websites"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See our work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

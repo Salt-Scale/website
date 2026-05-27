@@ -1,1247 +1,554 @@
 ---
 import Layout from "../layouts/Layout.astro";
-const pageTitle = 'Salt & Scale – Growth, grounded in Truth.';
-const pageDescription = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.';
+import { Image } from "astro:assets";
+import headshot from "../assets/headshot-source.jpeg";
+
+const pageTitle = "Salt & Scale – Websites that book the work.";
+const pageDescription =
+  "AI-accelerated website design and development for service businesses. Built by a senior engineer with 10+ years in production commerce.";
+
+const caseStudies = [
+  {
+    n: "01",
+    slug: "mahi-plumbing",
+    sector: "Residential plumbing",
+    client: "Mahi Plumbing",
+    location: "Houston, TX",
+    description: "A 24/7 emergency plumber serving Houston and nine surrounding cities — built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.",
+  },
+  {
+    n: "02",
+    slug: "aim-global-transport",
+    sector: "B2B freight",
+    client: "AIM Global Transport",
+    location: "Houston, TX",
+    description: "A nationwide freight carrier serving all 48 states — stat-led hero, six-service B2B catalog, and dual conversion paths for logistics buyers.",
+  },
+  {
+    n: "03",
+    slug: "premier-door-innovations",
+    sector: "Manufacturing",
+    client: "Premier Door Innovations",
+    location: "Houston, TX",
+    description: "A Houston aluminum door manufacturer — filterable gallery, four-category product architecture, and multi-form routing for contractor partners.",
+  },
+  {
+    n: "04",
+    slug: "elevated-water-solutions",
+    sector: "Multi-service plumbing",
+    client: "Elevated Water Solutions",
+    location: "Houston, TX",
+    description: "An eleven-year master-plumber operation — eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.",
+  },
+];
+
+const approachSteps = [
+  {
+    n: "01",
+    label: "Discovery",
+    title: "Diagnose before prescribing.",
+    body: "Goals, audience, constraints. Audit of current systems. You receive a written brief and a clear scope before any code gets written.",
+  },
+  {
+    n: "02",
+    label: "Build",
+    title: "Short cycles, visible work.",
+    body: "Design and development in week-long iterations with regular check-ins. AI accelerates scaffolding; every line is reviewed before it ships.",
+  },
+  {
+    n: "03",
+    label: "Launch",
+    title: "Ship, then iterate.",
+    body: "Deployed to Vercel with automated CI/CD. Post-launch performance monitoring and iterative improvements as the business grows.",
+  },
+];
+
+const pillars = [
+  {
+    n: "01",
+    title: "One senior engineer, end to end.",
+    body: "No handoffs. No junior work shipped. No agency overhead. Every line of code is written and reviewed by Gabriel personally — the same engineer who scoped the work and who'll be there a year after launch.",
+  },
+  {
+    n: "02",
+    title: "AI as a force multiplier, never a deliverable.",
+    body: "Anthropic Claude Partner. AI accelerates the build; ten years of production experience owns the quality. You get the velocity of AI development with the judgment of a senior engineer reviewing every output.",
+  },
+  {
+    n: "03",
+    title: "Production-grade fundamentals.",
+    body: "Hydrogen contributor. Shopify Partner. Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
+  },
+];
+
+const insightStubs = [
+  {
+    title: "How to choose a website builder for a service business in 2026",
+    tag: "Service businesses",
+    meta: "Pillar · ~2,000 words",
+  },
+  {
+    title: "The service-business website checklist",
+    tag: "Service businesses",
+    meta: "Pillar",
+  },
+  {
+    title: "Why your site's INP score is a leading indicator of conversion",
+    tag: "Performance",
+    meta: "Engineering",
+  },
+];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
-  <!-- Hero Section -->
-  <section class="relative isolate w-full bg-white overflow-hidden">
-    <img src="/hero-texture.svg" alt="" fetchpriority="high" class="pointer-events-none absolute inset-0 -z-10 h-full w-full select-none object-cover opacity-90" />
-    
-    <!-- Decorative elements -->
-    <div class="absolute -top-40 -right-40 h-80 w-80 rounded-full bg-[#5a7c65]/10 blur-3xl"></div>
-    <div class="absolute -bottom-40 -left-40 h-80 w-80 rounded-full bg-[#8b7d6b]/10 blur-3xl"></div>
-    
-    <div class="mx-auto max-w-[1120px] px-4 pt-24 pb-20">
-      <div class="grid lg:grid-cols-2 gap-12 items-center">
-        <div class="space-y-8 text-center lg:text-left">
-          <div class="inline-flex items-center justify-center gap-2.5 px-3.5 py-1.5 bg-[#5a7c65]/10 border border-[#5a7c65]/20 rounded-full align-middle mx-auto lg:mx-0">
-            <span class="w-1.5 h-1.5 bg-[#5a7c65] rounded-full flex-shrink-0"></span>
-            <span class="font-semibold tracking-wide text-[#373e45] uppercase text-[12px] leading-[1]">Shopify & Adobe Commerce Engineering</span>
-          </div>
-          
-          <h1 class="m-0 text-[2rem] sm:text-[clamp(2.5rem,7vw,4rem)] leading-[1.1] font-bold">
-            Salt &amp; Scale<br class="sm:hidden" /> <em class="text-[#8b7d6b] text-[.8em]">Growth, grounded in Truth.</em>
-    </h1>
-          
-          <p class="mt-4 text-base sm:text-xl leading-relaxed text-[#373e45]/80 max-w-[56ch]">
-            We solve complex ecommerce challenges on Shopify and Adobe Commerce. Whether you're scaling or enterprise, we architect, build, and optimize with clear tradeoffs and measurable outcomes.
-          </p>
-          
-          <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 items-stretch sm:items-center lg:items-start">
-      <a
-        href="#contact"
-              class="inline-flex items-center justify-center rounded-xl bg-[#5a7c55] px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold text-white border border-[#4a6b5a] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 active:translate-y-px w-full sm:w-auto"
-      >
-              Start a project
-              <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-              </svg>
-            </a>
-      <a
-        href="#services"
-              class="inline-flex items-center justify-center rounded-xl bg-white/80 backdrop-blur-sm px-6 py-3 md:px-8 md:py-4 text-base md:text-lg font-semibold text-[#373e45] border-2 border-[#8b7d6b]/30 shadow-lg transition-all duration-300 hover:bg-white hover:border-[#8b7d6b] hover:shadow-xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#8b7d6b] focus-visible:ring-offset-2 w-full sm:w-auto"
-            >
-              See services
-            </a>
-          </div>
-        </div>
-        
-        <div class="relative">
-          <!-- Interactive 3D-style card stack -->
-          <div class="relative group">
-            <!-- Background card -->
-            <div class="absolute inset-0 bg-gradient-to-br from-[#5a7c65]/20 to-[#8b7d6b]/20 rounded-3xl blur-xl transform rotate-3 group-hover:rotate-6 transition-transform duration-700"></div>
-            
-            <!-- Middle card -->
-            <div class="absolute inset-0 bg-gradient-to-br from-[#5a7c65]/10 to-[#8b7d6b]/10 rounded-3xl blur-lg transform -rotate-2 group-hover:-rotate-4 transition-transform duration-700"></div>
-            
-            <!-- Main interactive card -->
-            <div class="relative z-10 bg-white/95 backdrop-blur-sm rounded-3xl p-6 shadow-2xl border border-white/40 transform transition-all duration-700 hover:scale-105 hover:shadow-3xl hover:-translate-y-2">
-              
-              <!-- Dynamic service showcase header -->
-              <div class="text-center mb-6">
-                <div class="relative inline-block group/icon">
-                  <div class="w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-2xl flex items-center justify-center mx-auto mb-4 transform group-hover/icon:rotate-12 group-hover/icon:scale-110 transition-all duration-500 shadow-lg">
-                    <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-                    </svg>
-                  </div>
-                  <div class="absolute -inset-2 bg-gradient-to-br from-[#5a7c65]/20 to-[#8b7d6b]/20 rounded-2xl blur-lg -z-10 group-hover/icon:blur-xl transition-all duration-500"></div>
-                </div>
-                <h3 class="text-xl font-bold text-[#373e45] mb-2">What We Build</h3>
-                <p class="text-sm text-[#373e45]/70">Explore our core capabilities</p>
-              </div>
-              
-              <!-- Interactive service showcase -->
-              <div class="space-y-3 mb-6">
-                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
-                  <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#5a7c65]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">E-commerce Architecture</h4>
-                    <p class="text-xs text-[#373e45]/60">Scalable solutions that grow with you</p>
-                  </div>
-                </div>
-                
-                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#8b7d6b]/8 hover:to-[#5a7c65]/8 transition-all duration-300 border border-transparent hover:border-[#8b7d6b]/10 hover:shadow-lg">
-                  <div class="w-10 h-10 bg-gradient-to-br from-[#8b7d6b] to-[#8b7d6b]/90 rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:-rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">Custom Development</h4>
-                    <p class="text-xs text-[#373e45]/60">Tailored solutions for unique needs</p>
-                  </div>
-                </div>
-                
-                <div class="group/item flex items-center gap-3 p-3 rounded-xl hover:bg-gradient-to-r hover:from-[#5a7c65]/8 hover:to-[#8b7d6b]/8 transition-all duration-300 border border-transparent hover:border-[#5a7c65]/10 hover:shadow-lg">
-                  <div class="w-10 h-10 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-xl flex items-center justify-center group-hover/item:scale-110 group-hover/item:rotate-3 transition-all duration-300 shadow-md">
-                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-                    </svg>
-                  </div>
-                  <div class="flex-1 min-w-0">
-                    <h4 class="font-semibold text-[#373e45] text-sm mb-0.5">Performance Optimization</h4>
-                    <p class="text-xs text-[#373e45]/60">Lightning fast user experiences</p>
-                  </div>
-                </div>
-              </div>
-              
 
-            </div>
-          </div>
-        </div>
-    </div>
-    </div>
-  </section>
+  {/* ============================================================
+       HERO — charcoal, dramatic, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
 
-  <!-- Services Section -->
-  <section id="services" class="relative mx-auto max-w-[1120px] px-4 py-20 scroll-mt-24">
-    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-full w-screen bg-[#f5f8f6] -z-10"></div>
-    <div class="pointer-events-none select-none absolute inset-x-0 -top-6 mx-auto h-12 w-[88%] rounded-full bg-gradient-to-r from-transparent via-[#5a7c65]/10 to-transparent blur-xl"></div>
-    <div class="text-center mb-16">
-      <div class="inline-flex items-center justify-center gap-2.5 px-3.5 py-1.5 bg-[#5a7c65]/10 border border-[#5a7c65]/20 rounded-full mb-6 align-middle">
-        <span class="w-1.5 h-1.5 bg-[#5a7c65] rounded-full flex-shrink-0"></span>
-        <span class="font-semibold tracking-wide text-[#373e45] uppercase text-[12px] leading-[1]">Core offerings</span>
+      {/* Eyebrow + saffron rule */}
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Salt &amp; Scale · Est. Houston, TX</p>
       </div>
-      <h2 class="text-4xl font-bold mb-6">Services</h2>
-      <p class="text-xl text-[#373e45]/70 max-w-[70ch] mx-auto">
-        Tailored engineering that drives performance, stability, and outcomes.
+
+      {/* Massive headline */}
+      <h1 class="text-display-xl max-w-[16ch] mb-10">
+        Websites <span class="italic font-normal text-saffron">that book</span> the work.
+      </h1>
+
+      {/* Subhead — narrow column, lighter weight */}
+      <p class="text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.45] text-paper/75 max-w-[52ch] mb-12 md:mb-14 font-light">
+        Built fast with AI. Engineered with ten years in production commerce.
+        <span class="text-paper">One senior engineer, end to end.</span>
       </p>
-    </div>
-    
-    <div class="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#5a7c65]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#5a7c65]">1</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">E‑Commerce Solution Architecture</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Technical leadership for new builds and migrations</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Scalable architecture for Shopify and Adobe Commerce</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Headless strategy and roadmap</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Stack evaluation and recommendations</span>
-          </li>
-        </ul>
-      </article>
 
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#8b7d6b]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#8b7d6b]">2</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Custom App Development</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Private and public Shopify apps</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Internal tools that remove manual work</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Integration‑first apps (CRM, ERP, WMS)</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Custom APIs and secure backend services</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#5a7c65]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#5a7c65]">3</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Headless Commerce Builds</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Headless Shopify with Next.js, Remix, Hydrogen</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">CMS integrations (Sanity, Contentful, more)</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Core Web Vitals performance as a requirement</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Automated deploys and CI/CD</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#8b7d6b]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#8b7d6b]">4</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Custom Feature Development</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Checkout extensibility and post‑purchase offers</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Bundles, subscriptions, loyalty</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Polished UX across web and mobile</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Theme work or headless front‑end</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#5a7c65]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#5a7c65]">5</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Systems Integration & Automation</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">ERP, CRM, and 3PL integrations (real‑time and batch)</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Sync inventory, orders, and customer data</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Automations for marketing and fulfillment</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Webhooks, middleware, and connectors</span>
-          </li>
-        </ul>
-      </article>
-
-      <article class="group relative bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] p-8 shadow-lg transition-all duration-300 hover:shadow-2xl hover:-translate-y-1">
-        <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#8b7d6b] to-[#5a7c65] rounded-t-2xl"></div>
-        <div class="mb-6 text-center sm:text-left">
-          <div class="w-12 h-12 bg-[#8b7d6b]/10 rounded-xl flex items-center justify-center mb-4 mx-auto sm:mx-0">
-            <span class="text-2xl text-[#8b7d6b]">6</span>
-          </div>
-          <h3 class="text-xl font-bold mb-4">Technical Audits & Strategy Consulting</h3>
-        </div>
-        <ul class="space-y-3">
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Code reviews and performance audits</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Security and scalability reviews</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Platform migration planning</span>
-          </li>
-          <li class="flex items-start gap-3">
-            <span class="text-[#5a7c65] mt-1">✓</span>
-            <span class="text-[#373e45]/80">Executive‑ready reporting</span>
-          </li>
-        </ul>
-      </article>
-
-
-    </div>
-  </section>
-
-  <!-- Add-On Services Section -->
-  <section class="mx-auto max-w-[1120px] px-4 py-14 scroll-mt-24">
-    <div class="bg-white rounded-3xl p-10 border border-[rgba(55,62,69,0.08)]">
-      <div class="text-center mb-12">
-        <h3 class="text-3xl font-bold mb-4">Add‑On Services</h3>
-        <p class="text-lg text-[#373e45]/70 max-w-[70ch] mx-auto">
-          Extras that complement your core project
-        </p>
-      </div>
-      <div class="grid md:grid-cols-2 gap-8">
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-[#5a7c65] rounded-full"></div>
-            <span class="text-[#373e45]/80">API documentation and handoff packages</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-[#5a7c65] rounded-full"></div>
-            <span class="text-[#373e45]/80">DevOps and CI/CD setup for in‑house teams</span>
-          </div>
-        </div>
-        <div class="space-y-4">
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-[#8b7d6b] rounded-full"></div>
-            <span class="text-[#373e45]/80">Shopify Plus and Adobe Commerce onboarding</span>
-          </div>
-          <div class="flex items-center gap-3">
-            <div class="w-2 h-2 bg-[#8b7d6b] rounded-full"></div>
-            <span class="text-[#373e45]/80">Technical SEO reviews and schema integration</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Approach Section -->
-  <section id="approach" class="relative mx-auto max-w-[1120px] px-4 py-20 bg-white rounded-3xl mx-4 border border-[rgba(55,62,69,0.08)] scroll-mt-24 mb-12 md:mb-16">
-    <div class="pointer-events-none absolute inset-0 rounded-3xl bg-[linear-gradient(180deg,rgba(90,124,101,0.05)_0%,rgba(139,125,107,0.05)_100%)] -z-10"></div>
-    <div class="pointer-events-none select-none -mt-8 mb-12 mx-auto h-px w-[92%] bg-gradient-to-r from-transparent via-[rgba(55,62,69,0.12)] to-transparent"></div>
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">Approach</h2>
-      <p class="text-xl text-[#373e45]/80 max-w-[70ch] mx-auto">
-        Integrity first. We start with discovery and clear diagnostics, prioritize high‑leverage work, and build in short, measurable cycles. Transparent communication, clear tradeoffs, and code built to last.
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="text-center group">
-        <div class="w-16 h-16 bg-[#5a7c65]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5H7a2 2 0 00-2 2v10a2 2 0 002 2h8a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2"></path>
-          </svg>
-        </div>
-        <h4 class="text-xl font-bold mb-3">Discovery & Technical Audit</h4>
-        <p class="text-[#373e45]/70">Comprehensive analysis of your current systems and opportunities</p>
-      </div>
-      
-      <div class="text-center group">
-        <div class="w-16 h-16 bg-[#8b7d6b]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#8b7d6b]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"></path>
-          </svg>
-        </div>
-        <h4 class="text-xl font-bold mb-3">Roadmap with ROI Focus</h4>
-        <p class="text-[#373e45]/70">Strategic planning that prioritizes high-impact, measurable outcomes</p>
-      </div>
-      
-      <div class="text-center group">
-        <div class="w-16 h-16 bg-[#5a7c65]/20 rounded-2xl flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform duration-300">
-          <svg class="w-8 h-8 text-[#5a7c65]" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-          </svg>
-        </div>
-        <h4 class="text-xl font-bold mb-3">Build, Measure, Iterate</h4>
-        <p class="text-[#373e45]/70">Continuous improvement through rapid development cycles and feedback</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Difference Section -->
-  <section id="difference" class="relative mx-auto max-w-[1120px] px-4 py-20 bg-white rounded-3xl mx-4 border border-[rgba(55,62,69,0.08)] scroll-mt-24 mb-12 md:mb-16">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">Why we're different</h2>
-      <p class="text-xl text-[#373e45]/80 max-w-[70ch] mx-auto">
-        Human first. We create opportunities for emerging talent and pair them with senior engineers. We also use AI—carefully—when it makes sense.
-      </p>
-    </div>
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-3">Human‑first delivery</h3>
-        <p class="text-[#373e45]/70 mb-4">We give juniors and recent grads real project experience—always with guidance.</p>
-        <ul class="space-y-2 text-sm text-[#373e45]/70">
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Right‑size tasks to skill level</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Mentorship and pair reviews</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Senior oversight end‑to‑end</span></li>
-        </ul>
-      </div>
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-3">Responsible use of AI</h3>
-        <p class="text-[#373e45]/70 mb-4">We leverage AI for speed where appropriate—humans own decisions and quality.</p>
-        <ul class="space-y-2 text-sm text-[#373e45]/70">
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Great for research, scaffolding, and tests</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>No unchecked code shipped—ever</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Privacy and IP respected; opt‑out available</span></li>
-        </ul>
-      </div>
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-3">Senior ownership & quality</h3>
-        <p class="text-[#373e45]/70 mb-4">Every project is led by senior engineers focused on outcomes.</p>
-        <ul class="space-y-2 text-sm text-[#373e45]/70">
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Clear acceptance criteria and reviews</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Performance budgets and monitoring</span></li>
-          <li class="flex items-start gap-2"><span class="text-[#5a7c65] mt-1">✓</span><span>Measurable outcomes post‑launch</span></li>
-        </ul>
-      </div>
-    </div>
-  </section>
-
-  <!-- Service Evolution Section -->
-  <section id="experience" class="relative mx-auto max-w-[1120px] px-4 py-20 scroll-mt-24">
-    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-full w-screen bg-[#f6f5f3] -z-10"></div>
-    <div class="pointer-events-none select-none -mt-4 mb-12 mx-auto h-px w-[92%] bg-gradient-to-r from-transparent via-[rgba(55,62,69,0.12)] to-transparent"></div>
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">Our Evolution</h2>
-      <p class="text-xl text-[#373e45]/80 max-w-[70ch] mx-auto">
-        How we grew from simple stores to enterprise ecommerce systems.
-      </p>
-    </div>
-    
-    <!-- Service Evolution Timeline -->
-    <div class="relative">
-      <!-- Timeline line -->
-      <div class="absolute left-8 top-0 bottom-0 w-0.5 bg-gradient-to-b from-[#5a7c65] to-[#8b7d6b] hidden md:block"></div>
-      
-      <!-- Evolution Items -->
-      <div class="space-y-12">
-        <!-- Enterprise Solutions Era -->
-        <div class="relative md:flex items-start gap-8 group">
-          <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto mb-4 md:mb-0 md:mx-0">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path>
-            </svg>
-          </div>
-          
-          <div class="md:flex-1 pt-2">
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-white/40 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-bold text-[#373e45]">Enterprise Solutions</h3>
-                <span class="text-sm text-[#5a7c65] font-medium">2020 - Present</span>
-              </div>
-              <p class="text-[#373e45]/70 mb-4">Advanced e-commerce architecture for scaling businesses, specializing in headless commerce and complex integrations.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">Shopify Plus</span>
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Headless Commerce</span>
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">Enterprise APIs</span>
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Performance</span>
-              </div>
-              <ul class="space-y-2 text-sm text-[#373e45]/70">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Architected enterprise ecommerce platforms</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Led complex headless commerce implementations</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Consistent performance improvements across Core Web Vitals</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Custom Development Era -->
-        <div class="relative md:flex items-start gap-8 group">
-          <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#8b7d6b] to-[#5a7c65] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto mb-4 md:mb-0 md:mx-0">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4"></path>
-            </svg>
-          </div>
-          
-          <div class="md:flex-1 pt-2">
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-white/40 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-bold text-[#373e45]">Custom Development</h3>
-                <span class="text-sm text-[#8b7d6b] font-medium">2018 - 2020</span>
-              </div>
-              <p class="text-[#373e45]/70 mb-4">Specialized custom solutions for growing businesses, from custom apps to platform migrations.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Custom Apps</span>
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">Platform Migration</span>
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Advanced Shopify</span>
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">Integration</span>
-              </div>
-              <ul class="space-y-2 text-sm text-[#373e45]/70">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#8b7d6b] mt-1">✓</span>
-                  <span>Built custom Shopify applications</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#8b7d6b] mt-1">✓</span>
-                  <span>Led platform migrations</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#8b7d6b] mt-1">✓</span>
-                  <span>Built custom integrations for complex workflows</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <!-- Foundation Era -->
-        <div class="relative md:flex items-start gap-8 group">
-          <div class="relative z-10 flex-shrink-0 w-16 h-16 bg-gradient-to-br from-[#5a7c65] to-[#8b7d6b] rounded-full flex items-center justify-center shadow-lg group-hover:scale-110 transition-transform duration-300 mx-auto mb-4 md:mb-0 md:mx-0">
-            <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
-            </svg>
-          </div>
-          
-          <div class="md:flex-1 pt-2">
-            <div class="bg-white rounded-2xl p-6 shadow-lg border border-white/40 hover:shadow-xl transition-all duration-300">
-              <div class="flex items-center justify-between mb-4">
-                <h3 class="text-xl font-bold text-[#373e45]">Foundation Building</h3>
-                <span class="text-sm text-[#5a7c65] font-medium">2016 - 2018</span>
-              </div>
-              <p class="text-[#373e45]/70 mb-4">Established core e-commerce expertise and built the foundation for scalable development processes.</p>
-              <div class="flex flex-wrap gap-2 mb-4">
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">Shopify Basics</span>
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Responsive Design</span>
-                <span class="px-3 py-1 bg-[#5a7c65]/10 text-[#5a7c65] text-sm rounded-full border border-[#5a7c65]/20">E-commerce UX</span>
-                <span class="px-3 py-1 bg-[#8b7d6b]/10 text-[#8b7d6b] text-sm rounded-full border border-[#8b7d6b]/20">Performance</span>
-              </div>
-              <ul class="space-y-2 text-sm text-[#373e45]/70">
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Shipped responsive ecommerce sites</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Established scalable development processes</span>
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-[#5a7c65] mt-1">✓</span>
-                  <span>Established quality standards and best practices</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Portfolio CTA -->
-    <div class="text-center mt-12">
-      <div class="flex items-center justify-center gap-2.5 px-4 py-2 bg-gradient-to-r from-[#5a7c65]/10 to-[#8b7d6b]/10 rounded-full border border-[#5a7c65]/20 mb-6 align-middle mx-auto w-max">
-        <span class="w-1.5 h-1.5 bg-[#5a7c65] rounded-full"></span>
-        <span class="text-[12px] leading-[1] font-medium text-[#373e45]">Ready to see our work?</span>
-      </div>
-      <a href="#work" class="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-[#5a7c65] to-[#8b7d6b] text-white font-semibold rounded-xl shadow-lg hover:shadow-xl hover:scale-105 transition-all duration-300 group border border-[#5a7c65]/20">
-        View Our Work
-        <svg class="w-5 h-5 transform group-hover:translate-y-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"></path>
-        </svg>
-      </a>
-    </div>
-  </section>
-
-  <!-- Work Section -->
-  <section id="work" class="relative mx-auto max-w-[1120px] px-4 py-20 scroll-mt-24">
-    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-full w-screen bg-[#f5f6f7] -z-10"></div>
-    <div class="pointer-events-none select-none -mt-4 mb-12 mx-auto h-px w-[92%] bg-gradient-to-r from-transparent via-[rgba(55,62,69,0.12)] to-transparent"></div>
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">Selected Work</h2>
-      <p class="text-xl text-[#373e45]/70 max-w-[70ch] mx-auto mb-8">Three snapshots of our approach and outcomes.</p>
-      <div class="mt-6 flex flex-wrap items-center justify-center gap-3">
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(55,62,69,0.12)] bg-white text-sm text-[#373e45]/70"><span class="w-1.5 h-1.5 rounded-full bg-[#5a7c65]"></span>Sanrio</span>
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(55,62,69,0.12)] bg-white text-sm text-[#373e45]/70"><span class="w-1.5 h-1.5 rounded-full bg-[#5a7c65]"></span>Hive Brands</span>
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(55,62,69,0.12)] bg-white text-sm text-[#373e45]/70"><span class="w-1.5 h-1.5 rounded-full bg-[#5a7c65]"></span>PAX Vapes</span>
-        <span class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-[rgba(55,62,69,0.12)] bg-white text-sm text-[#373e45]/70"><span class="w-1.5 h-1.5 rounded-full bg-[#5a7c65]"></span>Thursday Boots Co.</span>
-      </div>
-    </div>
-    <div class="grid md:grid-cols-4 gap-6">
-      <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
-        <div class="mb-4 flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-[#5a7c65]/10 ring-1 ring-[rgba(55,62,69,0.10)] flex items-center justify-center shrink-0">
-            <svg class="w-6 h-6 text-[#5a7c65]" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 17v-6a2 2 0 012-2h8m0 0l-3-3m3 3l-3 3"/></svg>
-          </div>
-          <h3 class="m-0 font-semibold">Code Audits & Front‑end Features</h3>
-        </div>
-        <div class="flex-1">
-          <p class="text-sm text-[#373e45]/70 mb-3">Shopify Liquid/JS feature work, audits, and revisions for Thursday Boots.</p>
-          <ul class="text-sm text-[#373e45]/70 space-y-1">
-            <li><span class="text-[#5a7c65]">•</span> 28% faster LCP, CLS ~0</li>
-            <li><span class="text-[#5a7c65]">•</span> +17% checkout conversion</li>
-            <li><span class="text-[#5a7c65]">•</span> Zero‑downtime cutover</li>
-          </ul>
-        </div>
-        <a data-case-open="headless" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline self-center md:self-start">
-          View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+      {/* CTAs — saffron primary + ghost secondary */}
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-20 md:mb-28">
+        <a
+          href="/contact/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
         </a>
-      </article>
-      <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
-        <div class="mb-4 flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-[#8b7d6b]/10 ring-1 ring-[rgba(55,62,69,0.10)] flex items-center justify-center shrink-0">
-            <svg class="w-6 h-6 text-[#8b7d6b]" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h10M4 18h16"/></svg>
-          </div>
-          <h3 class="m-0 font-semibold">Brand Experience</h3>
-        </div>
-        <div class="flex-1">
-          <p class="text-sm text-[#373e45]/70 mb-3">Sanrio (via Corra) — high‑volume commerce ops and API work.</p>
-          <ul class="text-sm text-[#373e45]/70 space-y-1">
-            <li><span class="text-[#5a7c65]">•</span> Laravel APIs for Shopify Plus</li>
-            <li><span class="text-[#5a7c65]">•</span> Magento PWA features & UI animations</li>
-            <li><span class="text-[#5a7c65]">•</span> Infra strategy & leadership</li>
-          </ul>
-        </div>
-        <a data-case-open="sanrio" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline self-center md:self-start">
-          View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron"
+        >
+          See selected work
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
         </a>
-      </article>
-      <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
-        <div class="mb-4 flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-[#8b7d6b]/10 ring-1 ring-[rgba(55,62,69,0.10)] flex items-center justify-center shrink-0">
-            <svg class="w-6 h-6 text-[#8b7d6b]" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 7h18M3 12h18M3 17h18"/></svg>
-          </div>
-          <h3 class="m-0 font-semibold">Custom App Suite</h3>
-        </div>
-        <div class="flex-1">
-          <p class="text-sm text-[#373e45]/70 mb-3">Operations tools for bundling, subscriptions, coupon cards, and ERP sync.</p>
-          <ul class="text-sm text-[#373e45]/70 space-y-1">
-            <li><span class="text-[#5a7c65]">•</span> Coupon Card custom app</li>
-            <li><span class="text-[#5a7c65]">•</span> Microservices for promos/ops</li>
-            <li><span class="text-[#5a7c65]">•</span> 99.9% sync reliability</li>
-          </ul>
-        </div>
-        <a data-case-open="custom" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline self-center md:self-start">
-          View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </article>
-      <article data-animate class="group flex flex-col h-full p-6 bg-white rounded-2xl border border-[rgba(55,62,69,0.08)] shadow-lg hover:shadow-2xl hover:-translate-y-1 transition-all duration-300 gap-2">
-        <div class="mb-4 flex items-center gap-3">
-          <div class="w-12 h-12 rounded-2xl bg-[#f2f5f4] ring-1 ring-[rgba(55,62,69,0.10)] flex items-center justify-center shrink-0">
-            <svg class="w-6 h-6 text-[#373e45]" aria-hidden="true" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 13a8 8 0 0116 0" />
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 13l3-3" />
-              <circle cx="12" cy="13" r="1" fill="currentColor" />
-            </svg>
-          </div>
-          <h3 class="m-0 font-semibold">Performance Program</h3>
-        </div>
-        <div class="flex-1">
-          <p class="text-sm text-[#373e45]/70 mb-3">Core Web Vitals remediation across a multi‑brand catalog.</p>
-          <ul class="text-sm text-[#373e45]/70 space-y-1">
-            <li><span class="text-[#5a7c65]">•</span> +41 pts Lighthouse perf</li>
-            <li><span class="text-[#5a7c65]">•</span> 32% faster TTFB</li>
-            <li><span class="text-[#5a7c65]">•</span> Image/CDN optimization</li>
-          </ul>
-        </div>
-        <a data-case-open="performance" href="#" class="mt-6 inline-flex items-center gap-1 text-[#373e45] font-semibold hover:underline self-center md:self-start">
-          View case
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3"/></svg>
-        </a>
-      </article>
-    </div>
+      </div>
 
-    <!-- Modal and templates -->
-    <template id="case-headless">
-      <div class="space-y-4">
-        <h3 class="text-2xl font-bold">Thursday Boots Co. — Code Audits & Front‑end</h3>
-        <p class="text-[#373e45]/80">Performed code audits and revisions, and shipped front‑end features using Shopify Liquid and JavaScript.</p>
-        <ul class="list-disc pl-5 text-[#373e45]/80 space-y-1">
-          <li>Improved performance and CLS through template refactors</li>
-          <li>New UI features across PDP/Cart/Checkout</li>
-          <li>Actionable audit with prioritized recommendations</li>
-        </ul>
-      </div>
-    </template>
-    <template id="case-custom">
-      <div class="space-y-4">
-        <h3 class="text-2xl font-bold">Hive Brands — Custom App Suite</h3>
-        <p class="text-[#373e45]/80">Built internal tooling and microservices for bundling, subscriptions, coupon cards, and ERP sync to streamline ops.</p>
-        <ul class="list-disc pl-5 text-[#373e45]/80 space-y-1">
-          <li>Coupon Card custom app (discount orchestration)</li>
-          <li>Microservices powering promos and operations</li>
-          <li>99.9% sync reliability with retries and alerts</li>
-          <li>ROI‑positive promo campaigns reported</li>
-        </ul>
-      </div>
-    </template>
-    <template id="case-performance">
-      <div class="space-y-4">
-        <h3 class="text-2xl font-bold">PAX Labs — Shopify Plus Performance Program</h3>
-        <p class="text-[#373e45]/80">Built and optimized a headless stack using Remix, Hydrogen, and Oxygen. Maintained and improved a custom OMS (PHP/MySQL). Troubleshot issues, optimized performance, and practiced TDD with mocks.</p>
-        <ul class="list-disc pl-5 text-[#373e45]/80 space-y-1">
-          <li>Lighthouse performance improved across targets</li>
-          <li>Headless architecture with Hydrogen/Oxygen</li>
-          <li>Custom OMS maintenance and enhancements</li>
-          <li>Positive stakeholder feedback and ROI observed</li>
-        </ul>
-      </div>
-    </template>
-    <template id="case-sanrio">
-      <div class="space-y-4">
-        <h3 class="text-2xl font-bold">Sanrio — Brand E‑commerce Experience</h3>
-        <p class="text-[#373e45]/80">At Corra, led API development and PWA work across Shopify Plus and Magento for a high‑volume brand.</p>
-        <ul class="list-disc pl-5 text-[#373e45]/80 space-y-1">
-          <li>Laravel APIs powering Shopify experiences</li>
-          <li>React/GraphQL features for Magento PWA</li>
-          <li>Infrastructure planning and leadership</li>
-        </ul>
-      </div>
-    </template>
-
-    <div id="case-modal" class="fixed inset-0 hidden items-center justify-center z-50" role="dialog" aria-modal="true">
-      <div id="case-overlay" class="absolute inset-0 bg-black/40 cursor-pointer" aria-hidden="true"></div>
-      <div class="relative mx-4 w-full max-w-2xl bg-white rounded-2xl p-6 shadow-2xl border border-[rgba(55,62,69,0.08)]">
-        <button id="case-close" class="absolute top-3 right-3 inline-flex h-8 w-8 items-center justify-center rounded-full border border-[rgba(55,62,69,0.12)] hover:bg-[#f7f8f9] cursor-pointer" aria-label="Close">
-          <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" aria-hidden="true" focusable="false"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
-        </button>
-        <div id="case-content" class="mt-2"></div>
-      </div>
-    </div>
-
-    <script>
-      // @ts-nocheck
-      const modal = document.getElementById('case-modal');
-      const content = document.getElementById('case-content');
-      const closeBtn = document.getElementById('case-close');
-      const open = (id) => {
-        const tpl = document.getElementById(`case-${id}`);
-        if (!tpl) return;
-        content.innerHTML = '';
-        content.appendChild(tpl.content.cloneNode(true));
-        modal.classList.remove('hidden');
-        modal.classList.add('flex');
-        closeBtn.focus();
-      };
-      const close = () => {
-        modal.classList.add('hidden');
-        modal.classList.remove('flex');
-      };
-      document.addEventListener('click', (e) => {
-        const opener = e.target.closest('[data-case-open]');
-        if (opener) {
-          e.preventDefault();
-          open(opener.getAttribute('data-case-open'));
-        }
-        if (
-          e.target === modal ||
-          e.target.id === 'case-overlay' ||
-          e.target.id === 'case-close' ||
-          e.target.closest && e.target.closest('#case-close')
-        ) {
-          close();
-        }
-      });
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') close();
-      });
-    </script>
-
-    <script type="application/ld+json">
-      {JSON.stringify([
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CaseStudy',
-          name: 'Thursday Boots Co. — Code Audits & Front‑end',
-          about: 'Shopify Liquid/JS audits and features',
-          url: Astro.site ? new URL('#work', Astro.site).toString() : undefined,
-          provider: { '@type': 'Organization', name: 'Salt & Scale' },
-          client: { '@type': 'Organization', name: 'Thursday Boots Co.' },
-          abstract: 'Audited and revised Liquid/JS templates, shipped UI features, improved performance and CLS.'
-        },
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CaseStudy',
-          name: 'Hive Brands — Custom App Suite',
-          about: 'Operational tooling for ecommerce',
-          url: Astro.site ? new URL('#work', Astro.site).toString() : undefined,
-          provider: { '@type': 'Organization', name: 'Salt & Scale' },
-          client: { '@type': 'Organization', name: 'Hive Brands' },
-          abstract: 'Saved 12 hours/week, 99.9% sync reliability, secure admin UX.'
-        },
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CaseStudy',
-          name: 'PAX Labs — Shopify Plus Performance Program',
-          about: 'Headless architecture and performance',
-          url: Astro.site ? new URL('#work', Astro.site).toString() : undefined,
-          provider: { '@type': 'Organization', name: 'Salt & Scale' },
-          client: { '@type': 'Organization', name: 'PAX Labs' },
-          abstract: '+41 pts Lighthouse performance, 32% faster TTFB, headless with Hydrogen/Oxygen, OMS improvements.'
-        },
-        {
-          '@context': 'https://schema.org',
-          '@type': 'CaseStudy',
-          name: 'Sanrio — Brand Commerce Experience',
-          about: 'APIs and PWA for Shopify Plus & Magento',
-          url: Astro.site ? new URL('#work', Astro.site).toString() : undefined,
-          provider: { '@type': 'Organization', name: 'Salt & Scale' },
-          client: { '@type': 'Organization', name: 'Sanrio' },
-          abstract: 'Laravel APIs, Magento PWA with React/GraphQL, infra planning.'
-        }
-      ])}
-    </script>
-  </section>
-
-  <!-- Testimonials Section -->
-  <section class="mx-auto max-w-[1120px] px-4 py-20 bg-white rounded-3xl mx-4 border border-[rgba(55,62,69,0.08)] scroll-mt-24 mb-12 md:mb-16">
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">What Our Clients Say</h2>
-      <p class="text-xl text-[#373e45]/70 max-w-[70ch] mx-auto">
-        Trusted by e-commerce leaders who value quality, integrity, and measurable results.
-      </p>
-    </div>
-    
-    <div class="grid md:grid-cols-3 gap-8">
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-[#5a7c65]/20 rounded-full flex items-center justify-center mr-4">
-            <span class="text-2xl text-[#5a7c65]">"</span>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[#373e45]">Sarah Chen</h4>
-            <p class="text-sm text-[#373e45]/60">CTO, Fashion Forward</p>
-          </div>
-        </div>
-        <p class="text-[#373e45]/80 italic">
-          "Salt & Scale transformed our Shopify Plus implementation. Their technical expertise and attention to detail exceeded our expectations."
-        </p>
-      </div>
-      
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-[#8b7d6b]/20 rounded-full flex items-center justify-center mr-4">
-            <span class="text-2xl text-[#8b7d6b]">"</span>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[#373e45]">Marcus Rodriguez</h4>
-            <p class="text-sm text-[#373e45]/60">VP Engineering, TechGear</p>
-          </div>
-        </div>
-        <p class="text-[#373e45]/80 italic">
-          "The custom app they built streamlined our operations and improved customer experience significantly."
-        </p>
-      </div>
-      
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <div class="flex items-center mb-4">
-          <div class="w-12 h-12 bg-[#5a7c65]/20 rounded-full flex items-center justify-center mr-4">
-            <span class="text-2xl text-[#5a7c65]">"</span>
-          </div>
-          <div>
-            <h4 class="font-semibold text-[#373e45]">Jennifer Park</h4>
-            <p class="text-sm text-[#373e45]/60">Founder, EcoHome</p>
-          </div>
-        </div>
-        <p class="text-[#373e45]/80 italic">
-          "Their headless commerce solution gave us the flexibility we needed while maintaining performance."
-        </p>
-      </div>
-    </div>
-  </section>
-
-  <!-- FAQ Section -->
-  <section id="faq" class="relative mx-auto max-w-[1120px] px-4 py-20 scroll-mt-24">
-    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-full w-screen bg-[#f7f9f8] -z-10"></div>
-    <div class="pointer-events-none select-none -mt-4 mb-12 mx-auto h-px w-[92%] bg-gradient-to-r from-transparent via-[rgba(55,62,69,0.12)] to-transparent"></div>
-    <div class="text-center mb-16">
-      <h2 class="text-4xl font-bold mb-6">Frequently Asked Questions</h2>
-      <p class="text-xl text-[#373e45]/70 max-w-[70ch] mx-auto">
-        Common questions about our ecommerce engineering services.
-      </p>
-    </div>
-    
-    <div class="max-w-4xl mx-auto space-y-6">
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-4 text-[#373e45]">How long does a typical project take?</h3>
-        <p class="text-[#373e45]/80">
-          Timelines vary by scope. Custom apps: 4–8 weeks. Full builds: 3–6 months. You'll get a detailed plan and timeline during discovery.
-        </p>
-      </div>
-      
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-4 text-[#373e45]">Do you provide ongoing support after launch?</h3>
-        <p class="text-[#373e45]/80">
-          Yes. We offer maintenance, updates, and ongoing development. We can also train your team or provide fractional CTO support.
-        </p>
-      </div>
-      
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-4 text-[#373e45]">What platforms do you specialize in?</h3>
-        <p class="text-[#373e45]/80">
-          Shopify and Adobe Commerce (Magento), including headless. We also build custom solutions and help choose the right fit.
-        </p>
-      </div>
-      
-      <div class="bg-white rounded-2xl p-8 shadow-lg border border-[rgba(55,62,69,0.08)]">
-        <h3 class="text-xl font-bold mb-4 text-[#373e45]">How do you handle project communication?</h3>
-        <p class="text-[#373e45]/80">
-          Transparent updates, clear milestones, and accessible project tools. You'll always know what's shipped and what's next.
-        </p>
-      </div>
-    </div>
-    <script type="application/ld+json">
-      {JSON.stringify({
-        '@context': 'https://schema.org',
-        '@type': 'FAQPage',
-        mainEntity: [
-          {
-            '@type': 'Question',
-            name: 'How long does a typical project take?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Custom apps: 4–8 weeks. Full builds: 3–6 months. You'll receive a detailed plan and timeline during discovery.' }
-          },
-          {
-            '@type': 'Question',
-            name: 'Do you provide ongoing support after launch?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Yes. We offer maintenance, updates, ongoing development, and training or fractional CTO support.' }
-          },
-          {
-            '@type': 'Question',
-            name: 'What platforms do you specialize in?',
-            acceptedAnswer: { '@type': 'Answer', text: 'Shopify and Adobe Commerce (Magento), including headless implementations. We also build custom solutions and help choose the right fit.' }
-          }
-        ]
-      })}
-    </script>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact" class="relative mx-auto max-w-[1120px] px-4 py-20 scroll-mt-24">
-    <div class="pointer-events-none absolute top-0 left-1/2 -translate-x-1/2 h-full w-screen bg-[#f5f8f6] -z-10"></div>
-    <div class="bg-gradient-to-br from-[#5a7c65]/5 to-[#8b7d6b]/5 rounded-3xl p-10 border border-[#5a7c65]/10 mb-12 md:mb-16">
-      <div class="text-center mb-12">
-        <h2 class="text-4xl font-bold mb-6">Start a project</h2>
-        <p class="text-xl text-[#373e45]/70 max-w-[70ch] mx-auto">
-          Tell us about your goals, constraints, and timeline. We'll follow up with next steps.
-        </p>
-      </div>
-      
-    <form
-      id="contact-form"
-      name="contact"
-      method="POST"
-      action="/api/contact"
-      class="max-w-[800px] mx-auto space-y-6"
-    >
-      <input type="hidden" name="bot-field" />
-        
-        <!-- Personal Information -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="name" class="block text-sm font-medium text-[#373e45] mb-2">Your name *</label>
-            <p id="error-name" class="mt-1 text-sm text-red-700 hidden">Please enter your name.</p>
-      <input
-        required
-              id="name"
-        name="name"
-              placeholder="Enter your name"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-      />
-          </div>
-          
-          <div>
-            <label for="email" class="block text-sm font-medium text-[#373e45] mb-2">Email *</label>
-            <p id="error-email" class="mt-1 text-sm text-red-700 hidden">Please enter a valid email.</p>
-      <input
-        required
-              id="email"
-        type="email"
-        name="email"
-              placeholder="Enter your email"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-            />
-          </div>
-        </div>
-
-        <!-- Company Information -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="company" class="block text-sm font-medium text-[#373e45] mb-2">Company name</label>
-            <p id="error-company" class="mt-1 text-sm text-red-700 hidden">Please enter your company name.</p>
-            <input
-              id="company"
-              name="company"
-              
-              placeholder="Your company or organization"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-            />
-          </div>
-          
-          <div>
-            <label for="phone" class="block text-sm font-medium text-[#373e45] mb-2">Phone number</label>
-            <p id="error-phone" class="mt-1 text-sm text-red-700 hidden">Please enter a valid phone number (e.g., 555-123-4567).</p>
-            <input
-              id="phone"
-              name="phone"
-              type="tel"
-              
-              inputmode="numeric"
-              autocomplete="tel"
-              pattern="\\d{3}-\\d{3}-\\d{4}"
-              maxlength="12"
-              placeholder="Your phone number"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-            />
-          </div>
-        </div>
-
-        <!-- Project Details -->
-        <div class="grid md:grid-cols-2 gap-6">
-          <div>
-            <label for="platform" class="block text-sm font-medium text-[#373e45] mb-2">Current platform</label>
-            <select
-              id="platform"
-              name="platform"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-            >
-              <option value="">Select platform</option>
-              <option value="shopify">Shopify</option>
-              <option value="adobe-commerce">Adobe Commerce (Magento)</option>
-              <option value="woocommerce">WooCommerce</option>
-              <option value="custom">Custom solution</option>
-              <option value="none">No platform yet</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-          
-          <div>
-            <label for="project-type" class="block text-sm font-medium text-[#373e45] mb-2">Project type</label>
-            <select
-              id="project-type"
-              name="project-type"
-              class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200"
-            >
-              <option value="">Select project type</option>
-              <option value="new-build">New e-commerce build</option>
-              <option value="migration">Platform migration</option>
-              <option value="custom-app">Custom app development</option>
-              <option value="headless">Headless commerce</option>
-              <option value="integration">Systems integration</option>
-              <option value="audit">Technical audit</option>
-              <option value="consulting">Strategy consulting</option>
-              <option value="other">Other</option>
-            </select>
-          </div>
-        </div>
-
-        <!-- Removed Timeline & Budget for simplicity on submission -->
-        
-        <!-- Project Description -->
+      {/* Below: 2-col foundation block */}
+      <div class="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-20 pt-12 border-t border-paper/15">
         <div>
-          <label for="message" class="block text-sm font-medium text-[#373e45] mb-2">Project details *</label>
-          <p id="error-message" class="mt-1 text-sm text-red-700 hidden">Please share a few details about your project.</p>
-      <textarea
-        required
-            id="message"
-        name="message"
-            placeholder="Tell us about your goals, constraints, and what success looks like..."
-        rows="6"
-            class="w-full rounded-xl border border-[rgba(55,62,69,0.2)] bg-white px-4 py-4 text-[#373e45] placeholder-[#373e45]/50 focus:outline-none focus:ring-2 focus:ring-[#5a7c65] focus:border-transparent transition-all duration-200 resize-none"
-          ></textarea>
+          <p class="text-eyebrow text-saffron mb-5">What we do</p>
+          <p class="text-[1.0625rem] leading-[1.7] text-paper/75 max-w-[58ch]">
+            Salt &amp; Scale builds production-grade websites for service businesses — the kind that loads in under a second, passes WCAG 2.2 AA, and has a contact form that actually routes leads. Every site is designed and engineered by one senior developer with ten years building commerce systems for Shopify, Adobe Commerce, and headless stacks.
+          </p>
         </div>
-
-        <!-- Removed 'Additional information' to reduce friction -->
-        
-        <div class="text-center">
-          <button
-            id="contact-submit"
-            class="inline-flex items-center justify-center rounded-xl bg-[#5a7c65] px-8 py-4 text-lg font-semibold text-white border border-[#4a6b5a] shadow-lg transition-all duration-300 hover:shadow-xl hover:scale-105 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#5a7c65] focus-visible:ring-offset-2 active:translate-y-px disabled:opacity-60 disabled:cursor-not-allowed"
-            type="submit"
-          >
-            Send message
-            <svg class="ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
-            </svg>
-          </button>
-          <div id="contact-toast" class="pointer-events-none fixed left-1/2 bottom-6 -translate-x-1/2 z-50 hidden">
-            <div id="contact-toast-inner" class="rounded-xl text-white px-4 py-3 shadow-lg">
-              <p id="contact-status" class="m-0 text-sm" aria-live="polite"></p>
-            </div>
-          </div>
+        <div>
+          <p class="text-eyebrow text-saffron mb-5">Credentials</p>
+          <ul class="space-y-3 text-[0.9375rem] text-paper/75">
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
+              Shopify Partner
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
+              Anthropic Claude Partner
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
+              Vercel Partner
+            </li>
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
+              Shopify Hydrogen contributor
+            </li>
+          </ul>
         </div>
-    </form>
-    <script>
-      // @ts-nocheck
-      const formatPhone = (value) => {
-        const digits = String(value || '').replace(/\D/g, '').slice(0, 10);
-        const parts = [];
-        if (digits.length > 0) parts.push(digits.slice(0, Math.min(3, digits.length)));
-        if (digits.length >= 4) parts.push(digits.slice(3, Math.min(6, digits.length)));
-        if (digits.length >= 7) parts.push(digits.slice(6, 10));
-        return parts.join('-');
-      };
-      const isValidEmail = (value) => /.+@.+\..+/.test(String(value || ''));
-      const isValidPhone = (value) => String(value || '').replace(/\D/g, '').length === 10;
-
-      const contactForm = document.getElementById('contact-form');
-      const submitBtn = document.getElementById('contact-submit');
-      const statusEl = document.getElementById('contact-status');
-      const toast = document.getElementById('contact-toast');
-      const toastInner = document.getElementById('contact-toast-inner');
-      const phoneInput = document.getElementById('phone');
-      const emailInput = document.getElementById('email');
-      const nameInput = document.getElementById('name');
-      const companyInput = document.getElementById('company');
-      const messageInput = document.getElementById('message');
-
-      const setFieldError = (input, errorEl, hasError) => {
-        if (!input || !errorEl) return;
-        if (hasError) {
-          input.setAttribute('aria-invalid', 'true');
-          input.setAttribute('aria-describedby', errorEl.id);
-          errorEl.classList.remove('hidden');
-        } else {
-          input.removeAttribute('aria-invalid');
-          input.removeAttribute('aria-describedby');
-          errorEl.classList.add('hidden');
-        }
-      };
-
-      // Phone input formatting
-      phoneInput?.addEventListener('input', (e) => {
-        const before = e.target.value;
-        const caret = e.target.selectionStart;
-        e.target.value = formatPhone(e.target.value);
-        const delta = e.target.value.length - before.length;
-        const next = Math.max(0, (caret || 0) + delta);
-        e.target.setSelectionRange(next, next);
-      });
-      phoneInput?.addEventListener('blur', (e) => {
-        e.target.value = formatPhone(e.target.value);
-      });
-
-      const showToast = (message, type = 'info') => {
-        statusEl.textContent = message;
-        statusEl.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
-        const success = 'bg-[#14532d]';
-        const error = 'bg-[#7f1d1d]';
-        const info = 'bg-[#0f172a]';
-        toastInner.classList.remove(success, error, info);
-        toastInner.classList.add(type === 'success' ? success : type === 'error' ? error : info);
-        toast.classList.remove('hidden');
-        toast.classList.add('block');
-        setTimeout(() => toast.classList.add('hidden'), type === 'success' ? 3500 : 4500);
-      };
-
-      contactForm?.addEventListener('submit', async (e) => {
-        e.preventDefault();
-        if (!contactForm) return;
-        statusEl.textContent = '';
-        submitBtn.disabled = true;
-        try {
-          const formData = new FormData(contactForm);
-          // Honeypot check
-          if (formData.get('bot-field')) {
-            submitBtn.disabled = false;
-            return;
-          }
-
-          // Client-side validation
-          const name = String(formData.get('name') || '').trim();
-          const email = String(formData.get('email') || '').trim();
-          const company = String(formData.get('company') || '').trim();
-          const phoneRaw = String(formData.get('phone') || '').trim();
-          const message = String(formData.get('message') || '').trim();
-          const phone = formatPhone(phoneRaw);
-
-          const errors = {
-            name: !name,
-            email: !email || !isValidEmail(email),
-            company: false,
-            phone: Boolean(phone) && !isValidPhone(phone),
-            message: !message,
-          };
-          setFieldError(nameInput, document.getElementById('error-name'), errors.name);
-          setFieldError(emailInput, document.getElementById('error-email'), errors.email);
-          setFieldError(companyInput, document.getElementById('error-company'), errors.company);
-          setFieldError(phoneInput, document.getElementById('error-phone'), errors.phone);
-          setFieldError(messageInput, document.getElementById('error-message'), errors.message);
-
-          if (Object.values(errors).some(Boolean)) {
-            showToast('Please correct the highlighted fields.', 'error');
-            (errors.name && nameInput?.focus()) ||
-            (errors.email && emailInput?.focus()) ||
-            (errors.company && companyInput?.focus()) ||
-            (errors.phone && phoneInput?.focus()) ||
-            (errors.message && messageInput?.focus());
-            submitBtn.disabled = false;
-            return;
-          }
-
-          const payload = { ...Object.fromEntries(formData.entries()), phone };
-          window.va?.('event', { name: 'contact_submit_start' });
-          const res = await fetch(contactForm.action, {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(payload)
-          });
-          const data = await res.json().catch(() => ({}));
-          if (!res.ok) {
-            window.va?.('event', { name: 'contact_submit_error', status: res.status });
-            if (res.status === 400) {
-              showToast(data?.error || 'Please complete the required fields.', 'error');
-            } else if (res.status === 422) {
-              showToast('Please check your email and phone format (e.g., 555-123-4567).', 'error');
-            } else if (res.status === 429) {
-              showToast('Too many requests. Please wait a moment and try again.', 'error');
-            } else if (res.status === 503) {
-              showToast('Service temporarily unavailable. Please try again shortly.', 'error');
-            } else if (res.status === 502) {
-              showToast('We could not send your message right now. Please try again later.', 'error');
-            } else {
-              showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
-            }
-            return;
-          }
-
-          showToast(`Thanks! We received your message and will get back to you soon.`, 'success');
-          window.va?.('event', { name: 'contact_submit_success' });
-          contactForm.reset();
-        } catch (err) {
-          showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
-        } finally {
-          submitBtn.disabled = false;
-        }
-      });
-    </script>
+      </div>
     </div>
   </section>
+
+  {/* ============================================================
+       TRUST STRIP — paper, tiny editorial detail
+       ============================================================ */}
+  <section class="bg-paper border-b border-charcoal/8" aria-label="Clients">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-8 md:py-10">
+      <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
+        <p class="text-eyebrow text-charcoal/40 shrink-0">Built for</p>
+        <div class="flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-2 font-serif italic text-charcoal/75 text-[1.0625rem]">
+          <span>Mahi Plumbing</span>
+          <span aria-hidden="true" class="text-saffron">·</span>
+          <span>AIM Global Transport</span>
+          <span aria-hidden="true" class="text-saffron">·</span>
+          <span>Premier Door Innovations</span>
+          <span aria-hidden="true" class="text-saffron">·</span>
+          <span>Elevated Water Solutions</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       MAHI PULL-QUOTE — cream, big editorial moment
+       DRAFT: requires AJ's sign-off before publishing
+       ============================================================ */}
+  <section class="bg-cream relative">
+    <div class="mx-auto max-w-[1100px] px-6 md:px-10 py-24 md:py-32">
+      <figure class="text-center">
+        <span class="block font-serif text-saffron text-[5rem] md:text-[7rem] leading-none mb-6 italic" aria-hidden="true">&ldquo;</span>
+        <blockquote class="font-serif font-medium text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.35] text-charcoal max-w-[28ch] mx-auto -mt-4">
+          Gabriel took the &lsquo;Trophy Catch Plumber&rsquo; idea I had in my head and turned it into a site that actually feels like Mahi. <span class="text-saffron-deep italic">First time I saw it I couldn&rsquo;t talk for a minute.</span>
+        </blockquote>
+        <figcaption class="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-[0.875rem]">
+          <span class="text-eyebrow text-charcoal/60">AJ</span>
+          <span aria-hidden="true" class="h-px w-8 bg-charcoal/25 hidden sm:block"></span>
+          <span class="text-charcoal/65">Owner, Mahi Plumbing · Houston, TX</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  {/* ============================================================
+       TWO SERVICE TRACKS — paper, asymmetric (primary > secondary)
+       ============================================================ */}
+  <section class="bg-paper relative">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Services</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[12ch] mb-16 md:mb-24">
+        Two ways <span class="italic font-normal text-saffron-deep">we work</span>.
+      </h2>
+
+      <div class="grid md:grid-cols-[1.6fr_1fr] gap-12 md:gap-20">
+        {/* Primary track */}
+        <article class="border-t-2 border-saffron pt-8">
+          <div class="flex items-baseline gap-5 mb-6">
+            <span class="numeral text-saffron-deep text-[3.5rem] leading-none">01</span>
+            <span class="text-eyebrow text-saffron-deep/80">Primary practice</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.018em] text-charcoal mb-6 max-w-[18ch]">
+            Websites for service businesses.
+          </h3>
+          <p class="text-body-lg text-charcoal/75 max-w-[52ch] mb-10">
+            Brand sites, lead-capture forms, local SEO foundation, and mobile-first builds for plumbers, truckers, manufacturers, and every service business in between.
+          </p>
+          <a
+            href="/services/business-websites/"
+            class="inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] font-medium tracking-wide group"
+          >
+            Explore the practice
+            <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </article>
+
+        {/* Secondary track */}
+        <article class="border-t border-charcoal/25 pt-8">
+          <div class="flex items-baseline gap-5 mb-6">
+            <span class="numeral text-charcoal/40 text-[3rem] leading-none">02</span>
+            <span class="text-eyebrow text-charcoal/45">Ecommerce</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-6">
+            Ecommerce engineering.
+          </h3>
+          <p class="text-body text-charcoal/70 mb-10">
+            Shopify Plus, Adobe Commerce, headless builds, custom apps, and integrations for brands needing platform-depth expertise.
+          </p>
+          <a
+            href="/services/"
+            class="inline-flex items-baseline gap-2 text-charcoal hover:text-charcoal/80 transition-colors duration-150 border-b border-charcoal/40 hover:border-charcoal pb-1 text-[0.95rem] font-medium tracking-wide group"
+          >
+            See all services
+            <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       SELECTED WORK — charcoal, editorial list
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron">Selected work</p>
+          </div>
+          <h2 class="text-display-1 max-w-[14ch]">
+            Built and <span class="italic font-normal text-saffron">shipped</span>.
+          </h2>
+        </div>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper/80 hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          View all four
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <ul class="divide-y divide-paper/15 border-t border-paper/15">
+        {caseStudies.map((cs) => (
+          <li>
+            <a
+              href={`/work/${cs.slug}/`}
+              class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 md:py-10 group hover:text-saffron transition-colors duration-150 -mx-6 md:-mx-10 px-6 md:px-10 hover:bg-paper/[0.03]"
+            >
+              <span class="numeral text-saffron text-[1.875rem] leading-none">{cs.n}</span>
+              <span class="text-eyebrow text-paper/45 group-hover:text-saffron/80 transition-colors">{cs.sector}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-paper group-hover:text-saffron transition-colors mb-2">
+                  {cs.client}
+                </h3>
+                <p class="text-[0.9375rem] leading-[1.6] text-paper/65 max-w-[55ch]">{cs.description}</p>
+              </div>
+              <span class="hidden md:inline-block text-[0.9375rem] text-paper/50 group-hover:text-saffron group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">View case →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============================================================
+       APPROACH — paper, numbered steps with editorial typography
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">How we work</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Diagnose. Build. <span class="italic font-normal text-saffron-deep">Iterate.</span>
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {approachSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/20 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/40">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PILLARS — cream, each pillar gets its own moment
+       ============================================================ */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Why Salt &amp; Scale</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[20ch] mb-16 md:mb-24">
+        Three things we do <span class="italic font-normal text-saffron-deep">differently</span>.
+      </h2>
+
+      <div class="space-y-16 md:space-y-24">
+        {pillars.map((p) => (
+          <article class="grid md:grid-cols-[180px_1fr] gap-6 md:gap-16">
+            <div>
+              <span class="numeral text-saffron-deep text-[3.5rem] leading-none">{p.n}</span>
+              <p class="text-eyebrow text-charcoal/40 mt-4">Principle</p>
+            </div>
+            <div>
+              <h3 class="font-serif font-semibold text-[clamp(1.625rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-5 max-w-[22ch]">
+                {p.title}
+              </h3>
+              <p class="text-body-lg text-charcoal/70 max-w-[58ch]">
+                {p.body}
+              </p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FOUNDER — paper, portrait + bio editorial layout
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
+
+        {/* Portrait — wrapper isolates the face-focus zoom from object-cover */}
+        <div class="relative">
+          <div class="aspect-[4/5] bg-cream overflow-hidden">
+            <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
+              <Image
+                src={headshot}
+                alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
+                widths={[320, 480, 720]}
+                sizes="(min-width: 768px) 40vw, 100vw"
+                format="avif"
+                quality={62}
+                loading="lazy"
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <p class="text-eyebrow text-charcoal/45 mt-4">Gabriel Rosales · Houston, TX</p>
+        </div>
+
+        {/* Bio */}
+        <div>
+          <div class="flex items-center gap-4 mb-8">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">The engineer behind the work</p>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(2.25rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.02em] text-charcoal mb-10 max-w-[16ch]">
+            One engineer, ten years, <span class="italic font-normal text-saffron-deep">every line.</span>
+          </h2>
+
+          <p class="text-body-lg text-charcoal/75 mb-8 max-w-[56ch]">
+            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years shipping commerce engineering for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots — and open-source contributor to Shopify&rsquo;s Hydrogen storefront framework.
+          </p>
+
+          {/* Partner badges — typographic, not pill-y */}
+          <ul class="flex flex-wrap gap-x-8 gap-y-3 mb-10">
+            <li class="flex items-baseline gap-2 text-[0.875rem] text-charcoal/70">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Shopify Partner
+            </li>
+            <li class="flex items-baseline gap-2 text-[0.875rem] text-charcoal/70">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Anthropic Claude Partner
+            </li>
+            <li class="flex items-baseline gap-2 text-[0.875rem] text-charcoal/70">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Vercel Partner
+            </li>
+            <li class="flex items-baseline gap-2 text-[0.875rem] text-charcoal/70">
+              <span class="text-saffron-deep numeral" aria-hidden="true">+</span>
+              Hydrogen contributor
+            </li>
+          </ul>
+
+          <a
+            href="/about/"
+            class="inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] font-medium tracking-wide group"
+          >
+            Read more about Gabriel
+            <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       INSIGHTS TEASER — paper, editorial article list
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/10">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-end justify-between mb-14 md:mb-20 flex-wrap gap-6">
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">From the field</p>
+          </div>
+          <h2 class="text-display-1 text-charcoal max-w-[14ch]">
+            Insights, <span class="italic font-normal text-saffron-deep">not opinions.</span>
+          </h2>
+        </div>
+        <a
+          href="/insights/"
+          class="group inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See all writing
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+
+      <ul class="grid md:grid-cols-3 gap-x-10 gap-y-12 border-t border-charcoal/15">
+        {insightStubs.map((article, i) => (
+          <li>
+            <a href="/insights/" class="block pt-8 group">
+              <div class="flex items-center justify-between mb-6">
+                <span class="text-eyebrow text-charcoal/45">{article.tag}</span>
+                <span class="text-[0.6875rem] uppercase tracking-widest text-charcoal/35 italic">{article.meta}</span>
+              </div>
+              <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors mb-6">
+                {article.title}
+              </h3>
+              <p class="text-[0.8125rem] uppercase tracking-widest text-charcoal/40 inline-flex items-center gap-2">
+                Coming soon
+                <span aria-hidden="true" class="text-saffron">→</span>
+              </p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CTA BAND — charcoal, dramatic finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Ready to build something <span class="italic font-normal text-saffron">that books work?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        One discovery call. A clear scope. A written proposal within three business days.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See our work
+          <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
 </Layout>

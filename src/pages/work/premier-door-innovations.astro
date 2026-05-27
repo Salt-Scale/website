@@ -1,0 +1,277 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const schema = {
+  '@type': 'CreativeWork',
+  '@id': 'https://saltandscale.consulting/work/premier-door-innovations/#case-study',
+  name: 'Premier Door Innovations — B2B aluminum door manufacturer website',
+  creator: { '@id': 'https://saltandscale.consulting/#org' },
+  about: {
+    '@type': 'Organization',
+    name: 'Premier Door Innovations',
+    url: 'https://www.premierdoor.org/',
+  },
+  abstract:
+    'A Houston aluminum door and slider distributor founded in 2021 by three industry veterans with 60+ combined years of glazing experience. Sells through contractor and glazier networks, not direct-to-consumer.',
+};
+
+const shipped = [
+  'Four product-category architecture (Commercial, Residential, Sliders, Transaction Windows) with cross-linked galleries.',
+  'Filterable gallery system across five categories: Interior, Residential, Sliders, Storefront, and Transaction.',
+  'Six-testimonial block from real industry partners &mdash; Mario&rsquo;s Glass &amp; Mirror, B and B Glass, Spartan Glass, JM Aluminum, The Imperium, and Euro Glass.',
+  'Eight-question FAQ wired up to structured-data schema for rich-result eligibility.',
+  'Multi-form contact routing by inquiry type: Request Quote, Free Consultation, General Inquiry, and Customer Support.',
+  'Project-type, timeline, and budget triage fields built into the contact form for sales prioritization.',
+  'Founder-story block anchoring the "60+ years combined experience" trust signal at the heart of the brand.',
+  '"What Sets Us Apart" pillar block: Precision Craftsmanship, Complete Service, and Local Expertise.',
+];
+
+const meta = [
+  { label: 'Year', value: '2024' },
+  { label: 'Type', value: 'Full website build' },
+  { label: 'Stack', value: 'Astro · Tailwind · Vercel' },
+  { label: 'Live', value: 'premierdoor.org', href: 'https://www.premierdoor.org/' },
+];
+---
+
+<Layout
+  title="Premier Door Innovations — Salt & Scale"
+  description="A product-category architecture, filterable gallery, and multi-form lead routing system for Premier Door Innovations, a B2B aluminum door manufacturer in Houston."
+  canonicalPath="/work/premier-door-innovations/"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+    { name: 'Premier Door Innovations', url: '/work/premier-door-innovations/' },
+  ]}
+  schema={schema}
+>
+
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/work/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Work</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Premier Door Innovations</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       HERO — charcoal
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-28">
+
+      <div class="flex items-center gap-4 mb-10">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Aluminum manufacturing · Houston, TX</p>
+      </div>
+
+      <h1 class="text-display-1 max-w-[16ch] mb-14 md:mb-20">Premier Door Innovations</h1>
+
+      <div class="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-20 pt-12 border-t border-paper/15">
+        <div>
+          <p class="text-eyebrow text-saffron mb-5">The brief</p>
+          <p class="text-[1.0625rem] leading-[1.7] text-paper/80 max-w-[58ch]">
+            A Houston aluminum door and slider distributor founded in 2021 by three industry veterans with sixty-plus combined years of glazing experience. Sells through contractor and glazier networks &mdash; not direct-to-consumer.
+          </p>
+        </div>
+
+        <dl class="grid grid-cols-1">
+          {meta.map((m) => (
+            <div class="grid grid-cols-[6rem_1fr] gap-6 items-baseline py-3 border-b border-paper/15 last:border-b-0">
+              <dt class="text-eyebrow text-saffron/80">{m.label}</dt>
+              <dd class="text-[0.9375rem] text-paper/85">
+                {m.href ? (
+                  <a href={m.href} rel="noopener" target="_blank" class="hover:text-saffron transition-colors inline-flex items-baseline gap-2">
+                    {m.value}
+                    <span aria-hidden="true">&rarr;</span>
+                  </a>
+                ) : (
+                  m.value
+                )}
+              </dd>
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       WHAT WE SHIPPED — paper
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we shipped</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[20ch] mb-16 md:mb-24">
+        Contractor-grade, <span class="italic font-normal text-saffron-deep">partnership-routed</span>.
+      </h2>
+
+      <ol class="grid md:grid-cols-2 gap-x-16 gap-y-10 md:gap-y-14 max-w-[1100px]">
+        {shipped.map((item, i) => (
+          <li class="grid grid-cols-[48px_1fr] gap-5 items-baseline border-t border-charcoal/15 pt-6">
+            <span class="numeral text-saffron-deep text-[1.625rem] leading-none">
+              {String(i + 1).padStart(2, '0')}
+            </span>
+            <p class="text-[1.0625rem] leading-[1.6] text-charcoal/80 max-w-[44ch]" set:html={item}></p>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+
+  {/* ============================================================
+       STACK — paper
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/10">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-24">
+
+      <div class="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 items-start">
+        <div class="flex items-center gap-4">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Stack</p>
+        </div>
+
+        <ul class="font-serif text-[clamp(1.375rem,2.2vw,1.875rem)] leading-[1.5] text-charcoal/85 tracking-[-0.012em]">
+          <li>Astro framework</li>
+          <li><span class="text-charcoal/30 mr-2" aria-hidden="true">·</span>Tailwind v4 design system</li>
+          <li><span class="text-charcoal/30 mr-2" aria-hidden="true">·</span>Vercel deployment</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PULL-QUOTE — cream
+       DRAFT — requires client sign-off before publishing
+       ============================================================ */}
+  <!-- DRAFT — requires client sign-off before publishing -->
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1100px] px-6 md:px-10 py-24 md:py-32">
+      <figure class="text-center">
+        <span class="block font-serif text-saffron text-[5rem] md:text-[7rem] leading-none mb-6 italic" aria-hidden="true">&ldquo;</span>
+        <blockquote class="font-serif font-medium text-[clamp(1.5rem,3.2vw,2.5rem)] leading-[1.35] text-charcoal max-w-[36ch] mx-auto -mt-4">
+          We had three founders&rsquo; worth of opinions on every page and Gabriel turned that into one coherent site. Product categories are clear, the gallery does the selling, and the contact form routes by project type so we can prioritize the right requests. <span class="text-saffron-deep italic">Our contractor partners actually use the site to spec jobs now.</span>
+        </blockquote>
+        <figcaption class="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-[0.875rem]">
+          <span class="text-eyebrow text-charcoal/60">Premier Door Innovations</span>
+          <span aria-hidden="true" class="h-px w-8 bg-charcoal/25 hidden sm:block"></span>
+          <span class="text-charcoal/65">Houston, TX</span>
+        </figcaption>
+      </figure>
+    </div>
+  </section>
+
+  {/* ============================================================
+       VISIT LIVE — paper
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-28">
+      <div class="grid md:grid-cols-[200px_1fr] gap-8 md:gap-16 items-baseline">
+        <div class="flex items-center gap-4">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">See it live</p>
+        </div>
+
+        <a
+          href="https://www.premierdoor.org/"
+          rel="noopener"
+          target="_blank"
+          class="group inline-flex items-baseline gap-4 font-serif italic text-[clamp(2rem,4.5vw,3.5rem)] leading-[1.05] tracking-[-0.018em] text-charcoal hover:text-saffron-deep transition-colors"
+        >
+          premierdoor.org
+          <span aria-hidden="true" class="not-italic font-sans text-[1.5rem] transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       NEXT/PREV — paper
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-16 md:py-20">
+      <div class="grid md:grid-cols-2 gap-10">
+
+        <a href="/work/aim-global-transport/" class="group block">
+          <span class="text-eyebrow text-charcoal/40 inline-flex items-center gap-2 mb-4">
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:-translate-x-1">&larr;</span>
+            Previous
+          </span>
+          <div class="flex items-baseline gap-4">
+            <span class="numeral text-saffron-deep/70 text-[1.5rem] leading-none">02</span>
+            <div>
+              <p class="text-eyebrow text-charcoal/45 mb-2">B2B freight</p>
+              <p class="font-serif font-medium text-[clamp(1.375rem,2.2vw,1.875rem)] leading-[1.15] tracking-[-0.012em] text-charcoal group-hover:text-saffron-deep transition-colors">
+                AIM Global Transport
+              </p>
+            </div>
+          </div>
+        </a>
+
+        <a href="/work/elevated-water-solutions/" class="group block md:text-right">
+          <span class="text-eyebrow text-charcoal/40 inline-flex items-center gap-2 mb-4">
+            Next
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+          </span>
+          <div class="flex items-baseline gap-4 md:justify-end">
+            <div class="md:order-2">
+              <p class="text-eyebrow text-charcoal/45 mb-2">Multi-service plumbing</p>
+              <p class="font-serif font-medium text-[clamp(1.375rem,2.2vw,1.875rem)] leading-[1.15] tracking-[-0.012em] text-charcoal group-hover:text-saffron-deep transition-colors">
+                Elevated Water Solutions
+              </p>
+            </div>
+            <span class="numeral text-saffron-deep/70 text-[1.5rem] leading-none md:order-1">04</span>
+          </div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[18ch] mx-auto">
+        Want to be <span class="italic font-normal text-saffron">the fifth?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        One discovery call. A clear scope. A written proposal within three business days.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+        </a>
+        <a
+          href="/work/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          View all work
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

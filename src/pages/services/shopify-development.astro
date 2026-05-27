@@ -1,0 +1,433 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Shopify Development – Salt & Scale";
+const description = "Shopify and Shopify Plus development by a Shopify Partner with 10+ years of production commerce experience. Custom themes, headless builds, app development, and migrations.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Shopify development", url: "/services/shopify-development/" },
+];
+
+const serviceDescription = "Salt & Scale delivers Shopify and Shopify Plus development backed by 10+ years of production commerce experience and a current Shopify Partner credential. Work spans custom Liquid theme development, headless storefronts using Hydrogen and Remix on Oxygen, checkout extensibility, post-purchase flows, and Shopify app development (private and public). Every engagement is handled by one senior engineer — no handoffs to juniors, no agency layer — which keeps communication direct and code quality consistent. Prior work at this level includes headless Shopify Plus programs for PAX Labs and enterprise commerce work for Sanrio through Corra, as well as Liquid and JavaScript feature development for Thursday Boots Co.";
+
+const includedItems = [
+  {
+    n: "01",
+    title: "Custom theme development",
+    body: "Liquid and JavaScript theme work — new builds, existing theme modifications, performance refactors, and feature additions across PDP, cart, and checkout.",
+  },
+  {
+    n: "02",
+    title: "Headless storefronts",
+    body: "Hydrogen and Remix on Oxygen, or custom React/Next.js front-ends against the Storefront API. Core Web Vitals treated as a hard requirement, not an afterthought.",
+  },
+  {
+    n: "03",
+    title: "Checkout extensibility",
+    body: "Checkout UI Extensions, post-purchase offers, and Checkout Functions for custom discount and shipping logic on Shopify Plus plans.",
+  },
+  {
+    n: "04",
+    title: "Shopify app development",
+    body: "Private apps for internal tooling and integrations, public apps through Shopify's review process. Admin and Storefront API work with App Bridge and REST/GraphQL.",
+  },
+  {
+    n: "05",
+    title: "Platform migrations",
+    body: "Migration planning and execution from WooCommerce, Magento, BigCommerce, or custom platforms. Data integrity and SEO continuity are explicit deliverables.",
+  },
+  {
+    n: "06",
+    title: "Technical leadership",
+    body: "Architecture decisions, stack evaluation, roadmap planning, and fractional CTO-style engagement for brands scaling their Shopify infrastructure.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Discovery",
+    title: "Audit before action.",
+    body: "We review your current stack, catalog, integrations, and pain points. Deliverable: a written brief with scope, timeline, and tradeoffs stated explicitly.",
+  },
+  {
+    n: "02",
+    label: "Build",
+    title: "Two-week cycles, visible work.",
+    body: "Work ships in two-week increments on a staging environment you can review. Clear milestones, no long black-box sprints. You always know what's done and what's next.",
+  },
+  {
+    n: "03",
+    label: "Launch",
+    title: "Zero-downtime cutover.",
+    body: "Zero-downtime cutover, post-launch monitoring window, and full documentation for your team. Source code delivered to your own repositories.",
+  },
+];
+
+const outcomes = [
+  {
+    n: "01",
+    title: "Core Web Vitals passing",
+    body: "LCP under 2.5s, INP under 200ms, CLS under 0.1 — measured against real-user data, not just Lighthouse lab runs.",
+  },
+  {
+    n: "02",
+    title: "Conversion improvements",
+    body: "Checkout friction, form usability, and page speed all have direct and measurable relationships to conversion rate. We optimize for each.",
+  },
+  {
+    n: "03",
+    title: "Integration reliability",
+    body: "Integrations with retry logic, error alerting, and idempotent operations — so ERP syncs, inventory feeds, and order pipelines don't fail silently.",
+  },
+];
+
+const priorWork = [
+  {
+    company: "PAX Labs",
+    detail: "Shopify Plus headless program (Hydrogen, Remix, Oxygen), custom OMS in PHP/MySQL.",
+  },
+  {
+    company: "Thursday Boots Co.",
+    detail: "Shopify Liquid/JS audits and front-end feature development.",
+  },
+  {
+    company: "Sanrio (via Corra)",
+    detail: "Shopify Plus with Laravel APIs and Magento PWA features.",
+  },
+  {
+    company: "Hydrogen (open source)",
+    detail: "Public contributor to Shopify's official storefront framework.",
+    href: "https://github.com/Shopify/hydrogen",
+  },
+];
+
+const faqItems = [
+  {
+    question: "What's the difference between Shopify and Shopify Plus development?",
+    answer: "Shopify handles most mid-market stores. Shopify Plus adds checkout extensibility, multi-store setups, B2B functionality, and advanced scripting — it's the enterprise tier. The development work differs significantly: Plus unlocks APIs and customization points that aren't available on standard plans. We work on both, and can advise on whether a Plus upgrade is warranted for your goals.",
+  },
+  {
+    question: "Do you build headless Shopify storefronts?",
+    answer: "Yes. Headless Shopify uses the Storefront API with a custom front-end framework — typically Hydrogen (Shopify's official framework built on Remix) deployed to Oxygen. The tradeoff is more flexibility and better performance ceilings versus higher build complexity and cost. We'll tell you honestly whether headless is the right choice for your scale and team.",
+  },
+  {
+    question: "Can you work on an existing Shopify theme?",
+    answer: "Yes. Whether it's a custom theme, a modified third-party theme (Dawn, Impulse, Prestige, etc.), or a full Liquid codebase, we can audit it, add features, fix performance issues, or do a targeted refactor without disrupting what's already working.",
+  },
+  {
+    question: "How do Shopify app builds work?",
+    answer: "Private apps are bespoke tools built for one store — OMS integrations, custom admin UIs, bulk-operation automations. Public apps go through Shopify's review process and can be installed by any merchant. Both use the same App Bridge and REST/GraphQL Admin API pattern; the main difference is the review and billing infrastructure. Timelines are four to eight weeks for a private app, eight to twelve for a public one.",
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/shopify-development/#service",
+    name: "Shopify development",
+    serviceType: "Shopify and Shopify Plus development",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/shopify-development/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Shopify development</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       HERO — charcoal
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Ecommerce engineering · Shopify</p>
+      </div>
+
+      <h1 class="text-display-xl max-w-[14ch] mb-10">
+        Shopify <span class="italic font-normal text-saffron">development.</span>
+      </h1>
+
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Ten years of production Shopify experience and a current Shopify Partner credential. Liquid themes, Hydrogen headless, checkout extensibility, and app development — all delivered by one senior engineer.
+      </p>
+
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=shopify-development"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/about/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron"
+        >
+          See the engineer behind it
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       ANSWER BLOCK — paper
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       WHAT'S INCLUDED — paper, numbered list
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="mb-14 md:mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Scope of work</p>
+        </div>
+        <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+          What's <span class="italic font-normal text-saffron-deep">included.</span>
+        </h2>
+      </div>
+
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[22ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============================================================
+       HOW WE WORK — cream, 3-step
+       ============================================================ */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Diagnose. Build. <span class="italic font-normal text-saffron-deep">Launch.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       OUTCOMES — paper
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we aim for</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Outcomes we <span class="italic font-normal text-saffron-deep">target.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-12 border-t border-charcoal/15 mb-12">
+        {outcomes.map((o) => (
+          <article class="pt-8">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">{o.n}</span>
+            <h3 class="font-serif font-medium text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mt-5 mb-4 max-w-[18ch]">
+              {o.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {o.body}
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+        Outcomes vary by project scope, existing stack health, and traffic patterns. Prior-work metrics referenced on this site are from individual engagements and are not guarantees of future results.
+      </p>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PRIOR COMMERCE WORK — cream, editorial callout
+       ============================================================ */}
+  <section class="bg-cream border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+
+        <header>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-copper" aria-hidden="true"></span>
+            <p class="text-eyebrow" style="color: var(--color-copper)">Prior commerce engineering</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.08] tracking-[-0.018em] text-charcoal max-w-[16ch] mb-6">
+            Ten years of <span class="italic font-normal text-saffron-deep">Shopify</span> in production.
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch] mb-2">
+            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every engagement today.
+          </p>
+        </header>
+
+        <ul class="md:pt-2 border-t border-charcoal/20 divide-y divide-charcoal/20">
+          {priorWork.map((w) => (
+            <li class="py-6 grid md:grid-cols-[200px_1fr] gap-x-8 gap-y-2 items-baseline">
+              <h3 class="font-serif text-[1.25rem] leading-[1.2] tracking-[-0.012em] text-charcoal">
+                {w.href ? (
+                  <a href={w.href} rel="noopener noreferrer" target="_blank" class="hover:text-saffron-deep transition-colors">{w.company}</a>
+                ) : (
+                  w.company
+                )}
+              </h3>
+              <p class="text-[1rem] leading-[1.55] text-charcoal/70 max-w-[55ch]">
+                {w.detail}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FAQ — paper
+       ============================================================ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Let's talk <span class="italic font-normal text-saffron">Shopify.</span>
+      </h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Describe your project, stack, and what's blocking you. We'll respond within one business day with a direct read on whether and how we can help.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=shopify-development"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/services/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          See all services
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

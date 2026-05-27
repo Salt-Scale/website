@@ -1,0 +1,244 @@
+---
+import { getCollection, render } from 'astro:content';
+import Layout from "../../layouts/Layout.astro";
+
+export async function getStaticPaths() {
+  const posts = await getCollection('insights', ({ data }) => !data.draft);
+  return posts.map((entry) => ({
+    params: { slug: entry.slug },
+    props: { entry },
+  }));
+}
+
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+
+const { title, description, datePublished, dateModified, author, tags, ogImage } = entry.data;
+
+// Reading time: rough estimate at 200 wpm
+const wordCount = entry.body.split(/\s+/).length;
+const readingMinutes = Math.max(1, Math.round(wordCount / 200));
+
+// Related articles: same tag, exclude current
+const allPosts = await getCollection('insights', ({ data }) => !data.draft);
+const relatedPosts = allPosts
+  .filter((p) => p.slug !== entry.slug && p.data.tags.some((t) => tags.includes(t)))
+  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
+  .slice(0, 3);
+
+const canonicalUrl = `https://saltandscale.consulting/insights/${entry.slug}/`;
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Insights', url: '/insights/' },
+  { name: title, url: `/insights/${entry.slug}/` },
+];
+
+const articleSchema = {
+  '@type': 'Article',
+  '@id': `${canonicalUrl}#article`,
+  headline: title,
+  description: description,
+  image: ogImage ?? '/og-image.jpg',
+  datePublished: datePublished.toISOString(),
+  dateModified: (dateModified ?? datePublished).toISOString(),
+  author: { '@id': 'https://saltandscale.consulting/#founder' },
+  publisher: { '@id': 'https://saltandscale.consulting/#org' },
+  mainEntityOfPage: canonicalUrl,
+};
+
+const dateFormatter = new Intl.DateTimeFormat('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+
+// Pull optional key takeaways from frontmatter if available (graceful if missing)
+const takeaways = (entry.data as any).takeaways as string[] | undefined;
+---
+
+<Layout
+  title={`${title} — Salt & Scale`}
+  description={description}
+  ogImage={ogImage}
+  canonicalPath={`/insights/${entry.slug}/`}
+  breadcrumbs={breadcrumbs}
+  schema={articleSchema}
+>
+
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/insights/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Insights</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80 truncate max-w-[40ch]">{title}</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       ARTICLE HERO — paper, centered, editorial
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[820px] px-6 md:px-10 pt-20 pb-12 md:pt-28 md:pb-16">
+
+      {tags.length > 0 && (
+        <div class="flex items-center gap-4 mb-8 justify-center">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">{tags[0]}</p>
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        </div>
+      )}
+
+      <h1 class="text-display-1 text-charcoal text-center mb-10 md:mb-12">
+        {title}
+      </h1>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-8 border-t border-charcoal/15 text-[0.875rem] text-charcoal/60">
+        <span class="text-eyebrow text-charcoal/55">By {author}</span>
+        <span aria-hidden="true" class="text-saffron">·</span>
+        <time datetime={datePublished.toISOString()}>{dateFormatter.format(datePublished)}</time>
+        <span aria-hidden="true" class="text-saffron">·</span>
+        <span>{readingMinutes} min read</span>
+        {dateModified && dateModified.valueOf() !== datePublished.valueOf() && (
+          <>
+            <span aria-hidden="true" class="text-saffron">·</span>
+            <span class="italic font-serif">
+              Updated <time datetime={dateModified.toISOString()}>{dateFormatter.format(dateModified)}</time>
+            </span>
+          </>
+        )}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       ARTICLE BODY — paper, narrow column, editorial prose
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[680px] px-6 md:px-10 py-12 md:py-16">
+      <article class="prose-editorial">
+        <Content />
+      </article>
+    </div>
+  </section>
+
+  {/* ============================================================
+       KEY TAKEAWAYS — cream, optional
+       ============================================================ */}
+  {takeaways && takeaways.length > 0 && (
+    <section class="bg-cream border-t border-charcoal/10">
+      <div class="mx-auto max-w-[820px] px-6 md:px-10 py-16 md:py-20">
+        <div class="flex items-center gap-4 mb-8">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Key takeaways</p>
+        </div>
+        <ul class="space-y-5">
+          {takeaways.map((t, i) => (
+            <li class="grid grid-cols-[44px_1fr] gap-4 items-baseline">
+              <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
+              <p class="text-body-lg text-charcoal/80 max-w-[55ch]">{t}</p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {/* ============================================================
+       RELATED — paper, editorial list
+       ============================================================ */}
+  {relatedPosts.length > 0 && (
+    <section class="bg-paper border-t border-charcoal/10">
+      <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-24" aria-labelledby="related-heading">
+        <div class="flex items-end justify-between mb-12 flex-wrap gap-6">
+          <div>
+            <div class="flex items-center gap-4 mb-6">
+              <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+              <p class="text-eyebrow text-saffron-deep">Keep reading</p>
+            </div>
+            <h2 id="related-heading" class="text-display-2 text-charcoal max-w-[14ch]">
+              Related <span class="italic font-normal text-saffron-deep">essays</span>.
+            </h2>
+          </div>
+          <a
+            href="/insights/"
+            class="group inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] tracking-wide"
+          >
+            All insights
+            <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+          </a>
+        </div>
+
+        <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+          {relatedPosts.map((related, i) => (
+            <li>
+              <a
+                href={`/insights/${related.slug}/`}
+                class="grid md:grid-cols-[64px_180px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 group hover:text-saffron-deep transition-colors duration-150"
+              >
+                <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
+                <div class="flex flex-col gap-1">
+                  {related.data.tags[0] && (
+                    <span class="text-eyebrow text-charcoal/45 group-hover:text-saffron-deep/80 transition-colors">{related.data.tags[0]}</span>
+                  )}
+                  <time
+                    datetime={related.data.datePublished.toISOString()}
+                    class="text-[0.8125rem] text-charcoal/50 italic font-serif"
+                  >
+                    {dateFormatter.format(related.data.datePublished)}
+                  </time>
+                </div>
+                <h3 class="font-serif font-medium text-[clamp(1.25rem,2vw,1.625rem)] leading-[1.2] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors max-w-[50ch]">
+                  {related.data.title}
+                </h3>
+                <span class="hidden md:inline-block text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">Read →</span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </section>
+  )}
+
+  {/* ============================================================
+       CTA BAND — charcoal finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[20ch] mx-auto">
+        Ready to apply this <span class="italic font-normal text-saffron">to your site?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        Salt &amp; Scale builds production-grade websites for service businesses. One engineer, end to end.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/?service=business-websites"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a
+          href="/insights/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          Back to Insights
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

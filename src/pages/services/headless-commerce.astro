@@ -1,0 +1,397 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Headless Commerce Builds – Salt & Scale";
+const description = "Headless commerce development for Shopify and Adobe Commerce. Hydrogen, Remix, Next.js, and custom React front-ends with Core Web Vitals as a hard requirement.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Headless commerce builds", url: "/services/headless-commerce/" },
+];
+
+const serviceDescription = "Headless commerce decouples the storefront presentation layer from the commerce backend, letting you ship a faster, more flexible front-end while Shopify or Adobe Commerce handles catalog, checkout, and order management. Salt & Scale builds headless storefronts on Hydrogen (Shopify's Remix-based framework) deployed to Oxygen, custom Remix or Next.js front-ends against the Shopify Storefront API, and React/GraphQL storefronts for Adobe Commerce. Core Web Vitals — LCP under 2.5s, INP under 200ms, CLS under 0.1 — are treated as hard requirements, not optional goals. CMS integrations (Sanity, Contentful, or others) and automated CI/CD pipelines are included. Prior headless work includes a full Shopify Plus headless program for PAX Labs built with Hydrogen, Remix, and Oxygen, including a custom OMS in PHP and MySQL.";
+
+const includedItems = [
+  {
+    n: "01",
+    title: "Hydrogen and Remix storefronts",
+    body: "Shopify's official headless framework on Oxygen — streaming SSR, progressive enhancement, first-class Storefront API integration, and edge deployment by default.",
+  },
+  {
+    n: "02",
+    title: "Custom React / Next.js front-ends",
+    body: "For teams not on Oxygen or those needing framework flexibility — Next.js App Router or Pages Router builds against Shopify or Adobe Commerce GraphQL APIs.",
+  },
+  {
+    n: "03",
+    title: "CMS integrations",
+    body: "Sanity, Contentful, and other headless CMS integrations for editorial pages, landing pages, blogs, and marketing content — keeping commerce and content independent.",
+  },
+  {
+    n: "04",
+    title: "Core Web Vitals as a requirement",
+    body: "LCP, INP, and CLS targets set upfront and verified throughout the build — not checked once at launch. Architecture decisions made with performance in mind from day one.",
+  },
+  {
+    n: "05",
+    title: "Automated deploys and CI/CD",
+    body: "GitHub Actions or Vercel CI pipelines — lint, type-check, build, and deploy on every merge. Preview deployments for every pull request.",
+  },
+  {
+    n: "06",
+    title: "Headless strategy and architecture",
+    body: "If you're evaluating whether to go headless, we offer a scoped discovery engagement that produces a written architecture recommendation and migration roadmap before any code is written.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Decide",
+    title: "Architecture before code.",
+    body: "We map your catalog, team, CMS needs, and performance targets to the right framework and deployment architecture. Written recommendation before build begins.",
+  },
+  {
+    n: "02",
+    label: "Build",
+    title: "Perf-checked at every milestone.",
+    body: "Pages built incrementally against real Shopify or Adobe Commerce data. Core Web Vitals checked at every milestone — not just before launch.",
+  },
+  {
+    n: "03",
+    label: "Launch",
+    title: "CI handoff, your repos.",
+    body: "Live deployment with monitoring, full CI/CD pipeline documentation, and a runbook for your team. Code in your own repositories from day one.",
+  },
+];
+
+const outcomes = [
+  {
+    n: "01",
+    title: "Core Web Vitals passing",
+    body: "The performance ceiling for headless is higher than traditional storefronts. We build to reach it: streaming SSR, edge caching, and progressive hydration from the ground up.",
+  },
+  {
+    n: "02",
+    title: "Conversion on the commerce path",
+    body: "Faster pages and optimized checkout flows translate directly to conversion. We track the full funnel — PDP to cart to checkout — not just page-speed scores.",
+  },
+  {
+    n: "03",
+    title: "Developer velocity post-launch",
+    body: "A headless storefront should make your team faster, not slower. Clean component architecture, typed APIs, and documented conventions reduce the cost of every feature that comes after launch.",
+  },
+];
+
+const priorWork = [
+  {
+    company: "PAX Labs",
+    detail: "Full Shopify Plus headless program with Hydrogen, Remix, and Oxygen — plus a custom OMS in PHP and MySQL for order operations.",
+  },
+  {
+    company: "Sanrio (via Corra)",
+    detail: "Magento PWA front-end with React and GraphQL, layered onto a Shopify Plus + Magento hybrid commerce stack.",
+  },
+  {
+    company: "Hydrogen (open source)",
+    detail: "Public contributor to Shopify's official Hydrogen storefront framework — the foundation underneath this kind of build.",
+    href: "https://github.com/Shopify/hydrogen",
+  },
+  {
+    company: "Hive Brands",
+    detail: "Component-level headless work alongside microservices for promotions and operations integration.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "Does my store actually need to go headless?",
+    answer: "Honestly, most stores don't. Headless adds real complexity — longer initial build time, a more involved CI/CD pipeline, and more moving parts to maintain. The case for headless is strong when you need editorial flexibility a CMS provides, you're targeting sub-2s LCP at scale, you have a design team building components independently from commerce engineers, or you're integrating with a mobile app that needs the same data. If you're unsure, start with a discovery call and we'll give you a direct answer.",
+  },
+  {
+    question: "What's the difference between Hydrogen, Remix, and Oxygen?",
+    answer: "Hydrogen is Shopify's official headless commerce framework, built on top of Remix (a full-stack React framework). Oxygen is Shopify's edge hosting platform, designed to run Hydrogen apps close to users globally. You can build with Hydrogen locally and deploy elsewhere (Vercel, Netlify, Cloudflare), but Oxygen is often the right call for Shopify-native apps because it's free on Shopify plans and has first-class Storefront API integration.",
+  },
+  {
+    question: "What CMS do you recommend for headless?",
+    answer: "Sanity is our default recommendation for most projects — it has a flexible schema, a good developer experience, and a generous free tier. Contentful works well for teams that already use it. For very simple content needs (blog posts, landing pages), we sometimes skip a dedicated CMS and use Astro Content Collections or MDX instead. The right choice depends on how much content your team manages and how technical your editors are.",
+  },
+  {
+    question: "How do you handle performance on a headless storefront?",
+    answer: "Performance is built into the architecture from day one, not bolted on at the end. That means streaming HTML from the server, deferred client-side hydration, image optimization via Astro Image or next/image, font subsetting, critical-CSS inlining, and aggressive edge caching. We run Lighthouse and Web Vitals checks at every milestone, not just at launch.",
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/headless-commerce/#service",
+    name: "Headless commerce builds",
+    serviceType: "Headless ecommerce development",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/headless-commerce/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Headless commerce</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* HERO */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Ecommerce engineering · Headless</p>
+      </div>
+      <h1 class="text-display-xl max-w-[14ch] mb-10">
+        Headless <span class="italic font-normal text-saffron">commerce</span> builds.
+      </h1>
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Hydrogen, Remix, Next.js, and custom React storefronts on top of Shopify or Adobe Commerce. Core Web Vitals are a hard requirement, not an aspirational goal.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=headless-commerce" class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/about/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron">
+          See the engineer behind it
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ANSWER */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* WHAT'S INCLUDED */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="mb-14 md:mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Scope of work</p>
+        </div>
+        <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+          What's <span class="italic font-normal text-saffron-deep">included.</span>
+        </h2>
+      </div>
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[24ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* HOW WE WORK */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Decide. Build. <span class="italic font-normal text-saffron-deep">Hand off.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* OUTCOMES */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we aim for</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Outcomes we <span class="italic font-normal text-saffron-deep">target.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-12 border-t border-charcoal/15 mb-12">
+        {outcomes.map((o) => (
+          <article class="pt-8">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">{o.n}</span>
+            <h3 class="font-serif font-medium text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mt-5 mb-4 max-w-[20ch]">
+              {o.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {o.body}
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+        Outcomes vary by project scope, existing platform health, and traffic volume. Metrics referenced elsewhere on this site are from individual engagements and are not guarantees of future results.
+      </p>
+    </div>
+  </section>
+
+  {/* PRIOR COMMERCE WORK */}
+  <section class="bg-cream border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-copper" aria-hidden="true"></span>
+            <p class="text-eyebrow" style="color: var(--color-copper)">Prior commerce engineering</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.08] tracking-[-0.018em] text-charcoal max-w-[18ch] mb-6">
+            Built <span class="italic font-normal text-saffron-deep">headless</span> at scale before.
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch]">
+            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every headless engagement today.
+          </p>
+        </header>
+        <ul class="md:pt-2 border-t border-charcoal/20 divide-y divide-charcoal/20">
+          {priorWork.map((w) => (
+            <li class="py-6 grid md:grid-cols-[200px_1fr] gap-x-8 gap-y-2 items-baseline">
+              <h3 class="font-serif text-[1.25rem] leading-[1.2] tracking-[-0.012em] text-charcoal">
+                {w.href ? (
+                  <a href={w.href} rel="noopener noreferrer" target="_blank" class="hover:text-saffron-deep transition-colors">{w.company}</a>
+                ) : (
+                  w.company
+                )}
+              </h3>
+              <p class="text-[1rem] leading-[1.55] text-charcoal/70 max-w-[55ch]">
+                {w.detail}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA BAND */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[22ch] mx-auto">
+        Let's talk <span class="italic font-normal text-saffron">headless.</span>
+      </h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Tell us your platform, current stack, and what the headless move is meant to solve. We'll respond within one business day with a direct read.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=headless-commerce" class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/services/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide">
+          See all services
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

@@ -1,0 +1,486 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const service = Astro.url.searchParams.get('service') ?? '';
+const projectType = Astro.url.searchParams.get('project-type') ?? '';
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Contact', url: '/contact/' },
+];
+
+const steps = [
+  {
+    n: "01",
+    label: "Reply",
+    title: "Within 1 business day.",
+    body: "A real response from Gabriel, not an autoresponder. Most replies land within a few hours.",
+  },
+  {
+    n: "02",
+    label: "Discovery",
+    title: "A 30-minute call.",
+    body: "We clarify goals, audience, constraints, and fit before anything else. No sales deck, no slides.",
+  },
+  {
+    n: "03",
+    label: "Proposal",
+    title: "Written, within 3 days.",
+    body: "Scope, deliverables, timeline, and a fixed or capped fee — in writing, sent within three business days.",
+  },
+];
+---
+
+<Layout
+  title="Start a project — Salt & Scale"
+  description="Tell us about your project. We reply within 1 business day, schedule a 30-minute discovery call, and deliver a written proposal within 3 business days."
+  canonicalPath="/contact/"
+  breadcrumbs={breadcrumbs}
+>
+
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Contact</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       HERO — charcoal, smaller
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-16 md:pt-24 md:pb-20">
+
+      <div class="flex items-center gap-4 mb-10">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Start a project</p>
+      </div>
+
+      <h1 class="text-display-1 max-w-[16ch] mb-8 md:mb-10">
+        One discovery call. <span class="italic font-normal text-saffron">A clear scope.</span>
+      </h1>
+
+      <p class="text-[clamp(1.125rem,1.4vw,1.375rem)] leading-[1.55] text-paper/75 max-w-[58ch] font-light">
+        Tell us about your goals, constraints, and timeline. Gabriel will reply within one business day with next steps.
+      </p>
+    </div>
+  </section>
+
+  {/* ============================================================
+       WHAT TO EXPECT — paper, 3-step editorial layout
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-24">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What to expect</p>
+      </div>
+
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {steps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/20 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/40">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FORM — cream, asymmetric 2-col
+       ============================================================ */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-20 md:py-28">
+
+      <div class="grid md:grid-cols-[0.7fr_1fr] gap-12 md:gap-20 items-start">
+
+        {/* Left: direct contact */}
+        <aside>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Direct contact</p>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.5rem)] leading-[1.1] tracking-[-0.018em] text-charcoal mb-6 max-w-[16ch]">
+            Prefer <span class="italic font-normal text-saffron-deep">email?</span>
+          </h2>
+
+          <p class="text-body text-charcoal/70 mb-10 max-w-[40ch]">
+            Email replies just as fast. LinkedIn works too. Whatever channel you reach out on, you talk to Gabriel directly.
+          </p>
+
+          <ul class="space-y-5 mb-10">
+            <li>
+              <p class="text-eyebrow text-charcoal/40 mb-2">Email</p>
+              <a
+                href="mailto:gabe@saltandscale.consulting"
+                class="font-serif text-[1.25rem] text-charcoal hover:text-saffron-deep transition-colors border-b border-saffron pb-0.5"
+              >
+                gabe@saltandscale.consulting
+              </a>
+            </li>
+            <li>
+              <p class="text-eyebrow text-charcoal/40 mb-2">LinkedIn</p>
+              <a
+                href="https://www.linkedin.com/in/gabriel-rosales/"
+                rel="noopener noreferrer"
+                target="_blank"
+                class="font-serif text-[1.25rem] text-charcoal hover:text-saffron-deep transition-colors border-b border-saffron pb-0.5"
+              >
+                /in/gabriel-rosales
+              </a>
+            </li>
+            <li>
+              <p class="text-eyebrow text-charcoal/40 mb-2">GitHub</p>
+              <a
+                href="https://github.com/notoriousgor"
+                rel="noopener noreferrer"
+                target="_blank"
+                class="font-serif text-[1.25rem] text-charcoal hover:text-saffron-deep transition-colors border-b border-saffron pb-0.5"
+              >
+                @notoriousgor
+              </a>
+            </li>
+          </ul>
+
+          <div class="pt-8 border-t border-charcoal/15 space-y-4">
+            <div>
+              <p class="text-eyebrow text-charcoal/40 mb-2">Hours</p>
+              <p class="text-[0.9375rem] text-charcoal/70">Monday – Friday, 9 AM – 6 PM Central</p>
+            </div>
+            <div>
+              <p class="text-eyebrow text-charcoal/40 mb-2">Location</p>
+              <p class="text-[0.9375rem] text-charcoal/70">Houston, TX (Central Time)</p>
+            </div>
+          </div>
+        </aside>
+
+        {/* Right: form */}
+        <div>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Project brief</p>
+          </div>
+
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.5rem)] leading-[1.1] tracking-[-0.018em] text-charcoal mb-10 max-w-[16ch]">
+            Tell us about <span class="italic font-normal text-saffron-deep">the project</span>.
+          </h2>
+
+          <form
+            id="contact-form"
+            name="contact"
+            method="POST"
+            action="/api/contact"
+            class="space-y-6"
+          >
+            {/* Honeypot — visually + a11y-hidden text field. Real users won't fill it; bots that fill all inputs trigger the trap. */}
+            <div aria-hidden="true" class="absolute -left-[9999px] top-auto h-px w-px overflow-hidden" tabindex={-1}>
+              <label>
+                Don&rsquo;t fill this out if you&rsquo;re human:
+                <input type="text" name="bot-field" tabindex={-1} autocomplete="off" />
+              </label>
+            </div>
+
+            {/* Personal Information */}
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-eyebrow text-charcoal/55 mb-3">Your name <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+                <p id="error-name" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter your name.</p>
+                <input
+                  required
+                  id="name"
+                  name="name"
+                  placeholder="Enter your name"
+                  autocomplete="name"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                />
+              </div>
+
+              <div>
+                <label for="email" class="block text-eyebrow text-charcoal/55 mb-3">Email <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+                <p id="error-email" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter a valid email.</p>
+                <input
+                  required
+                  id="email"
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email"
+                  autocomplete="email"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                />
+              </div>
+            </div>
+
+            {/* Company Information */}
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="company" class="block text-eyebrow text-charcoal/55 mb-3">Company name</label>
+                <p id="error-company" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter your company name.</p>
+                <input
+                  id="company"
+                  name="company"
+                  placeholder="Your company or organization"
+                  autocomplete="organization"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                />
+              </div>
+
+              <div>
+                <label for="phone" class="block text-eyebrow text-charcoal/55 mb-3">Phone number</label>
+                <p id="error-phone" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please enter a valid phone number (e.g., 555-123-4567).</p>
+                <input
+                  id="phone"
+                  name="phone"
+                  type="tel"
+                  inputmode="numeric"
+                  autocomplete="tel"
+                  pattern="\d{3}-\d{3}-\d{4}"
+                  maxlength="12"
+                  placeholder="Your phone number"
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                />
+              </div>
+            </div>
+
+            {/* Project Details */}
+            <div class="grid md:grid-cols-2 gap-6">
+              <div>
+                <label for="service" class="block text-eyebrow text-charcoal/55 mb-3">Service</label>
+                <select
+                  id="service"
+                  name="service"
+                  value={service}
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                >
+                  <option value="">Select a service</option>
+                  <option value="business-websites" selected={service === 'business-websites'}>Websites for service businesses</option>
+                  <option value="shopify-development" selected={service === 'shopify-development'}>Shopify development</option>
+                  <option value="adobe-commerce" selected={service === 'adobe-commerce'}>Adobe Commerce</option>
+                  <option value="headless-commerce" selected={service === 'headless-commerce'}>Headless commerce</option>
+                  <option value="custom-app-development" selected={service === 'custom-app-development'}>Custom app development</option>
+                  <option value="integrations-automation" selected={service === 'integrations-automation'}>Integrations & automation</option>
+                  <option value="audits-strategy" selected={service === 'audits-strategy'}>Audits & strategy</option>
+                  <option value="other">Other / not sure yet</option>
+                </select>
+              </div>
+
+              <div>
+                <label for="project-type" class="block text-eyebrow text-charcoal/55 mb-3">Project type</label>
+                <select
+                  id="project-type"
+                  name="project-type"
+                  value={projectType}
+                  class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150"
+                >
+                  <option value="">Select project type</option>
+                  <option value="new-build" selected={projectType === 'new-build'}>New website build</option>
+                  <option value="redesign" selected={projectType === 'redesign'}>Redesign of existing site</option>
+                  <option value="migration" selected={projectType === 'migration'}>Platform migration</option>
+                  <option value="custom-app" selected={projectType === 'custom-app'}>Custom app development</option>
+                  <option value="headless" selected={projectType === 'headless'}>Headless commerce</option>
+                  <option value="integration" selected={projectType === 'integration'}>Systems integration</option>
+                  <option value="audit" selected={projectType === 'audit'}>Technical audit</option>
+                  <option value="consulting" selected={projectType === 'consulting'}>Strategy consulting</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+
+            {/* Project Description */}
+            <div>
+              <label for="message" class="block text-eyebrow text-charcoal/55 mb-3">Project details <span aria-hidden="true" class="text-saffron-deep normal-case tracking-normal">*</span><span class="sr-only">(required)</span></label>
+              <p id="error-message" class="mb-2 text-[0.8125rem] text-red-700 hidden" role="alert">Please share a few details about your project.</p>
+              <textarea
+                required
+                id="message"
+                name="message"
+                placeholder="Tell us about your goals, constraints, and what success looks like..."
+                rows="6"
+                class="w-full bg-paper border border-charcoal/20 rounded-sm px-4 py-3 text-charcoal placeholder:text-charcoal/40 focus:border-saffron focus:ring-1 focus:ring-saffron focus:outline-none transition-colors duration-150 resize-none"
+              ></textarea>
+            </div>
+
+            <div class="pt-2">
+              <button
+                id="contact-submit"
+                type="submit"
+                class="group inline-flex items-center gap-3 bg-charcoal text-paper px-7 py-4 tracking-wide font-medium uppercase text-[0.8125rem] hover:bg-saffron hover:text-ink transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 disabled:opacity-60 disabled:cursor-not-allowed"
+              >
+                Send message
+                <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+              </button>
+              <div id="contact-toast" class="pointer-events-none fixed left-1/2 bottom-6 -translate-x-1/2 z-50 hidden">
+                <div id="contact-toast-inner" class="rounded-sm text-white px-4 py-3 shadow-lg">
+                  <p id="contact-status" class="m-0 text-sm" aria-live="polite"></p>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+</Layout>
+
+<script>
+  // @ts-nocheck
+  const formatPhone = (value) => {
+    const digits = String(value || '').replace(/\D/g, '').slice(0, 10);
+    const parts = [];
+    if (digits.length > 0) parts.push(digits.slice(0, Math.min(3, digits.length)));
+    if (digits.length >= 4) parts.push(digits.slice(3, Math.min(6, digits.length)));
+    if (digits.length >= 7) parts.push(digits.slice(6, 10));
+    return parts.join('-');
+  };
+  const isValidEmail = (value) => /.+@.+\..+/.test(String(value || ''));
+  const isValidPhone = (value) => String(value || '').replace(/\D/g, '').length === 10;
+
+  const contactForm = document.getElementById('contact-form');
+  const submitBtn = document.getElementById('contact-submit');
+  const statusEl = document.getElementById('contact-status');
+  const toast = document.getElementById('contact-toast');
+  const toastInner = document.getElementById('contact-toast-inner');
+  const phoneInput = document.getElementById('phone');
+  const emailInput = document.getElementById('email');
+  const nameInput = document.getElementById('name');
+  const companyInput = document.getElementById('company');
+  const messageInput = document.getElementById('message');
+
+  const setFieldError = (input, errorEl, hasError) => {
+    if (!input || !errorEl) return;
+    if (hasError) {
+      input.setAttribute('aria-invalid', 'true');
+      input.setAttribute('aria-describedby', errorEl.id);
+      errorEl.classList.remove('hidden');
+    } else {
+      input.removeAttribute('aria-invalid');
+      input.removeAttribute('aria-describedby');
+      errorEl.classList.add('hidden');
+    }
+  };
+
+  // Phone input formatting
+  phoneInput?.addEventListener('input', (e) => {
+    const before = e.target.value;
+    const caret = e.target.selectionStart;
+    e.target.value = formatPhone(e.target.value);
+    const delta = e.target.value.length - before.length;
+    const next = Math.max(0, (caret || 0) + delta);
+    e.target.setSelectionRange(next, next);
+  });
+  phoneInput?.addEventListener('blur', (e) => {
+    e.target.value = formatPhone(e.target.value);
+  });
+
+  const showToast = (message, type = 'info') => {
+    statusEl.textContent = message;
+    statusEl.setAttribute('aria-live', type === 'error' ? 'assertive' : 'polite');
+    const success = 'bg-[#14532d]';
+    const error = 'bg-[#7f1d1d]';
+    const info = 'bg-[#0f172a]';
+    toastInner.classList.remove(success, error, info);
+    toastInner.classList.add(type === 'success' ? success : type === 'error' ? error : info);
+    toast.classList.remove('hidden');
+    toast.classList.add('block');
+    setTimeout(() => toast.classList.add('hidden'), type === 'success' ? 3500 : 4500);
+  };
+
+  contactForm?.addEventListener('submit', async (e) => {
+    e.preventDefault();
+    if (!contactForm) return;
+    statusEl.textContent = '';
+    submitBtn.disabled = true;
+    try {
+      const formData = new FormData(contactForm);
+      // Honeypot check
+      if (formData.get('bot-field')) {
+        submitBtn.disabled = false;
+        return;
+      }
+
+      // Client-side validation
+      const name = String(formData.get('name') || '').trim();
+      const email = String(formData.get('email') || '').trim();
+      const company = String(formData.get('company') || '').trim();
+      const phoneRaw = String(formData.get('phone') || '').trim();
+      const message = String(formData.get('message') || '').trim();
+      const phone = formatPhone(phoneRaw);
+
+      const errors = {
+        name: !name,
+        email: !email || !isValidEmail(email),
+        company: false,
+        phone: Boolean(phone) && !isValidPhone(phone),
+        message: !message,
+      };
+      setFieldError(nameInput, document.getElementById('error-name'), errors.name);
+      setFieldError(emailInput, document.getElementById('error-email'), errors.email);
+      setFieldError(companyInput, document.getElementById('error-company'), errors.company);
+      setFieldError(phoneInput, document.getElementById('error-phone'), errors.phone);
+      setFieldError(messageInput, document.getElementById('error-message'), errors.message);
+
+      if (Object.values(errors).some(Boolean)) {
+        showToast('Please correct the highlighted fields.', 'error');
+        (errors.name && nameInput?.focus()) ||
+        (errors.email && emailInput?.focus()) ||
+        (errors.company && companyInput?.focus()) ||
+        (errors.phone && phoneInput?.focus()) ||
+        (errors.message && messageInput?.focus());
+        submitBtn.disabled = false;
+        return;
+      }
+
+      const payload = { ...Object.fromEntries(formData.entries()), phone };
+      window.va?.('event', { name: 'contact_submit_start' });
+      const res = await fetch(contactForm.action, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+      const data = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        window.va?.('event', { name: 'contact_submit_error', status: res.status });
+        if (res.status === 400) {
+          showToast(data?.error || 'Please complete the required fields.', 'error');
+        } else if (res.status === 422) {
+          showToast('Please check your email and phone format (e.g., 555-123-4567).', 'error');
+        } else if (res.status === 429) {
+          showToast('Too many requests. Please wait a moment and try again.', 'error');
+        } else if (res.status === 503) {
+          showToast('Service temporarily unavailable. Please try again shortly.', 'error');
+        } else if (res.status === 502) {
+          showToast('We could not send your message right now. Please try again later.', 'error');
+        } else {
+          showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+        }
+        return;
+      }
+
+      showToast('Thanks! We received your message and will get back to you soon.', 'success');
+      window.va?.('event', { name: 'contact_submit_success' });
+      contactForm.reset();
+    } catch (err) {
+      showToast('Sorry—there was a problem sending your message. Please try again later.', 'error');
+    } finally {
+      submitBtn.disabled = false;
+    }
+  });
+</script>

@@ -1,0 +1,148 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const pageTitle = 'Work — Salt & Scale';
+const pageDescription =
+  'Four service businesses, built and shipped by one senior engineer in Houston. Real builds, no invented metrics, no stock-photo clients.';
+
+const cases = [
+  {
+    n: '01',
+    slug: 'mahi-plumbing',
+    sector: 'Residential plumbing · Houston, TX',
+    client: 'Mahi Plumbing',
+    description:
+      'A 24/7 emergency plumber serving Houston and nine surrounding cities, built phone-first around a bespoke "Trophy Catch Plumber" brand. License signals, four-service catalog, and a form that gracefully degrades when somebody\'s water heater goes out at 2 AM.',
+  },
+  {
+    n: '02',
+    slug: 'aim-global-transport',
+    sector: 'B2B freight · All 48 states',
+    client: 'AIM Global Transport',
+    description:
+      'A nationwide carrier with a 24/7 dispatch operation, written for logistics buyers, not consumers. Stat-led hero, six-service B2B catalog, and a dual conversion path that splits dispatch leads from sales inquiries at the form level.',
+  },
+  {
+    n: '03',
+    slug: 'premier-door-innovations',
+    sector: 'Aluminum manufacturing · Houston, TX',
+    client: 'Premier Door Innovations',
+    description:
+      'A Houston aluminum door and slider distributor selling through contractor networks. Four-category product architecture, a filterable gallery, multi-form contact routing by inquiry type, and a founder-story block anchoring sixty years of combined glazing experience.',
+  },
+  {
+    n: '04',
+    slug: 'elevated-water-solutions',
+    sector: 'Multi-service plumbing · Houston metro',
+    client: 'Elevated Water Solutions',
+    description:
+      'An eleven-year master-plumber operation expanding from water heaters into treatment, gas, and remodels. Eleven services across three categories, a fifteen-area local-SEO footprint, and a recent-installations gallery captioned by city for trust and proof.',
+  },
+];
+---
+
+<Layout
+  title={pageTitle}
+  description={pageDescription}
+  canonicalPath="/work/"
+  breadcrumbs={[
+    { name: 'Home', url: '/' },
+    { name: 'Work', url: '/work/' },
+  ]}
+>
+
+  {/* ============================================================
+       HERO — charcoal, editorial
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Selected work · Houston</p>
+      </div>
+
+      <h1 class="text-display-1 max-w-[18ch] mb-12">
+        Built and shipped, <span class="italic font-normal text-saffron">not pitched</span>.
+      </h1>
+
+      <p class="text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.5] text-paper/75 max-w-[58ch] font-light">
+        Four real builds for four Houston service businesses &mdash; a plumber, a freight carrier, a door manufacturer, and a multi-service plumbing shop. Every site written and shipped by one senior engineer.
+      </p>
+
+    </div>
+  </section>
+
+  {/* ============================================================
+       EDITORIAL LIST — paper, numbered case studies
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Four case studies</p>
+      </div>
+
+      <ul class="divide-y divide-charcoal/15 border-t border-charcoal/15">
+        {cases.map((c) => (
+          <li>
+            <a
+              href={`/work/${c.slug}/`}
+              class="grid md:grid-cols-[64px_220px_1fr_auto] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-10 md:py-12 group hover:bg-cream/40 -mx-6 md:-mx-10 px-6 md:px-10 transition-colors duration-150"
+            >
+              <span class="numeral text-saffron-deep text-[2.25rem] md:text-[2.5rem] leading-none">{c.n}</span>
+              <span class="text-eyebrow text-charcoal/45 group-hover:text-saffron-deep transition-colors">{c.sector}</span>
+              <div>
+                <h2 class="font-serif font-medium text-[clamp(1.75rem,3vw,2.5rem)] leading-[1.1] tracking-[-0.015em] text-charcoal group-hover:text-saffron-deep transition-colors mb-3">
+                  {c.client}
+                </h2>
+                <p class="text-[1rem] leading-[1.65] text-charcoal/65 max-w-[58ch]">{c.description}</p>
+              </div>
+              <span class="hidden md:inline-flex items-baseline gap-2 text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep whitespace-nowrap transition-all duration-150" aria-hidden="true">
+                View case
+                <span class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+              </span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* ============================================================
+       PRE-FOOTER CTA — charcoal, editorial finale
+       ============================================================ */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[18ch] mx-auto">
+        Want to be <span class="italic font-normal text-saffron">the fifth?</span>
+      </h2>
+
+      <p class="text-body-lg text-paper/70 max-w-[52ch] mx-auto mb-14">
+        One discovery call. A clear scope. A written proposal within three business days.
+      </p>
+
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a
+          href="/contact/"
+          class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
+        >
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+        </a>
+        <a
+          href="/about/"
+          class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide"
+        >
+          About Salt &amp; Scale
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">&rarr;</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

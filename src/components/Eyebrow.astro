@@ -1,0 +1,32 @@
+---
+interface Props {
+  label: string;
+  variant?: 'sage' | 'saffron' | 'cream' | 'mark' | 'mark-dark';
+  class?: string;
+}
+
+const { label, variant = 'mark', class: extraClass = '' } = Astro.props;
+
+// "mark" — minimal: just a saffron rule + uppercase wide-tracked label. Editorial default.
+// pill variants — for tags inside cards
+const variantClasses: Record<string, string> = {
+  mark: 'flex items-center gap-4 text-eyebrow text-saffron-deep',
+  'mark-dark': 'flex items-center gap-4 text-eyebrow text-saffron',
+  sage: 'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold bg-sage/10 text-sage border border-sage/20',
+  saffron: 'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold bg-saffron/10 text-saffron-deep border border-saffron/20',
+  cream: 'inline-flex items-center gap-1.5 rounded-full px-3 py-1 text-[0.6875rem] uppercase tracking-[0.15em] font-semibold bg-cream text-charcoal/70 border border-charcoal/10',
+};
+
+const isMark = variant === 'mark' || variant === 'mark-dark';
+---
+
+{isMark ? (
+  <p class={`${variantClasses[variant]} ${extraClass}`}>
+    <span class="block h-px w-10 bg-saffron shrink-0" aria-hidden="true"></span>
+    <span>{label}</span>
+  </p>
+) : (
+  <span class={`${variantClasses[variant]} ${extraClass}`}>
+    {label}
+  </span>
+)}

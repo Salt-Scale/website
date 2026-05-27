@@ -1,0 +1,132 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const breadcrumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Legal', url: '/legal/accessibility/' },
+  { name: 'Accessibility', url: '/legal/accessibility/' },
+];
+---
+
+<Layout
+  title="Accessibility Statement — Salt & Scale"
+  description="Salt & Scale aims to conform to WCAG 2.2 Level AA across all pages of saltandscale.consulting."
+  canonicalPath="/legal/accessibility/"
+  breadcrumbs={breadcrumbs}
+>
+
+  {/* ============================================================
+       BREADCRUMB
+       ============================================================ */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><span class="text-charcoal/50">Legal</span></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Accessibility</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* ============================================================
+       HEADER
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[820px] px-6 md:px-10 py-16 md:py-20">
+      <div class="flex items-center gap-4 mb-8">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">Legal</p>
+      </div>
+      <h1 class="text-display-2 text-charcoal mb-4">
+        Accessibility <span class="italic font-normal text-saffron-deep">statement</span>.
+      </h1>
+      <p class="text-caption text-stone">Last reviewed: May 2026</p>
+    </div>
+  </section>
+
+  {/* ============================================================
+       CONTENT — editorial prose
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[680px] px-6 md:px-10 pb-20 md:pb-28">
+      <article class="prose-editorial">
+        <p>
+          Salt &amp; Scale aims to conform to <strong>WCAG 2.2 Level AA</strong> across all pages of
+          <a href="https://saltandscale.consulting/">saltandscale.consulting</a>. WCAG 2.2 defines how to make web content
+          more accessible to people with disabilities. Conformance with these guidelines helps make the web more usable
+          for everyone.
+        </p>
+
+        <h2>What this means</h2>
+        <ul>
+          <li>Pages are designed to work with screen readers, keyboard-only navigation, and 200% zoom.</li>
+          <li>Color contrast meets or exceeds 4.5:1 for body text and 3:1 for large text and UI components.</li>
+          <li>All interactive targets are at least 24&times;24 CSS pixels with adequate spacing (WCAG 2.2 §2.5.8).</li>
+          <li>Focus indicators remain visible at all times during keyboard navigation; focused elements are never fully hidden behind sticky UI (WCAG 2.2 §2.4.11).</li>
+          <li>Forms support browser autofill and never require previously entered information to be re-typed within a session (WCAG 2.2 §3.3.7).</li>
+          <li>Help (the contact link) is available in the same relative location across all pages (WCAG 2.2 §3.2.6).</li>
+          <li>This site has no authentication, drag interactions, or cognitive tests — WCAG 2.2 §3.3.8 and §2.5.7 are not applicable.</li>
+        </ul>
+
+        <h2>Technical approach</h2>
+        <p>
+          This site is built with <strong>Astro 5</strong> and outputs static HTML by default. JavaScript is used only
+          where necessary for interactive elements (navigation menu, contact form). No JavaScript is required to read any
+          content. Pages are structured with semantic HTML5 landmarks (<code>header</code>, <code>main</code>,
+          <code>nav</code>, <code>footer</code>), logical heading hierarchies, and ARIA attributes where native semantics
+          are insufficient.
+        </p>
+        <p>
+          Accessibility is verified using Lighthouse, axe-core, keyboard-only walkthroughs, and screen-reader smoke tests
+          (VoiceOver on macOS, NVDA on Windows).
+        </p>
+
+        <h2>Known limitations</h2>
+        <p>None at this time.</p>
+        <p>
+          This statement will be updated as the site expands. Dates of any newly discovered issues and their remediation
+          status will be tracked here.
+        </p>
+
+        <h2>Remediation timeline</h2>
+        <p>
+          When an accessibility issue is identified — whether through internal audit, user feedback, or automated tooling —
+          we aim to:
+        </p>
+        <ul>
+          <li><strong>Critical barriers</strong> (blocks access to a page or feature): resolved within 2 business days.</li>
+          <li><strong>Significant issues</strong> (degrades usability for assistive technology users): resolved within 5 business days.</li>
+          <li><strong>Minor issues</strong>: addressed in the next scheduled maintenance cycle.</li>
+        </ul>
+
+        <h2>Feedback</h2>
+        <p>
+          If you encounter an accessibility barrier on this site, please let us know. We take all reports seriously and
+          aim to respond within <strong>2 business days</strong>.
+        </p>
+        <ul>
+          <li>Email: <a href="mailto:gabe@saltandscale.consulting">gabe@saltandscale.consulting</a></li>
+          <li>Contact form: <a href="/contact/">saltandscale.consulting/contact/</a></li>
+        </ul>
+        <p>
+          Please describe the barrier you encountered, the URL where it occurred, and the assistive technology or browser
+          you were using. This helps us reproduce and fix the issue quickly.
+        </p>
+      </article>
+
+      {/* Back home link */}
+      <div class="mt-16 pt-8 border-t border-charcoal/15">
+        <a
+          href="/"
+          class="group inline-flex items-baseline gap-2 text-charcoal hover:text-saffron-deep transition-colors duration-150 border-b border-saffron pb-1 text-[0.95rem] font-medium tracking-wide"
+        >
+          Back home
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>

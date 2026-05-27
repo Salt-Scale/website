@@ -1,0 +1,392 @@
+---
+import Layout from "../../layouts/Layout.astro";
+
+const title = "Custom App Development – Salt & Scale";
+const description = "Custom Shopify app development and internal tooling. Private apps, public apps, CRM and ERP integrations, and custom backend services — built by one senior engineer.";
+
+const breadcrumbs = [
+  { name: "Home", url: "/" },
+  { name: "Services", url: "/services/" },
+  { name: "Custom app development", url: "/services/custom-app-development/" },
+];
+
+const serviceDescription = "Salt & Scale builds custom Shopify apps — private tools for your store and public apps for the Shopify App Store — along with internal applications that replace manual work in your operations. Work spans private Shopify apps for admin automation and custom store features, public apps through Shopify's review process, backend API services, and integration-first applications that connect your Shopify stack to CRM, ERP, and warehouse management systems. Prior custom app work includes a Coupon Card application and a suite of microservices for promotions and operations built for Hive Brands, achieving 99.9% sync reliability with retry logic and alerting. Every application is built with security, observability, and handoff in mind — not just the happy path.";
+
+const includedItems = [
+  {
+    n: "01",
+    title: "Private Shopify apps",
+    body: "Bespoke tools for a single store — custom admin UI screens, automated order workflows, bulk operations, and store-specific logic not available from third-party apps.",
+  },
+  {
+    n: "02",
+    title: "Public Shopify apps",
+    body: "Apps submitted to the Shopify App Store — billing infrastructure, onboarding flows, Shopify Polaris UI, and full compliance with Shopify's app review requirements.",
+  },
+  {
+    n: "03",
+    title: "Internal tools and admin UIs",
+    body: "Custom operations dashboards and internal tooling that replace spreadsheets and manual work — inventory management, order triage, reporting, and team-facing interfaces.",
+  },
+  {
+    n: "04",
+    title: "Integration-first apps",
+    body: "Apps purpose-built to bridge Shopify with a specific CRM, ERP, or WMS system — with real-time and batch sync modes, retry logic, and observable failure states.",
+  },
+  {
+    n: "05",
+    title: "Custom APIs and backend services",
+    body: "Secure REST and GraphQL API services in Node.js, PHP, or Laravel — authentication, rate limiting, logging, and the documentation your team needs to maintain them.",
+  },
+  {
+    n: "06",
+    title: "Checkout extensions and functions",
+    body: "Shopify Checkout UI Extensions and Checkout Functions for custom discount logic, shipping rules, and post-purchase experiences on Shopify Plus plans.",
+  },
+];
+
+const processSteps = [
+  {
+    n: "01",
+    label: "Scope",
+    title: "Spec before code.",
+    body: "We map the exact workflows the app needs to handle, the APIs it will touch, and the edge cases that matter most. Written spec with scope, timeline, and open questions resolved before code starts.",
+  },
+  {
+    n: "02",
+    label: "Build",
+    title: "Dev store, incremental.",
+    body: "App installed on a development store so you can test every feature against real Shopify data. Incremental releases — not a big-bang delivery at the end.",
+  },
+  {
+    n: "03",
+    label: "Launch",
+    title: "Production deploy, handoff.",
+    body: "Production install, monitoring setup, and documentation covering architecture, environment variables, deployment process, and common troubleshooting scenarios.",
+  },
+];
+
+const outcomes = [
+  {
+    n: "01",
+    title: "Manual work eliminated",
+    body: "The app should replace a recurring manual process — orders routed by hand, spreadsheets updated by someone, reports pulled and reformatted weekly. If it doesn't, we've built the wrong thing.",
+  },
+  {
+    n: "02",
+    title: "Integration reliability",
+    body: "Syncs and webhooks with retry logic, dead-letter queues, and alerting on failures. No silent data gaps between your Shopify store and your ERP or WMS.",
+  },
+  {
+    n: "03",
+    title: "Code your team can maintain",
+    body: "Documented, typed, and tested. The goal isn't an app only one person can understand — it's an app your team or a future engineer can work in confidently.",
+  },
+];
+
+const priorWork = [
+  {
+    company: "Hive Brands",
+    detail: "Coupon Card application plus a suite of microservices for promotions and operations — 99.9% sync reliability across systems with retry logic and alerting.",
+  },
+  {
+    company: "PAX Labs",
+    detail: "Custom OMS in PHP and MySQL alongside the Shopify Plus headless program — admin tooling that internal operations actually used daily.",
+  },
+  {
+    company: "Sanrio (via Corra)",
+    detail: "Laravel API layer and custom modules supporting Shopify Plus and Magento commerce operations across multiple regional brands.",
+  },
+  {
+    company: "Thursday Boots Co.",
+    detail: "Shopify Liquid and JavaScript feature builds — the kind of customization that sits between a theme and a fully separate app.",
+  },
+];
+
+const faqItems = [
+  {
+    question: "What's the difference between a private app and a public Shopify app?",
+    answer: "A private app is installed on one specific Shopify store and doesn't go through Shopify's review process. It's faster to build, simpler to deploy, and the right choice when you need something specific to your store's workflows. A public app goes through Shopify's review, lives in the App Store, and can be installed by any merchant — it requires billing infrastructure, a public support contact, and compliance with Shopify's data protection requirements. We build both, and can help you decide which model fits your goals.",
+  },
+  {
+    question: "How long does a custom Shopify app take to build?",
+    answer: "A focused private app with 2-3 features typically takes four to eight weeks. A public app with billing, onboarding, and Shopify review takes eight to twelve weeks, plus the review process (typically two to four weeks on Shopify's side). Complex apps with deep ERP integrations or admin UI apps may run longer — we'll scope honestly in discovery.",
+  },
+  {
+    question: "What backend technologies do you use for custom apps?",
+    answer: "Shopify apps typically use Node.js (with Shopify's official CLI and app template) or PHP/Laravel on the backend, depending on the team's existing stack. For the admin UI, we use Shopify's Polaris component library and App Bridge for a native Shopify feel. We can also build on other stacks if you have a strong preference — the Shopify API doesn't mandate a specific backend language.",
+  },
+  {
+    question: "Do you build the integration or just advise on it?",
+    answer: "We build it — the actual integration code, not just a diagram. That includes webhook handlers, REST and GraphQL API calls, retry logic, error monitoring hooks, and documentation. We don't do strategy-only engagements for integrations; the deliverable is working code in your repository.",
+  },
+];
+
+const schema = [
+  {
+    "@type": "Service",
+    "@id": "https://saltandscale.consulting/services/custom-app-development/#service",
+    name: "Custom app development",
+    serviceType: "Shopify app development and custom web applications",
+    provider: { "@id": "https://saltandscale.consulting/#org" },
+    areaServed: "United States",
+    description: serviceDescription,
+    offers: {
+      "@type": "Offer",
+      priceSpecification: { "@type": "PriceSpecification", priceCurrency: "USD" },
+    },
+  },
+  {
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: { "@type": "Answer", text: item.answer },
+    })),
+  },
+];
+---
+
+<Layout
+  title={title}
+  description={description}
+  canonicalPath="/services/custom-app-development/"
+  breadcrumbs={breadcrumbs}
+  schema={schema}
+>
+
+  {/* Breadcrumb */}
+  <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
+      <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
+        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li aria-hidden="true" class="text-charcoal/30">/</li>
+        <li aria-current="page" class="text-charcoal/80">Custom app development</li>
+      </ol>
+    </div>
+  </nav>
+
+  {/* HERO */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
+      <div class="flex items-center gap-4 mb-12 md:mb-16">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron">Ecommerce engineering · Custom apps</p>
+      </div>
+      <h1 class="text-display-xl max-w-[16ch] mb-10">
+        Custom <span class="italic font-normal text-saffron">app</span> development.
+      </h1>
+      <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
+        Private Shopify apps, public App Store launches, internal tooling, and the backend services that connect your commerce stack to the systems that actually run the business.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=custom-app-development" class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/about/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron">
+          See the engineer behind it
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  {/* ANSWER */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="max-w-[820px]">
+        <div class="flex items-center gap-4 mb-10">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">In short</p>
+        </div>
+        <p class="text-body-lg text-charcoal/85 max-w-[64ch] font-light leading-[1.55]">
+          {serviceDescription}
+        </p>
+      </div>
+    </div>
+  </section>
+
+  {/* WHAT'S INCLUDED */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="mb-14 md:mb-20">
+        <div class="flex items-center gap-4 mb-6">
+          <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+          <p class="text-eyebrow text-saffron-deep">Scope of work</p>
+        </div>
+        <h2 class="text-display-1 text-charcoal max-w-[16ch]">
+          What's <span class="italic font-normal text-saffron-deep">included.</span>
+        </h2>
+      </div>
+      <ul class="border-t border-charcoal/15 divide-y divide-charcoal/15">
+        {includedItems.map((item) => (
+          <li>
+            <div class="grid md:grid-cols-[80px_1fr] gap-x-8 md:gap-x-12 gap-y-3 items-baseline py-8 md:py-10">
+              <span class="numeral text-saffron-deep text-[2rem] md:text-[2.5rem] leading-none">{item.n}</span>
+              <div>
+                <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-3 max-w-[24ch]">
+                  {item.title}
+                </h3>
+                <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[60ch]">
+                  {item.body}
+                </p>
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+
+  {/* HOW WE WORK */}
+  <section class="bg-cream">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">The process</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[14ch] mb-16 md:mb-24">
+        Scope. Build. <span class="italic font-normal text-saffron-deep">Hand off.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+        {processSteps.map((s) => (
+          <article>
+            <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
+              <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
+              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
+            </div>
+            <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+              {s.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+              {s.body}
+            </p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  {/* OUTCOMES */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">What we aim for</p>
+      </div>
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Outcomes we <span class="italic font-normal text-saffron-deep">target.</span>
+      </h2>
+      <div class="grid md:grid-cols-3 gap-x-10 md:gap-x-12 gap-y-12 border-t border-charcoal/15 mb-12">
+        {outcomes.map((o) => (
+          <article class="pt-8">
+            <span class="numeral text-saffron-deep text-[2rem] leading-none">{o.n}</span>
+            <h3 class="font-serif font-medium text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mt-5 mb-4 max-w-[20ch]">
+              {o.title}
+            </h3>
+            <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[36ch]">
+              {o.body}
+            </p>
+          </article>
+        ))}
+      </div>
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+        Outcomes vary by project scope and the state of the systems being integrated. Metrics referenced elsewhere on this site are from individual engagements and are not guarantees of future results.
+      </p>
+    </div>
+  </section>
+
+  {/* PRIOR COMMERCE WORK */}
+  <section class="bg-cream border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header>
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-copper" aria-hidden="true"></span>
+            <p class="text-eyebrow" style="color: var(--color-copper)">Prior commerce engineering</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.875rem,3.5vw,2.75rem)] leading-[1.08] tracking-[-0.018em] text-charcoal max-w-[18ch] mb-6">
+            Apps that <span class="italic font-normal text-saffron-deep">replaced</span> manual work.
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch]">
+            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every custom app today.
+          </p>
+        </header>
+        <ul class="md:pt-2 border-t border-charcoal/20 divide-y divide-charcoal/20">
+          {priorWork.map((w) => (
+            <li class="py-6 grid md:grid-cols-[200px_1fr] gap-x-8 gap-y-2 items-baseline">
+              <h3 class="font-serif text-[1.25rem] leading-[1.2] tracking-[-0.012em] text-charcoal">
+                {w.company}
+              </h3>
+              <p class="text-[1rem] leading-[1.55] text-charcoal/70 max-w-[55ch]">
+                {w.detail}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* FAQ */}
+  <section class="bg-paper border-t border-charcoal/15">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-12 md:gap-20 items-start">
+        <header class="md:sticky md:top-28">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,4vw,3rem)] leading-[1.05] tracking-[-0.02em] text-charcoal max-w-[14ch] mb-6">
+            Things people <span class="italic font-normal text-saffron-deep">ask first.</span>
+          </h2>
+          <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            If your question isn't here, send a note. Most replies come back the same business day.
+          </p>
+        </header>
+        <ul class="border-t border-charcoal/15">
+          {faqItems.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[52ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-2 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[62ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* CTA BAND */}
+  <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
+    <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 py-28 md:py-40 text-center">
+      <p aria-hidden="true" class="font-serif text-saffron text-[2.5rem] leading-none mb-10 italic">⁂</p>
+      <h2 class="font-serif font-semibold text-[clamp(2.5rem,6vw,5rem)] leading-[1.02] tracking-[-0.025em] mb-10 max-w-[22ch] mx-auto">
+        Tell us what needs <span class="italic font-normal text-saffron">to be automated.</span>
+      </h2>
+      <p class="text-body-lg text-paper/70 max-w-[54ch] mx-auto mb-14">
+        Describe the workflow, the systems involved, and what the app needs to do. We'll respond within one business day with scope and next steps.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-x-8 gap-y-5">
+        <a href="/contact/?service=custom-app-development" class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150">
+          Start a project
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+        <a href="/services/" class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 border-b border-paper/30 hover:border-saffron pb-1 text-[0.95rem] tracking-wide">
+          See all services
+          <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-1">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+</Layout>
