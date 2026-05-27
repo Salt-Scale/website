@@ -1,12 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import { Image } from "astro:assets";
+import { getCollection } from "astro:content";
 import headshot from "../assets/headshot-source.jpeg";
+
+const latestPosts = (await getCollection("insights", ({ data }) => !data.draft))
+  .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
+  .slice(0, 3);
+
+const postDateFormatter = new Intl.DateTimeFormat("en-US", { month: "short", year: "numeric" });
 
 const pageTitle = "Salt & Scale – Websites that book the work.";
 const pageDescription =
   "AI-accelerated website design and development for service businesses. Built by a senior engineer with 10+ years in production commerce.";
 
+// Trade businesses first — those are the buyer profile we lead with.
 const caseStudies = [
   {
     n: "01",
@@ -14,31 +22,69 @@ const caseStudies = [
     sector: "Residential plumbing",
     client: "Mahi Plumbing",
     location: "Houston, TX",
-    description: "A 24/7 emergency plumber serving Houston and nine surrounding cities — built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.",
+    description: "Owner-operated 24/7 plumber serving Houston and nine surrounding cities. Built phone-first with a Trophy Catch personality and trust signals that convert at 2 AM.",
   },
   {
     n: "02",
-    slug: "aim-global-transport",
-    sector: "B2B freight",
-    client: "AIM Global Transport",
-    location: "Houston, TX",
-    description: "A nationwide freight carrier serving all 48 states — stat-led hero, six-service B2B catalog, and dual conversion paths for logistics buyers.",
-  },
-  {
-    n: "03",
-    slug: "premier-door-innovations",
-    sector: "Manufacturing",
-    client: "Premier Door Innovations",
-    location: "Houston, TX",
-    description: "A Houston aluminum door manufacturer — filterable gallery, four-category product architecture, and multi-form routing for contractor partners.",
-  },
-  {
-    n: "04",
     slug: "elevated-water-solutions",
     sector: "Multi-service plumbing",
     client: "Elevated Water Solutions",
     location: "Houston, TX",
-    description: "An eleven-year master-plumber operation — eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.",
+    description: "Eleven-year master-plumber operation. Eleven services across three categories, fifteen-area local SEO coverage, and photo proof of every install.",
+  },
+  {
+    n: "03",
+    slug: "premier-door-innovations",
+    sector: "Aluminum doors",
+    client: "Premier Door Innovations",
+    location: "Houston, TX",
+    description: "Houston aluminum door manufacturer. Filterable gallery, four-category product architecture, and multi-form routing for contractor partners.",
+  },
+  {
+    n: "04",
+    slug: "aim-global-transport",
+    sector: "B2B freight",
+    client: "AIM Global Transport",
+    location: "Houston, TX",
+    description: "Nationwide freight carrier serving all 48 states. Stat-led hero, six-service B2B catalog, and dual conversion paths for logistics buyers.",
+  },
+];
+
+// "Who this is for" — explicit audience markers
+const audienceMarkers = [
+  "Solo tradespeople &amp; one-truck operators",
+  "Two- to ten-person service crews",
+  "Family-run plumbing, HVAC, electrical, roofing",
+  "Independent contractors and remodelers",
+  "Local landscaping, lawn &amp; pool operators",
+  "Drain cleaning, pest control, locksmith shops",
+];
+
+// FTC-safe answers to small-business fears
+const faqs = [
+  {
+    question: "Will this be too technical for me to manage day-to-day?",
+    answer: "No. After launch you get a one-page written guide for the few things you'll actually touch: updating phone numbers, adding service areas, swapping photos. Most owners spend less than 10 minutes a month on the site. For anything bigger, send a Loom or a text and I handle it.",
+  },
+  {
+    question: "How much does a site like this cost?",
+    answer: "Fixed-price, written quote upfront. No hourly billing. Pricing depends on scope (number of services, service-area pages, custom features), but I'll give you a number in writing within three business days of the discovery call. That's the number. No change-orders unless you change the scope.",
+  },
+  {
+    question: "How long does it take to build?",
+    answer: "Most builds ship in one to three weeks from kick-off. The fastest so far, Elevated Water Solutions, went from idea to production in seven days. Bigger scope (15+ pages, custom integrations, multiple stakeholders) can push toward four weeks. Every project has a written timeline before any code is written.",
+  },
+  {
+    question: "Do I own the site or am I renting it from you?",
+    answer: "You own everything. The code lives in a GitHub repo you own. The domain stays in your name. Hosting is on Vercel under your account. If we ever part ways, you walk away with the keys to the whole thing. No platform lock-in, no ransom.",
+  },
+  {
+    question: "What if I want to change something after launch?",
+    answer: "Built into the workflow. Small tweaks (copy, photos, new service area) are usually handled within a few business days. Bigger additions get a quick written estimate. Most clients keep me on retainer for an hour or two a month.",
+  },
+  {
+    question: "What if I'm not happy with the design?",
+    answer: "You see the first design within the first week, before most of the code is written. Two rounds of revisions are built into every fixed-price quote. We don't go to launch until you say it's right.",
   },
 ];
 
@@ -67,7 +113,7 @@ const pillars = [
   {
     n: "01",
     title: "One senior engineer, end to end.",
-    body: "No handoffs. No junior work shipped. No agency overhead. Every line of code is written and reviewed by Gabriel personally — the same engineer who scoped the work and who'll be there a year after launch.",
+    body: "No handoffs. No junior work shipped. No agency overhead. Every line of code is written and reviewed by Gabriel personally. The same engineer who scoped the work and who'll be there a year after launch.",
   },
   {
     n: "02",
@@ -77,27 +123,10 @@ const pillars = [
   {
     n: "03",
     title: "Production-grade fundamentals.",
-    body: "Hydrogen contributor. Shopify Partner. Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
+    body: "Hydrogen contributor. Shopify Partner. Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI, not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
   },
 ];
 
-const insightStubs = [
-  {
-    title: "How to choose a website builder for a service business in 2026",
-    tag: "Service businesses",
-    meta: "Pillar · ~2,000 words",
-  },
-  {
-    title: "The service-business website checklist",
-    tag: "Service businesses",
-    meta: "Pillar",
-  },
-  {
-    title: "Why your site's INP score is a leading indicator of conversion",
-    tag: "Performance",
-    meta: "Engineering",
-  },
-];
 ---
 
 <Layout title={pageTitle} description={pageDescription}>
@@ -108,70 +137,117 @@ const insightStubs = [
   <section class="bg-charcoal text-paper relative overflow-hidden grain grain-dark">
     <div class="relative mx-auto max-w-[1280px] px-6 md:px-10 pt-20 pb-24 md:pt-28 md:pb-32">
 
-      {/* Eyebrow + saffron rule */}
+      {/* Eyebrow + saffron rule — audience-named */}
       <div class="flex items-center gap-4 mb-12 md:mb-16">
         <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
-        <p class="text-eyebrow text-saffron">Salt &amp; Scale · Est. Houston, TX</p>
+        <p class="text-eyebrow text-saffron">For tradespeople &amp; service-business owners · Houston, TX</p>
       </div>
 
-      {/* Massive headline */}
-      <h1 class="text-display-xl max-w-[16ch] mb-10">
-        Websites <span class="italic font-normal text-saffron">that book</span> the work.
+      {/* Massive headline — audience first, benefit second */}
+      <h1 class="text-display-xl max-w-[18ch] mb-10">
+        Websites for the trades <span class="italic font-normal text-saffron">that book the work.</span>
       </h1>
 
-      {/* Subhead — narrow column, lighter weight */}
-      <p class="text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.45] text-paper/75 max-w-[52ch] mb-12 md:mb-14 font-light">
-        Built fast with AI. Engineered with ten years in production commerce.
-        <span class="text-paper">One senior engineer, end to end.</span>
+      {/* Subhead — direct, no-BS positioning for one-truck operators */}
+      <p class="text-[clamp(1.125rem,1.5vw,1.5rem)] leading-[1.45] text-paper/75 max-w-[54ch] mb-12 md:mb-14 font-light">
+        Fixed-price builds for solo operators and small crews.
+        <span class="text-paper">Owner-to-owner. No agency overhead, no junior work, no hourly billing.</span>
       </p>
 
-      {/* CTAs — saffron primary + ghost secondary */}
-      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-20 md:mb-28">
+      {/* CTAs — "Schedule a call" leads (small-biz buyers want to talk) */}
+      <div class="flex flex-wrap items-center gap-x-8 gap-y-5 mb-8 md:mb-10">
         <a
           href="/contact/"
           class="group inline-flex items-center gap-3 bg-saffron text-ink px-7 py-4 text-[0.95rem] font-medium tracking-wide hover:bg-cream transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal"
         >
-          Start a project
+          Schedule a call
           <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
         </a>
         <a
           href="/work/"
           class="group inline-flex items-baseline gap-2 text-paper hover:text-saffron transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2 focus-visible:ring-offset-charcoal text-[0.95rem] tracking-wide pb-1 border-b border-paper/30 hover:border-saffron"
         >
-          See selected work
+          See real builds
           <span class="inline-block transition-transform duration-150 group-hover:translate-x-1" aria-hidden="true">→</span>
         </a>
       </div>
 
-      {/* Below: 2-col foundation block */}
+      {/* Visual trust strip — partners, directly under CTAs for skimmers */}
+      <ul aria-label="Partner credentials" class="flex flex-wrap items-center gap-x-5 gap-y-2 mb-20 md:mb-28 text-[0.6875rem] uppercase tracking-[0.18em] font-semibold text-paper/55">
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Shopify Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Anthropic Claude Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Vercel Partner
+        </li>
+        <li class="flex items-center gap-2">
+          <span class="h-1 w-1 rounded-full bg-saffron shrink-0" aria-hidden="true"></span>
+          Adobe Commerce engineer
+        </li>
+      </ul>
+
+      {/* Owner-friendly attributes (not engineer credentials) */}
       <div class="grid md:grid-cols-[1.4fr_1fr] gap-12 md:gap-20 pt-12 border-t border-paper/15">
         <div>
           <p class="text-eyebrow text-saffron mb-5">What we do</p>
           <p class="text-[1.0625rem] leading-[1.7] text-paper/75 max-w-[58ch]">
-            Salt &amp; Scale builds production-grade websites for service businesses — the kind that loads in under a second, passes WCAG 2.2 AA, and has a contact form that actually routes leads. Every site is designed and engineered by one senior developer with ten years building commerce systems for Shopify, Adobe Commerce, and headless stacks.
+            Salt &amp; Scale builds the website your business actually needs: phone-first, mobile-first, fast, and easy to find on Google. Most builds ship in one to three weeks (Elevated Water Solutions: seven days, idea to production). One senior engineer, ten years in production web work. No agency middlemen, no junior hands on the code, no surprise fees.
           </p>
         </div>
         <div>
-          <p class="text-eyebrow text-saffron mb-5">Credentials</p>
+          <p class="text-eyebrow text-saffron mb-5">How we work</p>
           <ul class="space-y-3 text-[0.9375rem] text-paper/75">
             <li class="flex items-baseline gap-3">
-              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
-              Shopify Partner
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">+</span>
+              Solo operator, owner-to-owner
             </li>
             <li class="flex items-baseline gap-3">
-              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
-              Anthropic Claude Partner
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">+</span>
+              Fixed-price, written quote upfront
             </li>
             <li class="flex items-baseline gap-3">
-              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
-              Vercel Partner
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">+</span>
+              One to three weeks, start to live
             </li>
             <li class="flex items-baseline gap-3">
-              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">→</span>
-              Shopify Hydrogen contributor
+              <span class="text-saffron/60 numeral text-sm" aria-hidden="true">+</span>
+              You own everything: code, domain, host
             </li>
           </ul>
         </div>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       WHO THIS IS FOR — paper, audience self-recognition strip
+       ============================================================ */}
+  <section class="bg-paper border-b border-charcoal/8">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-16 md:py-20">
+      <div class="grid md:grid-cols-[0.7fr_1.3fr] gap-8 md:gap-16 items-start">
+        <div>
+          <div class="flex items-center gap-4 mb-5">
+            <span class="block h-px w-10 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Who this is for</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.015em] text-charcoal max-w-[18ch]">
+            If you run the shop, <span class="italic font-normal text-saffron-deep">this is for you.</span>
+          </h2>
+        </div>
+        <ul class="grid sm:grid-cols-2 gap-x-8 gap-y-3 text-[1rem] leading-[1.55] text-charcoal/80">
+          {audienceMarkers.map((marker) => (
+            <li class="flex items-baseline gap-3">
+              <span class="text-saffron-deep numeral text-sm shrink-0" aria-hidden="true">+</span>
+              <span set:html={marker} />
+            </li>
+          ))}
+        </ul>
       </div>
     </div>
   </section>
@@ -182,15 +258,15 @@ const insightStubs = [
   <section class="bg-paper border-b border-charcoal/8" aria-label="Clients">
     <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-8 md:py-10">
       <div class="flex flex-col md:flex-row md:items-center gap-4 md:gap-8">
-        <p class="text-eyebrow text-charcoal/40 shrink-0">Built for</p>
-        <div class="flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-2 font-serif italic text-charcoal/75 text-[1.0625rem]">
-          <span>Mahi Plumbing</span>
+        <p class="text-eyebrow text-charcoal/65 shrink-0">Built for</p>
+        <div class="flex flex-wrap items-center gap-x-6 md:gap-x-10 gap-y-2 font-serif italic text-[1.0625rem]">
+          <a href="/work/mahi-plumbing/" class="text-charcoal/75 hover:text-saffron-deep transition-colors duration-150 underline decoration-transparent hover:decoration-saffron decoration-1 underline-offset-[0.3em]">Mahi Plumbing</a>
           <span aria-hidden="true" class="text-saffron">·</span>
-          <span>AIM Global Transport</span>
+          <a href="/work/elevated-water-solutions/" class="text-charcoal/75 hover:text-saffron-deep transition-colors duration-150 underline decoration-transparent hover:decoration-saffron decoration-1 underline-offset-[0.3em]">Elevated Water Solutions</a>
           <span aria-hidden="true" class="text-saffron">·</span>
-          <span>Premier Door Innovations</span>
+          <a href="/work/premier-door-innovations/" class="text-charcoal/75 hover:text-saffron-deep transition-colors duration-150 underline decoration-transparent hover:decoration-saffron decoration-1 underline-offset-[0.3em]">Premier Door Innovations</a>
           <span aria-hidden="true" class="text-saffron">·</span>
-          <span>Elevated Water Solutions</span>
+          <a href="/work/aim-global-transport/" class="text-charcoal/75 hover:text-saffron-deep transition-colors duration-150 underline decoration-transparent hover:decoration-saffron decoration-1 underline-offset-[0.3em]">AIM Global Transport</a>
         </div>
       </div>
     </div>
@@ -208,7 +284,7 @@ const insightStubs = [
           Gabriel took the &lsquo;Trophy Catch Plumber&rsquo; idea I had in my head and turned it into a site that actually feels like Mahi. <span class="text-saffron-deep italic">First time I saw it I couldn&rsquo;t talk for a minute.</span>
         </blockquote>
         <figcaption class="mt-10 md:mt-12 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 text-[0.875rem]">
-          <span class="text-eyebrow text-charcoal/60">AJ</span>
+          <span class="text-eyebrow text-charcoal/70">AJ</span>
           <span aria-hidden="true" class="h-px w-8 bg-charcoal/25 hidden sm:block"></span>
           <span class="text-charcoal/65">Owner, Mahi Plumbing · Houston, TX</span>
         </figcaption>
@@ -256,8 +332,8 @@ const insightStubs = [
         {/* Secondary track */}
         <article class="border-t border-charcoal/25 pt-8">
           <div class="flex items-baseline gap-5 mb-6">
-            <span class="numeral text-charcoal/40 text-[3rem] leading-none">02</span>
-            <span class="text-eyebrow text-charcoal/45">Ecommerce</span>
+            <span class="numeral text-charcoal/65 text-[3rem] leading-none">02</span>
+            <span class="text-eyebrow text-charcoal/65">Ecommerce</span>
           </div>
           <h3 class="font-serif font-semibold text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-6">
             Ecommerce engineering.
@@ -345,7 +421,7 @@ const insightStubs = [
           <article>
             <div class="border-t border-charcoal/20 pt-6 flex items-baseline justify-between mb-8">
               <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
-              <span class="text-eyebrow text-charcoal/40">{s.label}</span>
+              <span class="text-eyebrow text-charcoal/65">{s.label}</span>
             </div>
             <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
               {s.title}
@@ -379,7 +455,7 @@ const insightStubs = [
           <article class="grid md:grid-cols-[180px_1fr] gap-6 md:gap-16">
             <div>
               <span class="numeral text-saffron-deep text-[3.5rem] leading-none">{p.n}</span>
-              <p class="text-eyebrow text-charcoal/40 mt-4">Principle</p>
+              <p class="text-eyebrow text-charcoal/65 mt-4">Principle</p>
             </div>
             <div>
               <h3 class="font-serif font-semibold text-[clamp(1.625rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-5 max-w-[22ch]">
@@ -409,17 +485,17 @@ const insightStubs = [
             <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
               <Image
                 src={headshot}
-                alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
-                widths={[320, 480, 720]}
-                sizes="(min-width: 768px) 40vw, 100vw"
+                alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
+                widths={[480, 720, 1100, 1600]}
+                sizes="(min-width: 768px) 75vw, 100vw"
                 format="avif"
-                quality={62}
+                quality={72}
                 loading="lazy"
                 class="w-full h-full object-cover"
               />
             </div>
           </div>
-          <p class="text-eyebrow text-charcoal/45 mt-4">Gabriel Rosales · Houston, TX</p>
+          <p class="text-eyebrow text-charcoal/65 mt-4">Gabriel Rosales · Houston, TX</p>
         </div>
 
         {/* Bio */}
@@ -434,7 +510,7 @@ const insightStubs = [
           </h2>
 
           <p class="text-body-lg text-charcoal/75 mb-8 max-w-[56ch]">
-            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years shipping commerce engineering for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots — and open-source contributor to Shopify&rsquo;s Hydrogen storefront framework.
+            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years shipping commerce engineering for brands including Sanrio (at Corra), PAX Labs, and Hive Brands, currently a Sr. Customer Success Engineer at Adobe Commerce, and open-source contributor to Shopify&rsquo;s Hydrogen storefront framework.
           </p>
 
           {/* Partner badges — typographic, not pill-y */}
@@ -470,6 +546,101 @@ const insightStubs = [
   </section>
 
   {/* ============================================================
+       PRICING + TIMELINE ANCHOR — cream, removes "is this $5k or $50k" friction
+       ============================================================ */}
+  <section class="bg-cream border-t border-charcoal/10">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="flex items-center gap-4 mb-14 md:mb-20">
+        <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+        <p class="text-eyebrow text-saffron-deep">How pricing works</p>
+      </div>
+
+      <h2 class="text-display-1 text-charcoal max-w-[16ch] mb-16 md:mb-24">
+        Fixed-price. <span class="italic font-normal text-saffron-deep">Written upfront.</span>
+      </h2>
+
+      <div class="grid md:grid-cols-3 gap-x-12 md:gap-x-16 gap-y-14">
+
+        <article>
+          <div class="border-t border-charcoal/20 pt-6 mb-6">
+            <span class="numeral text-saffron-deep text-[3rem] leading-none">$</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+            One number, in writing.
+          </h3>
+          <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            Discovery call &rarr; written quote in three business days. The number you get is the number you pay. No hourly billing, no surprise change-orders unless you change the scope.
+          </p>
+        </article>
+
+        <article>
+          <div class="border-t border-charcoal/20 pt-6 mb-6">
+            <span class="numeral text-saffron-deep text-[3rem] leading-none">1&ndash;3</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+            Weeks, start to live.
+          </h3>
+          <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            Most builds ship in one to three weeks. Fastest so far: <em class="not-italic font-medium text-charcoal">Elevated Water Solutions in seven days</em>, idea to production. Written timeline before any code is written.
+          </p>
+        </article>
+
+        <article>
+          <div class="border-t border-charcoal/20 pt-6 mb-6">
+            <span class="numeral text-saffron-deep text-[3rem] leading-none">0</span>
+          </div>
+          <h3 class="font-serif font-semibold text-[1.5rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
+            Lock-in. You own it.
+          </h3>
+          <p class="text-[1rem] leading-[1.65] text-charcoal/70 max-w-[40ch]">
+            Code in a GitHub repo you own. Domain in your name. Hosting under your Vercel account. If we ever part ways, you walk away with everything. No ransom.
+          </p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
+       FAQ — paper, addresses small-business fears head-on
+       ============================================================ */}
+  <section class="bg-paper">
+    <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-24 md:py-32">
+
+      <div class="grid md:grid-cols-[0.85fr_1.15fr] gap-10 md:gap-20 items-start">
+        <div class="md:sticky md:top-24 self-start">
+          <div class="flex items-center gap-4 mb-6">
+            <span class="block h-px w-12 bg-saffron" aria-hidden="true"></span>
+            <p class="text-eyebrow text-saffron-deep">Common questions</p>
+          </div>
+          <h2 class="font-serif font-semibold text-[clamp(2rem,3.5vw,2.75rem)] leading-[1.1] tracking-[-0.018em] text-charcoal max-w-[14ch] mb-8">
+            The questions <span class="italic font-normal text-saffron-deep">owners actually ask.</span>
+          </h2>
+          <p class="text-[1rem] leading-[1.65] text-charcoal/65 max-w-[36ch]">
+            Don&rsquo;t see your question? Bring it to the discovery call, or just <a href="mailto:gabe@saltandscale.consulting" class="link-edit">send an email</a>.
+          </p>
+        </div>
+
+        <ul class="border-t border-charcoal/15">
+          {faqs.map((q) => (
+            <li class="border-b border-charcoal/15">
+              <details class="group">
+                <summary class="flex items-baseline justify-between gap-6 py-6 cursor-pointer list-none">
+                  <span class="font-serif text-[1.25rem] md:text-[1.375rem] leading-[1.3] text-charcoal pr-4 max-w-[60ch]">{q.question}</span>
+                  <span class="text-saffron-deep numeral text-2xl shrink-0 transition-transform duration-200 group-open:rotate-45" aria-hidden="true">+</span>
+                </summary>
+                <div class="pb-6 -mt-1 text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[65ch]">
+                  {q.answer}
+                </div>
+              </details>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  {/* ============================================================
        INSIGHTS TEASER — paper, editorial article list
        ============================================================ */}
   <section class="bg-paper border-t border-charcoal/10">
@@ -495,19 +666,24 @@ const insightStubs = [
       </div>
 
       <ul class="grid md:grid-cols-3 gap-x-10 gap-y-12 border-t border-charcoal/15">
-        {insightStubs.map((article, i) => (
+        {latestPosts.map((post) => (
           <li>
-            <a href="/insights/" class="block pt-8 group">
+            <a href={`/insights/${post.id}/`} class="block pt-8 group">
               <div class="flex items-center justify-between mb-6">
-                <span class="text-eyebrow text-charcoal/45">{article.tag}</span>
-                <span class="text-[0.6875rem] uppercase tracking-widest text-charcoal/35 italic">{article.meta}</span>
+                <span class="text-eyebrow text-saffron-deep">{post.data.tags[0] ?? 'Field notes'}</span>
+                <span class="text-[0.6875rem] uppercase tracking-widest text-charcoal/65 italic">
+                  {postDateFormatter.format(post.data.datePublished)}
+                </span>
               </div>
-              <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors mb-6">
-                {article.title}
+              <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors mb-4">
+                {post.data.title}
               </h3>
-              <p class="text-[0.8125rem] uppercase tracking-widest text-charcoal/40 inline-flex items-center gap-2">
-                Coming soon
-                <span aria-hidden="true" class="text-saffron">→</span>
+              <p class="text-[0.9375rem] leading-[1.55] text-charcoal/75 mb-4">
+                {post.data.description}
+              </p>
+              <p class="text-[0.8125rem] uppercase tracking-widest text-saffron-deep inline-flex items-center gap-2 group-hover:translate-x-0.5 transition-transform duration-150">
+                Read it
+                <span aria-hidden="true">&rarr;</span>
               </p>
             </a>
           </li>

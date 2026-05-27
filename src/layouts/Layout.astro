@@ -17,8 +17,8 @@ export interface Props {
 }
 
 const {
-  title = 'Salt & Scale – Growth, grounded in Truth.',
-  description = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance—delivered with clear tradeoffs and measurable outcomes.',
+  title = 'Salt & Scale · Growth, grounded in Truth.',
+  description = 'Ecommerce engineering for Shopify and Adobe Commerce. Headless builds, custom apps, integrations, and performance, delivered with clear tradeoffs and measurable outcomes.',
   ogImage = '/og-image.jpg',
   canonicalPath,
   breadcrumbs,
@@ -29,7 +29,7 @@ const canonicalHref = Astro.site
   ? new URL(canonicalPath ?? Astro.url.pathname, Astro.site).toString()
   : undefined;
 
-const ogTitle = title.replace(/–/g, '—');
+const ogTitle = title;
 
 const siteUrl = Astro.site ? new URL('/', Astro.site).toString() : 'https://saltandscale.consulting/';
 
@@ -182,7 +182,7 @@ const graph = {
             href="/contact/"
             class="group inline-flex items-center gap-2 bg-charcoal text-paper px-5 py-2.5 text-[0.8125rem] uppercase tracking-[0.15em] font-medium hover:bg-saffron hover:text-ink transition-colors duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-saffron focus-visible:ring-offset-2"
           >
-            Start a project
+            Schedule a call
             <span aria-hidden="true" class="inline-block transition-transform duration-150 group-hover:translate-x-0.5">→</span>
           </a>
         </nav>
@@ -235,7 +235,7 @@ const graph = {
         </nav>
 
         <a href="/contact/" class="group inline-flex items-center justify-between gap-3 bg-charcoal text-paper px-6 py-4 text-[0.8125rem] uppercase tracking-[0.15em] font-medium hover:bg-saffron hover:text-ink transition-colors mt-6">
-          Start a project
+          Schedule a call
           <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-0.5">→</span>
         </a>
       </div>
@@ -291,7 +291,7 @@ const graph = {
               href="/contact/"
               class="group inline-flex items-center gap-3 bg-saffron text-ink px-8 py-4 text-[0.95rem] tracking-wide font-medium hover:bg-cream transition-colors self-start"
             >
-              Start a project
+              Schedule a call
               <span aria-hidden="true" class="inline-block transition-transform group-hover:translate-x-1">→</span>
             </a>
           </div>
@@ -303,13 +303,8 @@ const graph = {
           <div>
             <p class="text-eyebrow text-saffron mb-6">Services</p>
             <ul class="flex flex-col gap-3">
-              <li><a href="/services/business-websites/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Business websites</a></li>
-              <li><a href="/services/shopify-development/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Shopify development</a></li>
-              <li><a href="/services/adobe-commerce/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Adobe Commerce</a></li>
-              <li><a href="/services/headless-commerce/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Headless commerce</a></li>
-              <li><a href="/services/custom-app-development/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Custom apps</a></li>
-              <li><a href="/services/integrations-automation/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Integrations</a></li>
-              <li><a href="/services/audits-strategy/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Audits &amp; strategy</a></li>
+              <li><a href="/services/business-websites/" class="text-[0.9375rem] text-paper/70 hover:text-saffron transition-colors">Websites for service businesses</a></li>
+              <li><a href="/services/" class="text-[0.9375rem] text-paper/55 hover:text-saffron transition-colors">Ecommerce engineering &rarr;</a></li>
             </ul>
           </div>
 

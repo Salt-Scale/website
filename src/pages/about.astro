@@ -27,7 +27,7 @@ const tenets = [
   {
     n: "01",
     title: "One senior engineer, end-to-end.",
-    body: "No handoffs, no junior work shipped, no agency overhead. Every line under the Salt & Scale name is written and reviewed by Gabriel personally — the same engineer who scoped the work and who will be there a year after launch.",
+    body: "No handoffs, no junior work shipped, no agency overhead. Every line under the Salt & Scale name is written and reviewed by Gabriel personally. The same engineer who scoped the work and who will be there a year after launch.",
   },
   {
     n: "02",
@@ -37,38 +37,45 @@ const tenets = [
   {
     n: "03",
     title: "Production-grade fundamentals.",
-    body: "Hydrogen contributor. Shopify and Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI — not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
+    body: "Hydrogen contributor. Shopify and Vercel Partner. Built for Core Web Vitals, WCAG 2.2 AA, and real ROI, not Lighthouse vanity scores. The same engineering standards used at brands like Sanrio and PAX Labs.",
   },
 ];
 
 const priorRoles = [
   {
     n: "01",
-    years: "2019 — 2023",
-    role: "Senior Engineer",
-    company: "Corra (for Sanrio)",
-    note: "Shopify Plus + Magento PWA storefront work, Laravel APIs, infra leadership across a high-traffic global brand.",
+    years: "2023–Present",
+    role: "Sr. Customer Success Engineer",
+    company: "Adobe Commerce",
+    note: "Own technical success for enterprise Adobe Commerce Cloud accounts. Incident lead for P1/P0 bridges, performance engineering across Redis and RabbitMQ, peak readiness for streaming and ecommerce launch weekends, New Relic observability standards.",
   },
   {
     n: "02",
-    years: "2021 — 2023",
-    role: "Headless Engineer",
+    years: "2022–2023",
+    role: "Software Engineer (Contractor)",
     company: "PAX Labs",
-    note: "Shopify Plus headless program built on Remix, Hydrogen, and Oxygen. Custom OMS in PHP and MySQL for a regulated commerce vertical.",
+    note: "Headless Shopify Plus storefront on Hydrogen, TypeScript, Builder.io, and Tailwind. Custom OMS in PHP and MySQL on the backend. Remix, Oxygen, and React.js across the stack.",
   },
   {
     n: "03",
-    years: "2020 — 2022",
-    role: "Apps & Microservices",
+    years: "2021–2022",
+    role: "Lead Software Engineer",
     company: "Hive Brands",
-    note: "Custom Shopify apps and microservices for promos and ops, including a bespoke Coupon Card application.",
+    note: "Led a small engineering team building custom front-end features and third-party integrations in Vue.js and React.js. Managed Node.js + LAMP infrastructure on AWS. Designed microservices extending Shopify and third-party APIs.",
   },
   {
     n: "04",
-    years: "2018 — 2020",
-    role: "Front-end Engineer",
-    company: "Thursday Boots Co.",
-    note: "Shopify Liquid/JS performance audits and front-end feature work for a direct-to-consumer leather goods brand.",
+    years: "2021",
+    role: "Senior Full-Stack Developer (Contractor)",
+    company: "Tomorrow Agency",
+    note: "Led backend engineering on Shopify Plus client work. Custom checkout and cart features in Liquid and JavaScript. Headless storefront consulting on React.",
+  },
+  {
+    n: "05",
+    years: "2019–2021",
+    role: "Full-Stack Software Developer",
+    company: "Corra Technologies",
+    note: "Lead developer on a large Laravel API project for a client's Shopify Plus sites. PWA work on Magento with React and GraphQL. Shopify Plus, Magento, AWS, and LAMP infrastructure.",
   },
 ];
 
@@ -76,12 +83,13 @@ const partnerBadges = [
   "Shopify Partner",
   "Anthropic Claude Partner",
   "Vercel Partner",
+  "Adobe Commerce engineer",
   "Hydrogen contributor",
 ];
 ---
 
 <Layout
-  title="About — Salt & Scale"
+  title="About · Salt & Scale"
   description="Gabriel Rosales is the founder of Salt & Scale, a solo consultancy in Houston building production-grade websites for service businesses. Ten years in commerce engineering. Hydrogen contributor."
   canonicalPath="/about/"
   breadcrumbs={breadcrumbs}
@@ -94,7 +102,7 @@ const partnerBadges = [
   <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
     <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
       <ol class="flex items-center gap-2 text-[0.8125rem] tracking-wide">
-        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li><a href="/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Home</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
         <li aria-current="page" class="text-charcoal/80">About</li>
       </ol>
@@ -117,7 +125,7 @@ const partnerBadges = [
       </h1>
 
       <p class="text-[clamp(1.125rem,1.5vw,1.375rem)] leading-[1.55] text-paper/75 max-w-[58ch] font-light">
-        Salt &amp; Scale is a solo consultancy in Houston, run by one senior engineer with a decade of production commerce work behind every project. No handoffs, no juniors, no agency overhead — just the engineer who scoped the work writing the code that ships.
+        Salt &amp; Scale is a solo consultancy in Houston, run by one senior engineer with a decade of production commerce work behind every project. No handoffs, no juniors, no agency overhead. Just the engineer who scoped the work writing the code that ships.
       </p>
     </div>
   </section>
@@ -136,17 +144,17 @@ const partnerBadges = [
             <div class="w-full h-full scale-[1.85] origin-[50%_22%]">
               <Image
                 src={headshot}
-                alt="Gabriel Rosales — Founder and Principal Engineer at Salt & Scale"
-                widths={[320, 480, 720]}
-                sizes="(min-width: 768px) 40vw, 100vw"
+                alt="Gabriel Rosales, Founder and Principal Engineer at Salt & Scale"
+                widths={[480, 720, 1100, 1600]}
+                sizes="(min-width: 768px) 75vw, 100vw"
                 format="avif"
-                quality={62}
+                quality={72}
                 loading="eager"
                 class="w-full h-full object-cover"
               />
             </div>
           </div>
-          <p class="text-eyebrow text-charcoal/45 mt-4">Gabriel Rosales · Houston, TX</p>
+          <p class="text-eyebrow text-charcoal/65 mt-4">Gabriel Rosales · Houston, TX</p>
         </div>
 
         {/* Bio */}
@@ -161,7 +169,15 @@ const partnerBadges = [
           </h2>
 
           <p class="text-body-lg text-charcoal/75 mb-8 max-w-[58ch]">
-            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. Over the past ten years he has shipped commerce engineering work for brands including Sanrio (at Corra), PAX Labs, Hive Brands, and Thursday Boots Co., and contributed open-source code to Shopify&rsquo;s Hydrogen storefront framework. Salt &amp; Scale is a Shopify Partner, an Anthropic Claude Partner, and a Vercel Partner — three credentials that map directly to how the work gets done: ecommerce platform fluency, AI used as a force multiplier (never a deliverable), and modern deployment infrastructure. Every line shipped under the Salt &amp; Scale name is written and reviewed by Gabriel personally.
+            Gabriel Rosales is the founder of Salt &amp; Scale, a solo consultancy in Houston building production-grade websites for service businesses. He started writing code in high school. The first big project was a web browser in C#, which is still where the discipline comes from: build the unglamorous infrastructure first, then make it beautiful.
+          </p>
+
+          <p class="text-body-lg text-charcoal/75 mb-8 max-w-[58ch]">
+            Today he is a Sr. Customer Success Engineer at Adobe Commerce, running incident bridges and performance engineering for enterprise Cloud accounts. Salt &amp; Scale draws on a decade of production commerce work shipped at Adobe, PAX Labs, Hive Brands, and Corra (for Sanrio), plus open-source contributions to Shopify&rsquo;s Hydrogen storefront framework.
+          </p>
+
+          <p class="text-body-lg text-charcoal/75 mb-8 max-w-[58ch]">
+            The shop is a Shopify Partner, an Anthropic Claude Partner, and a Vercel Partner. Every line shipped under the Salt &amp; Scale name is written and reviewed by Gabriel personally.
           </p>
 
           {/* Partner badges as typographic list with + numerals */}
@@ -229,7 +245,7 @@ const partnerBadges = [
           <article class="grid md:grid-cols-[180px_1fr] gap-6 md:gap-16">
             <div>
               <span class="numeral text-saffron-deep text-[3.5rem] leading-none">{t.n}</span>
-              <p class="text-eyebrow text-charcoal/40 mt-4">Principle</p>
+              <p class="text-eyebrow text-charcoal/65 mt-4">Principle</p>
             </div>
             <div>
               <h3 class="font-serif font-semibold text-[clamp(1.625rem,3vw,2.25rem)] leading-[1.15] tracking-[-0.015em] text-charcoal mb-5 max-w-[22ch]">
@@ -261,8 +277,8 @@ const partnerBadges = [
             Before <span class="italic font-normal text-saffron-deep">Salt &amp; Scale</span>.
           </h2>
         </div>
-        <p class="text-[0.9375rem] text-charcoal/55 max-w-[36ch] italic font-serif">
-          Prior employment and contracting — not Salt &amp; Scale case studies.
+        <p class="text-[0.9375rem] text-charcoal/70 max-w-[36ch] italic font-serif">
+          Prior employment and contracting. Not Salt &amp; Scale case studies.
         </p>
       </div>
 
@@ -271,11 +287,11 @@ const partnerBadges = [
           <li>
             <div class="grid md:grid-cols-[64px_180px_1fr] gap-x-6 md:gap-x-10 gap-y-3 items-baseline py-8 md:py-10">
               <span class="numeral text-saffron-deep text-[1.875rem] leading-none">{r.n}</span>
-              <span class="text-eyebrow text-charcoal/45">{r.years}</span>
+              <span class="text-eyebrow text-charcoal/65">{r.years}</span>
               <div>
                 <h3 class="font-serif font-medium text-[clamp(1.5rem,2.5vw,2rem)] leading-[1.15] tracking-[-0.012em] text-charcoal mb-2">
                   {r.role}
-                  <span class="text-charcoal/55 italic font-normal"> — {r.company}</span>
+                  <span class="text-charcoal/70 italic font-normal"> — {r.company}</span>
                 </h3>
                 <p class="text-[0.9375rem] leading-[1.6] text-charcoal/65 max-w-[60ch]">
                   {r.note}
@@ -314,13 +330,13 @@ const partnerBadges = [
               class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-baseline py-6 group"
             >
               <div>
-                <p class="text-eyebrow text-charcoal/45 mb-2">Shopify · Storefront framework</p>
+                <p class="text-eyebrow text-charcoal/65 mb-2">Shopify · Storefront framework</p>
                 <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] text-charcoal group-hover:text-saffron-deep transition-colors">
                   Shopify / Hydrogen
                 </h3>
-                <p class="text-[0.9375rem] text-charcoal/60 mt-1">Contributor to the open-source React storefront framework.</p>
+                <p class="text-[0.9375rem] text-charcoal/70 mt-1">Contributor to the open-source React storefront framework.</p>
               </div>
-              <span class="text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
+              <span class="text-[0.9375rem] text-charcoal/70 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
             </a>
           </li>
           <li>
@@ -331,13 +347,13 @@ const partnerBadges = [
               class="grid grid-cols-[1fr_auto] gap-x-6 gap-y-2 items-baseline py-6 group"
             >
               <div>
-                <p class="text-eyebrow text-charcoal/45 mb-2">GitHub · 45 public repositories</p>
+                <p class="text-eyebrow text-charcoal/65 mb-2">GitHub · 45 public repositories</p>
                 <h3 class="font-serif font-medium text-[1.375rem] leading-[1.25] text-charcoal group-hover:text-saffron-deep transition-colors">
                   @notoriousgor
                 </h3>
-                <p class="text-[0.9375rem] text-charcoal/60 mt-1">Personal repositories: commerce experiments, Hydrogen forks, Astro starters.</p>
+                <p class="text-[0.9375rem] text-charcoal/70 mt-1">Personal repositories: commerce experiments, Hydrogen forks, Astro starters.</p>
               </div>
-              <span class="text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
+              <span class="text-[0.9375rem] text-charcoal/70 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all" aria-hidden="true">→</span>
             </a>
           </li>
         </ul>

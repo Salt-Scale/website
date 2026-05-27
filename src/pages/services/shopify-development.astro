@@ -1,7 +1,7 @@
 ---
 import Layout from "../../layouts/Layout.astro";
 
-const title = "Shopify Development – Salt & Scale";
+const title = "Shopify Development · Salt & Scale";
 const description = "Shopify and Shopify Plus development by a Shopify Partner with 10+ years of production commerce experience. Custom themes, headless builds, app development, and migrations.";
 
 const breadcrumbs = [
@@ -10,13 +10,13 @@ const breadcrumbs = [
   { name: "Shopify development", url: "/services/shopify-development/" },
 ];
 
-const serviceDescription = "Salt & Scale delivers Shopify and Shopify Plus development backed by 10+ years of production commerce experience and a current Shopify Partner credential. Work spans custom Liquid theme development, headless storefronts using Hydrogen and Remix on Oxygen, checkout extensibility, post-purchase flows, and Shopify app development (private and public). Every engagement is handled by one senior engineer — no handoffs to juniors, no agency layer — which keeps communication direct and code quality consistent. Prior work at this level includes headless Shopify Plus programs for PAX Labs and enterprise commerce work for Sanrio through Corra, as well as Liquid and JavaScript feature development for Thursday Boots Co.";
+const serviceDescription = "Salt & Scale delivers Shopify and Shopify Plus development backed by 10+ years of production commerce experience and a current Shopify Partner credential. Work spans custom Liquid theme development, headless storefronts using Hydrogen and Remix on Oxygen, checkout extensibility, post-purchase flows, and Shopify app development (private and public). Every engagement is handled by one senior engineer (no handoffs to juniors, no agency layer), which keeps communication direct and code quality consistent. Prior contract work includes PAX Labs' headless Shopify storefront on Hydrogen, TypeScript, Builder.io, and Tailwind, with a custom PHP/MySQL OMS on the backend. Enterprise commerce work for Sanrio through Corra.";
 
 const includedItems = [
   {
     n: "01",
     title: "Custom theme development",
-    body: "Liquid and JavaScript theme work — new builds, existing theme modifications, performance refactors, and feature additions across PDP, cart, and checkout.",
+    body: "Liquid and JavaScript theme work: new builds, existing theme modifications, performance refactors, and feature additions across PDP, cart, and checkout.",
   },
   {
     n: "02",
@@ -70,7 +70,7 @@ const outcomes = [
   {
     n: "01",
     title: "Core Web Vitals passing",
-    body: "LCP under 2.5s, INP under 200ms, CLS under 0.1 — measured against real-user data, not just Lighthouse lab runs.",
+    body: "LCP under 2.5s, INP under 200ms, CLS under 0.1, measured against real-user data, not just Lighthouse lab runs.",
   },
   {
     n: "02",
@@ -80,18 +80,14 @@ const outcomes = [
   {
     n: "03",
     title: "Integration reliability",
-    body: "Integrations with retry logic, error alerting, and idempotent operations — so ERP syncs, inventory feeds, and order pipelines don't fail silently.",
+    body: "Integrations with retry logic, error alerting, and idempotent operations, so ERP syncs, inventory feeds, and order pipelines don't fail silently.",
   },
 ];
 
 const priorWork = [
   {
     company: "PAX Labs",
-    detail: "Shopify Plus headless program (Hydrogen, Remix, Oxygen), custom OMS in PHP/MySQL.",
-  },
-  {
-    company: "Thursday Boots Co.",
-    detail: "Shopify Liquid/JS audits and front-end feature development.",
+    detail: "Headless Shopify storefront with Hydrogen, TypeScript, Builder.io, Tailwind. Custom PHP/MySQL OMS on backend. (Contract, 2022–2023)",
   },
   {
     company: "Sanrio (via Corra)",
@@ -107,11 +103,11 @@ const priorWork = [
 const faqItems = [
   {
     question: "What's the difference between Shopify and Shopify Plus development?",
-    answer: "Shopify handles most mid-market stores. Shopify Plus adds checkout extensibility, multi-store setups, B2B functionality, and advanced scripting — it's the enterprise tier. The development work differs significantly: Plus unlocks APIs and customization points that aren't available on standard plans. We work on both, and can advise on whether a Plus upgrade is warranted for your goals.",
+    answer: "Shopify handles most mid-market stores. Shopify Plus adds checkout extensibility, multi-store setups, B2B functionality, and advanced scripting. It's the enterprise tier. The development work differs significantly: Plus unlocks APIs and customization points that aren't available on standard plans. We work on both, and can advise on whether a Plus upgrade is warranted for your goals.",
   },
   {
     question: "Do you build headless Shopify storefronts?",
-    answer: "Yes. Headless Shopify uses the Storefront API with a custom front-end framework — typically Hydrogen (Shopify's official framework built on Remix) deployed to Oxygen. The tradeoff is more flexibility and better performance ceilings versus higher build complexity and cost. We'll tell you honestly whether headless is the right choice for your scale and team.",
+    answer: "Yes. Headless Shopify uses the Storefront API with a custom front-end framework, typically Hydrogen (Shopify's official framework built on Remix) deployed to Oxygen. The tradeoff is more flexibility and better performance ceilings versus higher build complexity and cost. We'll tell you honestly whether headless is the right choice for your scale and team.",
   },
   {
     question: "Can you work on an existing Shopify theme?",
@@ -119,7 +115,7 @@ const faqItems = [
   },
   {
     question: "How do Shopify app builds work?",
-    answer: "Private apps are bespoke tools built for one store — OMS integrations, custom admin UIs, bulk-operation automations. Public apps go through Shopify's review process and can be installed by any merchant. Both use the same App Bridge and REST/GraphQL Admin API pattern; the main difference is the review and billing infrastructure. Timelines are four to eight weeks for a private app, eight to twelve for a public one.",
+    answer: "Private apps are bespoke tools built for one store: OMS integrations, custom admin UIs, bulk-operation automations. Public apps go through Shopify's review process and can be installed by any merchant. Both use the same App Bridge and REST/GraphQL Admin API pattern; the main difference is the review and billing infrastructure. Timelines are four to eight weeks for a private app, eight to twelve for a public one.",
   },
 ];
 
@@ -160,9 +156,9 @@ const schema = [
   <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
     <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
       <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
-        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li><a href="/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Home</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
-        <li><a href="/services/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Services</a></li>
+        <li><a href="/services/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Services</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
         <li aria-current="page" class="text-charcoal/80">Shopify development</li>
       </ol>
@@ -185,7 +181,7 @@ const schema = [
       </h1>
 
       <p class="text-body-lg text-paper/75 max-w-[58ch] mb-12 md:mb-14">
-        Ten years of production Shopify experience and a current Shopify Partner credential. Liquid themes, Hydrogen headless, checkout extensibility, and app development — all delivered by one senior engineer.
+        Ten years of production Shopify experience and a current Shopify Partner credential. Liquid themes, Hydrogen headless, checkout extensibility, and app development. All delivered by one senior engineer.
       </p>
 
       <div class="flex flex-wrap items-center gap-x-8 gap-y-5">
@@ -277,7 +273,7 @@ const schema = [
           <article>
             <div class="border-t border-charcoal/25 pt-6 flex items-baseline justify-between mb-8">
               <span class="numeral text-saffron-deep text-[3rem] leading-none">{s.n}</span>
-              <span class="text-eyebrow text-charcoal/45">{s.label}</span>
+              <span class="text-eyebrow text-charcoal/65">{s.label}</span>
             </div>
             <h3 class="font-serif font-semibold text-[1.625rem] leading-[1.2] tracking-[-0.012em] text-charcoal mb-4 max-w-[18ch]">
               {s.title}
@@ -316,7 +312,7 @@ const schema = [
           </article>
         ))}
       </div>
-      <p class="text-[0.875rem] leading-[1.55] text-charcoal/55 max-w-[72ch] italic font-serif">
+      <p class="text-[0.875rem] leading-[1.55] text-charcoal/70 max-w-[72ch] italic font-serif">
         Outcomes vary by project scope, existing stack health, and traffic patterns. Prior-work metrics referenced on this site are from individual engagements and are not guarantees of future results.
       </p>
     </div>
@@ -338,7 +334,7 @@ const schema = [
             Ten years of <span class="italic font-normal text-saffron-deep">Shopify</span> in production.
           </h2>
           <p class="text-[1.0625rem] leading-[1.65] text-charcoal/70 max-w-[42ch] mb-2">
-            The work below is prior employment and contracting — not Salt &amp; Scale case studies, but the experience that informs every engagement today.
+            The work below is prior employment and contracting, not Salt &amp; Scale case studies, but the experience that informs every engagement today.
           </p>
         </header>
 

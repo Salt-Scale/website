@@ -5,7 +5,7 @@ import Layout from "../../layouts/Layout.astro";
 export async function getStaticPaths() {
   const posts = await getCollection('insights', ({ data }) => !data.draft);
   return posts.map((entry) => ({
-    params: { slug: entry.slug },
+    params: { slug: entry.id },
     props: { entry },
   }));
 }
@@ -16,22 +16,22 @@ const { Content } = await render(entry);
 const { title, description, datePublished, dateModified, author, tags, ogImage } = entry.data;
 
 // Reading time: rough estimate at 200 wpm
-const wordCount = entry.body.split(/\s+/).length;
+const wordCount = (entry.body ?? '').split(/\s+/).length;
 const readingMinutes = Math.max(1, Math.round(wordCount / 200));
 
 // Related articles: same tag, exclude current
 const allPosts = await getCollection('insights', ({ data }) => !data.draft);
 const relatedPosts = allPosts
-  .filter((p) => p.slug !== entry.slug && p.data.tags.some((t) => tags.includes(t)))
+  .filter((p) => p.slug !== entry.id && p.data.tags.some((t) => tags.includes(t)))
   .sort((a, b) => b.data.datePublished.valueOf() - a.data.datePublished.valueOf())
   .slice(0, 3);
 
-const canonicalUrl = `https://saltandscale.consulting/insights/${entry.slug}/`;
+const canonicalUrl = `https://saltandscale.consulting/insights/${entry.id}/`;
 
 const breadcrumbs = [
   { name: 'Home', url: '/' },
   { name: 'Insights', url: '/insights/' },
-  { name: title, url: `/insights/${entry.slug}/` },
+  { name: title, url: `/insights/${entry.id}/` },
 ];
 
 const articleSchema = {
@@ -58,10 +58,10 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
 ---
 
 <Layout
-  title={`${title} — Salt & Scale`}
+  title={`${title} · Salt & Scale`}
   description={description}
   ogImage={ogImage}
-  canonicalPath={`/insights/${entry.slug}/`}
+  canonicalPath={`/insights/${entry.id}/`}
   breadcrumbs={breadcrumbs}
   schema={articleSchema}
 >
@@ -72,9 +72,9 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
   <nav aria-label="Breadcrumb" class="bg-paper border-b border-charcoal/8">
     <div class="mx-auto max-w-[1280px] px-6 md:px-10 py-4">
       <ol class="flex flex-wrap items-center gap-2 text-[0.8125rem] tracking-wide">
-        <li><a href="/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Home</a></li>
+        <li><a href="/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Home</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
-        <li><a href="/insights/" class="text-charcoal/50 hover:text-saffron-deep transition-colors">Insights</a></li>
+        <li><a href="/insights/" class="text-charcoal/70 hover:text-saffron-deep transition-colors">Insights</a></li>
         <li aria-hidden="true" class="text-charcoal/30">/</li>
         <li aria-current="page" class="text-charcoal/80 truncate max-w-[40ch]">{title}</li>
       </ol>
@@ -99,8 +99,8 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
         {title}
       </h1>
 
-      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-8 border-t border-charcoal/15 text-[0.875rem] text-charcoal/60">
-        <span class="text-eyebrow text-charcoal/55">By {author}</span>
+      <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pt-8 border-t border-charcoal/15 text-[0.875rem] text-charcoal/70">
+        <span class="text-eyebrow text-charcoal/70">By {author}</span>
         <span aria-hidden="true" class="text-saffron">·</span>
         <time datetime={datePublished.toISOString()}>{dateFormatter.format(datePublished)}</time>
         <span aria-hidden="true" class="text-saffron">·</span>
@@ -185,11 +185,11 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
                 <span class="numeral text-saffron-deep text-[1.5rem] leading-none">{String(i + 1).padStart(2, '0')}</span>
                 <div class="flex flex-col gap-1">
                   {related.data.tags[0] && (
-                    <span class="text-eyebrow text-charcoal/45 group-hover:text-saffron-deep/80 transition-colors">{related.data.tags[0]}</span>
+                    <span class="text-eyebrow text-charcoal/65 group-hover:text-saffron-deep/80 transition-colors">{related.data.tags[0]}</span>
                   )}
                   <time
                     datetime={related.data.datePublished.toISOString()}
-                    class="text-[0.8125rem] text-charcoal/50 italic font-serif"
+                    class="text-[0.8125rem] text-charcoal/70 italic font-serif"
                   >
                     {dateFormatter.format(related.data.datePublished)}
                   </time>
@@ -197,7 +197,7 @@ const takeaways = (entry.data as any).takeaways as string[] | undefined;
                 <h3 class="font-serif font-medium text-[clamp(1.25rem,2vw,1.625rem)] leading-[1.2] tracking-[-0.01em] text-charcoal group-hover:text-saffron-deep transition-colors max-w-[50ch]">
                   {related.data.title}
                 </h3>
-                <span class="hidden md:inline-block text-[0.9375rem] text-charcoal/50 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">Read →</span>
+                <span class="hidden md:inline-block text-[0.9375rem] text-charcoal/70 group-hover:text-saffron-deep group-hover:translate-x-1 transition-all duration-150 whitespace-nowrap" aria-hidden="true">Read →</span>
               </a>
             </li>
           ))}
